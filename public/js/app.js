@@ -53545,7 +53545,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 								this.allcatagory = res.data;
 							}
 							_context.next = 6;
-							return this.callApi('get', 'get-all-catgory-by-search/' + this.searchData);
+							return this.callApi('get', 'get-all-info-by-search/' + this.searchData);
 
 						case 6:
 							res1 = _context.sent;

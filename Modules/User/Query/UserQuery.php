@@ -23,14 +23,17 @@ class UserQuery {
       $service = Service::with('image')->orderBy('created_at', 'desc')->get();  
         return $service;
     }
-    public function getInfoBySearch($key){
+    public function getInfoBySearch($key=''){
      // if($key == '')  $service = Service::with('image')->orderBy('created_at', 'desc')->get();
-      $service = Service::with('image')->with('users')->with('cats')->where('title', 'like', '%' . $key . '%')->get();  
+      if($key=='') $service = Service::with('image')->with('users')->with('cats')->orderBy('created_at', 'desc')->get();
+     
+      else $service = Service::with('image')->with('users')->with('cats')->where('title', 'like', '%' . $key . '%')->get();  
 
         return $service;
     }
     public function getInfoBySearchCatagory($key){
-      $service = Service::with('image')->with('users')->where('title', 'like', '%' . $key . '%')->get();  
+      if($key=='') $service = Service::with('image')->with('users')->with('cats')->get();
+      else $service = Service::with('image')->with('users')->where('title', 'like', '%' . $key . '%')->get();  
  
         return $service;
     }

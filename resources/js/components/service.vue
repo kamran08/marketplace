@@ -191,7 +191,7 @@ export default {
 			if(res.status===200){
 				this.allcatagory = res.data
 			} 
-			const res1 = await this.callApi('get', `get-all-catgory-by-search/${this.searchData}`)
+			const res1 = await this.callApi('get', `get-all-info-by-search/${this.searchData}`)
 			if(res1.status===200){
 				this.allcatagoryBysearch = res1.data
 				console.log(res1.data.image.imageName)

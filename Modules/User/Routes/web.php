@@ -16,9 +16,9 @@ Route::prefix('user')->group(function() {
 });
 Route::get('app/get-all-catgory', 'UserController@getAllcat');
 Route::get('/app/get-all-service', 'UserController@getAllService');
-Route::get( '/app/get-all-catgory-by-search/{key}', 'UserController@getInfoBySearch');
+Route::get( '/app/get-all-info-by-search/{key}', 'UserController@getInfoBySearch');
 
-//Route::get( '/app/get-all-catgory-by-search-catagory/{key}', 'UserController@getInfoBySearchCatagory');
+//Route::get( '/app/get-all-catgory-by-search/{key}', 'UserController@getInfoBySearchCatagory');
 
 
 
