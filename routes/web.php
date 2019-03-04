@@ -16,6 +16,6 @@ Route::get('/', function () {
 });
 
 // spa routes...
-Route::any('{slug}', function(){
-    return view('welcome');
-})->where('slug', '([A-z\d-\/_.]+)?');
+// Route::any('{slug}', function(){
+//     return view('welcome');
+// })->where('slug', '([A-z\d-\/_.]+)?');
