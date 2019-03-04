@@ -11,7 +11,9 @@ export default {
         ...mapGetters({
             authInfo: 'getAuth',
             tagInfo:'getFlag',
-            searchData:'getSearchData'
+            searchData:'getSearchData',
+            LinkFlagTab: 'getTabInfo',
+            user_id: 'getUser_id',
         }),
     },
     created() {

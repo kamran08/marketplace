@@ -13,7 +13,9 @@ export default new Vuex.Store({
     state: {
         authUser:'of',
         tabFlag: 1,
-        searhData:'this is search data'
+        searhData:'this is search data',
+        TabInfo:1,
+        User_id:''
        
     },
     //started getter
@@ -26,6 +28,12 @@ export default new Vuex.Store({
         },
         getFlag(state) {
             return state.tabFlag
+        },
+        getTabInfo(state) {
+            return state.TabInfo
+        },
+        getUser_id(state) {
+            return state.User_id
         }
     },// getter end
 
@@ -41,22 +49,13 @@ export default new Vuex.Store({
         setAuth: (state, payload) => {
             state.authUser = payload;
         },
-        pushcartitem: (state, payload) => {
-            state.cartsdata.push(payload);
+        setTabInfo: (state, payload) => {
+            state.TabInfo = payload;
         },
-        pushadditem: (state, payload) => {
-
-            state.products.push({ name: payload[0], price: payload[1] })
-            //state.cartsdata.push(payload);
+        setUser_id: (state, payload) => {
+            state.User_id = payload;
         },
-        pushsellitem: (state, payload) => {
-            for (var i = 0; i < payload.length; i++) {
-                state.selldata.push(payload[i])
-            }
-            if (state.cartsdata.length > 0) {
-                state.cartsdata = [];
-            }
-        }
+      
     },/// mutation end
 
     //action started 
@@ -70,15 +69,14 @@ export default new Vuex.Store({
         setAuth: (context, payload) => {
             context.commit('setAuth', payload)
         },
+        setTabInfo: (context, payload) => {
+            context.commit('setTabInfo', payload)
+        },
+        setUser_id: (context, payload) => {
+            context.commit('setUser_id', payload)
+        },
 
-        reducePrice: (context, payload) => {
-            setTimeout(function () {
-                context.commit('reducePrice', payload)
-            }, 2000)
-        },
-        pushcartitem: (context, payload) => {
-            context.commit('pushcartitem', payload)
-        },
+    
 
     }// action end 
 
