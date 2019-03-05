@@ -21,7 +21,7 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '1',
-            'isComplite' => 1,
+            'isComplete' => true,
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -33,7 +33,7 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '1',
-            'isComplite' => 1,
+            'isComplete' => true,
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -45,7 +45,7 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '1',
-            'isComplite' => 1,
+            'isComplete' => true,
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -57,7 +57,7 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '1',
-            'isComplite' => 1,
+            'isComplete' => true,
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -69,7 +69,7 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '0',
-            'isComplite' => 1,
+            'isComplete' => true,
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -81,7 +81,7 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '0',
-            'isComplite' => 1,
+            'isComplete' => true,
         ]);
     }
 }

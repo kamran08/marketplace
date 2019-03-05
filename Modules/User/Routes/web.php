@@ -25,6 +25,10 @@ Route::get( '/app/get-all-info-by-search/{key}', 'UserController@getInfoBySearch
 Route::post('app/login', 'UserController@login');
 Route::post('app/register', 'UserController@register');
 Route::post( 'app/upload-avater', 'UserController@upload');
+Route::post( 'app/insert-all-services', 'UserController@insertService');
+Route::post( 'app/add-extra', 'UserController@addExtra');
+Route::post( 'app/delate-extra', 'UserController@delateExtra');
+Route::post( 'app/add-tag', 'UserController@addTag');
 
 
 // Route::get('app/ok', 'UserController@register');

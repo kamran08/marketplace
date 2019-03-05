@@ -29,9 +29,8 @@
             </ul>
         </div>
          <div class="_login_input_button">
-                <button class="_btn _login_input_button_btn _bg" @click="join" type="button">JOIN NOW</button>
-
-                <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button>
+                <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Next Step</button>
+                <!-- <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button> -->
          </div>
     </div>    
 </template>
@@ -43,6 +42,7 @@ export default {
             formdata:{
                 title:'',
                 cat_id:'',
+                user_id:'',
                 user_id:this.authInfo,
                 price:'',
                 videoLink:'',
@@ -63,9 +63,12 @@ export default {
     },
     methods:{
         join(){
-            this.$store.dispatch('setTabInfo',3);
+            this.$store.dispatch('setTabInfo',this.LinkFlagTab+1);
         },
        
+    },
+    created(){
+        this.i("Please upload your Service Images");
     }
 
 }

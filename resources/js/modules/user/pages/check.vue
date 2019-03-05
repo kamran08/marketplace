@@ -1,21 +1,36 @@
 <template>
     <div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-4" @click="showUploadModal=true">
                 <div class="profile-img">
                     <img :src="BASE_URL+img" alt="user-profile" />
                     <div   class="file btn btn-lg btn-primary">
                         Change Photo
-                        <!-- <input type="file" name="file" /> -->
+                        
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+
+         <Input type="text"
+              ref = "input"
+             placeholder="hiya"
+             v-model="ok"
+             @keyup.enter.native="add(ok)"
+                
+                
+      />
+      <ul class="skills-list" id="skills_list"><li class="skill-item">
+
+	<input type="hidden" name="skills[]" value="4" class="skill-input">
+	<span class="text-ellipsis">4</span><a href="javascript:void(0);" class="delete"><i class="fa fa-times"></i></a>
+	
+</li></ul>
 
  
 
         <!-- upload modal -->
-        <Modal
+        <!-- <Modal
             v-model="showUploadModal"
             title="Upload your profile picture"
             :closable = "false"
@@ -33,7 +48,7 @@
                 <div slot="footer">
                     <Button @click="showUploadModal=false">Close</Button>
                 </div>
-        </Modal> 
+        </Modal>  -->
     </div>
 </template>
 <script>
@@ -52,6 +67,7 @@
                 user: [],
                 showUploadModal:false,
                 img: 'uploads/_85730600_monkey2.jpg',
+                ok:''
 
             }
         },
@@ -67,6 +83,14 @@
         },
 
         methods: {
+             handleChange(e) {
+                if (e.key == 'Enter') {
+                console.log('test');
+            }},
+             add(e) {
+                    console.log(e)
+                    this.ok=''
+             },
 
        
              handleSuccess (res, file) {

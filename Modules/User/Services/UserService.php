@@ -39,6 +39,22 @@ class UserService {
        $service = $this->query->getInfoBySearchCatagory($key);
        return $service;
     }
+    public function insertService($data){
+       $service = $this->query->insertService($data);
+       return $service;
+    }
+    public function addExtra($data){
+       $service = $this->query->addExtra($data);
+       return $service;
+    }
+    public function delateExtra($data){
+       $service = $this->query->delateExtra($data);
+       return $service;
+    }
+    public function addTag($data){
+       $service = $this->query->addTag($data);
+       return $service;
+    }
 
 
 } 

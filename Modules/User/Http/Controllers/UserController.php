@@ -85,6 +85,38 @@ class UserController extends Controller
 
         return $this->userService->getInfoBySearchCatagory($key);
     }
+    public function insertService(Request $request){
+           
+        return $this->userService->insertService($request->all());
+    }
+    public function addExtra(Request $request){
+           
+        return $this->userService->addExtra($request->all());
+    }
+    public function delateExtra(Request $request){
+           
+        return $this->userService->delateExtra($request->all());
+    }
+    public function addTag(Request $request){
+          // \Log::info($request);
+        return $this->userService->addTag($request->all());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     public function upload(Request $request){
 

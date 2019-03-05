@@ -8,6 +8,6 @@ class Tag extends Model
 {
     //
     protected $fillable =[
-        
+        'service_id', 'tagName' 
     ];
 }

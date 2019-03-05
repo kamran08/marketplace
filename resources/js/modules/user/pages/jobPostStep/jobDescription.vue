@@ -24,8 +24,11 @@
                                                         {{catagory}}
                                                         <Icon type="ios-arrow-down"></Icon>
                                                     </a>
-                                                    <DropdownMenu slot="list" v-for="(job,i) in alljobs" :key="i">
-                                                        <p  @click="handleClose(job.catName)">{{job.catName}}</p>
+                                                    <DropdownMenu slot="list" v-for="(job,index) in alljobs" :key="index">
+                                                        
+                                                      <!-- <p v-model="formdata.cat_id">{{index}}</p> -->
+                                            
+                                                      <p  @click="handleClose(job.catName,index)">{{job.catName}}</p>
                                                     </DropdownMenu>
                                                 </Dropdown>
                                                     </div>
@@ -37,7 +40,7 @@
                                                     <i class="fas fa-envelope"></i>
 
                                                     <div class="_login_input_inp">
-                                                        <input class="_login_input_inp_field" v-model="formdata.title" placeholder="Delivery time" type="text">
+                                                        <input class="_login_input_inp_field" v-model="formdata.daliveryTime" placeholder="Delivery time" type="text">
                                                     </div>
                                                 </div>
                                             </div>
@@ -49,14 +52,23 @@
 
                                         <div class="_login_input">
                                             <div class="_login_input_inp">
-                                               <textarea class="_1steps_textarea" rows="4" cols="50" v-model="formdata.title"></textarea>
-                                            </div>
+                                               <textarea class="_1steps_textarea" rows="4" cols="50" v-model="formdata.description"></textarea>
+                                                 </div>
                                         </div>
                                     </div>
+                                    <label> videoLink </label>
+                                    <input class="_1steps_textarea" rows="4" cols="50" v-model="formdata.videoLink"/>
+                                          
+                                    <label> opening massage </label>
+                                    <input class="_1steps_textarea" rows="4" cols="50" v-model="formdata.openingMassage"/>
+                                          
+                                    <label> price </label>
+                                    <input class="_1steps_textarea" rows="4" cols="50" v-model="formdata.price"/>
+                                          
                                     <div class="_login_input_button">
-                                        <button class="_btn _login_input_button_btn _bg" @click="join" type="button">JOIN NOW</button>
+                                        <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Join Now </button>
 
-                                        <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button>
+                                        <!-- <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button> -->
                                     </div>
                                 </form>
                             </div>
@@ -69,49 +81,64 @@ export default {
             formdata:{
                 title:'',
                 cat_id:'',
-                user_id:this.authInfo,
+                user_id:'',
                 price:'',
                 videoLink:'',
                 description:'',
                 openingMassage:'',
                 daliveryTime:'',
-                isFeatured:'',
+                isFeatured:'0',
+                isComplete:false
             },
             items:[],
-          itemName:'',
-          itemPrice:0,
-          ok:0,
-          alljobs:'',
-          visible: false,
-          catagory:'catagory'
-
+            itemName:'',
+            itemPrice:0,
+            ok:0,
+            alljobs:'',
+            visible: false,
+            catagory:'catagory'
         }
     },
     methods:{
-        join(){
-            this.$store.dispatch('setTabInfo',2);
+        async join(){
+            if(this.formdata.title == '' || this.formdata.price == ''){
+                this.i("All fields are requrired");
+                return;
+            }
+            this.formdata.user_id = this.User_id
+             const res1 = await this.callApi('post', 'insert-all-services',this.formdata)
+            if(res1.status===201){
+                this.s("Data stored Successfully!");
+                this.$store.dispatch('setService_id',res1.id);
+                this.$store.dispatch("setTabInfo",this.LinkFlagTab+1)
+            }
+            else this.swr();
         },
-        
          handleOpen () {
                 if(this.visible==false)
                 this.visible = true;
                 else this.visible = false;
-            },
-            handleClose (e) {
+        },
+        handleClose (e,index) {
+                this.formdata.cat_id=index;
                 this.catagory = e
-                this.visible = false;
-            },
-
-
-      async insertAlldata(){
-
-            const res = await this.callApi('get', 'insert-all-services',this.fo)
-      }
+                 this.visible = false;
+                 
+                // console.log(e)
+                //index++
+                //console.log(index)
+                //this.s(this.index)
+        },
     },
-    async created(){
-        const res = await this.callApi('get', 'get-all-catgory')
-			this.alljobs = res.data;
-    }
+        async created(){
+            const res = await this.callApi('get', 'get-all-catgory')
+           
+            if(res.status==200){
+                 this.alljobs = res.data;
+            }
+            else this.swr();
+        }
+    
 
 }
 </script>

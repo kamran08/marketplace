@@ -13,7 +13,8 @@ export default {
             tagInfo:'getFlag',
             searchData:'getSearchData',
             LinkFlagTab: 'getTabInfo',
-            user_id: 'getUser_id',
+            User_id: 'getUser_id',
+            getService_id:'getService_id'
         }),
     },
     created() {
