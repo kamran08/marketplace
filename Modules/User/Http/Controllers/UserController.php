@@ -102,22 +102,6 @@ class UserController extends Controller
         return $this->userService->addTag($request->all());
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     public function upload(Request $request){
 
         request()->file('file')->store('uploads');
@@ -137,6 +121,15 @@ class UserController extends Controller
         //     ], 403);
         // }
         return $pic;
+    }
+    public function getImage(Request $request){
+        \Log::info("I am running from getImage");
+        request()->file('img')->store('uploads');
+        $pic= "/uploads/".$request->img->hashName();
+        return $pic;
+    }
+    public function saveImages(Request $request){
+        return $this->userService->saveImages($request->all());
     }
 
 

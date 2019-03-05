@@ -9,7 +9,7 @@ export default {
     },
     computed: {
         ...mapGetters({
-            authInfo: 'getAuth',
+           // authInfo: 'getAuth',
             tagInfo:'getFlag',
             searchData:'getSearchData',
             LinkFlagTab: 'getTabInfo',

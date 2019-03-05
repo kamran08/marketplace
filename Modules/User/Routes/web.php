@@ -29,6 +29,8 @@ Route::post( 'app/insert-all-services', 'UserController@insertService');
 Route::post( 'app/add-extra', 'UserController@addExtra');
 Route::post( 'app/delate-extra', 'UserController@delateExtra');
 Route::post( 'app/add-tag', 'UserController@addTag');
+Route::post( 'app/getServiceImage', 'UserController@getImage');
+Route::post( 'app/saveServiceImage', 'UserController@saveImages');
 
 
 // Route::get('app/ok', 'UserController@register');

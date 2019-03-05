@@ -6,6 +6,7 @@ use App\Cat;
 use App\Service;
 use App\Extra;
 use App\Tag;
+use App\Image;
 use Mockery\CountValidator\Exact;
 class UserQuery {
    
@@ -52,19 +53,20 @@ class UserQuery {
            \Log::info($user);
             return $user;
     }
-    public function delateExtra($data){
-   // return Extra::create($data);
-    }
     public function addTag($data){
       for($i=0; $i<sizeof($data)-1; $i++){
          Tag::create($data[$i]);
-        //\Log::info($data[$i]);
       }
-    return Tag::create($data[sizeof($data)-1]);
-    //\Log::info($data);
-    //return Extra::create($data);
+      return Tag::create($data[sizeof($data)-1]);
     }
-
+    public function delateExtra($data){
+      // return Extra::create($data);
+    }
+    public function saveImages($data){
+      \Log::info($data);
+       $flag =  Image::insert($data);
+       return response()->json($flag);
+    }
 
 
 

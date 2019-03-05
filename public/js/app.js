@@ -58114,7 +58114,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58125,8 +58125,20 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
 
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -58167,28 +58179,123 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        var _formdata;
-
         return {
-            formdata: (_formdata = {
-                title: '',
-                cat_id: '',
-                user_id: ''
-            }, _defineProperty(_formdata, 'user_id', this.authInfo), _defineProperty(_formdata, 'price', ''), _defineProperty(_formdata, 'videoLink', ''), _defineProperty(_formdata, 'description', ''), _defineProperty(_formdata, 'openingMassage', ''), _defineProperty(_formdata, 'daliveryTime', ''), _defineProperty(_formdata, 'isFeatured', ''), _formdata),
+
+            listMethod: false,
             items: [],
             itemName: '',
             itemPrice: 0,
             ok: 0,
             alljobs: '',
             visible: false,
-            catagory: 'catagory'
+            catagory: 'catagory',
+            crfObj: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            service_id: 1,
+            uploads: [],
+            active: {
+                imageName: "/uploads/default.png"
+            }
 
         };
     },
 
     methods: {
-        join: function join() {
-            this.$store.dispatch('setTabInfo', this.LinkFlagTab + 1);
+        join: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, i, res;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                if (this.uploads.length) {
+                                    _context.next = 3;
+                                    break;
+                                }
+
+                                this.i("You must upload atleast 1 Photo!");
+                                return _context.abrupt('return');
+
+                            case 3:
+                                _iteratorNormalCompletion = true;
+                                _didIteratorError = false;
+                                _iteratorError = undefined;
+                                _context.prev = 6;
+
+                                for (_iterator = this.uploads[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                                    i = _step.value;
+
+                                    i.service_id = this.service_id;
+                                }
+                                _context.next = 14;
+                                break;
+
+                            case 10:
+                                _context.prev = 10;
+                                _context.t0 = _context['catch'](6);
+                                _didIteratorError = true;
+                                _iteratorError = _context.t0;
+
+                            case 14:
+                                _context.prev = 14;
+                                _context.prev = 15;
+
+                                if (!_iteratorNormalCompletion && _iterator.return) {
+                                    _iterator.return();
+                                }
+
+                            case 17:
+                                _context.prev = 17;
+
+                                if (!_didIteratorError) {
+                                    _context.next = 20;
+                                    break;
+                                }
+
+                                throw _iteratorError;
+
+                            case 20:
+                                return _context.finish(17);
+
+                            case 21:
+                                return _context.finish(14);
+
+                            case 22:
+                                _context.next = 24;
+                                return this.callApi('post', "saveServiceImage", this.uploads);
+
+                            case 24:
+                                res = _context.sent;
+
+                                if (res.status === 200) {
+                                    this.s("Images uploaded Successfully!");
+                                    this.$store.dispatch('setTabInfo', this.LinkFlagTab + 1);
+                                } else {
+                                    this.swr();
+                                }
+                                console.log(this.uploads);
+
+                            case 27:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[6, 10, 14, 22], [15,, 17, 21]]);
+            }));
+
+            function join() {
+                return _ref.apply(this, arguments);
+            }
+
+            return join;
+        }(),
+        handleSuccess: function handleSuccess(res, file) {
+            console.log(res);
+            this.active.imageName = res;
+            this.uploads.push({ imageName: this.active.imageName });
+            console.log(res);
         }
     },
     created: function created() {
@@ -58205,9 +58312,72 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "_login_input_group" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "_1steps_img _1steps_shadow" }, [
+      _c("img", {
+        staticClass: "_1steps_img_pic",
+        attrs: { src: _vm.active.imageName, title: "" }
+      })
+    ]),
     _vm._v(" "),
-    _vm._m(1),
+    _c("div", { staticClass: "_1steps_img_select" }, [
+      _c(
+        "ul",
+        { staticClass: "_1steps_img_select_pic" },
+        [
+          _vm.uploads.length
+            ? _vm._l(_vm.uploads, function(item, index) {
+                return _c(
+                  "li",
+                  {
+                    key: index,
+                    staticClass: "_1steps_shadow  ",
+                    class: index == 1 ? "_1steps_img_select_active" : ""
+                  },
+                  [
+                    _c("img", { attrs: { src: item.imageName, title: "" } }),
+                    _vm._v(" "),
+                    _vm._m(0, true)
+                  ]
+                )
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "_1steps_add" },
+            [
+              _c(
+                "Col",
+                { staticClass: "dream-input-main", attrs: { span: "24" } },
+                [
+                  _c(
+                    "Upload",
+                    {
+                      ref: "upload",
+                      attrs: {
+                        type: "drag",
+                        name: "img",
+                        "show-upload-list": _vm.listMethod,
+                        "with-credentials": true,
+                        headers: _vm.crfObj,
+                        "on-success": _vm.handleSuccess,
+                        format: ["jpg", "jpeg", "png"],
+                        "max-size": 2048,
+                        action: "/app/getServiceImage"
+                      }
+                    },
+                    [_c("div", [_c("i", { staticClass: "fas fa-plus" })])]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        2
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "_login_input_button" }, [
       _c(
@@ -58227,47 +58397,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_1steps_img _1steps_shadow" }, [
-      _c("img", {
-        staticClass: "_1steps_img_pic",
-        attrs: { src: "img/V90.jpg", title: "" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_1steps_img_select" }, [
-      _c("ul", { staticClass: "_1steps_img_select_pic" }, [
-        _c("li", { staticClass: "_1steps_shadow" }, [
-          _c("img", { attrs: { src: "img/V90.jpg", title: "" } }),
-          _vm._v(" "),
-          _c("p", { staticClass: "_1steps_cencel _1steps_shadow" }, [
-            _c("i", { staticClass: "fas fa-plus" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_1steps_shadow _1steps_img_select_active" }, [
-          _c("img", { attrs: { src: "img/V90.jpg", title: "" } }),
-          _vm._v(" "),
-          _c("p", { staticClass: "_1steps_cencel _1steps_shadow" }, [
-            _c("i", { staticClass: "fas fa-plus" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_1steps_shadow" }, [
-          _c("img", { attrs: { src: "img/V90.jpg", title: "" } }),
-          _vm._v(" "),
-          _c("p", { staticClass: "_1steps_cencel _1steps_shadow" }, [
-            _c("i", { staticClass: "fas fa-plus" })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_1steps_add" }, [
-          _c("i", { staticClass: "fas fa-plus" })
-        ])
-      ])
+    return _c("p", { staticClass: "_1steps_cencel _1steps_shadow" }, [
+      _c("i", { staticClass: "fas fa-plus" })
     ])
   }
 ]
@@ -58411,7 +58542,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         authUser: 'of',
         tabFlag: 1,
         searhData: 'this is search data',
-        TabInfo: 3,
+        TabInfo: 2,
         User_id: '1',
         Service_id: 1
 
@@ -100450,7 +100581,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapGetters */])({
-        authInfo: 'getAuth',
+        // authInfo: 'getAuth',
         tagInfo: 'getFlag',
         searchData: 'getSearchData',
         LinkFlagTab: 'getTabInfo',

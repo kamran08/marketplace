@@ -52,8 +52,12 @@ class UserService {
        return $service;
     }
     public function addTag($data){
-       $service = $this->query->addTag($data);
-       return $service;
+       $tags = $this->query->addTag($data);
+       return $tags;
+    }
+    public function saveImages($data){
+       return  $this->query->saveImages($data);
+       
     }
 
 

@@ -14,7 +14,7 @@ export default new Vuex.Store({
         authUser:'of',
         tabFlag: 1,
         searhData:'this is search data',
-        TabInfo:3,
+        TabInfo:2,
         User_id:'1',
         Service_id:1
         
