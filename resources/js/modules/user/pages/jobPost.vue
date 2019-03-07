@@ -33,7 +33,7 @@
                             </div>
                                 ~~~~~~~ Steps ~~~~~~~~-->
                             
-                            <div class="_1steps_all">
+                            <!-- <div class="_1steps_all">
                                 <Steps :current="LinkFlagTab-1">
                                     <Step title="step 1" content=""></Step>
                                     <Step title="step 2" content=""></Step>
@@ -46,7 +46,7 @@
                                 <jobDescription v-if="(LinkFlagTab==1)"/>	
                                 <jobImage v-if="(LinkFlagTab==2)"/>	
                                 <jobExtraService v-if="(LinkFlagTab==3)"/>	
-                                <jobTag v-if="(LinkFlagTab==4)"/>	
+                                <jobTag v-if="(LinkFlagTab==4)"/>	 -->
                                 <!--~~~~~~~ From ~~~~~~~~~-->
                         </div>
                     </div>
@@ -79,6 +79,7 @@ export default {
           itemPrice:0,
           ok:0,
           alljobs:'',
+          id:'',
           visible: false,
           catagory:'catagory'
 
@@ -89,7 +90,7 @@ export default {
 
     },
    async created(){
-       
+    //  this.id = this.$route.params.id
          
     },
     methods:{

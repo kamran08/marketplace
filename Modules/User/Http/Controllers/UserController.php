@@ -98,8 +98,10 @@ class UserController extends Controller
         return $this->userService->delateExtra($request->all());
     }
     public function addTag(Request $request){
-          // \Log::info($request);
         return $this->userService->addTag($request->all());
+    }
+    public function getCurrentStep($key){
+        return $this->userService->getCurrentStep($key);
     }
 
     public function upload(Request $request){

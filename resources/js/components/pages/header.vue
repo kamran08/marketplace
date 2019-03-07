@@ -21,8 +21,26 @@
 					<li class="_1menu_sign_color"> <router-link :to="{ name: 'login'}"> Sign in </router-link></li>
 					<li class="_1menu_sign_color"> <router-link :to="{ name: 'check'}"> check </router-link></li>
 					<li class="_1menu_sign_ul_or">or</li>
-                   <li class="_1menu_sign_color"> <router-link :to="{ name: 'register'}"> Join us </router-link></li>
-				<!-- //	<li class="_1menu_sign_color">Join us</li> -->
+					<li class="_1menu_sign_color">  Join us 
+						  <Dropdown trigger="custom" :visible="visible" style="margin-left: 20px margn-right:20px">
+                                          <a href="javascript:void(0)" @click="handleOpen">
+                                         
+                                             <Icon type="ios-arrow-down"></Icon>
+                                          </a>
+                                          <DropdownMenu slot="list" >
+                                      
+                                        <router-link @click.native="1" :to="{ name: 'register'}"><p  @click="handleClose(1)">as a seller</p></router-link>
+                                        <router-link @click.native="1" :to="{ name: 'register'}"><p  @click="handleClose(2)">as a buyer</p></router-link>
+                                          
+                                          </DropdownMenu>
+                         </Dropdown>
+					</li>
+					
+
+					<li class="_1menu_sign_color"> <router-link :to="{ name: 'order'}"> order </router-link></li>
+					<li class="_1menu_sign_color"> <router-link :to="{ name: 'profile'}"> profile </router-link></li>
+					<li class="_1menu_sign_color"> <router-link :to="{ name: 'details'}"> details </router-link></li>
+					<!-- //	<li class="_1menu_sign_color">Join us</li> -->
 				</ul>
 			</div>
 		</div>
@@ -50,7 +68,8 @@
 export default {
 	data(){
 		return{
-			alljobs:[]
+			alljobs:[],
+			visible: false,
 		}
 	},
 	async created(){
@@ -60,6 +79,17 @@ export default {
 			// console.log(this.alljobs)
 
 	},
+	methods:{
+	    handleOpen () {
+                if(this.visible==false)
+                this.visible = true;
+                else this.visible = false;
+        },
+        handleClose (id) {
+				this.$store.dispatch('setUserType',id);
+                this.visible = false;
+        },
+	}
 }
 </script>
 

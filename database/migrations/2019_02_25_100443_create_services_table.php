@@ -24,7 +24,8 @@ class CreateServicesTable extends Migration
             $table->string('openingMassage');
             $table->string('daliveryTime');
             $table->boolean('isFeatured');
-            $table->boolean('isComplete');
+            $table->integer('nextStep')->default(2);
+            $table->boolean('isApproved')->default(0);
             $table->timestamps();
         });
     }

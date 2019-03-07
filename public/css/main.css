@@ -10,6 +10,13 @@
 9.Log in
 10.Emial Log in
 11.Register
+12.Post Steps
+13.Details
+14.Comment
+15.Profile
+16.Order
+
+
 
 
 3.header menu
@@ -17,15 +24,6 @@
 */
 
 /*===== 1.common css ======*/
-#thisok{
-    padding-right: 10
-}
-.fa-plus:before {
-    content: "\f067";
-}
-*:before, *:after {
-    box-sizing: border-box;
-}
 body{
 	margin:0px auto;
 	padding:0px;
@@ -62,6 +60,10 @@ textarea {
 }
 ._bg{
 	background:#10a2ef;
+    color: #fff;
+}
+._box_shadow2 {
+    box-shadow: 2px 5px 43px rgba(188, 207, 219, 0.65);
 }
 ._box_shadow {
     box-shadow: 0px 0px 1px 1px #ddd;
@@ -74,6 +76,20 @@ textarea {
 }
 ._color{
 	color: #10a2ef;
+}
+._color_green{
+    color: green;
+}
+._padd_15{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+._padd_20{
+    padding-right: 20px;
+    padding-left: 20px;
+}
+._mr_b30{
+    margin-bottom: 30px;
 }
 ._b_bg{
 	background:#42bcd4;
@@ -90,7 +106,6 @@ textarea {
     font-size: 25px;
     letter-spacing: 1px;
     margin: 0px;
-    font-weight: 600;
 }
 ._title2 {
     font-size: 16px;
@@ -98,6 +113,17 @@ textarea {
     margin: 0px;   
     font-family: inherit;
     font-weight: 500;
+}
+._title3 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+}
+._title4 {
+    font-size: 13px;
+    margin: 0;
+    color: #afadad;
+    font-weight: 600;
 }
 ._flex_row {
     display: -ms-flexbox;
@@ -123,6 +149,14 @@ textarea {
     border: none;
     color: #fff;
     cursor: pointer;
+    letter-spacing: 1px;
+    border-radius: 31px;
+    font-weight: 600;
+    padding: 7px 29px;
+    box-shadow: 0px 5px 27px -1px rgba(127, 200, 247, 0.65);
+}
+._border_radious{
+    border-radius: 3px;
 }
 /*========= 1.common css ======*/
 
@@ -134,6 +168,10 @@ textarea {
     background: #fff;
     align-items: center;
     padding: 13px 26px 15px;
+}
+._text{
+    font-size: 15px;
+    color: #222;
 }
 ._1menu_logo {
     width: 234px;
@@ -205,6 +243,9 @@ textarea {
     padding: 8px 0px;
     font-weight: 600;
     color: #6f6f6f;
+}
+._cursor{
+    cursor: pointer;
 }
 /*========= 3.Big Menu =======*/
 
@@ -354,11 +395,8 @@ textarea {
     text-align: center;
     margin: 0 auto;
     border-radius: 50%;
-    /* padding: 13px 0 0; */
-    overflow: hidden;
+    padding: 13px 0 0;
 }
-
-
 .find_all_icons i {
     font-size: 20px;
 }
@@ -440,12 +478,13 @@ textarea {
 }
 ._1job_card_dollar {
     position: relative;
+    width: 38px;
     text-align: right;
 }
 ._1job_card_dollar_sine {
     position: absolute;
     top: 4px;
-    left: -9px;
+    left: 0;
     font-weight: 600;
 }
 ._1job_card_status {
@@ -655,7 +694,7 @@ textarea {
 .Marketplace_content{}
 ._title_header {
     border-bottom: 1px solid;
-    padding: 36px 0;
+    padding: 26px 0;
 }
 ._search_num {
     color: #8b8b8b;
@@ -1078,18 +1117,486 @@ textarea {
 ._1steps_img_select_active {
     border: 2px solid #10a2ef;
 }
-
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
 /*========= 12.Post Steps =======*/
+
+/*========= 13.Details =======*/
+.Details_header{}
+.Details_header_img{}
+.Details_main {
+    margin-top: 45px;
+}
+.Details_main_left{}
+.Details_main_title {
+    margin: 0 0 40px;
+}
+
+
+.Details_main_title_span {
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 19px;
+}
+.Details_main_left_menu{}
+.Details_main_left_menu_left{}
+.Details_main_left_menu_date{}
+.Details_slider {
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    padding-top: 23px;
+    padding-bottom: 23px;
+    margin: 27px 0 31px;
+}
+.Details_slider_img{}
+.Details_block {
+    border-bottom: 1px solid;
+    padding-bottom: 38px;
+}
+.Details_block_title {
+    margin-bottom: 20px;
+}
+.Details_block_status{}
+.Details_block_status_text {
+    font-size: 15px;
+    line-height: 22px;
+    margin-bottom: 14px;
+}
+._tags{}
+._tags_ul{}
+._tags_ul li {
+    display: inline-block;
+    background: #e6e6e6;
+    border-radius: 51px;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 13px 6px;
+    line-height: 15px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    color: #444;
+}
+._block_buttons {
+    margin-top: 19px;
+}
+._block_buttons_main{}
+._block_buttons_btn {
+    padding: 11px 37px;
+}
+._block_buttons_btn2 {
+    height: 43px;
+    width: 43px;
+    border-radius: 50px;
+    border: none;
+    color: red;
+    box-shadow: 0px 6px 34px -6px rgba(255, 0, 0, 0.59);
+    margin-left: 13px;
+    background: #fff;
+    padding-top: 4px;
+}
+._btn2{}
+._block_buttons_btn{}
+.Details_main_left_menu_date_text {
+    color: #8b8b8b;
+    font-size: 13px;
+    font-weight: 600;
+}
+.Details_main_rigth{}
+.Details_pro {
+    padding: 1px 0 7px;
+}
+.Details_pro_rating {
+    padding-top: 4px;
+    padding-bottom: 7px;
+}
+.Details_pro_over {
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    padding: 8px 0 6px;
+}
+.Details_pro_renge {
+    align-items: center;
+}
+.Details_pro_renge i {
+    font-size: 12px;
+    color: #8b8b8b;
+    width: 30px;
+}
+.Details_pro_renge_name {
+    color: #8b8b8b;
+    font-size: 14px;
+}
+.Details_pro_renge_num {
+    font-size: 14px;
+    font-weight: 600;
+}
+.Details_pro_over .Details_pro_renge {
+    padding: 5px 0;
+}
+.Details_pro_button {
+    border-bottom: 1px solid;
+    padding: 28px 0;
+}
+.Details_pro_button ._block_buttons_main {
+    justify-content: center;
+}
+.Details_pro_extra{}
+.Details_pro_extra_title {
+    margin-bottom: 5px;
+    margin-top: 14px;
+}
+.Details_pro_extra_all{}
+.Details_pro_extra_main {
+    border-bottom: 1px solid;
+    padding: 14px 0 13px;
+}
+.Details_pro_extra_main:last-child{
+    border-bottom: none;
+}
+.Details_pro_extra_redio {
+    padding: 0;
+    margin: -6px 0;
+    overflow: hidden;
+    width: 20px;
+}
+.Details_pro_extra_status {
+    flex: 1 1;
+    padding: 0 16px 0 10px;
+}
+.Details_pro_extra_status_text {
+    font-size: 15px;
+    line-height: 19px;
+}
+.Details_pro_extra_do {
+    position: relative;
+    text-align: right;
+}
+.Details_pro_extra_do_text {
+    font-size: 17px;
+    font-weight: 600;
+}
+.Details_pro_extra_ds {
+    position: absolute;
+    top: 3px;
+    left: -6px;
+    font-weight: 600;
+    font-size: 11px;
+}
+/*redio*/
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before, [type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after, [type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 9px;
+    height: 9px;
+    background: #10a2ef;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+/*redio*/
+.Details_profie {
+    padding-top: 26px;
+    padding-bottom: 9px;
+}
+
+.Details_profie_img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.Details_profie_title {
+    text-align: center;
+    margin: 8px 0 16px;
+}
+
+.Details_profie_title_line{
+    position: relative;
+        width: 50px;
+    margin: 0 auto;
+}
+.Details_profie_title_line:before{
+    position: absolute;
+    content: '';
+    background: #a3dfff;
+    height: 2px;
+    width: 14px;
+    right: 12px;
+    bottom: -12px;
+}
+.Details_profie_title_line:after{
+        position: absolute;
+    content: '';
+    background: #10a2ef;
+    height: 2px;
+    width: 14px;
+    left: 10px;
+    bottom: -12px;
+}
+.Details_pro_renge:last-child {
+    border-bottom: none !important;
+}
+.Details_profie_title_line{}
+.Details_profie_location{}
+.Details_profie_location .Details_pro_renge i {
+    font-size: 14px;
+    margin-top: 2px;
+}
+.Details_profie_location .Details_pro_renge_name {
+    font-size: 15px;
+}
+.Details_profie_location .Details_pro_renge {
+    align-items: center;
+    border-bottom: 1px solid;
+    padding: 12px 0;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.Details_pro_renge_num p {
+    line-height: 16px;
+}
+.Details_pro_renge i {
+    margin-top: 5px;
+}
+.Details_profie .none_f{
+    align-items: inherit;
+}
+.boi_text_div{
+    margin: 9px 0 2px;
+}
+.boi_text {
+    font-size: 15px;
+    line-height: 22px;
+}
+.Details_conter_me {
+    text-align: center;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    padding: 13px 0;
+}
+.Details_conter_me:last-child{
+    border-bottom: 0px solid;
+    border-top: 0px solid;
+}
+._contect_me {
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    cursor: pointer;
+}
+._contect_me i{}
+.Details_pro_renge2 i{
+    color: green;
+}
+.Details_pro_renge3 i{
+    color: #10a2ef;
+}
+.Details_pro_boi i {
+    font-size: 12px;
+    color: #8b8b8b;
+    width: 30px;
+}
+.Details_pro_boi {
+    align-items: center;
+    padding: 11px 0 2px;
+}
+.Pro_details {
+    margin-bottom: 10px;
+}
+.Pro_details:last-child{
+     margin-bottom: 0px;
+}
+.Pro_details_title {
+    font-weight: 600;
+    color: #111;
+}
+/*========= 13.Details =======*/
+
+/*========= 14.Comment =======*/
+._comment {
+    padding: 21px 0;
+}
+._comment_title {
+    color: #5a5a5a8c;
+    font-size: 14px;
+    font-weight: 600;
+}
+._comment_title_span {
+    color: #000;
+}
+._commnet_all{
+    padding: 0 20px;
+}
+._commnet_main:last-child{
+    border-bottom: 0px solid;
+}
+._commnet_main {
+    border-bottom: 1px solid;
+    padding: 28px 0;
+}
+._commnet_img{}
+._commnet_img_pic {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin: 7px 15px 0 0;
+}
+._commnet_pro_name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+}
+._commnet_name{}
+._commnet_pro_name{}
+._commnet_pro_date {
+    color: #b6b6b6;
+    font-size: 12px;
+}
+._commnet_status {
+    padding: 10px 0 0;
+}
+._commnet_status_text {
+    font-size: 15px;
+    line-height: 22px;
+}
+._commnet_main_more {
+    padding-left: 107px;
+}
+/*========= 14.Comment =======*/
+
+/*========= 15.Profile =======*/
+._profile_card {
+    overflow: hidden;
+}
+.profile_main ._title4 {
+    cursor: pointer;
+    display: inline-block;
+    margin: 18px 0 39px;
+}
+._w_100{
+    width: 100%;
+}
+._profile_card_all{}
+._profile_card{}
+._profile_card_pic {
+    width: 212px;
+    overflow: hidden;
+}
+._profile_card_img {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    max-width: 250px;
+}
+._profile_card_name_text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 4;
+    font-size: 15px;
+}
+._profile_card_title {
+    margin: 7px 0 0;
+    min-height: 90px;
+}
+._profile_card_name {
+    flex-direction: column;
+    padding: 8px 20px 1px;
+}
+._profile_card_doller {
+    justify-content: flex-end;
+    padding: 6px 0 4px;
+}
+.Details_profie_rating{}
+/*========= 15.Profile =======*/
+
+/*========= 16.Order=======*/
+.order_main{}
+.order_left_card{}
+.order_description_status{}
+.order_description_price ._title4 {
+    margin: 28px 0 13px !important;
+}
+.order_description_status ._text {
+    margin-top: -8px;
+}
+.order_description_price {
+    min-width: 106px;
+    padding: 0 0 1px 15px;
+}
+._dis_iblock{
+    display: inline-block;
+}
+.order_right {
+    padding-left: 141px;
+}
+.order_main ._title4 {
+    margin: 28px 0 23px;
+}
+.order_main .Details_pro_extra_status {
+    padding: 0 160px 0 10px;
+}
+.order_extra ._title4 {
+    margin: 28px 0 4px;
+}
+.order_extra{}
+.order_description {
+    border-bottom: 1px solid;
+    padding: 0 0 20px;
+}
+.order_total {
+    border-top: 1px solid;
+    margin: 12px 0;
+}
+.order_total_button{}
+.order_total_num  ._title4 {
+    margin: 0 22px 0 0 !important;
+    font-size: 14px;
+}
+.order_total_num {
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px 0 44px;
+}
+/*========= 16.Order=======*/
 
 
 

@@ -12,20 +12,10 @@
             </div>
         </div> -->
 
-         <Input type="text"
-              ref = "input"
-             placeholder="hiya"
-             v-model="ok"
-             @keyup.enter.native="add(ok)"
-                
-                
-      />
-      <ul class="skills-list" id="skills_list"><li class="skill-item">
 
-	<input type="hidden" name="skills[]" value="4" class="skill-input">
-	<span class="text-ellipsis">4</span><a href="javascript:void(0);" class="delete"><i class="fa fa-times"></i></a>
-	
-</li></ul>
+    <Rate allow-half v-model="valueHalf" />
+
+
 
  
 
@@ -62,6 +52,7 @@
         },
         data() {
             return {
+                  valueHalf: 4,
                 BASE_URL:'http://bookingmarket.test/',
                 linkFlag: 1,
                 user: [],
@@ -99,6 +90,7 @@
                 console.log(this.img)
                 this.showUploadModal = false
             },
+            
 
 
         },

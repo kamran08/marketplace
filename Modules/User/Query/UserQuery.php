@@ -40,42 +40,56 @@ class UserQuery {
             else $service = Service::with('image')->with('users')->where('title', 'like', '%' . $key . '%')->get();  
             return $service;
     }
+    public function getCurrentStep($key){
+      
+
+      return  Service::where('id',$key)->select('nextStep')->first();   
+      \Log::info($data)  ;
+     // return $step;
+    }
+
+
     public function insertService($data){
            return Service::create($data);
     }
     public function addExtra($data){
-           for($i=0; $i<sizeof($data)-1; $i++) {
-                Extra::create($data[$i]);
-           } 
-           
-           $size = sizeof($data)-1;
-           $user = Extra::create($data[$size]);
-           \Log::info($user);
-            return $user;
+    //  for($i=0; $i<sizeof($data)-1; $i++) {
+    //       Extra::create($data[$i]);
+    //  } 
+    //  $size = sizeof($data)-1;
+    //  $user = Extra::create($data[$size]);
+    // // \Log::info($user);
+    //   return $user;
+    $flag =  Extra::insert($data);
+    return response()->json($flag);
     }
     public function addTag($data){
-      for($i=0; $i<sizeof($data)-1; $i++){
-         Tag::create($data[$i]);
-      }
-      return Tag::create($data[sizeof($data)-1]);
+    // for($i=0; $i<sizeof($data)-1; $i++){
+    //    Tag::create($data[$i]);
+    // }
+    // return Tag::create($data[sizeof($data)-1]);
+    $flag =  Tag::insert($data);
+    return response()->json($flag);
+
+
     }
     public function delateExtra($data){
       // return Extra::create($data);
     }
     public function saveImages($data){
-      \Log::info($data);
+     
        $flag =  Image::insert($data);
        return response()->json($flag);
     }
-
-
-
-
-
-
-
-   public function getCurrentManagers(Request $request){
-    return $this->userService->getCurrentManagers($request->all());
+   public function getServiceTableUserId($serice_id){
+    return Service::where('id',$serice_id)->select("user_id")->first();
     }
+  
+   public function updateSeriveStep($serice_id,$num){
+    return Service::where('id',$serice_id)->update(['nextStep' => $num]);
+    }
+
+
     
 }
+

@@ -8,7 +8,7 @@ class Service extends Model
 {
     protected $fillable =[
         'title','user_id', 'cat_id', 'price', 'videoLink', 'description', 
-        'openingMassage', 'daliveryTime', 'isFeatured', 'isComplite'
+        'openingMassage', 'daliveryTime', 'isFeatured', 'isComplite', 
     ];
         public function image(){
             return $this->hasMany('App\Image', 'service_id');

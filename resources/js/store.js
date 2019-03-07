@@ -14,9 +14,10 @@ export default new Vuex.Store({
         authUser:'of',
         tabFlag: 1,
         searhData:'this is search data',
-        TabInfo:2,
+        TabInfo:1,
         User_id:'1',
-        Service_id:1
+        Service_id:1,
+        userType:''
         
        
     },
@@ -39,6 +40,9 @@ export default new Vuex.Store({
         },
         getService_id(state) {
             return state.Service_id
+        },
+        getUserType(state) {
+            return state.userType
         }
     },// getter end
 
@@ -63,6 +67,9 @@ export default new Vuex.Store({
         setService_id: (state, payload) => {
             state.Service_id = payload;
         },
+        setUserType: (state, payload) => {
+            state.userType = payload;
+        },
       
     },/// mutation end
 
@@ -85,6 +92,9 @@ export default new Vuex.Store({
         },
         setService_id: (context, payload) => {
             context.commit('setService_id', payload)
+        },
+        setUserType: (context, payload) => {
+            context.commit('setUserType', payload)
         },
 
     

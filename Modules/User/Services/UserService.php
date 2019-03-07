@@ -1,6 +1,7 @@
 <?php
 namespace Modules\User\Services;
 use App\User;
+use Auth;
 use App\Classes\CommonClass;
 use Illuminate\Http\Request;
 use Modules\User\Query\UserQuery;
@@ -39,26 +40,102 @@ class UserService {
        $service = $this->query->getInfoBySearchCatagory($key);
        return $service;
     }
+    public function getCurrentStep($key){
+       return  $this->query->getCurrentStep($key);
+       
+    }
     public function insertService($data){
+      $id = "";
+      if(!Auth::check()){
+         return response()->json([
+                 'message' => "You are not Authenticate User!",
+
+             ], 402);
+         }
+       $id = Auth::user()->id;
+       $data[ 'user_id'] = $id;
        $service = $this->query->insertService($data);
        return $service;
     }
     public function addExtra($data){
-       $service = $this->query->addExtra($data);
-       return $service;
+      if(!Auth::check()){
+         return response()->json([
+            'message' => "Your are not Authenticate User!",
+         ],402);
+      }
+      $service_id = $data[0]['service_id'];
+      $user_id = $this->query->getServiceTableUserId($service_id);
+      
+      if($user_id['user_id']!=Auth::user()->id){
+            return response()->json([
+               'message' => "You are not Owner of this Job!"
+            ],403);
+      }
+      $flag  = $this->query->addExtra($data);
+      if(!$flag){
+         return response()->json([
+            'message' => "Server Problem!",
+         ], 401);
+      }
+      return $this->query->updateSeriveStep($service_id,4);
+
+
+         // $service = $this->query->addExtra($data);
+         // return $service;
     }
     public function delateExtra($data){
        $service = $this->query->delateExtra($data);
        return $service;
     }
     public function addTag($data){
-       $tags = $this->query->addTag($data);
-       return $tags;
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      $service_id = $data[0]['service_id'];
+      $user_id = $this->query->getServiceTableUserId($service_id);
+
+      if($user_id['user_id']!=Auth::user()->id){
+          return response()->json([
+            'message' => "You are not Owner of this Job!",
+         ], 403);
+      }
+      $flag =  $this->query->addTag($data);
+      if(!$flag) {
+          return response()->json([
+            'message' => "Server Problem!",
+         ], 401);
+      }
+      return $this->query->updateSeriveStep($service_id,3);
     }
     public function saveImages($data){
-       return  $this->query->saveImages($data);
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      $service_id = $data[0]['service_id'];
+      $user_id = $this->query->getServiceTableUserId($service_id);
+     
+      if( $user_id['user_id']!=Auth::user()->id){
+         return response()->json([
+            'message' => "You are not Owner of this Job!",
+         ], 403);
+      }
+
+      $flag =  $this->query->saveImages($data);
+      if(!$flag){
+         return response()->json([
+            'message' => "Server Problem!",
+         ], 401);
+      }
+      return $this->query->updateSeriveStep($service_id,0);
+
+       
        
     }
+  
 
 
 } 
