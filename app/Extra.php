@@ -8,6 +8,7 @@ class Extra extends Model
 {
     //
     protected $fillable =[
+        'service_id', 'serviceName', 'servicePrice'
         
     ];
 }

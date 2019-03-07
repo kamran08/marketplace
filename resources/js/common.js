@@ -9,9 +9,13 @@ export default {
     },
     computed: {
         ...mapGetters({
-            authInfo: 'getAuth',
+           // authInfo: 'getAuth',
             tagInfo:'getFlag',
-            searchData:'getSearchData'
+            searchData:'getSearchData',
+            LinkFlagTab: 'getTabInfo',
+            User_id: 'getUser_id',
+            getService_id:'getService_id',
+            getUserTyper:'getUserType'
         }),
     },
     created() {

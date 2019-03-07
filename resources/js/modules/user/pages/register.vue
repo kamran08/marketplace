@@ -101,14 +101,15 @@ export default {
                         email:'',
                         userName:'',
                         password:'',
-                        userType:1,
+                        userType:'',
 
                 },
                 confirmPassword:'',
             }
         },
         created(){
-
+			this.userType = this.getUserTyper
+			console.log(this.userType)
         },
         mounted(){
 
@@ -121,6 +122,7 @@ export default {
 					 if(this.regesterData.password !== this.confirmPassword) this.e('password does not match')
 					 
 					 else{
+						 
 						const res = await this.callApi('post', 'register', this.regesterData)
 						
      				 if(res.status===200){

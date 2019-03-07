@@ -1,21 +1,26 @@
 <template>
     <div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-4" @click="showUploadModal=true">
                 <div class="profile-img">
                     <img :src="BASE_URL+img" alt="user-profile" />
                     <div   class="file btn btn-lg btn-primary">
                         Change Photo
-                        <!-- <input type="file" name="file" /> -->
+                        
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+
+
+    <Rate allow-half v-model="valueHalf" />
+
+
 
  
 
         <!-- upload modal -->
-        <Modal
+        <!-- <Modal
             v-model="showUploadModal"
             title="Upload your profile picture"
             :closable = "false"
@@ -33,7 +38,7 @@
                 <div slot="footer">
                     <Button @click="showUploadModal=false">Close</Button>
                 </div>
-        </Modal> 
+        </Modal>  -->
     </div>
 </template>
 <script>
@@ -47,11 +52,13 @@
         },
         data() {
             return {
+                  valueHalf: 4,
                 BASE_URL:'http://bookingmarket.test/',
                 linkFlag: 1,
                 user: [],
                 showUploadModal:false,
                 img: 'uploads/_85730600_monkey2.jpg',
+                ok:''
 
             }
         },
@@ -67,6 +74,14 @@
         },
 
         methods: {
+             handleChange(e) {
+                if (e.key == 'Enter') {
+                console.log('test');
+            }},
+             add(e) {
+                    console.log(e)
+                    this.ok=''
+             },
 
        
              handleSuccess (res, file) {
@@ -75,6 +90,7 @@
                 console.log(this.img)
                 this.showUploadModal = false
             },
+            
 
 
         },

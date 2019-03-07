@@ -8,11 +8,11 @@
 		<div class="_banner">
 		    <div class="container">
 		        <div class="_banner_main">
-		            <h2 class="_banner_title">Earm money with us</h2>
+		            <h2 class="_banner_title">Earn money with us</h2>
 
 		            <div class="_banner_button">
 		            <!-- //	<p class="_banner_post_title">Post a Job</p>  -->
-							<p class="_banner_post_title"> <router-link :to="{ name: 'jobpost'}">Post a Job</router-link></p>
+							<p class="_banner_post_title"> <router-link :to="{ name: 'jobDescription'}">Post a Job</router-link></p>
 		            	<p class="_banner_cirlce_plus">
 		            		<i class="fa fa-plus"></i>
 		            	</p>
@@ -182,6 +182,7 @@ export default {
 			allcatagoryBysearch:[],
 			allcatagory:[],
 			ok:'',
+			id:'',
 			defaultImage:'uploads/_85730600_monkey2.jpg',
 			
         }
@@ -191,7 +192,7 @@ export default {
 			if(res.status===200){
 				this.allcatagory = res.data
 			} 
-			const res1 = await this.callApi('get', `get-all-catgory-by-search/${this.searchData}`)
+			const res1 = await this.callApi('get', `get-all-info-by-search/${this.searchData}`)
 			if(res1.status===200){
 				this.allcatagoryBysearch = res1.data
 				console.log(res1.data.image.imageName)

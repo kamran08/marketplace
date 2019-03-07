@@ -21,7 +21,9 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '1',
-            'isComplite' => 1,
+            'nextStep' => '2',
+            'isApproved'=>true
+           
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -33,7 +35,9 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '1',
-            'isComplite' => 1,
+            'nextStep' => '2',
+            'isApproved'=>true
+
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -45,7 +49,8 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '1',
-            'isComplite' => 1,
+            'nextStep' => '2',
+            'isApproved'=>true
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -57,7 +62,8 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '1',
-            'isComplite' => 1,
+            'nextStep' => '2',
+            'isApproved'=>true
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -69,7 +75,8 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '0',
-            'isComplite' => 1,
+            'nextStep' => '2',
+            'isApproved'=>true
         ]);
         DB::table('services')->insert([
             'title' => 'Unforgettable massage!!! And... Waxing!!!',
@@ -81,7 +88,8 @@ class ServiceSeeder extends Seeder
             'openingMassage' => 'hello world',
             'daliveryTime' => '10:20',
             'isFeatured' => '0',
-            'isComplite' => 1,
+            'nextStep' => '2',
+            'isApproved'=>true
         ]);
     }
 }

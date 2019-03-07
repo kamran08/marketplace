@@ -85,7 +85,25 @@ class UserController extends Controller
 
         return $this->userService->getInfoBySearchCatagory($key);
     }
-    
+    public function insertService(Request $request){
+           
+        return $this->userService->insertService($request->all());
+    }
+    public function addExtra(Request $request){
+           
+        return $this->userService->addExtra($request->all());
+    }
+    public function delateExtra(Request $request){
+           
+        return $this->userService->delateExtra($request->all());
+    }
+    public function addTag(Request $request){
+        return $this->userService->addTag($request->all());
+    }
+    public function getCurrentStep($key){
+        return $this->userService->getCurrentStep($key);
+    }
+
     public function upload(Request $request){
 
         request()->file('file')->store('uploads');
@@ -105,6 +123,15 @@ class UserController extends Controller
         //     ], 403);
         // }
         return $pic;
+    }
+    public function getImage(Request $request){
+        \Log::info("I am running from getImage");
+        request()->file('img')->store('uploads');
+        $pic= "/uploads/".$request->img->hashName();
+        return $pic;
+    }
+    public function saveImages(Request $request){
+        return $this->userService->saveImages($request->all());
     }
 
 
