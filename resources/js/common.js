@@ -3,23 +3,20 @@ export default {
     data() {
         return {
             siteUri: 'http://bookingmarket.localhost/',
-            selectdata:''
+            selectdata:'',
+           
 
         }
     },
     computed: {
         ...mapGetters({
-           // authInfo: 'getAuth',
+          
             tagInfo:'getFlag',
+            authInfo:'getAuthUser',
             searchData:'getSearchData',
             LinkFlagTab: 'getTabInfo',
-            User_id: 'getUser_id',
-            getService_id:'getService_id',
             getUserTyper:'getUserType'
         }),
-    },
-    created() {
-        // console.log(authInfo)
     },
     methods: {
         /**

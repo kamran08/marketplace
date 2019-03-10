@@ -20,7 +20,7 @@ class CreateServicesTable extends Migration
             $table->integer('cat_id');
             $table->integer('price');
             $table->string('videoLink');
-            $table->string('description');
+            $table->longText('description');
             $table->string('openingMassage');
             $table->boolean('isComplete')->default(0);
             $table->integer('nextStep')->default(2);

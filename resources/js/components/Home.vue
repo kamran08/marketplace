@@ -66,6 +66,7 @@ import service from './service.vue'
             },
 
 
-        }
+        },
+        
     }
 </script>

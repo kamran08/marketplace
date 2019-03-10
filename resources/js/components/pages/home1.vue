@@ -81,7 +81,10 @@
 							</div>
 
 							<div class="_1job_card_img"><img src="" alt="" sizes="" srcset="">
-								<img class="_1job_card_img_pic" :src="(service.image[0])? service.image[0].imageName : defaultImg" alt="" title="">
+								<router-link :to="{ name:'details', params:{ id:service.id }}" >
+									<img class="_1job_card_img_pic" :src="(service.image[0])? service.image[0].imageUrl : defaultImg" alt="" title="">
+								</router-link>
+								
 							</div>
 
 							<div class="_1job_card_status">
@@ -89,7 +92,7 @@
 							</div>
 
 							<div class="_1job_card_bottom">
-								<p class="_1job_card_by"><span class="_1job_card_by_span">by</span> user name </p>
+								<p class="_1job_card_by"><span class="_1job_card_by_span">by</span>   {{service.user.userName}}</p>
 
 								<div class="_1job_card_dollar">
 									<p class="_1job_card_dollar_text _color">{{service.price}}</p>

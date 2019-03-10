@@ -11,6 +11,20 @@
 </template>
 
 
+<script>
+export default {
+  created(){
+     this.$store.dispatch('setAuth', (window.authUser));
+  },
+
+}
+</script>
+
+<style>
+
+</style>
+
+
 
 
 

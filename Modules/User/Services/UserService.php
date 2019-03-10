@@ -172,6 +172,48 @@ class UserService {
     public function unlinkImage($data){
       return unlink($data['imageLink']);
     }
+    public function getServiceDetailsById($id){
+      $data = $this->query->getServiceDetailsById($id);
+      foreach ($data['extra'] as $item) {
+         $item['staus'] = false;
+      }
+      return $data;
+    }
+    public function insertOrder($data){
+      if(!Auth::check()){
+         return response()->json([
+           'message' => "You are not Authenticate User!",
+        ], 402);
+     }
+      $data["buyer_id"]= Auth::user()->id;
+      $data["bookingDate"]= date("Y-m-d");
+      $data["extraService"]= json_encode($data["extraService"]);
+
+      return $this->query->insertOrder($data);
+     
+    }
+    public function getslots($data){
+
+      $date = date("Y-m-d");
+      echo $date->format('D');
+
+      //    for($i=0; $i<=4; $i++){
+      //       if($i<2){
+      //         $tem1 = $data[0]['startTime'][$i];
+      //         $tem2 = $data[0]['startTime'][$i];
+      //       }
+      //    }
+      //       $startTime = new DateTime($data[0]['startTime']);
+      //       $endTime = new DateTime($data[0]['endTime']);
+      //       $sinceStart = $startTime->diff($endTime);
+      //       return $endTime;
+      //      $totalMinutes=($sinceStart->h*60)+$sinceStart->i;
+      //       \Log::info($endTime);
+      // foreach ($data['extra'] as $item) {
+      //    $item['staus'] = false;
+      // }
+      // return $data;
+    }
   
 
 

@@ -7,6 +7,8 @@ use App\Service;
 use App\Extra;
 use App\Tag;
 use App\Image;
+use App\TimeSetting;
+use App\Booking;
 use Mockery\CountValidator\Exact;
 class UserQuery {
    
@@ -24,7 +26,7 @@ class UserQuery {
         return $cat;
     }
     public function getAllService(){
-      $service = Service::with('image')->orderBy('created_at', 'desc')->get();  
+      $service = Service::with('image','user')->orderBy('created_at', 'desc')->get();  
         return $service;
     }
     public function getInfoBySearch($key=''){
@@ -81,12 +83,21 @@ class UserQuery {
        $flag =  Image::insert($data);
        return response()->json($flag);
     }
-   public function getServiceTableUserId($serice_id){
-    return Service::where('id',$serice_id)->select("user_id")->first();
+   public function getServiceTableUserId($service_id){
+    return Service::where('id',$service_id)->select("user_id")->first();
     }
   
-   public function updateSeriveStep($serice_id,$num){
-    return Service::where('id',$serice_id)->update(['nextStep' => $num]);
+   public function updateSeriveStep($service_id,$num){
+    return Service::where('id',$service_id)->update(['nextStep' => $num]);
+    }
+   public function getServiceDetailsById($service_id){
+    return Service::where('id',$service_id)->with('image','user','tag','extra','category','alltime')->first();
+    }
+   public function getTimeSolte($service_id){
+    return TimeSetting::where('service_id',$service_id)->get();
+    }
+   public function insertOrder($data){
+    return Booking::create($data);
     }
 
 

@@ -11,7 +11,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     modules,
     state: {
-        authUser:'of',
+        authUser: 'false',
         tabFlag: 1,
         searhData:'this is search data',
         TabInfo:1,
@@ -23,7 +23,7 @@ export default new Vuex.Store({
     },
     //started getter
     getters: {
-        authUser(state) {
+        getAuthUser(state) {
             return state.authUser
         },
         getSearchData(state) {

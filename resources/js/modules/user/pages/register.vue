@@ -108,8 +108,8 @@ export default {
             }
         },
         created(){
-			this.userType = this.getUserTyper
-			console.log(this.userType)
+			this.regesterData.userType = this.getUserTyper
+			console.log(this.regesterData.userType)
         },
         mounted(){
 

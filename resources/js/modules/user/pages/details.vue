@@ -1,6 +1,6 @@
 <template>
-<div>
-<div class="Details_header">
+<div >
+<div class="Details_header" v-if="serviceDetails" >
             <img class="Details_header_img" src="img/banner.png" alt="" title="">
         </div>
                 <!--======= Details Header Image ======-->
@@ -13,13 +13,13 @@
                     <div class="col-12 col-md-8 col-lg-8">
                         <div class="Details_main_left">
                             <div class="Details_main_title">
-                                <h3 class="_title3"> I will design a good looking and professinonal logo <span class="Details_main_title_span _color"><i class="fas fa-pen"></i> EDIT</span></h3>
+                            <h3 class="_title3"> {{serviceDetails.title}} <span class="Details_main_title_span _color"><i class="fas fa-pen"></i> EDIT</span></h3>
                             </div>
 
                             <div class="Details_main_left_menu _dis_flex">
-                                <div class="Details_main_left_menu_left _flex_space">
+                                <div class="Details_main_left_menu_left _flex_space" v-if="serviceDetails.category" >
                                     <p class="Details_main_left_menu_date_text">
-                                        Graphics & Design > <span class="_color">Logo design</span>
+                                        Category > <span class="_color">{{serviceDetails.category.catName}}</span>
                                     </p>
                                 </div> 
 
@@ -41,33 +41,20 @@
 
                                 <div class="Details_block_status">
                                     <p class="Details_block_status_text">
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                         {{serviceDetails.description}}
                                     </p>
 
-                                    <p class="Details_block_status_text">
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                    </p>
                                 </div>
 
                                 <div class="_tags">
                                     <ul class="_tags_ul">
-                                        <li>Design</li>
-                                        <li>Graphic</li>
-                                        <li>Branding</li>
+                                        <li v-for="(item,index) in serviceDetails.tag" :key="index">{{item.tagName}}</li>
                                     </ul>
                                 </div>
 
                                 <div class="_block_buttons">
                                     <div class="_block_buttons_main _dis_flex">
-                                        <button class="_bg _btn _block_buttons_btn" type="button">ORDER ($25)</button>
+                                        <button class="_bg _btn _block_buttons_btn" type="button">ORDER ({{serviceDetails.price}})</button>
                                         <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
                                     </div>
                                 </div>
@@ -199,7 +186,7 @@
                                 </div>
 
                                 <div class="_1job_card_dollar">
-                                    <p class="_1job_card_dollar_text _color"> 25</p>
+                                    <p class="_1job_card_dollar_text _color">  {{serviceDetails.price}}</p>
                                     <p class="_1job_card_dollar_sine _color">$</p>
                                 </div>
                             </div>
@@ -232,88 +219,37 @@
                                 </div>
                             </div>
 
-                            <div class="Details_pro_button _b_color2">
-                                <div class="_block_buttons_main _dis_flex">
-                                    <button class="_bg _btn _block_buttons_btn" type="button">ORDER NOW ($25)</button>
-                                    <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
-                                </div>
-                            </div>
+                            
 
                             <div class="Details_pro_extra _padd_20">
                                 <div class="Details_pro_extra_title">
                                     <h4 class="_title3">Extra</h4>
                                 </div>
-
                                 <div class="Details_pro_extra_all">
                                         <!-- items -->
-                                    <div class="Details_pro_extra_main _b_color2 _dis_flex">
-                                        <div class="Details_pro_extra_redio">
-                                            <p>
-                                                <input type="radio" id="test1" name="radio-group" checked>
-                                                <label for="test1"></label>
-                                            </p>
+                                    <template v-if="serviceDetails.extra">
+                                        <div class="Details_pro_extra_main _b_color2 _dis_flex"  v-for="(item,index) in serviceDetails.extra" :key="index"  >
+                                            <div class="Details_pro_extra_redio">
+                                                <p>
+                                                    <Checkbox v-model="item.staus" ></Checkbox>
+                                                </p>
+                                            </div>
+                                            <div class="Details_pro_extra_status">
+                                                <p class="Details_pro_extra_status_text _text_overflow2">{{item.serviceName}}</p>
+                                            </div>
+                                            <div class="Details_pro_extra_do">
+                                                <p class="Details_pro_extra_do_text  _color">{{item.servicePrice}}</p>
+                                                <p class="Details_pro_extra_ds _color">$</p>
+                                            </div>
                                         </div>
-
-                                        <div class="Details_pro_extra_status">
-                                            <p class="Details_pro_extra_status_text _text_overflow2">
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            </p>
-                                        </div>
-
-                                        <div class="Details_pro_extra_do">
-                                            <p class="Details_pro_extra_do_text  _color"> 25</p>
-                                            <p class="Details_pro_extra_ds _color">$</p>
-                                        </div>
-                                    </div>
-                                         <!-- items -->
-
-                                         <!-- items -->
-                                    <div class="Details_pro_extra_main _b_color2 _dis_flex">
-                                        <div class="Details_pro_extra_redio">
-                                            <p>
-                                                <input type="radio" id="test1" name="radio-group" checked>
-                                                <label for="test1"></label>
-                                            </p>
-                                        </div>
-
-                                        <div class="Details_pro_extra_status">
-                                            <p class="Details_pro_extra_status_text _text_overflow2">
-                                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                            </p>
-                                        </div>
-
-                                        <div class="Details_pro_extra_do">
-                                            <p class="Details_pro_extra_do_text  _color"> 25</p>
-                                            <p class="Details_pro_extra_ds _color">$</p>
+                                    </template>
+                                    
+                                    <div class="Details_pro_button _b_color2">
+                                        <div class="_block_buttons_main _dis_flex">
+                                            <button class="_bg _btn _block_buttons_btn" @click="bookingTimeModal = true" type="button">ORDER NOW (${{totalOderPrice}})</button>
+                                            <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
                                         </div>
                                     </div>
-                                         <!-- items -->
-
-                                         <!-- items -->
-                                    <div class="Details_pro_extra_main _b_color2 _dis_flex">
-                                        <div class="Details_pro_extra_redio">
-                                            <p>
-                                                <input type="radio" id="test1" name="radio-group" checked>
-                                                <label for="test1"></label>
-                                            </p>
-                                        </div>
-
-                                        <div class="Details_pro_extra_status">
-                                            <p class="Details_pro_extra_status_text _text_overflow2">
-                                                tempor incididunt ut labore et .
-                                            </p>
-                                        </div>
-
-                                        <div class="Details_pro_extra_do">
-                                            <p class="Details_pro_extra_do_text  _color"> 25</p>
-                                            <p class="Details_pro_extra_ds _color">$</p>
-                                        </div>
-                                    </div>
-                                         <!-- items -->
                                 </div>
                             </div>
                         </div>
@@ -373,12 +309,123 @@
                 </div>
             </div>
         </div>
+        <Modal
+            v-model="bookingTimeModal"
+            title="Select The Time"
+            :closable = "false"
+            width='600'
+        >
+                <Row>
+                    <Col span="12">
+                        <DatePicker type="date" format="yyyy-MM-dd" v-model="selectBookingTime" @on-change="getSlots" placeholder="Select date" style="width: 200px"></DatePicker>
+                    </Col>
+                </Row>
+            <!-- <div class="User_List">
+                <p class="list_title">User List</p>
+                <table class="User_List_table" v-if="videoList.length" >
+                    <tr>
+                        <th>Check</th>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                        
+                    <tr v-for="(item,index) in videoList" :key="index" >
+                        <td><Checkbox v-model="item.isSeleted" :value="item.isSeleted"></Checkbox></td>
+                        <td>{{item.title}}</td>
+                        <td><button class="table_button_green" @click="view(item)" type="button">View</button></td>
+                        
+                    </tr>
+                        
+                </table>
+            </div> -->
+            <div slot="footer">
+                <Button @click="">close</Button>
+                <Button @click="">update</Button>
+            </div>
+        </Modal>
 
 </div>
 </template>
 
 <script>
 export default {
+    data(){
+        return{
+            serviceDetails:{},
+            order:{
+                totalPrice:0,
+                extraPrice:0,
+                bookingTime:"10:00 - 10:30",
+                extraService:[],
+                service_id: this.$route.params.id
+            },
+            bookingTimeModal:false,
+            selectBookingTime : '',
+            
+        }
+    },
+    methods:{
+        async  getServiceDetails(){
+            const res = await this.callApi('get',`getServiceDetailsById/${this.$route.params.id}`)
+            if(res.status===200){
+                this.serviceDetails = res.data;
+            }
+            else{
+                this.swr();
+            }
+        },
+        bookingTime(){
+            this.bookingTimeModal = true;
+        },
+        getSlots(){
+            console.log(this.selectBookingTime);
+        },
+        async insertOrder(){
+            
+            for(let item of this.serviceDetails.extra){
+                if(item.staus==true){
+                    this.order.extraService.push(item)
+                }
+            }
+            this.order.totalPrice = this.totalOderPrice
+            this.order.extraPrice = (this.totalOderPrice-this.serviceDetails.price)
+            this.order.extraPrice = (this.totalOderPrice-this.serviceDetails.price)
+            const res = await this.callApi('post','insertOrder',this.order)
+            if(res.status===201){
+                this.s("Order Inserted Successfully!");
+            }
+            else{
+                this.swr();
+            }
+        },
+
+    
+        
+    },
+    computed:{
+        totalOderPrice(){
+            let price = parseInt(this.serviceDetails.price)
+            if(this.serviceDetails.extra){
+                for(let item of this.serviceDetails.extra){
+                    if(item.staus==true){
+                        price+=parseInt(item.servicePrice);
+                    }
+                }
+            }
+            
+            return price;
+        },
+      
+    },
+   async created(){
+      
+        let tempDate  = new Date( Date.now());
+         tempDate.setHours(0, 0, 0, 0);
+          console.log(tempDate)
+        this.getServiceDetails();
+        
+       
+    },
 
 }
 </script>

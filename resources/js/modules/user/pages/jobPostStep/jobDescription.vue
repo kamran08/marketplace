@@ -214,6 +214,8 @@ export default {
         },
     },
     async created(){
+      console.log("i am auth Information");
+		console.log(this.authInfo);
         const res = await this.callApi('get', 'get-all-catgory')
         if(res.status==200){
              this.alljobs = res.data;

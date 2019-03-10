@@ -11,11 +11,12 @@
 		            <h2 class="_banner_title">Earn money with us</h2>
 
 		            <div class="_banner_button">
-		            <!-- //	<p class="_banner_post_title">Post a Job</p>  -->
-							<p class="_banner_post_title"> <router-link :to="{ name: 'jobDescription'}">Post a Job</router-link></p>
-		            	<p class="_banner_cirlce_plus">
-		            		<i class="fa fa-plus"></i>
-		            	</p>
+						<router-link :to="{ name: 'jobDescription'}">
+							<p class="_banner_post_title">Post a Job</p>
+		            		<p class="_banner_cirlce_plus">
+		            			<i class="fa fa-plus"></i>
+		            		</p>
+						</router-link>
 		            </div>
 		        </div>
 		    </div>

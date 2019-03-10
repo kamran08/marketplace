@@ -115,6 +115,24 @@ class UserController extends Controller
     public function saveImages(Request $request){
         return $this->userService->saveImages($request->all());
     }
+    public function insertOrder(Request $request){
+        return $this->userService->insertOrder($request->all());
+    }
+    public function getslots(Request $request){
+        return $this->userService->getslots($request->all());
+    }
+    public function getServiceDetailsById($id){
+        return $this->userService->getServiceDetailsById($id);
+    }
+    
+    public function getTimeSolte($id){
+      
+        $data = $this->userService->getTimeSolte($id);
+        // \Log::info($data);
+        
+      //  return 1;
+        
+    }
 
 
 }
