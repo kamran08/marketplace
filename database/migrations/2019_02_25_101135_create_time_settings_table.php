@@ -13,13 +13,13 @@ class CreateTimeSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('timesSettings', function (Blueprint $table) {
+        Schema::create('time_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->time('startTime');
-            $table->time('endTime');
-            $table->time('intervel');
-            $table->string('weekDay');
+            $table->integer('service_id');
+            $table->string('day');
+            $table->string('startTime');
+            $table->string('endTime');
+            $table->integer('duration');
             $table->timestamps();
         });
     }

@@ -23,7 +23,7 @@
 				<i class="_1search_section_more_text">1,000+ more</i>
 				<i class="fas fa-angle-down"></i>
 			</div>
-		</div>
+	</div>
 			<!--==========================
 					Search Section
 			===========================-->

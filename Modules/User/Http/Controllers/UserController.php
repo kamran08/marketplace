@@ -103,32 +103,14 @@ class UserController extends Controller
     public function getCurrentStep($key){
         return $this->userService->getCurrentStep($key);
     }
-
-    public function upload(Request $request){
-
-        request()->file('file')->store('uploads');
-
-     // $pic = $request->file->originalName();
-        $pic= $request-> file->hashName();
-
-       // \Log::info( $pic);
-        /*update the profile pic*/
-        //$flag =  User::where('id', $id)->update(['image' => "/uploads/$pic"]);
-        // if ($flag) {
-        //     return $pic;
-        // } else {
-        //     return response()->json([
-        //         'message' => "Picture Upload Failed!!",
-
-        //     ], 403);
-        // }
-        return $pic;
-    }
     public function getImage(Request $request){
         \Log::info("I am running from getImage");
         request()->file('img')->store('uploads');
         $pic= "/uploads/".$request->img->hashName();
         return $pic;
+    }
+    public function unlinkImage(Request $request){
+        return $this->userService->unlinkImage($request->all());
     }
     public function saveImages(Request $request){
         return $this->userService->saveImages($request->all());

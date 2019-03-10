@@ -32,24 +32,43 @@
                                  <div class="_login_input">
                                     <i class="fas fa-envelope"></i>
                                     <div class="_login_input_inp">
-                                       <Dropdown trigger="custom" :visible="visible" style="margin-left: 20px margn-right:20px">
-                                          <a href="javascript:void(0)" @click="handleOpen">
-                                             {{catagory}}
-                                             <Icon type="ios-arrow-down"></Icon>
-                                          </a>
-                                          <DropdownMenu slot="list" v-for="(job,index) in alljobs" :key="index">
-                                             <!-- <p v-model="formdata.cat_id">{{index}}</p> -->
-                                             <p  @click="handleClose(job.catName,index)">{{job.catName}}</p>
-                                          </DropdownMenu>
-                                       </Dropdown>
+                                       
+                                        <Select v-model="formdata.cat_id" style="width:200px">
+                                          <Option v-for="(item,index) in alljobs" :value="item.id" :key="index">{{ item.catName }}</Option>
+                                       </Select>
                                     </div>
                                  </div>
                               </div>
-                              <div class="col-12 col-md-6">
-                                 <div class="_login_input">
-                                    <i class="fas fa-envelope"></i>
-                                    <div class="_login_input_inp">
-                                       <input class="_login_input_inp_field" v-model="formdata.daliveryTime" placeholder="Delivery time" type="text">
+                           </div>
+                        </div>
+                        <div class="_login_input_group">
+                           <div class="_login_input">
+                              
+                              <div class="_login_input_inp">
+                                 <div class="row">
+                                    <div class="col-md-2">
+                                       <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="col-md-10">
+                                       <p class="_1steps_input_title" >Servicing Time  </p>
+                                    </div>
+                                    
+                                 </div>
+                                 <div class="row" v-for="(item,index) in formdata.servicingTime" :key="index">
+                                    <div class="col-md-1">
+                                      <Checkbox v-model="item.isOn"></Checkbox>
+                                    </div>
+                                    <div class="col-md-3">
+                                       <p class="_1steps_input_title" >{{item.day}}</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                       <TimePicker v-model="item.startTime" format="HH:mm" type="time" placement="bottom-end" placeholder="Start Time" ></TimePicker>
+                                    </div>
+                                    <div class="col-md-3">
+                                       <TimePicker v-model="item.endTime" format="HH:mm" type="time" placement="bottom-end" placeholder="End Time" ></TimePicker>
+                                    </div>
+                                    <div class="col-md-2">
+                                       <input class="_login_input_inp_field" v-model="item.duration" placeholder="Duration" type="number">
                                     </div>
                                  </div>
                               </div>
@@ -97,55 +116,105 @@ export default {
                 videoLink:'',
                 description:'',
                 openingMassage:'',
-                daliveryTime:'',
-                isFeatured:'0',
-                isComplete:false,
-                nextStep:''
+                servicingTime:[
+                   {
+                     startTime:'',
+                     endTime:'',
+                     day:'Monday',
+                     duration:'',
+                     isOn:'false',
+                     },
+                   {
+                     startTime:'',
+                     endTime:'',
+                     day:'Tuesday',
+                     duration:'',
+                     isOn:'false',
+                     },
+                   {
+                     startTime:'',
+                     endTime:'',
+                     day:'Wednesday',
+                     duration:'',
+                     isOn:'false',
+                     },
+                   {
+                     startTime:'',
+                     endTime:'',
+                     day:'Thursday',
+                     duration:'',
+                     isOn:'false',
+                     },
+                   {
+                     startTime:'',
+                     endTime:'',
+                     day:'Friday',
+                     duration:'',
+                     isOn:'false',
+                     },
+                   {
+                     startTime:'',
+                     endTime:'',
+                     day:'Saturday',
+                     duration:'',
+                     isOn:'false',
+                     },
+                   {
+                     startTime:'',
+                     endTime:'',
+                     day:'Sunday',
+                     duration:'',
+                     isOn:'false',
+                     },
+                ],
             },
+
             items:[],
+            servicingDayCount : 1,
             itemName:'',
             itemPrice:0,
             ok:0,
             alljobs:'',
             visible: false,
-            catagory:'catagory'
-        }
+            catagory:'catagory',
+      }
     },
     methods:{
         async join(){
   
-            if(this.formdata.isFeatured == ''|| this.formdata.daliveryTime == ''|| this.formdata.openingMassage =='' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == '' || this.formdata.user_id == ''){
-                this.i("All fields are requrired");
-                return;
+            // if( this.formdata.daliveryTime == ''|| this.formdata.openingMassage =='' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == '' || this.formdata.user_id == ''){
+            //     this.i("All fields are requrired");
+            //     return;
+            // }
+            for(let item of this.formdata.servicingTime){
+               if(item.isOn==true){
+                 if(item.startTime=="" || item.endTime == "" || item.duration== ""){
+                    this.e("Please fill the time solts of "+ item.day+" !");
+                 }
+               }
             }
+            // return;
            // this.nextStep = 1
             const res1 = await this.callApi('post', 'insert-all-services',this.formdata)
-            
             if(res1.status===201){
                 this.s("Data stored Successfully!");
                 this.$router.push({name: 'jobImage',params: {id:res1.data.id}});
-               // console.log(res1)
+             //  console.log(res1)
                
             }
             else if (res1.status===402){
                this.e("You are not Authenticated User!!!")
             }
+            else if (res1.status===406){
+               for(let e of res1.data.dayError){
+                  this.e(e);
+               }
+            }
             else this.swr();
-        },
-         handleOpen () {
-                if(this.visible==false)
-                this.visible = true;
-                else this.visible = false;
-        },
-        handleClose (e,index) {
-                this.formdata.cat_id=index;
-                this.catagory = e
-                 this.visible = false;
         },
     },
     async created(){
         const res = await this.callApi('get', 'get-all-catgory')
-       
         if(res.status==200){
              this.alljobs = res.data;
         }

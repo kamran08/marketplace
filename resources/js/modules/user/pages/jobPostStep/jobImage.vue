@@ -26,7 +26,7 @@
                               <li class="_1steps_shadow  " v-for="(item,index) in uploads" :key="index" :class="(index==1)?'_1steps_img_select_active' : ''" >
                                  <img :src="item.imageUrl"  title="">
                                  <p class="_1steps_cencel _1steps_shadow">
-                                    <i class="fas fa-plus"></i>
+                                    <i class="fas fa-plus" @click="removeImage(index)" ></i>
                                  </p>
                               </li>
                            </template>
@@ -90,12 +90,22 @@ export default {
         }
     },
     methods:{
+      async removeImage(index){
+         // const res  = await this.callApi('post',"unlinkImage",{imageLink: this.uploads[index].imageUrl})
+         // if(res.status===200){
+         //    this.uploads.splice(index,1);
+         //    this.active.imageUrl = "/uploads/default.png";
+         // }
+
+         this.uploads.splice(index,1);
+         this.active.imageUrl = "/uploads/default.png";
+         
+       },
         async join(){
             if(!this.uploads.length){
                 this.i("You must upload atleast 1 Photo!");
                 return;
             }
-
             for (const i of this.uploads) {
                 i.service_id = this.service_id;
             }
@@ -109,23 +119,19 @@ export default {
                 this.swr();
             }
             console.log(this.uploads);
-        
-            
         },
         handleSuccess(res, file){
             console.log(res);
              this.active.imageUrl = res;
-            this.uploads.push({imageUrl:this.active.imageUrl});
+             this.uploads.push({imageUrl:this.active.imageUrl});
             console.log(res);
-           
         },
        
     },
    async created(){
-        this.service_id = this.$route.params.id
-
-        const res = await this.callApi('get',`get-courrent-step/${this.service_id}`)
-        if(res.status===200){
+          this.service_id = this.$route.params.id
+           const res = await this.callApi('get',`get-courrent-step/${this.service_id}`)
+           if(res.status===200){
            if(res.data.nextStep==3){
             this.$router.push({name: 'jobExtraService', params: {id:this.service_id}})
            }

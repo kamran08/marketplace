@@ -8,7 +8,7 @@ class Service extends Model
 {
     protected $fillable =[
         'title','user_id', 'cat_id', 'price', 'videoLink', 'description', 
-        'openingMassage', 'daliveryTime', 'isFeatured', 'isComplite', 
+        'openingMassage'
     ];
         public function image(){
             return $this->hasMany('App\Image', 'service_id');
@@ -17,6 +17,6 @@ class Service extends Model
             return $this->belongsTo('App\User', 'user_id');
          }
         public function cats(){
-            return $this->belongsTo('App\Cat', 'cat_id');
+            return $this->belongsTo('App\Category', 'cat_id');
          }
 }

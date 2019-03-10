@@ -24,9 +24,11 @@
                            <Input class="_login_input_inp_field" type="text"  ref = "input"  placeholder="Tag" v-model="tagName" @keyup.enter.native="add()"/>
                         </div>
                      </div>
-                     <div v-for="(item,i) in items" :key="i" v-if="items.length>0"> 
-                        {{item.tagName}} <i class="fa fa-times" @click="delate(i)"></i>
-                     </div>
+                     <template v-if="items.length>0" >
+                        <div  v-for="(item,i) in items" :key="i"> 
+                           {{item.tagName}} <i class="fa fa-times" @click="delate(i)"></i>
+                        </div>
+                     </template>
                      <div>
                      </div>
                      <div class="_login_input_button">
@@ -57,7 +59,7 @@ export default {
                     const res = await this.callApi('post', 'add-tag', this.items)
                     if(res.status==200){
                     this.s('Your tags have been successfully added!');
-                    this.$router.push({name: '/'})
+                    this.$router.push({path: '/'})
 
                     }
                     else{

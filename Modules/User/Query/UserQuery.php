@@ -2,7 +2,7 @@
 namespace Modules\User\Query;
 use Illuminate\Http\Request;
 use App\User;
-use App\Cat;
+use App\Category;
 use App\Service;
 use App\Extra;
 use App\Tag;
@@ -20,7 +20,7 @@ class UserQuery {
     }
   
     public function getAllcat(){
-         $cat = Cat::all();
+         $cat = Category::all();
         return $cat;
     }
     public function getAllService(){

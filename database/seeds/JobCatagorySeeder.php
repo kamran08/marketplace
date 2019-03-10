@@ -11,27 +11,27 @@ class JobCatagorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cats')->insert([
+        DB::table('categories')->insert([
             'catName' => 'pedicure',
             'image' => 'uploads/cat1.svg',
         ]);
-        DB::table('cats')->insert([
+        DB::table('categories')->insert([
             'catName' => 'facials',
             'image' => 'uploads/deck-chair.svg',
         ]);
-        DB::table('cats')->insert([
+        DB::table('categories')->insert([
             'catName' => 'hair',
             'image' => 'uploads/female-hair-shape-and-face-silhouette.svg',
         ]);
-        DB::table('cats')->insert([
+        DB::table('categories')->insert([
             'catName' => 'make-up',
             'image' => 'uploads/make-up.svg',
         ]);
-        DB::table('cats')->insert([
+        DB::table('categories')->insert([
             'catName' => 'manicure',
             'image' => 'uploads/manicure.svg',
         ]);
-        DB::table('cats')->insert([
+        DB::table('categories')->insert([
             'catName' => 'wax',
             'image' => 'uploads/wax.svg',
         ]);

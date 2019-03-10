@@ -22,8 +22,7 @@ class CreateServicesTable extends Migration
             $table->string('videoLink');
             $table->string('description');
             $table->string('openingMassage');
-            $table->string('daliveryTime');
-            $table->boolean('isFeatured');
+            $table->boolean('isComplete')->default(0);
             $table->integer('nextStep')->default(2);
             $table->boolean('isApproved')->default(0);
             $table->timestamps();

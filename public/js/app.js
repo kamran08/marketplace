@@ -55739,17 +55739,6 @@ var routes = [{
         title: 'details'
     }
 
-}, {
-    path: '/details',
-    name: 'details',
-    component: __WEBPACK_IMPORTED_MODULE_11__pages_details_vue___default.a,
-
-    meta: {
-        guest: true,
-        allowedUserType: ['All'],
-        title: 'details'
-    }
-
 }];
 
 /* harmony default export */ __webpack_exports__["default"] = (routes);
@@ -57678,7 +57667,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57782,120 +57771,286 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            formdata: {
-                title: '',
-                cat_id: '',
-                user_id: '',
-                price: '',
-                videoLink: '',
-                description: '',
-                openingMassage: '',
-                daliveryTime: '',
-                isFeatured: '0',
-                isComplete: false,
-                nextStep: ''
-            },
-            items: [],
-            itemName: '',
-            itemPrice: 0,
-            ok: 0,
-            alljobs: '',
-            visible: false,
-            catagory: 'catagory'
-        };
-    },
+  data: function data() {
+    return {
+      formdata: {
+        title: '',
+        cat_id: '',
+        user_id: '',
+        price: '',
+        videoLink: '',
+        description: '',
+        openingMassage: '',
+        servicingTime: [{
+          startTime: '',
+          endTime: '',
+          day: 'Monday',
+          duration: '',
+          isOn: 'false'
+        }, {
+          startTime: '',
+          endTime: '',
+          day: 'Tuesday',
+          duration: '',
+          isOn: 'false'
+        }, {
+          startTime: '',
+          endTime: '',
+          day: 'Wednesday',
+          duration: '',
+          isOn: 'false'
+        }, {
+          startTime: '',
+          endTime: '',
+          day: 'Thursday',
+          duration: '',
+          isOn: 'false'
+        }, {
+          startTime: '',
+          endTime: '',
+          day: 'Friday',
+          duration: '',
+          isOn: 'false'
+        }, {
+          startTime: '',
+          endTime: '',
+          day: 'Saturday',
+          duration: '',
+          isOn: 'false'
+        }, {
+          startTime: '',
+          endTime: '',
+          day: 'Sunday',
+          duration: '',
+          isOn: 'false'
+        }]
+      },
 
-    methods: {
-        join: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var res1;
-                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                if (!(this.formdata.isFeatured == '' || this.formdata.daliveryTime == '' || this.formdata.openingMassage == '' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == '' || this.formdata.user_id == '')) {
-                                    _context.next = 3;
-                                    break;
-                                }
+      items: [],
+      servicingDayCount: 1,
+      itemName: '',
+      itemPrice: 0,
+      ok: 0,
+      alljobs: '',
+      visible: false,
+      catagory: 'catagory'
+    };
+  },
 
-                                this.i("All fields are requrired");
-                                return _context.abrupt('return');
+  methods: {
+    join: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, item, res1, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, e;
 
-                            case 3:
-                                _context.next = 5;
-                                return this.callApi('post', 'insert-all-services', this.formdata);
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
 
-                            case 5:
-                                res1 = _context.sent;
+                // if( this.formdata.daliveryTime == ''|| this.formdata.openingMassage =='' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == '' || this.formdata.user_id == ''){
+                //     this.i("All fields are requrired");
+                //     return;
+                // }
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context.prev = 3;
+                for (_iterator = this.formdata.servicingTime[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  item = _step.value;
 
-
-                                if (res1.status === 201) {
-                                    this.s("Data stored Successfully!");
-                                    this.$router.push({ name: 'jobImage', params: { id: res1.data.id } });
-                                    // console.log(res1)
-                                } else if (res1.status === 402) {
-                                    this.e("You are not Authenticated User!!!");
-                                } else this.swr();
-
-                            case 7:
-                            case 'end':
-                                return _context.stop();
-                        }
+                  if (item.isOn == true) {
+                    if (item.startTime == "" || item.endTime == "" || item.duration == "") {
+                      this.e("Please fill the time solts of " + item.day + " !");
                     }
-                }, _callee, this);
-            }));
-
-            function join() {
-                return _ref.apply(this, arguments);
-            }
-
-            return join;
-        }(),
-        handleOpen: function handleOpen() {
-            if (this.visible == false) this.visible = true;else this.visible = false;
-        },
-        handleClose: function handleClose(e, index) {
-            this.formdata.cat_id = index;
-            this.catagory = e;
-            this.visible = false;
-        }
-    },
-    created: function () {
-        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-            var res;
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
-                while (1) {
-                    switch (_context2.prev = _context2.next) {
-                        case 0:
-                            _context2.next = 2;
-                            return this.callApi('get', 'get-all-catgory');
-
-                        case 2:
-                            res = _context2.sent;
-
-
-                            if (res.status == 200) {
-                                this.alljobs = res.data;
-                            } else this.swr();
-
-                        case 4:
-                        case 'end':
-                            return _context2.stop();
-                    }
+                  }
                 }
-            }, _callee2, this);
-        }));
+                // return;
+                // this.nextStep = 1
+                _context.next = 11;
+                break;
 
-        function created() {
-            return _ref2.apply(this, arguments);
-        }
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context['catch'](3);
+                _didIteratorError = true;
+                _iteratorError = _context.t0;
 
-        return created;
+              case 11:
+                _context.prev = 11;
+                _context.prev = 12;
+
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                  _iterator.return();
+                }
+
+              case 14:
+                _context.prev = 14;
+
+                if (!_didIteratorError) {
+                  _context.next = 17;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 17:
+                return _context.finish(14);
+
+              case 18:
+                return _context.finish(11);
+
+              case 19:
+                _context.next = 21;
+                return this.callApi('post', 'insert-all-services', this.formdata);
+
+              case 21:
+                res1 = _context.sent;
+
+                if (!(res1.status === 201)) {
+                  _context.next = 27;
+                  break;
+                }
+
+                this.s("Data stored Successfully!");
+                this.$router.push({ name: 'jobImage', params: { id: res1.data.id } });
+                //  console.log(res1)
+
+                _context.next = 54;
+                break;
+
+              case 27:
+                if (!(res1.status === 402)) {
+                  _context.next = 31;
+                  break;
+                }
+
+                this.e("You are not Authenticated User!!!");
+                _context.next = 54;
+                break;
+
+              case 31:
+                if (!(res1.status === 406)) {
+                  _context.next = 53;
+                  break;
+                }
+
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context.prev = 35;
+
+                for (_iterator2 = res1.data.dayError[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                  e = _step2.value;
+
+                  this.e(e);
+                }
+                _context.next = 43;
+                break;
+
+              case 39:
+                _context.prev = 39;
+                _context.t1 = _context['catch'](35);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context.t1;
+
+              case 43:
+                _context.prev = 43;
+                _context.prev = 44;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                  _iterator2.return();
+                }
+
+              case 46:
+                _context.prev = 46;
+
+                if (!_didIteratorError2) {
+                  _context.next = 49;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 49:
+                return _context.finish(46);
+
+              case 50:
+                return _context.finish(43);
+
+              case 51:
+                _context.next = 54;
+                break;
+
+              case 53:
+                this.swr();
+
+              case 54:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[3, 7, 11, 19], [12,, 14, 18], [35, 39, 43, 51], [44,, 46, 50]]);
+      }));
+
+      function join() {
+        return _ref.apply(this, arguments);
+      }
+
+      return join;
     }()
+  },
+  created: function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+      var res;
+      return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return this.callApi('get', 'get-all-catgory');
+
+            case 2:
+              res = _context2.sent;
+
+              if (res.status == 200) {
+                this.alljobs = res.data;
+              } else this.swr();
+
+            case 4:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this);
+    }));
+
+    function created() {
+      return _ref2.apply(this, arguments);
+    }
+
+    return created;
+  }()
 });
 
 /***/ }),
@@ -57983,107 +58138,156 @@ var render = function() {
                             { staticClass: "_login_input_inp" },
                             [
                               _c(
-                                "Dropdown",
+                                "Select",
                                 {
-                                  staticStyle: {
-                                    "margin-left": "20px margn-right:20px"
-                                  },
-                                  attrs: {
-                                    trigger: "custom",
-                                    visible: _vm.visible
+                                  staticStyle: { width: "200px" },
+                                  model: {
+                                    value: _vm.formdata.cat_id,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.formdata, "cat_id", $$v)
+                                    },
+                                    expression: "formdata.cat_id"
                                   }
                                 },
-                                [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "javascript:void(0)" },
-                                      on: { click: _vm.handleOpen }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\r\n                                             " +
-                                          _vm._s(_vm.catagory) +
-                                          "\r\n                                             "
-                                      ),
-                                      _c("Icon", {
-                                        attrs: { type: "ios-arrow-down" }
-                                      })
-                                    ],
-                                    1
-                                  ),
-                                  _vm._v(" "),
-                                  _vm._l(_vm.alljobs, function(job, index) {
-                                    return _c(
-                                      "DropdownMenu",
-                                      {
-                                        key: index,
-                                        attrs: { slot: "list" },
-                                        slot: "list"
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          {
-                                            on: {
-                                              click: function($event) {
-                                                _vm.handleClose(
-                                                  job.catName,
-                                                  index
-                                                )
-                                              }
-                                            }
-                                          },
-                                          [_vm._v(_vm._s(job.catName))]
-                                        )
-                                      ]
-                                    )
-                                  })
-                                ],
-                                2
+                                _vm._l(_vm.alljobs, function(item, index) {
+                                  return _c(
+                                    "Option",
+                                    { key: index, attrs: { value: item.id } },
+                                    [_vm._v(_vm._s(item.catName))]
+                                  )
+                                })
                               )
                             ],
                             1
                           )
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-12 col-md-6" }, [
-                        _c("div", { staticClass: "_login_input" }, [
-                          _c("i", { staticClass: "fas fa-envelope" }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "_login_input_inp" }, [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.formdata.daliveryTime,
-                                  expression: "formdata.daliveryTime"
-                                }
-                              ],
-                              staticClass: "_login_input_inp_field",
-                              attrs: {
-                                placeholder: "Delivery time",
-                                type: "text"
-                              },
-                              domProps: { value: _vm.formdata.daliveryTime },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.formdata,
-                                    "daliveryTime",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ])
-                        ])
                       ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "_login_input_group" }, [
+                    _c("div", { staticClass: "_login_input" }, [
+                      _c(
+                        "div",
+                        { staticClass: "_login_input_inp" },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _vm._l(_vm.formdata.servicingTime, function(
+                            item,
+                            index
+                          ) {
+                            return _c(
+                              "div",
+                              { key: index, staticClass: "row" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-1" },
+                                  [
+                                    _c("Checkbox", {
+                                      model: {
+                                        value: item.isOn,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "isOn", $$v)
+                                        },
+                                        expression: "item.isOn"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-3" }, [
+                                  _c(
+                                    "p",
+                                    { staticClass: "_1steps_input_title" },
+                                    [_vm._v(_vm._s(item.day))]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-3" },
+                                  [
+                                    _c("TimePicker", {
+                                      attrs: {
+                                        format: "HH:mm",
+                                        type: "time",
+                                        placement: "bottom-end",
+                                        placeholder: "Start Time"
+                                      },
+                                      model: {
+                                        value: item.startTime,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "startTime", $$v)
+                                        },
+                                        expression: "item.startTime"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "col-md-3" },
+                                  [
+                                    _c("TimePicker", {
+                                      attrs: {
+                                        format: "HH:mm",
+                                        type: "time",
+                                        placement: "bottom-end",
+                                        placeholder: "End Time"
+                                      },
+                                      model: {
+                                        value: item.endTime,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "endTime", $$v)
+                                        },
+                                        expression: "item.endTime"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-2" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: item.duration,
+                                        expression: "item.duration"
+                                      }
+                                    ],
+                                    staticClass: "_login_input_inp_field",
+                                    attrs: {
+                                      placeholder: "Duration",
+                                      type: "number"
+                                    },
+                                    domProps: { value: item.duration },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          item,
+                                          "duration",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  })
+                                ])
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -58229,6 +58433,22 @@ var staticRenderFns = [
     return _c("div", { staticClass: "_job_step_title" }, [
       _c("h3", { staticClass: "_title" }, [_vm._v("POST A JOB")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-2" }, [
+        _c("i", { staticClass: "fas fa-envelope" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-10" }, [
+        _c("p", { staticClass: "_1steps_input_title" }, [
+          _vm._v("Servicing Time  ")
+        ])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -58275,7 +58495,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58292,6 +58512,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -58367,7 +58589,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         if (res.status == 200) {
                            this.s('Your tags have been successfully added!');
-                           this.$router.push({ name: '/' });
+                           this.$router.push({ path: '/' });
                         } else {
                            this.swr();
                         }
@@ -58554,11 +58776,11 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.items, function(item, i) {
-                    return _vm.items.length > 0
-                      ? _c("div", { key: i }, [
+                  _vm.items.length > 0
+                    ? _vm._l(_vm.items, function(item, i) {
+                        return _c("div", { key: i }, [
                           _vm._v(
-                            " \n                        " +
+                            " \n                           " +
                               _vm._s(item.tagName) +
                               " "
                           ),
@@ -58571,8 +58793,8 @@ var render = function() {
                             }
                           })
                         ])
-                      : _vm._e()
-                  }),
+                      })
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("div"),
                   _vm._v(" "),
@@ -58651,7 +58873,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -58761,73 +58983,101 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
 
     methods: {
-        join: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, i, res1;
-
+        removeImage: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(index) {
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                // const res  = await this.callApi('post',"unlinkImage",{imageLink: this.uploads[index].imageUrl})
+                                // if(res.status===200){
+                                //    this.uploads.splice(index,1);
+                                //    this.active.imageUrl = "/uploads/default.png";
+                                // }
+
+                                this.uploads.splice(index, 1);
+                                this.active.imageUrl = "/uploads/default.png";
+
+                            case 2:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function removeImage(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return removeImage;
+        }(),
+        join: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, i, res1;
+
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
                                 if (this.uploads.length) {
-                                    _context.next = 3;
+                                    _context2.next = 3;
                                     break;
                                 }
 
                                 this.i("You must upload atleast 1 Photo!");
-                                return _context.abrupt('return');
+                                return _context2.abrupt('return');
 
                             case 3:
                                 _iteratorNormalCompletion = true;
                                 _didIteratorError = false;
                                 _iteratorError = undefined;
-                                _context.prev = 6;
-
+                                _context2.prev = 6;
 
                                 for (_iterator = this.uploads[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                     i = _step.value;
 
                                     i.service_id = this.service_id;
                                 }
-                                _context.next = 14;
+                                _context2.next = 14;
                                 break;
 
                             case 10:
-                                _context.prev = 10;
-                                _context.t0 = _context['catch'](6);
+                                _context2.prev = 10;
+                                _context2.t0 = _context2['catch'](6);
                                 _didIteratorError = true;
-                                _iteratorError = _context.t0;
+                                _iteratorError = _context2.t0;
 
                             case 14:
-                                _context.prev = 14;
-                                _context.prev = 15;
+                                _context2.prev = 14;
+                                _context2.prev = 15;
 
                                 if (!_iteratorNormalCompletion && _iterator.return) {
                                     _iterator.return();
                                 }
 
                             case 17:
-                                _context.prev = 17;
+                                _context2.prev = 17;
 
                                 if (!_didIteratorError) {
-                                    _context.next = 20;
+                                    _context2.next = 20;
                                     break;
                                 }
 
                                 throw _iteratorError;
 
                             case 20:
-                                return _context.finish(17);
+                                return _context2.finish(17);
 
                             case 21:
-                                return _context.finish(14);
+                                return _context2.finish(14);
 
                             case 22:
-                                _context.next = 24;
+                                _context2.next = 24;
                                 return this.callApi('post', "saveServiceImage", this.uploads);
 
                             case 24:
-                                res1 = _context.sent;
+                                res1 = _context2.sent;
 
                                 if (res1.status === 200) {
                                     this.s("Images uploaded Successfully!");
@@ -58840,14 +59090,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                             case 27:
                             case 'end':
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this, [[6, 10, 14, 22], [15,, 17, 21]]);
+                }, _callee2, this, [[6, 10, 14, 22], [15,, 17, 21]]);
             }));
 
             function join() {
-                return _ref.apply(this, arguments);
+                return _ref2.apply(this, arguments);
             }
 
             return join;
@@ -58860,19 +59110,18 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     created: function () {
-        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
             var res;
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                 while (1) {
-                    switch (_context2.prev = _context2.next) {
+                    switch (_context3.prev = _context3.next) {
                         case 0:
                             this.service_id = this.$route.params.id;
-
-                            _context2.next = 3;
+                            _context3.next = 3;
                             return this.callApi('get', 'get-courrent-step/' + this.service_id);
 
                         case 3:
-                            res = _context2.sent;
+                            res = _context3.sent;
 
                             if (res.status === 200) {
                                 if (res.data.nextStep == 3) {
@@ -58890,14 +59139,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
                         case 6:
                         case 'end':
-                            return _context2.stop();
+                            return _context3.stop();
                     }
                 }
-            }, _callee2, this);
+            }, _callee3, this);
         }));
 
         function created() {
-            return _ref2.apply(this, arguments);
+            return _ref3.apply(this, arguments);
         }
 
         return created;
@@ -58970,7 +59219,22 @@ var render = function() {
                                   attrs: { src: item.imageUrl, title: "" }
                                 }),
                                 _vm._v(" "),
-                                _vm._m(1, true)
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "_1steps_cencel _1steps_shadow"
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-plus",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.removeImage(index)
+                                        }
+                                      }
+                                    })
+                                  ]
+                                )
                               ]
                             )
                           })
@@ -59046,14 +59310,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "_job_step_title" }, [
       _c("h3", { staticClass: "_title" }, [_vm._v("POST A JOB")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "_1steps_cencel _1steps_shadow" }, [
-      _c("i", { staticClass: "fas fa-plus" })
     ])
   }
 ]

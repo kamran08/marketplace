@@ -146,18 +146,7 @@ const routes = [
         }
 
     },
-    {
-        path: '/details',
-        name: 'details',
-        component: details,
 
-        meta: {
-            guest: true,
-            allowedUserType: ['All'],
-            title: 'details',
-        }
-
-    },
 ]
 
 export default routes
