@@ -99,6 +99,19 @@ class UserQuery {
    public function insertOrder($data){
     return Booking::create($data);
     }
+   public function getTimebyDay($data){
+    return TimeSetting::where('day',$data)->select('id','startTime','endTime','duration')->first();
+    }
+   public function getBookedTime($data){
+    return Booking::where('bookingDate',$data)->select('bookingTime')->get();
+    }
+   public function getNewList($data){
+    return Booking::where([['seller_id',$data],['status',0]])->with('buyerInfo','sellerInfo','service','service.image')->get();
+    }
+   public function updateStatus($data){
+     
+    return Booking::where('id',$data['id'])->update($data);
+    }
 
 
     

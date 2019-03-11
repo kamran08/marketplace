@@ -1,10 +1,10 @@
 <template>
 	<div>
+    <headsSction/>
 		<transition name="component-fade" mode="out-in">
-       
         <router-view></router-view>
-        
     </transition>
+     <footsSction/>
 	</div>
 
 
@@ -12,7 +12,13 @@
 
 
 <script>
+import headsSction from './pages/header.vue'
+import footsSction from './pages/footer.vue'
 export default {
+   components:{
+      headsSction,
+      footsSction,
+        },
   created(){
      this.$store.dispatch('setAuth', (window.authUser));
   },

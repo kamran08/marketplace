@@ -119,103 +119,18 @@
 
                         <!--~~~~~~~ Profile Details ~~~~~~~-->
                     <div class="col-12 col-md-8 col-lg-8">
-                        <div class="_profile_card_all">
-                                <!-- card -->
-                            <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 ">
-                                <div class="_profile_card_pic">
-                                    <img  class="_profile_card_img" src="img/Rectangle40.png" alt="" title="">
-                                </div>
-
-                                <div class="_profile_card_name _flex_space _dis_flex">
-                                    <div class="_profile_card_rating">
-                                        <ul class="_1job_card_rating_ul">
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class=""><i class="fas fa-star"></i></li>
-                                            <li class=""><i class="fas fa-star"></i></li>
-                                            <li class="_1job_card_rating_num">(2k+)</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="_profile_card_title _flex_space">
-                                        <p class="_profile_card_name_text">I will photograph your wedding with the love</p>
-                                    </div>
-
-                                    <div class="_dis_flex _profile_card_doller">
-                                        <div class="_1job_card_dollar">
-                                            <p class="_1job_card_dollar_text _color"> 25</p>
-                                            <p class="_1job_card_dollar_sine _color">$</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                <!-- card -->
-
-                                <!-- card -->
-                            <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 ">
-                                <div class="_profile_card_pic">
-                                    <img  class="_profile_card_img" src="img/Rectangle40.png" alt="" title="">
-                                </div>
-
-                                <div class="_profile_card_name _flex_space _dis_flex">
-                                    <div class="_profile_card_rating">
-                                        <ul class="_1job_card_rating_ul">
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class=""><i class="fas fa-star"></i></li>
-                                            <li class=""><i class="fas fa-star"></i></li>
-                                            <li class="_1job_card_rating_num">(2k+)</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="_profile_card_title _flex_space">
-                                        <p class="_profile_card_name_text">I will photograph your wedding with the love</p>
-                                    </div>
-
-                                    <div class="_dis_flex _profile_card_doller">
-                                        <div class="_1job_card_dollar">
-                                            <p class="_1job_card_dollar_text _color"> 25</p>
-                                            <p class="_1job_card_dollar_sine _color">$</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                <!-- card -->
-
-                                <!-- card -->
-                            <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 ">
-                                <div class="_profile_card_pic">
-                                    <img  class="_profile_card_img" src="img/Rectangle40.png" alt="" title="">
-                                </div>
-
-                                <div class="_profile_card_name _flex_space _dis_flex">
-                                    <div class="_profile_card_rating">
-                                        <ul class="_1job_card_rating_ul">
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class="_color"><i class="fas fa-star"></i></li>
-                                            <li class=""><i class="fas fa-star"></i></li>
-                                            <li class=""><i class="fas fa-star"></i></li>
-                                            <li class="_1job_card_rating_num">(2k+)</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="_profile_card_title _flex_space">
-                                        <p class="_profile_card_name_text">I will photograph your wedding with the love</p>
-                                    </div>
-
-                                    <div class="_dis_flex _profile_card_doller">
-                                        <div class="_1job_card_dollar">
-                                            <p class="_1job_card_dollar_text _color"> 25</p>
-                                            <p class="_1job_card_dollar_sine _color">$</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                <!-- card -->
+                        <div class="_box_shadow2 pro_menu _border_radious ">
+                            <ul class="pro_menu_list">
+                                <li :class="(sellerTab==1)? 'pro_menu_active':''" @click="sellerTab=1">Service</li>
+                                <li :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">New Bookings</li>
+                                <li :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Bookings</li>
+                                <li :class="(sellerTab==4)? 'pro_menu_active':''"  @click="sellerTab=4">Canceled Bookings</li>
+                            </ul>
                         </div>
+                        <servicelist v-if="sellerTab==1" ></servicelist>
+                        <newbookinglist v-if="sellerTab==2" ></newbookinglist>
+                        <bookinglist v-if="sellerTab==3" ></bookinglist>
+                        <canclebookinglist v-if="sellerTab==4" ></canclebookinglist>
                     </div>
                         <!--~~~~~~~ Profile Details ~~~~~~~-->
                 </div>
@@ -225,8 +140,27 @@
 </template>
 
 <script>
-export default {
+import bookinglist from './bookinglist.vue'
+import canclebookinglist from './canclebookinglist.vue'
+import servicelist from './servicelist.vue'
+import newbookinglist from './newbookinglist.vue'
 
+        
+export default {
+    components:{
+        bookinglist,
+        canclebookinglist,
+        servicelist,
+        newbookinglist,
+    },
+    data(){
+        return{
+            sellerTab:2,
+        }
+    },
+    methods:{
+
+    }
 }
 </script>
 

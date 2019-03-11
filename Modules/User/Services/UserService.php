@@ -4,6 +4,7 @@ use App\User;
 use App\TimeSetting;
 use Auth;
 use DateTime;
+use DateInterval;
 use App\Classes\CommonClass;
 use Illuminate\Http\Request;
 use Modules\User\Query\UserQuery;
@@ -172,6 +173,16 @@ class UserService {
     public function unlinkImage($data){
       return unlink($data['imageLink']);
     }
+    public function getNewList(){
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      $id = Auth::user()->id;
+
+      return $this->query->getNewList($id);
+    }
     public function getServiceDetailsById($id){
       $data = $this->query->getServiceDetailsById($id);
       foreach ($data['extra'] as $item) {
@@ -187,32 +198,51 @@ class UserService {
      }
       $data["buyer_id"]= Auth::user()->id;
       $data["bookingDate"]= date("Y-m-d");
-      $data["extraService"]= json_encode($data["extraService"]);
+      //$data["extraService"]= json_encode($data["extraService"]);
 
       return $this->query->insertOrder($data);
      
-    }
-    public function getslots($data){
-
-      $date = date("Y-m-d");
-      echo $date->format('D');
-
-      //    for($i=0; $i<=4; $i++){
-      //       if($i<2){
-      //         $tem1 = $data[0]['startTime'][$i];
-      //         $tem2 = $data[0]['startTime'][$i];
-      //       }
-      //    }
-      //       $startTime = new DateTime($data[0]['startTime']);
-      //       $endTime = new DateTime($data[0]['endTime']);
-      //       $sinceStart = $startTime->diff($endTime);
-      //       return $endTime;
-      //      $totalMinutes=($sinceStart->h*60)+$sinceStart->i;
-      //       \Log::info($endTime);
-      // foreach ($data['extra'] as $item) {
-      //    $item['staus'] = false;
-      // }
-      // return $data;
+   }
+    public function getslots($todayDate){
+      $todayName =  new DateTime($todayDate);
+      $todayName = $todayName->format('l');
+      $time =  $this->query->getTimebyDay($todayName);
+      if(!$time){
+         return response()->json([
+            'message' => "Service not available on this day!",
+         ], 403);
+      }
+      $bookedTime =  $this->query->getBookedTime($todayDate);
+      $SerialNo = array_column($bookedTime->all(), 'bookingTime');
+      // echo "<pre>";
+      // print_r($SerialNo);
+      // echo "</pre>";
+      $startTime =  new DateTime($time->startTime);
+      $startTimePre =  new DateTime($time->startTime);
+      $endTime =  new DateTime($time->endTime);
+      $duration = $time->duration;
+      $sinceStart = $startTime->diff($endTime);
+      $totalMinutes=($sinceStart->h*60)+$sinceStart->i;
+      $appointmentInfo = Null;
+      $slot=0;
+      for ($index=0; $index <$totalMinutes ; $index+=$duration) {
+         $startTime->add(new DateInterval('PT'.$duration.'M'));
+         $slotDetails =  "(".$startTimePre->format('h').":".$startTimePre->format('i').' '.$startTimePre->format('A')." - ".$startTime->format('h').":".$startTime->format('i').' '.$startTimePre->format('A').")";
+         $startTimePre->add(new DateInterval('PT'.$duration.'M'));
+         $appointmentInfo[$slot]['bookingTime'] = $slotDetails;
+         $appointmentInfo[$slot]['isBooked'] = in_array($slotDetails, $SerialNo)? true: false;
+         $slot++;
+        }
+        return $appointmentInfo;
+   }
+    public function updateStatus($data){
+      if(!Auth::check()){
+         return response()->json([
+           'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      return $this->query->updateStatus($data);
+      
     }
   
 

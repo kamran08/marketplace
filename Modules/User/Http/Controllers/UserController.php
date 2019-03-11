@@ -112,17 +112,23 @@ class UserController extends Controller
     public function unlinkImage(Request $request){
         return $this->userService->unlinkImage($request->all());
     }
+    public function updateStatus(Request $request){
+        return $this->userService->updateStatus($request->all());
+    }
     public function saveImages(Request $request){
         return $this->userService->saveImages($request->all());
     }
     public function insertOrder(Request $request){
         return $this->userService->insertOrder($request->all());
     }
-    public function getslots(Request $request){
-        return $this->userService->getslots($request->all());
+    public function getslots($date){
+        return $this->userService->getslots($date);
     }
     public function getServiceDetailsById($id){
         return $this->userService->getServiceDetailsById($id);
+    }
+    public function getNewList(){
+        return $this->userService->getNewList();
     }
     
     public function getTimeSolte($id){

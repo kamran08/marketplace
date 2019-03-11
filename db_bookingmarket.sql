@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2019 at 06:42 PM
+-- Generation Time: Mar 11, 2019 at 05:33 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -31,12 +31,14 @@ SET time_zone = "+00:00";
 CREATE TABLE `bookings` (
   `id` int(10) UNSIGNED NOT NULL,
   `buyer_id` int(11) NOT NULL,
+  `seller_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   `totalPrice` int(11) NOT NULL,
   `extraPrice` int(11) NOT NULL,
   `extraService` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `bookingTime` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bookingDate` date NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -45,10 +47,12 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `buyer_id`, `service_id`, `totalPrice`, `extraPrice`, `extraService`, `bookingTime`, `bookingDate`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1000, 500, '[]', '10:00 - 10:30', '2019-03-10', '2019-03-10 11:02:32', '2019-03-10 11:02:32'),
-(2, 1, 1, 1100, 600, '[{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '10:00 - 10:30', '2019-03-10', '2019-03-10 11:04:19', '2019-03-10 11:04:19'),
-(3, 1, 1, 1400, 900, '[{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '10:00 - 10:30', '2019-03-10', '2019-03-10 11:04:46', '2019-03-10 11:04:46');
+INSERT INTO `bookings` (`id`, `buyer_id`, `seller_id`, `service_id`, `totalPrice`, `extraPrice`, `extraService`, `bookingTime`, `bookingDate`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 1000, 500, '[]', '(12:40 AM - 01:00 AM)', '2019-03-11', 1, '2019-03-10 11:02:32', '2019-03-11 10:27:02'),
+(2, 1, 1, 1, 1100, 600, '[{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(01:00 AM - 01:20 AM)', '2019-03-11', 1, '2019-03-10 11:04:19', '2019-03-11 10:29:21'),
+(3, 1, 1, 1, 1400, 900, '[{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(02:20 AM - 02:40 AM)', '2019-03-11', 1, '2019-03-10 11:04:46', '2019-03-11 10:31:14'),
+(4, 1, 1, 1, 1900, 1400, '[{\"id\":1,\"service_id\":1,\"serviceName\":\"Service 1.2\",\"servicePrice\":\"500.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '10:00 - 10:30', '2019-03-11', 1, '2019-03-11 01:14:58', '2019-03-11 10:33:04'),
+(5, 2, 1, 1, 500, 0, '[]', '(04:00 AM - 04:20 AM)', '2019-03-11', 3, '2019-03-11 02:52:52', '2019-03-11 10:33:07');
 
 -- --------------------------------------------------------
 
@@ -205,7 +209,8 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `user_id`, `title`, `cat_id`, `price`, `videoLink`, `description`, `openingMassage`, `isComplete`, `nextStep`, `isApproved`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Service 1', 1, '500.00', 'https://www.youtube.com/watch?v=3eA3oVc6lF4', 'This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.', 'This is Service 1', 0, 5, 0, '2019-03-10 06:00:01', '2019-03-10 06:02:54');
+(1, 1, 'Service 1', 1, '500.00', 'https://www.youtube.com/watch?v=3eA3oVc6lF4', 'This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.', 'This is Service 1', 0, 5, 0, '2019-03-10 06:00:01', '2019-03-10 06:02:54'),
+(2, 2, 'gh', 2, '2.00', 'S', 'SD', 'DS', 0, 2, 0, '2019-03-11 01:47:49', '2019-03-11 01:47:49');
 
 -- --------------------------------------------------------
 
@@ -257,7 +262,8 @@ INSERT INTO `time_settings` (`id`, `service_id`, `day`, `startTime`, `endTime`, 
 (3, 1, 'Wednesday', '00:00', '05:00', 20, '2019-03-10 06:00:01', '2019-03-10 06:00:01'),
 (4, 1, 'Thursday', '00:00', '05:00', 20, '2019-03-10 06:00:01', '2019-03-10 06:00:01'),
 (5, 1, 'Friday', '00:00', '08:00', 20, '2019-03-10 06:00:01', '2019-03-10 06:00:01'),
-(6, 1, 'Saturday', '00:00', '08:00', 20, '2019-03-10 06:00:01', '2019-03-10 06:00:01');
+(6, 1, 'Saturday', '00:00', '08:00', 20, '2019-03-10 06:00:01', '2019-03-10 06:00:01'),
+(7, 2, 'Monday', '00:00', '03:00', 20, '2019-03-11 01:47:49', '2019-03-11 01:47:49');
 
 -- --------------------------------------------------------
 
@@ -267,6 +273,7 @@ INSERT INTO `time_settings` (`id`, `service_id`, `day`, `startTime`, `endTime`, 
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `userName` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `userType` int(11) NOT NULL,
@@ -281,8 +288,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `userName`, `email`, `userType`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'nazmul', 'nazmul@gmail.com', 1, NULL, '$2y$10$UwI/wodDT6856i0VZOVJL.H4ppdKJnh1R06Fk4NJyZ71brY.VQvi.', 'IbG3Q4ZAVz2MVTk5b6NTksSGf0n9AuLSwRnHrpzKaTmoSVURcEUEc1ffgHm1', '2019-03-10 05:38:59', '2019-03-10 05:38:59');
+INSERT INTO `users` (`id`, `name`, `userName`, `email`, `userType`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Nazmul Chowdhury', 'nazmul', 'nazmul@gmail.com', 1, '0000-00-00 00:00:00', '$2y$10$UwI/wodDT6856i0VZOVJL.H4ppdKJnh1R06Fk4NJyZ71brY.VQvi.', 'bXDqFCqOH5xR1nkCRVwEjaIg8oL88G5HG1J1W2NIP5F0o8kxaP1t7Smny4sM', '2019-03-10 05:38:59', '2019-03-10 05:38:59'),
+(2, 'Kamran Ahmed', 'Kamran', 'kamran@gmail.com', 1, NULL, '$2y$10$obubdCG8bKN7xX2PTqwIiuls/FzoD5SkK1.Oh9pcnhCa93eY1LEmy', '0PI9Z95gE5jUg5x2ompeZgJySzQx4C1JmKViBx0DCw6V2aZ7kS30iwrKTj86', '2019-03-11 01:45:27', '2019-03-11 01:45:27');
 
 --
 -- Indexes for dumped tables
@@ -364,7 +372,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -400,7 +408,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tags`
@@ -412,13 +420,13 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `time_settings`
 --
 ALTER TABLE `time_settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

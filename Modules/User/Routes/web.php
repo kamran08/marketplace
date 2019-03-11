@@ -37,7 +37,9 @@ Route::post( 'app/getServiceImage', 'UserController@getImage');
 Route::post( 'app/saveServiceImage', 'UserController@saveImages');
 Route::post( 'app/unlinkImage', 'UserController@unlinkImage');
 Route::post( 'app/insertOrder', 'UserController@insertOrder');
-Route::get( 'app/getslots', 'UserController@getslots');
+Route::get( 'app/getslots/{date}', 'UserController@getslots');
+Route::get( 'app/getNewList', 'UserController@getNewList');
+Route::post( 'app/updateStatus', 'UserController@updateStatus');
 
 
 // Route::get('app/ok', 'UserController@register');

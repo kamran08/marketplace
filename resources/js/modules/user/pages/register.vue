@@ -24,6 +24,16 @@
 											<i class="fas fa-envelope"></i>
 
 											<div class="_login_input_inp">
+                                                <input class="_login_input_inp_field" v-model="regesterData.name" placeholder="Full Name" type="text" required>
+												<!-- <input class="_login_input_inp_field" placeholder="Username" type="text"> -->
+											</div>
+										</div>
+									</div>
+									<div class="_login_input_group">
+										<div class="_login_input">
+											<i class="fas fa-envelope"></i>
+
+											<div class="_login_input_inp">
                                                 <input class="_login_input_inp_field" v-model="regesterData.email" placeholder="Email" type="email" required>
 												<!-- <input class="_login_input_inp_field" placeholder="Username" type="text"> -->
 											</div>
@@ -99,6 +109,7 @@ export default {
             return{
                 regesterData:{
                         email:'',
+                        name:'',
                         userName:'',
                         password:'',
                         userType:'',
@@ -115,38 +126,33 @@ export default {
 
         },
         methods:{
-               async registerUser(){
-                       if(this.regesterData.email==='' || this.regesterData.password==='' || this.regesterData.userName===''){
-                           return this.e('All fields are required')
-                        }
-					 if(this.regesterData.password !== this.confirmPassword) this.e('password does not match')
-					 
-					 else{
-						 
-						const res = await this.callApi('post', 'register', this.regesterData)
-						
-     				 if(res.status===200){
-                        this.s('Registeration successfully!')
-                        this.$store.dispatch('setAuth',res.data.user)
-                        this.$router.push('/');
-                      
-                    }else{
-                        if(res.status===422){
-                            // this.isLoading = false
-							// this.text = 'LOGIN'
-							if(res.data.errors.email)
-							this.e(res.data.errors.email)
-							if(res.data.errors.password)
-                            this.e(res.data.errors.password)
-                           
-                        }
-					}
-					 }
-					 
-                 
+            async registerUser(){
+                if(this.regesterData.email==='' || this.regesterData.password==='' || this.regesterData.userName==='' || this.regesterData.name===''){
+                       return this.e('All fields are required')
                 }
-
-
+				if(this.regesterData.password !== this.confirmPassword) this.e('password does not match')
+				 else{
+					 
+					const res = await this.callApi('post', 'register', this.regesterData)
+					
+     			 if(res.status===200){
+                    this.s('Registeration successfully!')
+                    this.$store.dispatch('setAuth',res.data.user)
+                    this.$router.push('/');
+                  
+                }else{
+                    if(res.status===422){
+                        // this.isLoading = false
+						// this.text = 'LOGIN'
+						if(res.data.errors.email)
+						this.e(res.data.errors.email)
+						if(res.data.errors.password)
+                        this.e(res.data.errors.password)
+                       
+                    }
+				}
+				 }
+                }
         }
 
 

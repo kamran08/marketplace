@@ -31,7 +31,7 @@
                             </div>
 
                             <div class="Details_slider _b_color2 _padd_20">
-                                <img class="Details_slider_img" src="img/Cryptoe.jpg" title="" alt="">
+                                <img class="Details_slider_img" :src="serviceDetails.image[0].imageUrl" title="" alt="">
                             </div>
 
                             <div class="Details_block _b_color2 _padd_20">
@@ -246,7 +246,7 @@
                                     
                                     <div class="Details_pro_button _b_color2">
                                         <div class="_block_buttons_main _dis_flex">
-                                            <button class="_bg _btn _block_buttons_btn" @click="bookingTimeModal = true" type="button">ORDER NOW (${{totalOderPrice}})</button>
+                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">ORDER NOW (${{totalOderPrice}})</button>
                                             <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
                                         </div>
                                     </div>
@@ -315,35 +315,34 @@
             :closable = "false"
             width='600'
         >
-                <Row>
-                    <Col span="12">
-                        <DatePicker type="date" format="yyyy-MM-dd" v-model="selectBookingTime" @on-change="getSlots" placeholder="Select date" style="width: 200px"></DatePicker>
-                    </Col>
-                </Row>
-            <!-- <div class="User_List">
-                <p class="list_title">User List</p>
-                <table class="User_List_table" v-if="videoList.length" >
-                    <tr>
-                        <th>Check</th>
-                        <th>Title</th>
-                        <th>Action</th>
-                    </tr>
-                        
-                    <tr v-for="(item,index) in videoList" :key="index" >
-                        <td><Checkbox v-model="item.isSeleted" :value="item.isSeleted"></Checkbox></td>
-                        <td>{{item.title}}</td>
-                        <td><button class="table_button_green" @click="view(item)" type="button">View</button></td>
-                        
-                    </tr>
-                        
-                </table>
-            </div> -->
-            <div slot="footer">
-                <Button @click="">close</Button>
-                <Button @click="">update</Button>
-            </div>
+                <div class="User_List">
+                    <Row>
+                        <Col span="12">
+                                <DatePicker type="date" format="yyyy-MM-dd" v-model="selectBookingTime" @on-change="getSlots" placeholder="Select date" style="width: 200px"></DatePicker>
+                        </Col>
+                    </Row>
+                    
+                        <p class="list_title">Time List</p>
+                        <table class="User_List_table" v-if="bookingTimeByDay.length" >
+                            <tr>
+                                <th>No</th>
+                                <th>Time</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr v-for="(item,index) in bookingTimeByDay" :key="index" >
+                                <td>{{index+1}}</td>
+                                <td>{{item.bookingTime}}</td>
+                                <td v-if="!item.isBooked"><button :class="(bookingTimeFalg===index)? 'table_button_green': 'table_button'" @click="assignDate(item.bookingTime,index)"  type="button">Click to Book</button></td>
+                                <td v-if="item.isBooked" ><button class="table_button_red"  type="button">Booked</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div slot="footer">
+                        <Button @click="bookingTimeModal = false">close</Button>
+                        <Button @click="insertOrder">Order</Button>
+                    </div>
+                
         </Modal>
-
 </div>
 </template>
 
@@ -355,13 +354,15 @@ export default {
             order:{
                 totalPrice:0,
                 extraPrice:0,
-                bookingTime:"10:00 - 10:30",
+                bookingTime:"",
                 extraService:[],
-                service_id: this.$route.params.id
+                service_id: this.$route.params.id,
+                seller_id:'',
             },
             bookingTimeModal:false,
             selectBookingTime : '',
-            
+            bookingTimeByDay : [],
+            bookingTimeFalg : '',
         }
     },
     methods:{
@@ -374,33 +375,68 @@ export default {
                 this.swr();
             }
         },
-        bookingTime(){
-            this.bookingTimeModal = true;
-        },
-        getSlots(){
-            console.log(this.selectBookingTime);
-        },
-        async insertOrder(){
-            
-            for(let item of this.serviceDetails.extra){
-                if(item.staus==true){
-                    this.order.extraService.push(item)
-                }
-            }
-            this.order.totalPrice = this.totalOderPrice
-            this.order.extraPrice = (this.totalOderPrice-this.serviceDetails.price)
-            this.order.extraPrice = (this.totalOderPrice-this.serviceDetails.price)
-            const res = await this.callApi('post','insertOrder',this.order)
-            if(res.status===201){
-                this.s("Order Inserted Successfully!");
+        async  getBookingTimeByDay(newDate){
+            const res = await this.callApi('get',`getslots/${newDate}`)
+            if(res.status===200){
+                this.bookingTimeByDay = res.data;
             }
             else{
                 this.swr();
             }
         },
+        bookingTime(){
+            this.bookingTimeModal = true;
+        },
+        getSlots(){
+            // FORMATE THE DATE 
+            let d = new Date(this.selectBookingTime);
+            let monthNumber = d.getMonth()+1
+            monthNumber = ("0" + monthNumber).slice(-2);
 
-    
-        
+            let dayNumber = d.getDate()
+            dayNumber = ("0" + dayNumber).slice(-2);
+            let newDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+            this.getBookingTimeByDay(newDate)
+        },
+        assignDate(slot,index){
+            this.order.bookingTime = slot
+            this.bookingTimeFalg = index
+        },
+        modalOn(){
+            let d = new Date();
+            let monthNumber = d.getMonth()+1
+            monthNumber = ("0" + monthNumber).slice(-2);
+            let dayNumber = d.getDate()
+            dayNumber = ("0" + dayNumber).slice(-2);
+            let newDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+            this.getBookingTimeByDay(newDate)
+            this.bookingTimeModal = true
+            
+        },
+
+        async insertOrder(){
+            if(this.order.bookingTime == ''){
+                this.i("Please select a booking Time");
+            }
+            for(let item of this.serviceDetails.extra){
+                if(item.staus==true){
+                    this.order.extraService.push(item)
+                }
+            }
+            this.order.seller_id = this.serviceDetails.user.id
+            this.order.totalPrice = this.totalOderPrice
+            this.order.extraPrice = (this.totalOderPrice-this.serviceDetails.price)
+            this.order.extraPrice = (this.totalOderPrice-this.serviceDetails.price)
+            this.order.extraService = JSON.stringify(this.order.extraService)
+            const res = await this.callApi('post','insertOrder',this.order)
+            if(res.status===201){
+                this.s("Order Inserted Successfully!");
+                this.bookingTimeModal = false
+            }
+            else{
+                this.swr();
+            }
+        },
     },
     computed:{
         totalOderPrice(){
@@ -412,19 +448,11 @@ export default {
                     }
                 }
             }
-            
             return price;
         },
-      
     },
    async created(){
-      
-        let tempDate  = new Date( Date.now());
-         tempDate.setHours(0, 0, 0, 0);
-          console.log(tempDate)
         this.getServiceDetails();
-        
-       
     },
 
 }

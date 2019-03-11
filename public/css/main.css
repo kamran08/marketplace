@@ -225,6 +225,76 @@ textarea {
     font-weight: 400 !important;
     cursor: inherit !important;
 }
+._2menu_main_ul_list_ul {
+    flex: 1 1;
+    text-align: right;
+}
+._2menu_main_ul_list_ul li {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+._2menu_main_ul_list_ul li a {
+    transition: 0.3s all ease;
+    cursor: pointer;
+    color: #424242;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}
+._2big_menu_list li:hover, ._2menu_main_ul_list_ul li a:hover {
+    color: #2a41e8;
+}
+._2menu_mess {
+    position: relative;
+    width: 19px;
+    display: inline-block;
+}
+._2menu_mess i {
+    font-size: 19px;
+    color: #7d7d7d;
+}
+._2menu_mess_num {
+    position: absolute;
+    top: -9px;
+    right: -6px;
+    font-weight: 700;
+    height: 17px;
+    width: 17px;
+    line-height: 16px;
+    text-align: center;
+    color: #fff;
+    font-size: 9px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+._2menu_profile {
+    height: 42px;
+    width: 42px;
+    position: relative;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+._2menu_profile_pic {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+}
+._2menu_profile_on {
+    position: absolute;
+    height: 13px;
+    width: 12px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #ddd;
+    bottom: 0px;
+    right: 0px;
+}
+._2menu_profile_active {
+    background: #2a41e8 !important;
+}
 /*========= 2.menu =======*/
 
 /*========= 3.Big Menu =======*/
@@ -478,13 +548,12 @@ textarea {
 }
 ._1job_card_dollar {
     position: relative;
-    width: 38px;
     text-align: right;
 }
 ._1job_card_dollar_sine {
     position: absolute;
     top: 4px;
-    left: 0;
+    left: -12px;
     font-weight: 600;
 }
 ._1job_card_status {
@@ -1515,14 +1584,14 @@ textarea {
 ._profile_card_all{}
 ._profile_card{}
 ._profile_card_pic {
-    width: 212px;
+    width: 139px;
     overflow: hidden;
 }
 ._profile_card_img {
     min-width: 100%;
     min-height: 100%;
     width: auto;
-    max-width: 250px;
+    max-width: 143px;
 }
 ._profile_card_name_text {
     display: -webkit-box;
@@ -1530,12 +1599,22 @@ textarea {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
     font-size: 15px;
+}
+._profile_card_name_text_link {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    font-size: 15px;
+    cursor: pointer;
 }
 ._profile_card_title {
     margin: 7px 0 0;
-    min-height: 90px;
+    min-height: 38px;
 }
 ._profile_card_name {
     flex-direction: column;
@@ -1546,6 +1625,66 @@ textarea {
     padding: 6px 0 4px;
 }
 .Details_profie_rating{}
+.pro_menu {
+    background: #fff;
+    margin-bottom: 30px;
+    padding: 13px 28px;
+}
+.pro_table_list {
+    min-width: 486px;
+    overflow: auto;
+    text-align: left;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+.pro_menu_list li {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    border-right: 1px solid #ececec;
+    padding-right: 19px;
+    margin-right: 16px;
+    transition: .2s all ease;
+    cursor: pointer;
+}
+.pro_menu_list li:hover {
+    color: #249ebd;
+}
+.pro_table {
+    padding: 29px 20px;
+    margin-bottom: 30px;
+}
+.pro_table_list {
+    min-width: 486px;
+    overflow: auto;
+    text-align: left;
+}
+.pro_table_list tr{}
+.pro_table_list tr th {
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    color: #222;
+}
+.pro_table_list tr td {
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+}
+.pro_menu_active{
+    color: #249ebd !important;
+}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
 /*========= 15.Profile =======*/
 
 /*========= 16.Order=======*/
@@ -1596,6 +1735,36 @@ textarea {
     justify-content: flex-end;
     padding: 10px 0 44px;
 }
+
+.table_button_green {
+    background: #19be6b;
+    color: #fff;
+    border: none;
+    padding: 4px 16px;
+    border-radius: 3px;
+}
+
+.table_button_red {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 4px 16px;
+    border-radius: 3px;
+}
+.table_button {
+    background: #249ebd;
+    color: #fff;
+    border: none;
+    padding: 4px 16px;
+    border-radius: 3px;
+}
+.table_button_red {
+    background: #e71810;
+    color: #fff;
+    border: none;
+    padding: 4px 16px;
+    border-radius: 3px;
+}
 /*========= 16.Order=======*/
 
 
@@ -1603,3 +1772,14 @@ textarea {
 /*========= 3.header menu =======*/
 /*========= 3.header menu =======*/
 
+@media only screen and (max-width: 750px) {
+._1search_section_search {
+    width: 89%;
+    margin: 15px auto 0;
+}
+
+
+
+
+
+}

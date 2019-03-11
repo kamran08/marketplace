@@ -11,7 +11,8 @@ import jobImage from '../pages/jobPostStep/jobImage.vue'
 import jobTag from '../pages/jobPostStep/jobTag.vue'
 
 import order from '../pages/order.vue'
-import profile from '../pages/profile.vue'
+import sprofile from '../pages/seller/profile.vue'
+import bprofile from '../pages/buyer/profile.vue'
 import details from '../pages/details.vue'
 const routes = [
     {
@@ -123,9 +124,21 @@ const routes = [
 
     },
     {
-        path: '/profile',
-        name: 'profile',
-        component: profile,
+        path: '/sprofile',
+        name: 'sprofile',
+        component: sprofile,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'profile',
+        }
+
+    },
+    {
+        path: '/bprofile',
+        name: 'bprofile',
+        component: bprofile,
 
         meta: {
             guest: true,

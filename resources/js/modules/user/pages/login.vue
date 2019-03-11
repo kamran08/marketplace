@@ -1,6 +1,6 @@
 <template>
     <div>
-     <headsSction />
+     
      <div class="_login">
 			<div class="container-fluid">
 				<div class="row justify-content-center">
@@ -59,11 +59,7 @@
 </template>
 
 <script>
-import headsSction from '../../../components/pages/header.vue'
 export default {
-    components:{
-        headsSction
-    },
     data(){
         return {
             logdata: {
@@ -73,7 +69,6 @@ export default {
             notok:true,
             ok:false,
         }
-       
     },
      methods: {
         //    logout(){
