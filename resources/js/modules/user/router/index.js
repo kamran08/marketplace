@@ -124,7 +124,7 @@ const routes = [
 
     },
     {
-        path: '/sprofile',
+        path: '/sprofile/:id',
         name: 'sprofile',
         component: sprofile,
 
@@ -136,7 +136,7 @@ const routes = [
 
     },
     {
-        path: '/bprofile',
+        path: '/bprofile/:id',
         name: 'bprofile',
         component: bprofile,
 

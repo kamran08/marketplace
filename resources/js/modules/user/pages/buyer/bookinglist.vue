@@ -1,9 +1,12 @@
 <template>
-    <div>
-        <div class="_profile_card_all" v-if="list.length" >
-            <!-- card -->
+    <div >
+        <div span="24" class="booked_date _text_center _box_shadow2">
+            <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
+        </div>
+        <!-- card -->
+        <div class="_profile_card_all" v-if="list.length"  >
             <div v-for="(item,index) in list" :key="index" >
-                <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==0"  >
+                <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==0 || item.status==1 "  >
                     <div class="_profile_card_pic">
                         <img  class="_profile_card_img" :src="item.service.image[0].imageUrl" alt="" title="">
                     </div>
@@ -23,8 +26,8 @@
                             <p class="_profile_card_name_text">Time: {{item.bookingTime}}</p> 
                         </div>
                         <div class="_profile_card_title _flex_space">
-                            <button class="table_button" type="button" @click="updateStatus(1,index)" >Approve</button>
-                            <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle</button>
+                            <button v-if="item.status==0" class="table_button" type="button" >Waiting For Approve</button>
+                            <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle Booking</button>
                         </div>
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
@@ -35,11 +38,11 @@
                     </div>
                 </div>
             </div>
-            <!-- card -->
         </div>
         <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
-                <h2>No New Bookings </h2>
+            <h2>No Bookings This Day</h2>
         </div>
+        <!-- card -->
     </div>
 </template>
 
@@ -48,29 +51,37 @@ export default {
     data(){
         return{
             list:[],
+            toDayDate:''
         }
     },
     methods:{
-        async getNewList(){
-            const res  = await  this.callApi('get','getNewList')
+        async getNewList(newDate){
+            const res  = await  this.callApi('get',`getBookingList/${newDate}`)
             if(res.status===200){
                 this.list = res.data
+                console.log(this.list)
             }
             else{
                 this.swr();
             }
         },
+        getSlots(){
+            // FORMATE THE DATE 
+            let d = new Date(this.toDayDate);
+            let monthNumber = d.getMonth()+1
+            monthNumber = ("0" + monthNumber).slice(-2);
+
+            let dayNumber = d.getDate()
+            dayNumber = ("0" + dayNumber).slice(-2);
+            this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+            this.getNewList(this.toDayDate)
+        },
         async updateStatus(status,index){
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
-                if(status==1){
-                    this.s("This booking has been approved!");
-                    this.list[index].status = 1 
-                }
-                else if(status==3){
-                    this.i("This booking has been cancled!");
-                    this.list[index].status = 3 
-                }
+                this.i("This booking has been cancled!");
+                this.list[index].status = 3 
+                
             }
             else{
                 this.e();
@@ -78,7 +89,13 @@ export default {
         }
     },
     created(){
-        this.getNewList();
+        let d = new Date();
+        let monthNumber = d.getMonth()+1
+        monthNumber = ("0" + monthNumber).slice(-2);
+        let dayNumber = d.getDate()
+        dayNumber = ("0" + dayNumber).slice(-2);
+        this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+        this.getNewList(this.toDayDate);
     }
 }
 </script>

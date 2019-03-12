@@ -43,7 +43,7 @@ img{
 	width:100%;
 	display:block;
 }
-button:focus, input:focus, textarea:focus{
+button:focus, input:focus, textarea:focus, select:focus{
 	outline: none;
 }
 input{
@@ -1293,6 +1293,18 @@ textarea {
     color: #8b8b8b;
     font-size: 14px;
 }
+.Details_profie input, .Details_profie  textarea{
+    padding: 2px 6px;
+}
+.Details_pro_renge_num select {
+    border: none;
+    font-weight: 600;
+    color: #666;
+    width: 100px;
+}
+.Details_pro_renge_num select option{
+    padding: 0 0 10px;
+}
 .Details_pro_renge_num {
     font-size: 14px;
     font-weight: 600;
@@ -1581,6 +1593,53 @@ textarea {
 ._w_100{
     width: 100%;
 }
+.Details_profie_img_div {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 2px solid #ddd;
+    overflow: hidden;
+    position: relative;
+}
+.Details_profie_img_div:hover .Details_profie_img_edit{
+    bottom:0;
+}
+.Details_profie_img_edit {
+    position: absolute;
+    cursor: pointer;
+    bottom: -100%;
+    background: #0000009e;
+    color: #fff;
+    font-size: 11px;
+    left: 0;
+    transition: .3s all ease;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    padding-top: 10px;
+}
+.pro_edit_all {
+    color: #10a2ef;
+    font-size: 11px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.pro_edit_all i{}
+.booked_date{
+    padding: 15px 15px;
+    background: #fff;
+    margin: 0 0 25px;
+}
+.booked_date_order{
+    padding: 15px 15px;
+    background: #fff;
+    margin: 25px 0 25px;
+}
+.boi_text textarea{
+    width: 100%;
+}
 ._profile_card_all{}
 ._profile_card{}
 ._profile_card_pic {
@@ -1636,6 +1695,9 @@ textarea {
     text-align: left;
     border-collapse: collapse;
     margin: 0 auto;
+}
+.pro_menu_list li:last-child {
+    border-right: none;
 }
 .pro_menu_list li {
     display: inline-block;
@@ -1773,10 +1835,159 @@ textarea {
 /*========= 3.header menu =======*/
 
 @media only screen and (max-width: 750px) {
+    /* home */
 ._1search_section_search {
     width: 89%;
     margin: 15px auto 0;
 }
+._1search_section_search_button_btn {
+    font-size: 11px;
+    letter-spacing: 0px;
+    padding: 10px 11px;
+}
+._1search_section_search {
+    padding: 5px 5px 5px;
+}
+._1search_section_search_iam {
+    font-size: 13px;
+    padding-left: 13px;
+    padding-bottom: 2px;
+}
+._1search_section_search_int {
+    padding: 0 3px 0 3px;
+}
+._1search_section_search_input {
+    font-size: 13px;
+    padding: 4px 2px 5px;
+}
+._1search_section_title {
+    font-size: 25px;
+    letter-spacing: 1px;
+    padding: 0 25px;
+    line-height: 28px;
+}
+._1search_section_Sub_title {
+    font-size: 12px;
+    margin: 8px 25px 0;
+}
+._1search_section {
+    height: 312px;
+}
+._1search_section_main {
+    top: 47%;
+}
+._1search_section_more_text {
+    font-size: 13px !important;
+}
+._1search_section_more i {
+    font-size: 15px;
+}
+._title {
+    font-size: 17px;
+}
+.find {
+    padding: 25px 0;
+}
+.find_row {
+    padding: 25px 0px;
+}
+._see_all_text {
+    font-size: 12px;
+}
+._see_all i {
+    font-size: 11px;
+    margin: 3px 0 0;
+}
+.jobs {
+    padding: 25px 0;
+}
+.job_row {
+    padding: 20px 0 0;
+}
+.Engine_row {
+    padding: 25px 0;
+}
+.Engine_main {
+    margin-bottom: 25px;
+}
+.Engine_main:last-child{
+    margin-bottom: 2px;
+}
+.Engine {
+    padding: 0 0 30px;
+}
+._footer {
+    padding: 25px 0 15px;
+}
+._footer_feb {
+    margin-top: 5px;
+}
+._footer_ul {
+    margin: 12px 0 17px;
+}
+._footer_feb_row {
+    margin-top: 0px;
+    text-align: center;
+    border-top: 1px solid #314a6d;
+    padding-top: 16px;
+}
+._footer_ul li {
+    font-size: 13px;
+    margin: 3px 0;
+}
+._footer_title {
+    font-size: 14px;
+}
+    /* home */
+
+    /* profile */
+.pro_menu {
+    padding: 13px 15px;
+}
+.pro_menu_list li {
+    font-size: 13px;
+    padding-right: 10px;
+    margin: 3px 10px 3px 0px;
+}
+.profile_main ._title4 {
+    margin: 15px 0 17px;
+}
+._title_header {
+    padding: 26px 0 6px;
+}
+    /* profile */
+    
+    /* details */
+.Details_main {
+    margin-top: 15px;
+}   
+.Details_main_title {
+    margin: 0 0 15px;
+} 
+.Details_slider {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 12px 0 15px;
+}
+.Details_block_title {
+    margin-bottom: 7px;
+}
+._commnet_img_pic {
+    width: 40px;
+    height: 40px;
+    margin: 7px 10px 0 0;
+}
+._commnet_main {
+    padding: 15px 0;
+}
+._commnet_all {
+    padding: 0 10px;
+}
+.Details_profie_img {
+    width: 85px;
+    height: 85px;
+}
+    /* details */
 
 
 

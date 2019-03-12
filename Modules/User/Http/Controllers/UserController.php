@@ -104,16 +104,20 @@ class UserController extends Controller
         return $this->userService->getCurrentStep($key);
     }
     public function getImage(Request $request){
-        \Log::info("I am running from getImage");
-        request()->file('img')->store('uploads');
-        $pic= "/uploads/".$request->img->hashName();
-        return $pic;
+        return $this->userService->getImage($request);
     }
+    public function getUserImage(Request $request){
+        return $this->userService->getUserImage($request);
+    }
+
     public function unlinkImage(Request $request){
         return $this->userService->unlinkImage($request->all());
     }
     public function updateStatus(Request $request){
         return $this->userService->updateStatus($request->all());
+    }
+    public function updateUserInfo(Request $request){
+        return $this->userService->updateUserInfo($request->all());
     }
     public function saveImages(Request $request){
         return $this->userService->saveImages($request->all());
@@ -121,14 +125,26 @@ class UserController extends Controller
     public function insertOrder(Request $request){
         return $this->userService->insertOrder($request->all());
     }
-    public function getslots($date){
-        return $this->userService->getslots($date);
+    public function getslots(Request $request){
+        return $this->userService->getslots($request->all());
     }
     public function getServiceDetailsById($id){
         return $this->userService->getServiceDetailsById($id);
     }
     public function getNewList(){
         return $this->userService->getNewList();
+    }
+    public function getServiceList($id){
+        return $this->userService->getServiceList($id);
+    }
+    public function getBookingList($date){
+        return $this->userService->getBookingList($date);
+    }
+    public function getProfileInfo($id){
+        return $this->userService->getProfileInfo($id);
+    }
+    public function getCancleList($date){
+        return $this->userService->getCancleList($date);
     }
     
     public function getTimeSolte($id){

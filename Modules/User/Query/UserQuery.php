@@ -43,8 +43,6 @@ class UserQuery {
             return $service;
     }
     public function getCurrentStep($key){
-      
-
       return  Service::where('id',$key)->select('nextStep')->first();   
       \Log::info($data)  ;
      // return $step;
@@ -99,18 +97,37 @@ class UserQuery {
    public function insertOrder($data){
     return Booking::create($data);
     }
-   public function getTimebyDay($data){
-    return TimeSetting::where('day',$data)->select('id','startTime','endTime','duration')->first();
+   public function getTimebyDay($data,$service_id){
+    return TimeSetting::where([['day',$data],['service_id',$service_id]])->select('id','startTime','endTime','duration')->first();
     }
-   public function getBookedTime($data){
-    return Booking::where('bookingDate',$data)->select('bookingTime')->get();
+   public function getBookedTime($data,$service_id){
+    return Booking::where([['bookingDate',$data],['service_id',$service_id]])->select('bookingTime')->get();
     }
    public function getNewList($data){
     return Booking::where([['seller_id',$data],['status',0]])->with('buyerInfo','sellerInfo','service','service.image')->get();
     }
+   public function getServiceList($data){
+    return Service::where('user_id',$data)->with('image','user','tag','extra','category','alltime')->get();
+    }
+   public function getBookingListS($data,$date){
+    return Booking::where([["seller_id",$data],['bookingDate',$date],['status',1]])->with('buyerInfo','sellerInfo','service','service.image')->get();
+    }
+   public function getBookingListR($data,$date){
+    return Booking::where([["buyer_id",$data],['bookingDate',$date]])->whereIn('status',[1,0,])->with('buyerInfo','sellerInfo','service','service.image')->get();
+    }
+   public function getProfileInfo($data){
+    return User::where('id',$data)->first();
+    }
+   public function getCancleList($data,$date,$type){
+    return Booking::where([["$type",$data],['bookingDate',$date],['status',3]])->with('buyerInfo','sellerInfo','service','service.image')->get();
+    }
    public function updateStatus($data){
      
     return Booking::where('id',$data['id'])->update($data);
+    }
+   public function updateUserInfo($id,$data){
+     
+    return User::where('id',$id)->update($data);
     }
 
 

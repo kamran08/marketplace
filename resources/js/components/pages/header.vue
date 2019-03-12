@@ -36,8 +36,8 @@
 							<li> <router-link :to="{ path: '/'}">HOME</router-link></li>
 							<li><a href="job_browse.html" title="">JOB BROWSE</a></li>
 							<li> <router-link :to="{ name: 'order'}">ORDER</router-link></li>
-							<li v-if="this.authInfo.userType==1" > <router-link :to="{ name: 'sprofile'}">PROFILE</router-link></li>
-							<li v-if="this.authInfo.userType==2" > <router-link :to="{ name: 'bprofile'}">PROFILE</router-link></li>
+							<li v-if="authInfo.userType==1" > <router-link :to="{ name: 'sprofile', params: { id : authInfo.id}}">PROFILE</router-link></li>
+							<li v-if="authInfo.userType==2" > <router-link :to="{ name: 'bprofile', params: { id : authInfo.id}}">PROFILE</router-link></li>
 							<li><a href="/logout" >LOGOUT</a></li>
 							<li>
 									<div class="_2menu_mess ">

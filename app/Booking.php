@@ -8,7 +8,7 @@ class Booking extends Model
 {
     //
     protected $fillable =[
-        'buyer_id','service_id','totalPrice','extraPrice','bookingTime','bookingDate','extraService'
+        'buyer_id','service_id','totalPrice','extraPrice','bookingTime','bookingDate','extraService','seller_id'
      ];
 
      public function buyerInfo(){

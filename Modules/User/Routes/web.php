@@ -34,12 +34,18 @@ Route::post( 'app/add-extra-services', 'UserController@addExtra');
 Route::post( 'app/delate-extra', 'UserController@delateExtra');
 Route::post( 'app/add-tag', 'UserController@addTag');
 Route::post( 'app/getServiceImage', 'UserController@getImage');
+Route::post( 'app/getUserImage', 'UserController@getUserImage');
 Route::post( 'app/saveServiceImage', 'UserController@saveImages');
 Route::post( 'app/unlinkImage', 'UserController@unlinkImage');
 Route::post( 'app/insertOrder', 'UserController@insertOrder');
-Route::get( 'app/getslots/{date}', 'UserController@getslots');
+Route::post( 'app/getslots', 'UserController@getslots');
 Route::get( 'app/getNewList', 'UserController@getNewList');
+Route::get( 'app/getServiceList/{id}', 'UserController@getServiceList');
+Route::get( 'app/getBookingList/{date}', 'UserController@getBookingList');
+Route::get( 'app/getProfileInfo/{id}', 'UserController@getProfileInfo');
+Route::get( 'app/getCancleList/{date}', 'UserController@getCancleList');
 Route::post( 'app/updateStatus', 'UserController@updateStatus');
+Route::post( 'app/updateUserInfo', 'UserController@updateUserInfo');
 
 
 // Route::get('app/ok', 'UserController@register');
