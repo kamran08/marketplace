@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all" v-if="list.length"  >
+        <div class="_profile_card_all seller_pro" v-if="list.length"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==1"  >
                     <div class="_profile_card_pic">
@@ -55,7 +55,11 @@ export default {
     },
     methods:{
         async getNewList(newDate){
-            const res  = await  this.callApi('get',`getBookingList/${newDate}`)
+            let data = {
+                date:newDate,
+                status:1,
+            }
+            const res  = await  this.callApi('post',`getBookingList`,data);
             if(res.status===200){
                 this.list = res.data
                 console.log(this.list)

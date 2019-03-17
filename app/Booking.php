@@ -20,6 +20,9 @@ class Booking extends Model
      public function service(){
          return $this->belongsTo('App\Service','service_id');
      }
+     public function review(){
+         return $this->belongsTo('App\Review','id','booking_id');
+     }
 
     
 }

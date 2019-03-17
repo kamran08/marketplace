@@ -11,6 +11,9 @@
 |
 */
 
+// Route::get('/system_admin', function () {
+//     return view('admin');
+// });
 Route::get('/', function () {
     return view('welcome');
 });

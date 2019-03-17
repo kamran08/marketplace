@@ -1,4 +1,4 @@
-/*
+/*================================
 1.common css
 2.menu
 3.Big Menu
@@ -15,13 +15,7 @@
 14.Comment
 15.Profile
 16.Order
-
-
-
-
-3.header menu
-4.profile
-*/
+====================================*/
 
 /*===== 1.common css ======*/
 body{
@@ -423,6 +417,29 @@ textarea {
     padding: 62px 0;
 }
 .find_title{}
+.find_all:first-child{
+    border-left: 1px solid #c9e1ef;
+}
+.find_all:nth-child(5) {
+    border-left: 1px solid #c9e1ef;
+}
+.find_all:nth-last-child(1){
+    border-bottom: 1px solid #c9e1ef;
+}
+.find_all:nth-last-child(2){
+    border-bottom: 1px solid #c9e1ef;
+}
+.find_all:nth-last-child(3){
+    border-bottom: 1px solid #c9e1ef;
+}
+.find_all:nth-last-child(4){
+    border-bottom: 1px solid #c9e1ef;
+}
+.find_all:hover {
+    transform: scale(1.07 , 1.07);
+    border: none;
+    box-shadow: 0px 1px 1px 1px #ddddddbf;
+}
 .find_all {
     -ms-flex: 0 0 25%;
     flex: 0 0 25%;
@@ -431,7 +448,9 @@ textarea {
     background: #fff;
     border-top: 1px solid #c9e1ef;
     border-right: 1px solid #c9e1ef;
-    padding: 55px 11px 53px;
+    transition: .2s all ease;
+    padding: 35px 11px 28px;
+    cursor: pointer;
 }
 .find_left{
 	border-left: 1px solid #c9e1ef;
@@ -457,15 +476,25 @@ textarea {
     right: 12px;
     bottom: -12px;
 }
+.find_all_icons img {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 80px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 .find_all_icons {
     position: relative;
     border: 1px solid;
-    width: 50px;
-    height: 50px;
+    width: 120px;
+    height: 120px;
     text-align: center;
     margin: 0 auto;
     border-radius: 50%;
-    padding: 13px 0 0;
+    transition: .3s all ease;
+    overflow: hidden;
 }
 .find_all_icons i {
     font-size: 20px;
@@ -714,6 +743,12 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+._banner_button a:hover {
+    color: #fff;
+}
+._banner_button a {
+    color: #fff;
 }
 ._banner_button {
     margin-top: 10px;
@@ -1129,16 +1164,16 @@ textarea {
 ._1steps_img {
     border-radius: 3px;
     padding: 0px 0px;
-}
-._1steps_img_select {
-    border-top: 1px solid #d4d4d4;
-    margin: 16px 0 0;
-    padding: 16px 0 0;
+    margin: 39px 0 22px;
 }
 ._1steps_img_pic {
     border-radius: 3px;
 }
-._1steps_img_select{}
+._1steps_img_select {
+    border-top: 1px solid #d4d4d4;
+    margin: 16px 0 40px;
+    padding: 16px 0 0;
+}
 ._1steps_img_select_pic {
     display: flex;
 }
@@ -1154,10 +1189,40 @@ textarea {
     cursor: pointer;
     width: 136px;
 }
+.job_tags {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    margin-right: 10px;
+    padding: 3px 11px;
+    border-radius: 3px;
+    margin-bottom: 11px;
+    cursor: pointer;
+}
+._tag_button{
+    margin-top: 30px;
+}
+._login_input_tags{
+    margin-bottom: 15px;
+}
+.all_job_tags {
+    padding: 32px 0px 0;
+}
+.job_tags_main{}
+.step_tags{}
+.step_tags_main{}
+._job_extra{}
+._job_extra ._1steps_all {
+    margin-bottom: 31px;
+}
 ._1steps_img_select_pic li img {
 	min-width: 100%;
 	min-height: 100%;
     border-radius: 3px;
+}
+._1steps_add  .ivu-upload-drag {
+    height: 93px;
+    padding-top: 6px;
 }
 ._1steps_add {
     text-align: center;
@@ -1172,11 +1237,12 @@ textarea {
     top: -9px;
     left: -8px;
     background: #fff;
-    height: 20px;
-    width: 20px;
+    height: 18px;
+    width: 18px;
     border-radius: 50%;
     text-align: center;
-    line-height: 18px;
+    line-height: 16px;
+    padding-right: 1px;
 }
 ._1steps_cencel i {
     color: #6b6868;
@@ -1527,7 +1593,38 @@ textarea {
     font-weight: 600;
     color: #111;
 }
+/*========= 13.Admin =======*/
+
+.table_C{
+    width: 100%;
+    border-collapse: collapse;
+
+}
+.table_C tr{}
+.table_C tr th{
+    padding: 7px 10px ;
+    border: 1px solid #a1a0a0;
+
+}
+.table_C tr td{
+    padding: 7px 10px ;
+    border: 1px solid #a1a0a0;
+    text-align: center;
+}
+.list_head{
+    padding: 10px 20px;
+    background: #fff;
+}
+.category_phone{
+    
+}
+
+
 /*========= 13.Details =======*/
+.text_center_custom{
+
+    text-align: center;
+}
 
 /*========= 14.Comment =======*/
 ._comment {
@@ -1590,8 +1687,16 @@ textarea {
     display: inline-block;
     margin: 18px 0 39px;
 }
+.profile_main{}
+.profile_main ._title_header {
+    margin-bottom: 33px;
+}
 ._w_100{
     width: 100%;
+}
+.seller_pro{}
+.seller_pro ._profile_card_pic {
+    width: 252px;
 }
 .Details_profie_img_div {
     width: 100px;
@@ -1625,7 +1730,11 @@ textarea {
     margin-left: 10px;
     cursor: pointer;
 }
-
+.select_time{}
+.select_time .row {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
 .pro_edit_all i{}
 .booked_date{
     padding: 15px 15px;
@@ -1830,10 +1939,7 @@ textarea {
 /*========= 16.Order=======*/
 
 
-
-/*========= 3.header menu =======*/
-/*========= 3.header menu =======*/
-
+/*========= RESPONSIVE =======*/
 @media only screen and (max-width: 750px) {
     /* home */
 ._1search_section_search {
@@ -1938,6 +2044,40 @@ textarea {
 ._footer_title {
     font-size: 14px;
 }
+.find_all {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    border-left: 1px solid #c9e1ef;
+}
+.find_all:first-child{
+    border-left: 1px solid #c9e1ef;
+}
+.find_all:nth-child(5) {
+    border-bottom: 0px solid #c9e1ef;
+}
+.find_all:nth-last-child(1){
+    border-bottom: 1px solid #c9e1ef;
+}
+.find_all:nth-last-child(2){
+    border-left: 1px solid #c9e1ef;
+}
+.find_all:nth-last-child(3){
+    border-bottom: 0px solid #c9e1ef;
+}
+.find_all:nth-last-child(4){
+    border-bottom: 1px solid #c9e1ef;
+}
+.find_all:nth-last-child(4) {
+    border-bottom: 0px solid #c9e1ef;
+}
+._1job_card_img {
+    height: 269px;
+}
+
+
+
+
     /* home */
 
     /* profile */
@@ -1987,10 +2127,118 @@ textarea {
     width: 85px;
     height: 85px;
 }
-    /* details */
+    /* details   */
+    /* new */
+.select_time .row {
+    min-width: 650px;
+}
+.select_time {
+    overflow: auto;
+}
+._login {
+    height: auto;
+}
+._login_main {
+    margin-top: 40px;
+    margin-bottom: 39px;
+}
+._login_form {
+    padding: 51px 25px 36px;
+}
+.pro_menu_list li {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    border-right: 1px solid #ececec;
+    padding-right: 19px;
+    margin-right: 16px;
+    transition: .2s all ease;
+    cursor: pointer;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+._profile_card_pic {
+    width: 101px;
+}
+._profile_card_img {
+    min-height: auto;
+    width: auto;
+    margin-top: 22px;
+    margin-left: 11px;
+}
+._banner_pic {
+    height: 100%;
+}
+._banner_main {
+    width: 100%;
+    display: block; 
+    text-align: center;
+}
+._banner_button {
+    padding: 5px 36px;
+    width: 249px;
+    margin: 22px auto 0;
+}
+._banner_title {
+    margin-right: 0;
+}
+.Marketplace_filter ._flex_space{
+    display: none;
+}
+.Marketplace_filter {
+    margin-bottom: 12px;
+}
+.filter_drop {
+    margin-left: 0;
+}
+    /* new */
+
+
+
+}
+
+
+        /* IPAD */
+@media only screen and (min-width: 751px) and (max-width: 1050px) {
+._login {
+    height: auto;
+    padding-bottom: 55px;
+}
+._login_main {
+    margin-top: 56px;
+}
+.seller_pro ._profile_card_pic {
+    width: 129px;
+}
+._profile_card_img {
+    min-width: 100%;
+    min-height: auto;
+    width: auto;
+    max-width: 143px;
+    margin-top: 22px;
+    margin-left: 18px;
+}
+._profile_card_img {
+    min-height: auto;
+    width: auto;
+    margin-top: 22px;
+    margin-left: 18px;
+}
+.pro_menu_list li {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+._banner_main {
+    top: 28%;
+    width: 90%;
+}
+
+
 
 
 
 
 
 }
+/*========= RESPONSIVE =======*/

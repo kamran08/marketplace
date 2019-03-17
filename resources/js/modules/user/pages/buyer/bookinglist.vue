@@ -4,9 +4,9 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all" v-if="list.length"  >
+        <div class="_profile_card_all seller_pro" v-if="list.length"  >
             <div v-for="(item,index) in list" :key="index" >
-                <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==0 || item.status==1 "  >
+                <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==1 "  >
                     <div class="_profile_card_pic">
                         <img  class="_profile_card_img" :src="item.service.image[0].imageUrl" alt="" title="">
                     </div>
@@ -26,7 +26,7 @@
                             <p class="_profile_card_name_text">Time: {{item.bookingTime}}</p> 
                         </div>
                         <div class="_profile_card_title _flex_space">
-                            <button v-if="item.status==0" class="table_button" type="button" >Waiting For Approve</button>
+                            <button class="table_button_green" type="button" @click="updateStatus(2,index)">Mark Complete</button>
                             <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle Booking</button>
                         </div>
                         <div class="_dis_flex _profile_card_doller">
@@ -43,6 +43,41 @@
             <h2>No Bookings This Day</h2>
         </div>
         <!-- card -->
+        <Modal
+            v-model="reviewModal"
+            title="Please leave a rivew for this service"
+            :closable = "false"
+            width='600'
+        >
+            <div class="row  justify-content-center">
+                <div class="col-md-12 text_center_custom">
+                    <div class="_login_input_group">
+                       <p class="_1steps_input_title" >How would you rate this service</p>
+                       <div class="_login_input">
+                          <div class="_login_input_inp">
+                              <Rate v-model="reviewData.rating" />
+                          </div>
+                       </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-12">
+                    <div class="_login_input_group">
+                       <p class="_1steps_input_title" >Experiance with this service</p>
+                       <div class="_login_input">
+                          <div class="_login_input_inp">
+                             <textarea class="_1steps_textarea" rows="4" cols="50" v-model="reviewData.comment"></textarea>
+                          </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+
+            <div slot="footer">
+                <Button @click="reviewModal=false">Close</Button>
+                <Button @click="SendReview">Send</Button>
+            </div>
+        </Modal>
     </div>
 </template>
 
@@ -51,12 +86,25 @@ export default {
     data(){
         return{
             list:[],
-            toDayDate:''
+            toDayDate:'',
+            reviewModal:false,
+            reviewData:{
+                comment:'',
+                rating:0,
+                service_id:'',
+                seller_id:'',
+                booking_id:'',
+            },
+            modalData:{},
         }
     },
     methods:{
         async getNewList(newDate){
-            const res  = await  this.callApi('get',`getBookingList/${newDate}`)
+            let data = {
+                date:newDate,
+                status:1,
+            }
+            const res  = await  this.callApi('post',`getBookingList`,data);
             if(res.status===200){
                 this.list = res.data
                 console.log(this.list)
@@ -64,6 +112,32 @@ export default {
             else{
                 this.swr();
             }
+        },
+        async SendReview(){
+            if(this.reviewData.comment=='' || this.reviewData.rating=='' ){
+                return;
+            }
+
+            this.reviewData.service_id = this.modalData.service_id
+            this.reviewData.seller_id = this.modalData.seller_id
+            this.reviewData.booking_id = this.modalData.id
+            const res  = await  this.callApi('post',`giveReview`,this.reviewData);
+            if(res.status===201){
+                this.s("Thank you for your valuable feedback")
+                this.ClearRiviewTable();
+                this.this.reviewModal = false;
+            }
+            else{
+                this.swr();
+            }
+        },
+        ClearRiviewTable(){
+                this.reviewData.comment=''
+                this.reviewData.rating=0
+                this.reviewData.service_id=''
+                this.reviewData.seller_id=''
+                this.reviewData.booking_id=''
+                this.modalData = {}
         },
         getSlots(){
             // FORMATE THE DATE 
@@ -79,9 +153,14 @@ export default {
         async updateStatus(status,index){
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
+                if(status==2){
+                    this.i("Serive has been marked completed!");
+                    this.list[index].status = 2 
+                    this.reviewModal = true;
+                    this.modalData = this.list[index]
+                }
                 this.i("This booking has been cancled!");
                 this.list[index].status = 3 
-                
             }
             else{
                 this.e();

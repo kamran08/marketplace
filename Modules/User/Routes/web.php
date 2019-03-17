@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +24,7 @@ Route::get( '/app/get-courrent-step/{key}', 'UserController@getCurrentStep');
 Route::get( '/app/getServiceDetailsById/{key}', 'UserController@getServiceDetailsById');
 Route::get( '/app/gettime/{key}', 'UserController@getTimeSolte');
 
-//Route::get( '/app/get-all-catgory-by-search/{key}', 'UserController@getInfoBySearchCatagory');
+Route::get( '/app/get-all-catgory-by-search', 'UserController@getInfoBySearchCatagory');
 
 
 
@@ -40,15 +42,58 @@ Route::post( 'app/unlinkImage', 'UserController@unlinkImage');
 Route::post( 'app/insertOrder', 'UserController@insertOrder');
 Route::post( 'app/getslots', 'UserController@getslots');
 Route::get( 'app/getNewList', 'UserController@getNewList');
-Route::get( 'app/getServiceList/{id}', 'UserController@getServiceList');
-Route::get( 'app/getBookingList/{date}', 'UserController@getBookingList');
+Route::get( 'app/getServiceList/{id}', 'UserController@getServiceList'); 
+
+Route::post( 'app/getBookingList', 'UserController@getBookingList');
+
+Route::post( 'app/getAllBookingList', 'UserController@getAllBookingList');
+
+
 Route::get( 'app/getProfileInfo/{id}', 'UserController@getProfileInfo');
 Route::get( 'app/getCancleList/{date}', 'UserController@getCancleList');
 Route::post( 'app/updateStatus', 'UserController@updateStatus');
 Route::post( 'app/updateUserInfo', 'UserController@updateUserInfo');
 
+// password Reset 
+Route::post("/app/passwordresetGetEmail","UserController@passwordresetGetEmail");
+Route::post("/app/resetPassword","UserController@resetPassword");
+Route::post('/app/matchPasswordLink','UserController@matchPasswordLink');
 
-// Route::get('app/ok', 'UserController@register');
+
+// Review 
+Route::post('app/giveReview','UserController@giveReview');
+
+
+
+// Admin Routing
+Route::get('system_admin','UserController@system_admin');
+// Admin Routing
+Route::get( 'app/getAllUserList', 'UserController@getAllUserList');
+Route::post('app/updateUser','UserController@updateUser');
+Route::post('app/deleteUser','UserController@deleteUser');
+Route::post('app/deleteCategory','UserController@deleteCategory');
+Route::post('app/deleteService','UserController@deleteService');
+Route::post('app/updateService','UserController@updateService');
+Route::post('app/categoryUpdate','UserController@categoryUpdate');
+Route::get( 'app/getAllServiceList', 'UserController@getAllServiceList'); 
+
+
+// job Edit 
+Route::get( 'app/getServiceDescritption/{id}', 'UserController@getServiceDescritption'); 
+Route::get( 'app/getServiceImages/{id}', 'UserController@getServiceImages'); 
+Route::get( 'app/getExtraServicebyId/{id}', 'UserController@getExtraServicebyId'); 
+Route::get( 'app/getTagbyId/{id}', 'UserController@getTagbyId'); 
+Route::post( 'app/UpdateServiceDescription', 'UserController@UpdateServiceDescription'); 
+Route::post( 'app/updateSaveServiceImage', 'UserController@updateSaveServiceImage'); 
+Route::post( 'app/UpdateExtraServices', 'UserController@UpdateExtraServices'); 
+Route::post( 'app/deleteExtraServices', 'UserController@deleteExtraServices'); 
+Route::post( 'app/deleteTagService', 'UserController@deleteTagService'); 
+Route::post( 'app/updateTag', 'UserController@updateTag'); 
+
+
+// insert catagory 
+Route::post( 'app/insert-catagory', 'UserController@insertCatagory'); 
+
 
 
 Route::get('/logout', function () {
@@ -57,9 +102,10 @@ Route::get('/logout', function () {
     return redirect("/");
 });
 
-
-// spa routes...
-Route::any('{slug}', function(){
-    return view('welcome');
-})->where('slug', '([A-z\d-\/_.]+)?');
+Route::any('{slug}', 'UserController@home')->where('slug', '([A-z\d-\/_.]+)?');
+// // spa routes...
+// Route::any('{slug}', function(){
+   
+    
+// })->where('slug', '([A-z\d-\/_.]+)?');
 

@@ -14,46 +14,37 @@
 					<div v-if="!this.authInfo">
 						<ul class="_1menu_sign_ul">
 							<li> <router-link :to="{ path: '/'}">Home</router-link></li>
-							<li><a href="job_browse.html" title="">Job Brower</a></li>
+							<li><a href="" title="">Job Brower</a></li>
 							<li><router-link :to="{ name: 'login'}"> Sign in </router-link></li>
 							<li class="_1menu_sign_ul_or">or</li>
-							<li class="_1menu_sign_color">
-										<Dropdown placement="bottom-end" trigger="custom" :visible="visible" style="margin-left: 20px margn-right:20px">
-	        	  	    <a href="javascript:void(0)" @click="handleOpen">
-											Join us
-	        	  	      <Icon type="ios-arrow-down"></Icon>
-	        	  	    </a>
-	        	  	  	<DropdownMenu slot="list" >
-											<router-link @click.native="1" :to="{ name: 'register'}"><p  @click="handleClose(1)">as a seller</p></router-link>
-											<router-link @click.native="1" :to="{ name: 'register'}"><p  @click="handleClose(2)">as a buyer</p></router-link>
-	        	  	  	</DropdownMenu>
-	        	  		</Dropdown>
-							</li>
+							<li><router-link :to="{ name: 'register'}">Join Us</router-link></li>
+							
 						</ul>
 				</div>
 				<div v-if="this.authInfo" >
 						<ul class="_2menu_main_ul_list_ul">
 							<li> <router-link :to="{ path: '/'}">HOME</router-link></li>
-							<li><a href="job_browse.html" title="">JOB BROWSE</a></li>
-							<li> <router-link :to="{ name: 'order'}">ORDER</router-link></li>
-							<li v-if="authInfo.userType==1" > <router-link :to="{ name: 'sprofile', params: { id : authInfo.id}}">PROFILE</router-link></li>
-							<li v-if="authInfo.userType==2" > <router-link :to="{ name: 'bprofile', params: { id : authInfo.id}}">PROFILE</router-link></li>
+							<li><a href="" title="">JOB BROWSE</a></li>
+							<!-- <li> <router-link :to="{ name: 'order'}">ORDER</router-link></li> -->
+							<li v-if="authInfo.userType==1" > <router-link :to="{ name: 'sprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li>
+							<li v-if="authInfo.userType==2" > <router-link :to="{ name: 'bprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li>
+							<li v-if="authInfo.userType==4" ><a href="/system_admin">{{authInfo.name}}(Dashboard)</a></li>
 							<li><a href="/logout" >LOGOUT</a></li>
-							<li>
+							<li v-if="authInfo" >
 									<div class="_2menu_mess ">
 											<i class="fas fa-bell"></i>
 											<div class="_2menu_mess_num _bg">3</div>
 									</div>
 							</li>
-							<li>
+							<li v-if="authInfo" >
 									<div class="_2menu_mess ">
 											<i class="fas fa-envelope"></i>
 											<div class="_2menu_mess_num _bg">4</div>
 									</div>
 							</li>
-							<li>
+							<li v-if="authInfo">
 									<div class="_2menu_profile">
-											<img class="_2menu_profile_pic" src="img/Rectangle40.png" alt="" title="">
+											<img class="_2menu_profile_pic" :src="(authInfo.image)? authInfo.image: defultImage" alt="" title="">
 											<div class="_2menu_profile_on _2menu_profile_active"></div>
 									</div>
 							</li>
@@ -78,6 +69,7 @@ export default {
 			return{
 				alljobs:[],
 				visible: false,
+				defultImage:"/img/prfile.png"
 			}
 	},
 	async created(){

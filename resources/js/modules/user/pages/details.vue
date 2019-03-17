@@ -13,7 +13,7 @@
                     <div class="col-12 col-md-8 col-lg-8">
                         <div class="Details_main_left">
                             <div class="Details_main_title">
-                            <h3 class="_title3"> {{serviceDetails.title}} <span class="Details_main_title_span _color"><i class="fas fa-pen"></i> EDIT</span></h3>
+                            <h3 class="_title3"> {{serviceDetails.title}} <span class="Details_main_title_span _color" v-if="authInfo.id==serviceDetails.user_id" ><i class="fas fa-pen"></i><router-link :to="{name:'editJobDescription' ,params:{id:item.id}}">Edit</router-link></span></h3>
                             </div>
 
                             <div class="Details_main_left_menu _dis_flex">
@@ -25,7 +25,7 @@
 
                                 <div class="Details_main_left_menu_date">
                                     <p class="Details_main_left_menu_date_text">
-                                        Modified date : <span class="_color">Jun 19, 2019</span>
+                                        <!-- Modified date : <span class="_color">Jun 19, 2019</span> -->
                                     </p>
                                 </div> 
                             </div>
@@ -54,8 +54,7 @@
 
                                 <div class="_block_buttons">
                                     <div class="_block_buttons_main _dis_flex">
-                                        <button class="_bg _btn _block_buttons_btn" type="button">ORDER ({{serviceDetails.price}})</button>
-                                        <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
+                                        <button class="_bg _btn _block_buttons_btn" type="button">Price ({{serviceDetails.price}})</button>
                                     </div>
                                 </div>
                             </div>
@@ -64,97 +63,33 @@
 
                                 <!--~~~~~~~ Comments ~~~~~~~-->
                         <div class="_comment">
-                            <p class="_comment_title">REVIEWS <span class="_comment_title_span">(20)</span></p>
+                            <p class="_comment_title">REVIEWS <span class="_comment_title_span">({{serviceDetails.reviews_count}})</span></p> 
 
-                            <div class="_commnet_all">
+                            <div class="_commnet_all" v-if="serviceDetails.reviews_count!=0" >
                                     <!-- items --> 
-                                <div class="_commnet_main _b_color2 _dis_flex">
+                                <div class="_commnet_main _b_color2 _dis_flex" v-for="(item,index) in serviceDetails.reviews" :key="index"  >
                                     <div class="_commnet_img">
-                                        <img class="_commnet_img_pic" src="img/8b173a18a6247663320344b23bd2854c.jpg" alt="" title="">
+                                        <img class="_commnet_img_pic" :src="(item.user.image)? item.user.image : defultImage" alt="" title="">
                                     </div>
 
                                     <div class="_commnet_status_name _flex_space">
                                         <div class="_commnet_name _dis_flex">
                                             <div class="_commnet_name_title _flex_space">
-                                                <p class="_commnet_pro_name">Sanit Marrine</p>
-                                                <p class="_commnet_pro_date">June 20, 2019</p>
+                                                <p class="_commnet_pro_name">{{item.user.name}}</p>
+                                                <p class="_commnet_pro_date">{{item.created_at}}</p>
                                             </div>
 
                                             <ul class="_1job_card_rating_ul">
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class=""><i class="fas fa-star"></i></li>
-                                                <li class=""><i class="fas fa-star"></i></li>
+                                                <li :class="(item.rating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                                <li :class="(item.rating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                                <li :class="(item.rating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                                <li :class="(item.rating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                                <li :class="(item.rating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
                                             </ul>
                                         </div>
 
                                         <div class="_commnet_status">
-                                            <p class="_commnet_status_text"> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <!-- items -->
-
-                                     <!-- items --> 
-                                <div class="_commnet_main _b_color2 _dis_flex">
-                                    <div class="_commnet_img">
-                                        <img class="_commnet_img_pic" src="img/8b173a18a6247663320344b23bd2854c.jpg" alt="" title="">
-                                    </div>
-
-                                    <div class="_commnet_status_name _flex_space">
-                                        <div class="_commnet_name _dis_flex">
-                                            <div class="_commnet_name_title _flex_space">
-                                                <p class="_commnet_pro_name">Sanit Marrine</p>
-                                                <p class="_commnet_pro_date">June 20, 2019</p>
-                                            </div>
-
-                                            <ul class="_1job_card_rating_ul">
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class=""><i class="fas fa-star"></i></li>
-                                                <li class=""><i class="fas fa-star"></i></li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="_commnet_status">
-                                            <p class="_commnet_status_text"> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                    <!-- items -->
-
-                                     <!-- items --> 
-                                <div class="_commnet_main _b_color2 _dis_flex">
-                                    <div class="_commnet_img">
-                                        <img class="_commnet_img_pic" src="img/8b173a18a6247663320344b23bd2854c.jpg" alt="" title="">
-                                    </div>
-
-                                    <div class="_commnet_status_name _flex_space">
-                                        <div class="_commnet_name _dis_flex">
-                                            <div class="_commnet_name_title _flex_space">
-                                                <p class="_commnet_pro_name">Sanit Marrine</p>
-                                                <p class="_commnet_pro_date">June 20, 2019</p>
-                                            </div>
-
-                                            <ul class="_1job_card_rating_ul">
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class="_color"><i class="fas fa-star"></i></li>
-                                                <li class=""><i class="fas fa-star"></i></li>
-                                                <li class=""><i class="fas fa-star"></i></li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="_commnet_status">
-                                            <p class="_commnet_status_text"> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
+                                            <p class="_commnet_status_text"> {{item.comment}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -162,9 +97,9 @@
                             </div>
 
 
-                            <div class="_commnet_main_more _b_color2 _dis_flex">
+                            <!-- <div class="_commnet_main_more _b_color2 _dis_flex">
                                 <h2 class="_title4"><span class="_color _cursor">SEE MORE REVIEWS</span></h2>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -244,7 +179,7 @@
                                         </div>
                                     </template>
                                     
-                                    <div class="Details_pro_button _b_color2">
+                                    <div class="Details_pro_button _b_color2" v-if="authInfo.userType==2"  >
                                         <div class="_block_buttons_main _dis_flex">
                                             <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">ORDER NOW (${{totalOderPrice}})</button>
                                             <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
@@ -267,41 +202,34 @@
                                 <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="fas fa-map-marker-alt"></i>
 
-                                    <p class="Details_pro_renge_name _flex_space">Location</p>
+                                    <p class="Details_pro_renge_name _flex_space">Email</p>
 
-                                    <p class="Details_pro_renge_num">USA</p>
+                                    <p class="Details_pro_renge_num">{{serviceDetails.user.email}}</p>
                                 </div>
 
                                 <div class="Details_pro_renge _dis_flex none_f _b_color2">
                                     <i class="fas fa-globe-europe"></i>
 
-                                    <p class="Details_pro_renge_name _flex_space">Labguages</p>
+                                    <p class="Details_pro_renge_name _flex_space">Phone</p>
 
                                     <div class="Details_pro_renge_num">
-                                        <p>English</p>
-                                        <p>Spanish</p>
+                                        <p>{{(serviceDetails.user.phone)? serviceDetails.user.phone : '---' }}</p>
+                                        
                                     </div>
                                 </div>
 
                                 <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="fas fa-exclamation-circle"></i>
 
-                                    <p class="Details_pro_renge_name _flex_space">Boi</p>
+                                    <p class="Details_pro_renge_name _flex_space">Bio</p>
 
                                     <div class="boi_text_div _w_100">
-                                        <p class="boi_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
+                                        <p class="boi_text">{{serviceDetails.openingMassage}}</p>
                                     </div>
                                 </div>
 
                                <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center">
                                     <p class="_contect_me _color_green"> Contact me <i class="fas fa-comments"></i></p>
-                                </div>
-
-                                <div class="Details_pro_renge Details_pro_renge3   _b_color2 _text_center">
-                                    <p class="_contect_me _color">View my profile <i class="fas fa-user-alt"></i></p>
                                 </div>
                             </div>
                         </div>
@@ -363,6 +291,7 @@ export default {
                 seller_id:'',
                 
             },
+             defultImage:'/img/prfile.png',
             bookingTimeModal:false,
             selectBookingTime : '',
             bookingTimeByDay : [],
@@ -377,7 +306,7 @@ export default {
     },
     methods:{
         async  getServiceDetails(){
-            const res = await this.callApi('get',`getServiceDetailsById/${this.$route.params.id}`)
+            const res = await this.callApi('get',`getServiceDetailsById/${this.$route.params.id}`) 
             if(res.status===200){
                 this.serviceDetails = res.data;
             }
@@ -406,10 +335,10 @@ export default {
             let d = new Date(this.selectBookingTime);
             let monthNumber = d.getMonth()+1
             monthNumber = ("0" + monthNumber).slice(-2);
-
             let dayNumber = d.getDate()
             dayNumber = ("0" + dayNumber).slice(-2);
             this.selectBookingTime = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+            this.order.bookingDate = this.selectBookingTime 
             this.getBookingTimeByDay(this.selectBookingTime)
         },
         assignDate(slot,index){
@@ -423,6 +352,7 @@ export default {
             let dayNumber = d.getDate()
             dayNumber = ("0" + dayNumber).slice(-2);
             this.selectBookingTime = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+            this.order.bookingDate = this.selectBookingTime 
             this.getBookingTimeByDay(this.selectBookingTime)
             this.bookingTimeModal = true
             
@@ -438,7 +368,6 @@ export default {
                 }
             }
             this.order.seller_id = this.serviceDetails.user.id
-            this.order.bookingDate = this.selectBookingTime
             this.order.totalPrice = this.totalOderPrice
             this.order.extraPrice = (this.totalOderPrice-this.serviceDetails.price)
             this.order.extraService = JSON.stringify(this.order.extraService)

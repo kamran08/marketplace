@@ -54,8 +54,12 @@ export default {
         }
     },
     methods:{
-        async getCancleList(newDate){
-            const res  = await  this.callApi('get',`getCancleList/${newDate}`)
+        async getNewList(newDate){
+            let data = {
+                date:newDate,
+                status:3,
+            }
+            const res  = await  this.callApi('post',`getBookingList`,data);
             if(res.status===200){
                 this.list = res.data
                 console.log(this.list)
@@ -73,7 +77,7 @@ export default {
             let dayNumber = d.getDate()
             dayNumber = ("0" + dayNumber).slice(-2);
             this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
-            this.getCancleList(this.toDayDate)
+            this.getNewList(this.toDayDate)
         },
         async updateStatus(status,index){
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
@@ -94,7 +98,7 @@ export default {
         let dayNumber = d.getDate()
         dayNumber = ("0" + dayNumber).slice(-2);
         this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
-        this.getCancleList(this.toDayDate);
+        this.getNewList(this.toDayDate);
     }
 }
 </script>

@@ -22,11 +22,42 @@ class UserController extends Controller
 	public function __construct(UserService $userService)
 	{
 		$this->userService = $userService;
-	}
+    }
+    public function home(Request $request){
+        if($request->segment(1)=='admin'){
+            if(!Auth::check()){
+               return redirect('/');
+            }
+            \Log::info(Auth::user()->userType);
+            if(Auth::user()->userType==4){
+                return view('admin');
+                
+            }
+            return redirect('/');
+            
+           
+        }
+        return view('welcome');
+
+    }
     public function index()
     {
         $this->userService->test();
         return view('user::index');
+    }
+    public function system_admin(){
+        if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+        if(!Auth::user()->userType === 4){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+        
+        return view('admin');
     }
     public function login(Request $request)
     {
@@ -45,22 +76,13 @@ class UserController extends Controller
         }
     }
     public function register(Request $request){
-       //\Log::info($request);
             $data = new ValidateRequest();
             $ok = $data->validateUserRequest($request);
-        //   \Log::info($request);
             if($ok){
-            $this->userService->createUser($request->all());
-           }
-           else{
-               
-           }
+                $this->userService->createUser($request->all());
+            }
+           
     }
-
-
-
-
-
     /**
      * Show the form for creating a new resource.
      * @return Response
@@ -81,9 +103,9 @@ class UserController extends Controller
 
         return $this->userService->getInfoBySearch($key);
     }
-    public function getInfoBySearchCatagory($key){
+    public function getInfoBySearchCatagory(Request $request){
 
-        return $this->userService->getInfoBySearchCatagory($key);
+        return $this->userService->getInfoBySearchCatagory($request);
     }
     public function insertService(Request $request){
            
@@ -99,6 +121,9 @@ class UserController extends Controller
     }
     public function addTag(Request $request){
         return $this->userService->addTag($request->all());
+    }
+    public function insertCatagory(Request $request){
+        return $this->userService->insertCatagory($request->all());
     }
     public function getCurrentStep($key){
         return $this->userService->getCurrentStep($key);
@@ -122,6 +147,21 @@ class UserController extends Controller
     public function saveImages(Request $request){
         return $this->userService->saveImages($request->all());
     }
+    public function updateSaveServiceImage(Request $request){
+        return $this->userService->updateSaveServiceImage($request->all());
+    }
+    public function deleteExtraServices(Request $request){
+        return $this->userService->deleteExtraServices($request->all());
+    }
+    public function deleteTagService(Request $request){
+        return $this->userService->deleteTagService($request->all());
+    }
+    public function updateTag(Request $request){
+        return $this->userService->updateTag($request->all());
+    }
+    public function UpdateExtraServices(Request $request){
+        return $this->userService->UpdateExtraServices($request->all());
+    }
     public function insertOrder(Request $request){
         return $this->userService->insertOrder($request->all());
     }
@@ -131,14 +171,44 @@ class UserController extends Controller
     public function getServiceDetailsById($id){
         return $this->userService->getServiceDetailsById($id);
     }
+    public function getServiceDescritption($id){
+        return $this->userService->getServiceDescritption($id);
+    }
+    public function getServiceImages($id){
+        return $this->userService->getServiceImages($id);
+    }
+    public function getExtraServicebyId($id){
+        return $this->userService->getExtraServicebyId($id);
+    }
+    public function getTagbyId($id){
+        return $this->userService->getTagbyId($id);
+    }
+    public function UpdateServiceDescription(Request $request){
+        return $this->userService->UpdateServiceDescription($request->all());
+    }
     public function getNewList(){
         return $this->userService->getNewList();
     }
     public function getServiceList($id){
         return $this->userService->getServiceList($id);
     }
-    public function getBookingList($date){
-        return $this->userService->getBookingList($date);
+    public function deleteService(Request $request){
+        return $this->userService->deleteService($request->all());
+    }
+    public function updateService(Request $request){
+        return $this->userService->updateService($request->all());
+    }
+    public function categoryUpdate(Request $request){
+        return $this->userService->categoryUpdate($request->all());
+    }
+    public function getAllServiceList(){
+        return $this->userService->getAllServiceList();
+    }
+    public function getBookingList(Request $request){
+        return $this->userService->getBookingList($request->all());
+    }
+    public function getAllBookingList(Request $request){
+        return $this->userService->getAllBookingList($request->all());
     }
     public function getProfileInfo($id){
         return $this->userService->getProfileInfo($id);
@@ -146,13 +216,37 @@ class UserController extends Controller
     public function getCancleList($date){
         return $this->userService->getCancleList($date);
     }
+    public function passwordresetGetEmail(Request $request){
+        return $this->userService->passwordresetGetEmail($request);
+    }
+    public function matchPasswordLink(Request $request){
+        return $this->userService->matchPasswordLink($request);
+    }
+    public function resetPassword(Request $request){
+        return $this->userService->resetPassword($request);
+    }
+    public function giveReview(Request $request){
+        return $this->userService->giveReview($request->all());
+    }
+    public function updateUser(Request $request){
+        return $this->userService->updateUser($request->all());
+    }
+    public function deleteUser(Request $request){
+        return $this->userService->deleteUser($request->all());
+    }
+    public function deleteCategory(Request $request){
+        return $this->userService->deleteCategory($request->all());
+    }
+    public function getAllUserList(){
+        return $this->userService->getAllUserList();
+    }
     
     public function getTimeSolte($id){
       
         $data = $this->userService->getTimeSolte($id);
         // \Log::info($data);
         
-      //  return 1;
+      //  return 1; 
         
     }
 

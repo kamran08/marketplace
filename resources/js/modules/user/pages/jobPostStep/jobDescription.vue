@@ -3,7 +3,7 @@
    <div class="_job_step">
       <div class="container-fluid">
          <div class="row justify-content-center">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-10 col-lg-6">
                <div class="_job_step_main">
                   <div class="_job_step_title">
                      <h3 class="_title">POST A JOB</h3>
@@ -20,17 +20,18 @@
                      <form>
                         <div class="_login_input_group">
                            <div class="_login_input">
-                              <i class="fas fa-envelope"></i>
+                              <i class="fas fa-user-md"></i>
                               <div class="_login_input_inp">
                                  <input class="_login_input_inp_field" v-model="formdata.title" placeholder="Job title" type="text">
                               </div>
                            </div>
                         </div>
+
                         <div class="_login_input_group">
                            <div class="row">
                               <div class="col-12 col-md-6">
                                  <div class="_login_input">
-                                    <i class="fas fa-envelope"></i>
+                                    <i class="fas fa-check-square"></i>
                                     <div class="_login_input_inp">
                                        
                                         <Select v-model="formdata.cat_id" style="width:200px">
@@ -41,39 +42,41 @@
                               </div>
                            </div>
                         </div>
+
                         <div class="_login_input_group">
                            <div class="_login_input">
                               
-                              <div class="_login_input_inp">
+                              <div class="_login_input_inp select_time">
                                  <div class="row">
-                                    <div class="col-md-2">
-                                       <i class="fas fa-envelope"></i>
+                                    <div class="col-1 col-md-1">
+                                       <i class="far fa-clock"></i>
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-10 col-md-10">
                                        <p class="_1steps_input_title" >Servicing Time  </p>
                                     </div>
                                     
                                  </div>
                                  <div class="row" v-for="(item,index) in formdata.servicingTime" :key="index">
-                                    <div class="col-md-1">
+                                    <div class="col-1 col-md-1">
                                       <Checkbox v-model="item.isOn"></Checkbox>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-3 col-md-3">
                                        <p class="_1steps_input_title" >{{item.day}}</p>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-3 col-md-3">
                                        <TimePicker v-model="item.startTime" format="HH:mm" type="time" placement="bottom-end" placeholder="Start Time" ></TimePicker>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-3 col-md-3">
                                        <TimePicker v-model="item.endTime" format="HH:mm" type="time" placement="bottom-end" placeholder="End Time" ></TimePicker>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-2 col-md-2">
                                        <input class="_login_input_inp_field" v-model="item.duration" placeholder="Duration" type="number">
                                     </div>
                                  </div>
                               </div>
                            </div>
                         </div>
+
                         <div class="_login_input_group">
                            <p class="_1steps_input_title" >DESCRIPTION</p>
                            <div class="_login_input">
@@ -82,12 +85,34 @@
                               </div>
                            </div>
                         </div>
-                        <label> videoLink </label>
-                        <input class="_1steps_textarea" rows="4" cols="50" v-model="formdata.videoLink"/>
-                        <label> opening massage </label>
-                        <input class="_1steps_textarea" rows="4" cols="50" v-model="formdata.openingMassage"/>
-                        <label> price </label>
-                        <input class="_1steps_textarea" rows="4" cols="50" v-model="formdata.price"/>
+                        
+                        <div class="_login_input_group">
+                           <div class="_login_input">
+                              <i class="fas fa-user-md"></i>
+                              <div class="_login_input_inp">
+                                 <input class="_login_input_inp_field" v-model="formdata.videoLink" placeholder="Job title" type="text">
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="_login_input_group">
+                           <div class="_login_input">
+                              <i class="fas fa-envelope"></i>
+                              <div class="_login_input_inp">
+                                 <input class="_login_input_inp_field" v-model="formdata.openingMassage" placeholder="Opening Massage" type="text">
+                              </div>
+                           </div>
+                        </div>
+
+                        <div class="_login_input_group">
+                           <div class="_login_input">
+                              <i class="fas fa-dollar-sign"></i>
+                              <div class="_login_input_inp">
+                                 <input class="_login_input_inp_field" v-model="formdata.price" placeholder="Price" type="text">
+                              </div>
+                           </div>
+                        </div>
+
                         <div class="_login_input_button">
                            
                            <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Join Now </button></p>

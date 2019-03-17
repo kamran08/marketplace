@@ -4,31 +4,43 @@
       <div class="container-fluid">
          <div class="row justify-content-center">
             <div class="col-12 col-md-6">
-               <div class="_job_step_main">
+               <div class="_job_step_main _job_extra">
                   <div class="_job_step_title">
                      <h3 class="_title">POST A JOB</h3>
                   </div>
-                       <div class="_1steps_all">
-                                <Steps :current="2">
-                                    <Step title="step 1" content=""></Step>
-                                    <Step title="step 2" content=""></Step>
-                                    <Step title="step 3" content=""></Step>
-                                    <Step title="step 4" content=""></Step>
-                                </Steps>
-                            </div>
+
+                  <div class="_1steps_all">
+                        <Steps :current="2">
+                            <Step title="step 1" content=""></Step>
+                            <Step title="step 2" content=""></Step>
+                            <Step title="step 3" content=""></Step>
+                            <Step title="step 4" content=""></Step>
+                        </Steps>
+                  </div>
+
                   <div class="_login_input_group">
                      <p class="_1steps_input_title" >EXTRA</p>
                      <div class="_login_input" v-for="(item,index) in items" :key="index">
                         <div class="_login_input_inp"  >
-                           <input class="_login_input_inp_field" v-model="item.serviceName" placeholder="title" type="text">
-                           <input class="_login_input_inp_field" v-model="item.servicePrice" placeholder="price" type="text">
+                            <div class="_login_input_group">
+                                <input class="_login_input_inp_field" v-model="item.serviceName" placeholder="title" type="text">
+                            </div>
+
+                            <div class="_login_input_group">
+                                <input class="_login_input_inp_field" v-model="item.servicePrice" placeholder="price" type="text">
+                            </div>
                            <!-- <a id="thisok" class="remove-items mjob-remove-extra-item"><i class="fa fa-times"></i></a> -->
                            <Button type="primary" @click="delate(index)"><i class="fas fa-times"></i></Button>
                         </div>
                      </div>
                      <div v-if="ok">
-                        <input class="_login_input_inp_field" v-model="formdata.serviceName" placeholder="title" type="text">
-                        <input class="_login_input_inp_field" v-model="formdata.servicePrice" placeholder="price" type="text"> 
+                         <div class="_login_input_group">
+                                <input class="_login_input_inp_field" v-model="formdata.serviceName" placeholder="title" type="text">
+                         </div>
+
+                         <div class="_login_input_group">
+                                <input class="_login_input_inp_field" v-model="formdata.servicePrice" placeholder="price" type="text"> 
+                         </div>
                         <!-- <Button type="primary" @click="delate(-2)"><i class="fas fa-times"></i></Button> -->
                      </div>
                      <Button @click="add"> add </Button>

@@ -8,30 +8,39 @@
                   <div class="_job_step_title">
                      <h3 class="_title">POST A JOB</h3>
                   </div>
-                       <div class="_1steps_all">
-                                <Steps :current="3">
-                                    <Step title="step 1" content=""></Step>
-                                    <Step title="step 2" content=""></Step>
-                                    <Step title="step 3" content=""></Step>
-                                    <Step title="step 4" content=""></Step>
-                                </Steps>
-                            </div>
-                  <div class="_login_input_group">
+
+
+                  <div class="_1steps_all">
+                     <Steps :current="3">
+                        <Step title="step 1" content=""></Step>
+                        <Step title="step 2" content=""></Step>
+                        <Step title="step 3" content=""></Step>
+                        <Step title="step 4" content=""></Step>
+                     </Steps>
+                  </div>
+
+
+                  <div class="_login_input_group all_job_tags">
                      <p class="_1steps_input_title">TAGS</p>
-                     <div class="_login_input">
-                        <div class="_login_input_inp">
-                           <!-- <input class="_login_input_inp_field" v-model="formdata.tagName" placeholder="Tag" type="text"> -->
-                           <Input class="_login_input_inp_field" type="text"  ref = "input"  placeholder="Tag" v-model="tagName" @keyup.enter.native="add()"/>
+
+                     <div class="_login_input_tags">
+                        <div class="_login_input">
+                           <div class="_login_input_inp">
+                              <!-- <input class="_login_input_inp_field" v-model="formdata.tagName" placeholder="Tag" type="text"> -->
+                              <Input class="_login_input_inp_field" type="text"  ref = "input"  placeholder="Tag" v-model="tagName" @keyup.enter.native="add()"/>
+                           </div>
                         </div>
                      </div>
+
                      <template v-if="items.length>0" >
-                        <div  v-for="(item,i) in items" :key="i"> 
-                           {{item.tagName}} <i class="fa fa-times" @click="delate(i)"></i>
+                        <div class="job_tags"  v-for="(item,i) in items" :key="i"> 
+                           <div class="job_tags_main">  {{item.tagName}} <i class="fa fa-times" @click="delate(i)"></i> </div>
                         </div>
                      </template>
+
                      <div>
                      </div>
-                     <div class="_login_input_button">
+                     <div class="_login_input_button _tag_button">
                         <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Finish</button>
                         <!-- <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button> -->
                      </div>

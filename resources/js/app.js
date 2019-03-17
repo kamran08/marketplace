@@ -18,7 +18,7 @@ import common from './common'
 Vue.mixin(common)
 
 Vue.component('mainapp', require('./components/mainapp.vue'));
-// Vue.component('mainapp', require('./components/mainapp.vue').default);
+
 
 const app = new Vue({
     el: '#app', 

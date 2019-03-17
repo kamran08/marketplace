@@ -8,16 +8,24 @@
                         <img  class="_profile_card_img" :src="item.image[0].imageUrl" alt="" title="">
                     </div>
                     <div class="_profile_card_name _flex_space _dis_flex">
-                        <div class="_profile_card_rating">
-                            <ul class="_1job_card_rating_ul">
-                                <li class="_color"><i class="fas fa-star"></i></li>
-                                <li class="_color"><i class="fas fa-star"></i></li>
-                                <li class="_color"><i class="fas fa-star"></i></li>
-                                <li class=""><i class="fas fa-star"></i></li>
-                                <li class=""><i class="fas fa-star"></i></li>
-                                <li class="_1job_card_rating_num">(2k+)</li>
-                            </ul>
-                        </div>
+                        <div class="Details_profie_rating">
+                                <!-- <ul class="_1job_card_rating_ul">
+                                    <li :class="(item.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(item.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(item.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(item.avgreview.averageRating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(item.avgreview.averageRating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li class="_1job_card_rating_num">({{item.reviews_count}})</li>
+                                </ul> -->
+                                <ul class="_1job_card_rating_ul"  >
+									<li ><i class="fas fa-star"></i></li>
+									<li ><i class="fas fa-star"></i></li>
+									<li ><i class="fas fa-star"></i></li>
+									<li><i class="fas fa-star"></i></li>
+									<li><i class="fas fa-star"></i></li>
+									<li>(0)</li>
+								</ul>
+                            </div>
                         <div class="_profile_card_title _flex_space">
                                 <p class="_profile_card_name_text_link"><router-link :to="{ name:'details', params:{ id:item.id }}" >{{item.title}}</router-link></p> 
                             </div>

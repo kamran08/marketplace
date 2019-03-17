@@ -8,8 +8,10 @@ use DateInterval;
 use App\Classes\CommonClass;
 use Illuminate\Http\Request;
 use Modules\User\Query\UserQuery;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
-class UserService {
+class UserService extends Controller {
     protected $query;
     protected $customhelper;
     public function __construct(UserQuery $query, CommonClass $customhelper){
@@ -24,8 +26,23 @@ class UserService {
        $user = $this->query->createUser($data);
       // \Log::info($user);
     }
+    public function updateUser($data){
+       return $this->query->updateUser($data);
+      
+    }
+    public function deleteUser($data){
+       return $this->query->deleteUser($data);
+      
+    }
+    public function deleteCategory($data){
+       return $this->query->deleteCategory($data);
+      
+    }
     public function getAllcat(){
        $user = $this->query->getAllcat();
+       foreach ($user as $item) {
+         $item['staus'] = true;
+      }
        return $user;
       // \Log::info($user);
     }
@@ -39,8 +56,14 @@ class UserService {
        return $service;
       // \Log::info($user);
     }
-    public function getInfoBySearchCatagory($key){
-       $service = $this->query->getInfoBySearchCatagory($key);
+    public function getInfoBySearchCatagory($request){
+       $str = $request->str;
+       return $request->all();
+       $service = $this->query->getInfoBySearchCatagory($request);
+       return $service;
+    }
+    public function getAllUserList(){
+       $service = $this->query->getAllUserList();
        return $service;
     }
     public function getCurrentStep($key){
@@ -170,6 +193,60 @@ class UserService {
       }
       return $this->query->updateSeriveStep($service_id,3);
     }
+    public function updateSaveServiceImage($data){
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      $service_id = $data[0]['service_id'];
+      $user_id = $this->query->getServiceTableUserId($service_id);
+     
+      if( $user_id['user_id']!=Auth::user()->id){
+         return response()->json([
+            'message' => "You are not Owner of this Job!",
+         ], 403);
+      }
+
+      return  $this->query->updateSaveServiceImage($data);
+
+    }
+    public function UpdateExtraServices($data){
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      return  $this->query->UpdateExtraServices($data);
+
+    }
+    public function deleteExtraServices($data){
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      return  $this->query->deleteExtraServices($data);
+
+    }
+    public function deleteTagService($data){
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      return  $this->query->deleteTagService($data);
+
+    }
+    public function updateTag($data){
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      return  $this->query->updateTag($data);
+
+    }
     public function unlinkImage($data){
       return unlink($data['imageLink']);
     }
@@ -179,34 +256,46 @@ class UserService {
             'message' => "You are not Authenticate User!",
          ], 402);
       }
-      $id = Auth::user()->id;
+      $data['id'] = Auth::user()->id;
+      $data['userType'] = Auth::user()->userType;
 
-      return $this->query->getNewList($id);
+      return $this->query->getNewList($data);
     }
     public function getServiceList($id){
       return $this->query->getServiceList($id);
     }
-    public function getBookingList($date){
+    public function deleteService($data){
+      return $this->query->deleteService($data['id']);
+    }
+    public function updateService($data){
+      return $this->query->updateService($data);
+    }
+    public function categoryUpdate($data){
+      return $this->query->categoryUpdate($data);
+    }
+    public function getAllServiceList(){
+      return $this->query->getAllServiceList();
+    }
+    public function getBookingList($data){
       if(!Auth::check()){
           return response()->json([
             'message' => "You are not Authenticate User!",
          ], 402);
       }
-      $id = Auth::user()->id;
-      $data = [];
-      if(Auth::user()->userType==1){ 
-         $data =  $this->query->getBookingListS($id,$date);
-         \Log::info("Seller");
-         \Log::info($data);
-         return $data;
-         
-      } 
-      $data =  $this->query->getBookingListR($id,$date);
-         \Log::info("Buyer");
-         \Log::info($data);
-         return $data;
+      $data['id'] = Auth::user()->id;
+      $data['userType'] = Auth::user()->userType;
+      return  $this->query->getBookingList($data);
+    }
 
-      
+    public function getAllBookingList($data){
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      $data['id'] = Auth::user()->id;
+      $data['userType'] = Auth::user()->userType;
+      return  $this->query->getAllBookingList($data);
     }
     public function getProfileInfo($id){
       return $this->query->getProfileInfo($id);
@@ -228,6 +317,80 @@ class UserService {
          $item['staus'] = false;
       }
       return $data;
+    }
+    public function getServiceDescritption($id){
+      return $this->query->getServiceDescritption($id);
+    }
+    public function getServiceImages($id){
+      return $this->query->getServiceImages($id);
+    }
+    public function getExtraServicebyId($id){
+      return $this->query->getExtraServicebyId($id);
+    }
+    public function getTagbyId($id){
+      return $this->query->getTagbyId($id);
+    }
+    public function insertCatagory($data){
+      return $this->query->insertCatagory($data);
+    }
+
+    public function UpdateServiceDescription($data){
+      $id = "";
+      if(!Auth::check()){
+         return response()->json([
+                 'message' => "You are not Authenticate User!",
+             ], 402);
+      }
+      $servicingTime =$data['servicingTime'];
+      unset($data['servicingTime']);
+      $dayError =[];
+      $dayErrorFlag = false;
+      $index = 0;
+     foreach ($servicingTime as $item)  {
+         if($item['isOn']===true){
+            $startTime =  new DateTime($item['startTime']);
+            $endTime =  new DateTime($item['endTime']);
+            $sinceStart = $startTime->diff($endTime);
+            $totalMinutes=($sinceStart->h*60)+$sinceStart->i;
+            if($totalMinutes%$item['duration']!=0){
+               $duration = $totalMinutes%$item['duration'];
+               $dayError[$index]="Please correct time slots of ".$item['day']." ! you have $duration minutes extra!";
+               $dayErrorFlag = true;
+               $index++;
+            }
+         }
+      }
+      if($dayErrorFlag==true){
+      return response()->json([
+                  'dayError' => $dayError,
+               ], 406);
+      }
+       $id = Auth::user()->id;
+       if($data[ 'user_id'] != $id){
+         return response()->json([
+            'message' => "You are not Authenticate User!",
+        ], 402);
+       }
+       $service = $this->query->UpdateServiceDescription($data);
+       $this->query->deleteTimeSettings($data['id']);
+       $index = 0;
+
+       foreach ($servicingTime as $item)  {
+         if($item['isOn']===true){
+            $timeSetting=[
+               "service_id" => $data['id'],
+               "day" => $item['day'],
+               "startTime" => $item['startTime'],
+               "endTime" => $item['endTime'],
+               "duration" => $item['duration'],
+             ];
+           // \Log::info($item['isOn']);
+            TimeSetting::create($timeSetting);
+          } 
+
+       }
+       return $service;
+      
     }
     public function insertOrder($data){
       if(!Auth::check()){
@@ -327,9 +490,80 @@ class UserService {
          }
       }
       return $pic;
-      
   }
-  
 
+ // Password Reset
+ public function passwordresetGetEmail($request){
+    \Log::info($request->all());
+   $isFound = User::where('email',$request->email)->count();
+   if($isFound==0){
+       return response()->json([
+           'msg' => "Email doesn't exist!",
+       ],401);
+   }
+  
+       $token=str_random(30);
+       $token = \Hash::make($token);
+       \Log::info($token);
+       \DB::table('password_resets')->where('email',$request->email)->delete();
+       $savedData = \DB::table('password_resets')->insert([
+           'email' => $request->email,
+           'token' => $token, //change 60 to any length you want $2y$10$.r/0Wp7TW/gUpGPQUgkct.WEX8s/.wGsCc9qT6pwbn.H/Jn2RXyB.
+           'created_at' => \Carbon\Carbon::now()
+       ]);
+
+           // Mail::to($request->email)
+           // ->send(new Passwrordreset($savedData));
+
+         return response()->json([
+           'msg' => "password reset link has been Sent!",
+       ],200);
+   } 
+   
+   public function matchPasswordLink(Request $request){
+      $token = $request->token;
+      
+      // get the row from reset table matching this token  http://127.0.0.1:8000/passwordreset/check?token=$2y$10$.r/0Wp7TW/gUpGPQUgkct.WEX8s/.wGsCc9qT6pwbn.H/Jn2RXyB.
+      $isTokenFound = \DB::table('password_resets')->where('token',$token)->first();
+      // if token is valid return data only like this 
+      if(!$isTokenFound){
+          return response()->json([
+              'msg' => "token doesn't exist!",
+          ],401);
+      }
+      return response()->json([
+          "token"=>$isTokenFound,
+      ],200);
+  }
+  public function resetPassword(Request $request){
+      
+      $this->validate($request, [
+          'password' => 'required|string|min:6|confirmed',
+      ]);
+
+      $flag = User::where("email",$request->email)->update(['password' => Hash::make($request->password)]);
+      if(!$flag){
+          return response()->json([
+              'msg' => "Email doesn't exist!",
+          ],401);
+      }
+
+      return \DB::table('password_resets')->where('email',$request->email)->delete();
+      }
+
+
+      // Rivew 
+
+      public function giveReview($data){
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+        $data['buyer_id'] = Auth::user()->id;
+        return $this->query->giveReview($data);
+      }
+  
+ 
 
 } 

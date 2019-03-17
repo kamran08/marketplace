@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Service extends Model
@@ -26,6 +26,15 @@ class Service extends Model
             return $this->hasMany('App\Tag','service_id');
          }
         public function alltime(){
-            return $this->belongsTo('App\TimeSetting','id','service_id');
+            return $this->hasMany('App\TimeSetting','service_id');
          }
+         public function reviews(){
+            return $this->hasMany('App\Review');
+        }
+    
+        public function avgreview(){
+            return $this->hasOne('App\Review')
+                        ->select("id", 'service_id', DB::raw( 'cast(AVG(rating) as decimal(10,2)) AS averageRating'))
+                        ->groupBy( 'service_id');
+        }
 }

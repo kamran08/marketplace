@@ -9,7 +9,7 @@
                     <h3 class="_title">{{userInfo.name}} Profile</h3>
                 </div>
 
-                <p class="_title4"><i class="fas fa-chevron-left"></i> BACK</p>
+                <!-- <p class="_title4"><i class="fas fa-chevron-left"></i> BACK</p> -->
 
                 <div class="row">
                         <!--~~~~~~~ Profile Card ~~~~~~~-->
@@ -49,14 +49,22 @@
                             </div>
 
                             <div class="Details_profie_rating">
-                                <ul class="_1job_card_rating_ul">
-                                    <li class="_color"><i class="fas fa-star"></i></li>
-                                    <li class="_color"><i class="fas fa-star"></i></li>
-                                    <li class="_color"><i class="fas fa-star"></i></li>
-                                    <li class=""><i class="fas fa-star"></i></li>
-                                    <li class=""><i class="fas fa-star"></i></li>
-                                    <li class="_1job_card_rating_num">(2k+)</li>
-                                </ul>
+                                <!-- <ul class="_1job_card_rating_ul" v-if="userInfo.reviews_count!==0 || userInfo.avgreview!=null" >
+                                    <li :class="(userInfo.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(userInfo.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(userInfo.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(userInfo.avgreview.averageRating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(userInfo.avgreview.averageRating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li class="_1job_card_rating_num">({{userInfo.reviews_count}})</li>
+                                </ul> -->
+								<ul class="_1job_card_rating_ul"  >
+									<li ><i class="fas fa-star"></i></li>
+									<li ><i class="fas fa-star"></i></li>
+									<li ><i class="fas fa-star"></i></li>
+									<li><i class="fas fa-star"></i></li>
+									<li><i class="fas fa-star"></i></li>
+									<li>(0)</li>
+								</ul>
                             </div>
 
                             <div class="Details_profie_location">
@@ -185,15 +193,17 @@
                         <div class="_box_shadow2 pro_menu _border_radious ">
                             <ul class="pro_menu_list">
                                 <li :class="(sellerTab==1)? 'pro_menu_active':''" @click="sellerTab=1">Service</li>
-                                <li v-if="authInfo.id==user_id" :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">New Bookings</li>
-                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Bookings</li>
-                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''"  @click="sellerTab=4">Canceled Bookings</li>
+                                <li v-if="authInfo.id==user_id" :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">New-Bookings</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Running-Bookings</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''" @click="sellerTab=4">Completed-Service</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==5)? 'pro_menu_active':''"  @click="sellerTab=5">Canceled-Bookings</li>
                             </ul>
                         </div>
                         <servicelist v-if="sellerTab==1" ></servicelist>
                         <newbookinglist v-if="sellerTab==2 && authInfo.id==user_id" ></newbookinglist>
                         <bookinglist v-if="sellerTab==3 && authInfo.id==user_id " ></bookinglist>
-                        <canclebookinglist v-if="sellerTab==4 && authInfo.id==user_id" ></canclebookinglist>
+                        <completedList v-if="sellerTab==4 && authInfo.id==user_id " ></completedList>
+                        <canclebookinglist v-if="sellerTab==5 && authInfo.id==user_id" ></canclebookinglist>
                     </div>
                         <!--~~~~~~~ Profile Details ~~~~~~~-->
                 </div>
@@ -207,6 +217,7 @@ import bookinglist from './bookinglist.vue'
 import canclebookinglist from './canclebookinglist.vue'
 import servicelist from './servicelist.vue'
 import newbookinglist from './newbookinglist.vue'
+import completedList from './completedList.vue'
 
         
 export default {
@@ -215,10 +226,11 @@ export default {
         canclebookinglist,
         servicelist,
         newbookinglist,
+        completedList,
     },
     data(){
         return{
-            sellerTab:1,
+            sellerTab:3,
             user_id:this.$route.params.id,
             userInfo:[],
             edituserInfo:[],
