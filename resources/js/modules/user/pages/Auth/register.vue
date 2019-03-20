@@ -21,20 +21,15 @@
 
 									<div class="_login_input_group">
 										<div class="_login_input">
-											<i class="fas fa-envelope"></i>
-
 											<div class="_login_input_inp">
-                                                <input class="_login_input_inp_field" v-model="regesterData.name" placeholder="Full Name" type="text" required>
-												<!-- <input class="_login_input_inp_field" placeholder="Username" type="text"> -->
+												<Input v-model="regesterData.name" placeholder="Full Name" type="text" required/>
 											</div>
 										</div>
 									</div>
 									<div class="_login_input_group">
 										<div class="_login_input">
-											<i class="fas fa-envelope"></i>
-
 											<div class="_login_input_inp">
-                                                <input class="_login_input_inp_field" v-model="regesterData.email" placeholder="Email" type="email" required>
+												<Input v-model="regesterData.email" placeholder="Email" ttype="email" required/>
 												<!-- <input class="_login_input_inp_field" placeholder="Username" type="text"> -->
 											</div>
 										</div>
@@ -42,46 +37,40 @@
 
 									<div class="_login_input_group">
 										<div class="_login_input">
-											<i class="fas fa-user"></i>
-
 											<div class="_login_input_inp">
 												<!-- <input class="_login_input_inp_field" placeholder="Username" type="text"> -->
-                                                <input class="_login_input_inp_field" v-model="regesterData.userName" placeholder="Username" type="text" required>
+												<Input v-model="regesterData.userName" placeholder="Username" type="text" required/>
 											</div>
 										</div>
 									</div>
 
 									<div class="_login_input_group">
 										<div class="_login_input">
-											<i class="fas fa-lock"></i>
-
-											    <Select placeholder="Join as a" v-model="regesterData.userType" style="width:200px">
-													<Option value="1">Seller</Option>
-													<Option value="1">Buyer</Option>
-												</Select>
+											<Select placeholder="Join as a" v-model="regesterData.userType">
+												<Option value="1">Seller</Option>
+												<Option value="2">Buyer</Option>
+											</Select>
 										</div>
 									</div>
 									<div class="_login_input_group">
 										<div class="_login_input">
-											<i class="fas fa-lock"></i>
 											<div class="_login_input_inp">
-												<input class="_login_input_inp_field" v-model="regesterData.password" placeholder="Password" type="password" required>
+												<Input v-model="regesterData.password" placeholder="Password" type="password" required/>
 											</div>
 										</div>
 									</div>
 
 									<div class="_login_input_group">
 										<div class="_login_input">
-											<i class="fas fa-lock"></i>
-
 											<div class="_login_input_inp">
-												<input class="_login_input_inp_field" v-model="confirmPassword" placeholder="Confirm your password" type="password" required>
+												<Input v-model="confirmPassword" placeholder="Confirm your password" type="password" required/>
 											</div>
 										</div>
 									</div>
 
 									<div class="_login_input_group">
 										<div class="_login_input">
+											
 											<input class="_register_agree_radio" type="radio" name="gender" value="male">
 
 											<p class="_register_agree">I agree to all the <span class="_register_agree_span">terms and conditions.</span></p>

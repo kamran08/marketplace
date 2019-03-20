@@ -14,10 +14,8 @@
                                 <form v-on:submit.prevent="" >
                                     <div class="_login_input_group">
                                         <div class="_login_input">
-                                            <i class="fas fa-user"></i>
-
                                             <div class="_login_input_inp">
-                                                <input class="_login_input_inp_field" v-model="logdata.email" v-on:keyup.enter="check" placeholder="Email" type="email" required>
+                                                 <Input v-model="logdata.email" v-on:keyup.enter="check" placeholder="Email" type="email" required />
                                             </div>
                                         </div>
                                     </div>
@@ -27,10 +25,8 @@
                                     <div class="this is for test " v-if="status">
                                     <div class="_login_input_group">
                                         <div class="_login_input">
-                                            <i class="fas fa-lock"></i>
-
                                             <div class="_login_input_inp">
-                                                <input class="_login_input_inp_field" v-model="logdata.password" placeholder="Password" type="password">
+                                                <Input v-model="logdata.password"  placeholder="Password" type="password" />
                                             </div>
                                         </div>
                                         

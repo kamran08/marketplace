@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="_profile_card_title _flex_space">
                                         <button v-if="item.isApproved==0" class="table_button" type="button" @click="updateService(index)">Approve</button>
-                                        <router-link :to="{name:'editJobDescription' ,params:{id:item.id}}"><button  class="table_button_green" type="button" >Edit</button></router-link>
+                                        <router-link :to="`/admin/editJobDescription/${item.id}`"><button  class="table_button_green" type="button" >Edit</button></router-link>
                                         <button class="table_button_red" type="button" @click="deleteService(index)">Delete</button>
                                     </div>
                                     <div class="_dis_flex _profile_card_doller">

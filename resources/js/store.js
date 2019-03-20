@@ -11,13 +11,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     modules,
     state: {
-        authUser: 'false',
+        authUser: false,
         tabFlag: 1,
         searhData:'this is search data',
         TabInfo:1,
-        User_id:'1',
-        Service_id:1,
-        userType:''
+        // User_id:'1',
+        // Service_id:1,
+        // userType:''
         
        
     },

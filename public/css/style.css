@@ -12301,7 +12301,9 @@ canvas {
 .navbar-divider {
   background-color: rgba(0, 0, 0, 0.075);
 }
-
+.app-header {
+  z-index: 111 !important;
+}
 @media (min-width: 992px) {
   .brand-minimized .app-header .navbar-brand {
     width: 50px;

@@ -9,10 +9,11 @@
 		    <div class="container">
 		        <div class="_banner_main">
 		            <h2 class="_banner_title"  v-if="authInfo.userType==1" >Earn money with us</h2>
+		            <h2 class="_banner_title"  v-else >EXPLORE THE AWESOME SERVIES</h2>
 
 		            <div class="_banner_button" v-if="authInfo.userType==1" >
 						<router-link :to="{ name: 'jobDescription'}">
-							<p class="_banner_post_title">Post a Job</p>
+							<p class="_banner_post_title uper">Post a service</p>
 		            		<p class="_banner_cirlce_plus">
 		            			<i class="fa fa-plus"></i>
 		            		</p>
@@ -39,11 +40,11 @@
 
 						<div class="_flex_space"></div>
 
-						<div class="Marketplace_filter_main _dis_flex">
+						<!-- <div class="Marketplace_filter_main _dis_flex">
 							<input class="_filter_btn filter_drop _b_color2" type="text">Filter</input>
 							<button class="_filter_btn filter_bg _b_color2" type="button"><i class="fas fa-align-justify"></i></button>
 							<button class="_filter_btn _b_color2" type="button"><i class="fas fa-align-justify"></i></button>
-						</div>
+						</div> -->
 					</div>
 				</div>
 					<!--~~~~ Title and Filter ~~~~~~~-->
@@ -60,24 +61,10 @@
 
 								<div class="_Categories_menu">
 									<ul class="_Categories_menu_ul">
-										<li >
-											<!-- class="_Categories_menu_active" -->
+										<li @click="$router.push('/marketplace')" class="uper">
 											All
-											
-											<!-- <i class="fas fa-chevron-down _down"></i> -->
-
-												<!--=== Sub Categories ====-->
-											<!-- <div class="_Categories_sub">
-												<ul class="_Categories_sub_ul">
-													<li>Other</li>
-													<li class="_Categories_menu_active">3d & 2D Models</li>
-													<li>T-Shirts</li>
-													<li>Book Covers & Packaging</li>
-												</ul>
-											</div> -->
-												<!--=== Sub Categories ====-->
 										</li>
-										<li v-for="(item,i) in allcatagory" :key="i" @click="filterbySelect(item.catName)">{{item.catName}}</li>
+										<li v-for="(item,i) in allcatagory" :key="i" @click="$router.push(`/marketplace?cat=${item.id}`)" class="uper">{{item.catName}}</li>
 									
 									</ul>
 								</div>
@@ -88,63 +75,56 @@
 							<!-- Product -->
 						<div class="col-12 col-md-9">
 							<div class="Marketplace_search_result_prduct">
-								<div class="row">
-										<!-- items -->
-									<div class="col-6 col-md-4 job_all"  v-for="(item,i) in allcatagoryBysearch" :key="i">
-										
-										<div class="_1job_card" >
-											<div class="_1job_card_rating">
-												<ul class="_1job_card_rating_ul">
-													<li class="_color"><i class="fas fa-star"></i></li>
-													<li class="_color"><i class="fas fa-star"></i></li>
-													<li class="_color"><i class="fas fa-star"></i></li>
-													<li class=""><i class="fas fa-star"></i></li>
-													<li class=""><i class="fas fa-star"></i></li>
-													<li class="_1job_card_rating_num">(2k+)</li>
-												</ul>
-											</div>
-											<div v-if="item.image.length>0">
-												<div class="_1job_card_img" v-for="(img,j) in item.image.slice(1)" :key="j">
-										
-												<img class="_1job_card_img_pic" :src="img.imageName" alt="" title="">		
-											</div>
-											</div>
-											<div v-if="!item.image.length">
-												<div class="_1job_card_img">
-										
-												<img class="_1job_card_img_pic" :src="defaultImage" alt="" title="">
-												
-											</div>
-											</div>
+								<div class="job_row row">
+											<!-- items -->
+										<div class="col-12 col-md-4 col-lg-4 job_all" v-for="(service,i) in products" :key="i">
+											<div class="_1job_card">
+												<div class="_1job_card_rating">
+													<ul class="_1job_card_rating_ul" v-if="service.avgreview" >
+														<li :class="(service.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
+														<li :class="(service.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
+														<li :class="(service.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
+														<li :class="(service.avgreview.averageRating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
+														<li :class="(service.avgreview.averageRating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
+														<li class="_1job_card_rating_num">({{service.reviews_count}})</li>
+													</ul>
+													<ul class="_1job_card_rating_ul" v-if="service.reviews_count==0" >
+														<li ><i class="fas fa-star"></i></li>
+														<li ><i class="fas fa-star"></i></li>
+														<li ><i class="fas fa-star"></i></li>
+														<li class=""><i class="fas fa-star"></i></li>
+														<li class=""><i class="fas fa-star"></i></li>
+														<li class="_1job_card_rating_num">(0)</li>
+													</ul>
+												</div>
 
+												<div class="_1job_card_img"><img src="" alt="" sizes="" srcset="">
+													<router-link :to="{ name:'details', params:{ id:service.id }}" >
+														<img class="_1job_card_img_pic" :src="(service.image[0])? service.image[0].imageUrl : defaultImg" alt="" title="">
+													</router-link>
+													
+												</div>
 
-											
+												<div class="_1job_card_status">
+													<p class="_1job_card_status_text _text_overflow2">{{service.title}}</p>
+												</div>
 
-											<div class="_1job_card_status">
-												<p class="_1job_card_status_text _text_overflow2">{{item.description}}</p>
-											</div>
+												<div class="_1job_card_bottom">
+													<p class="_1job_card_by"><span class="_1job_card_by_span">by</span>   {{service.user.userName}}</p>
 
-											<div class="_1job_card_bottom">
-												<p class="_1job_card_by"><span class="_1job_card_by_span">by</span> {{item.users.userName}}</p>
-
-												<div class="_1job_card_dollar">
-													<p class="_1job_card_dollar_text _color">{{item.price}}</p>
-													<p class="_1job_card_dollar_sine _color">$</p>
+													<div class="_1job_card_dollar">
+														<p class="_1job_card_dollar_text _color">{{service.price}}</p>
+														<p class="_1job_card_dollar_sine _color">$</p>
+													</div>
 												</div>
 											</div>
 										</div>
+											<!-- items -->
 									</div>
-										<!-- items -->
 
-									
-
-									
-
-
-								</div>
 
 									<!-- pagination -->
-								<div class="_pagination">
+								<!-- <div class="_pagination">
 									<ul class="_pagination_ul">
 										<li>&laquo;</li>
 										<li>1</li>
@@ -155,7 +135,7 @@
 										<li>6</li>
 										<li>&raquo;</li>
 									</ul>
-								</div>
+								</div> -->
 									<!-- pagination -->
 							</div>
 						</div>
@@ -185,7 +165,8 @@ export default {
 			ok:'',
 			id:'',
 			defaultImage:'uploads/_85730600_monkey2.jpg',
-			allServices: []
+			allServices: [],
+			products: [],
 			
         }
 	},
@@ -212,7 +193,8 @@ export default {
 		async getAllServices(url){
 			const res = await this.callApi('get', url)
 			if(res.status===200){
-				this.allServices = res.data
+				this.products = res.data
+				console.log(this.products)
 			}else{
 				swr()
 			}

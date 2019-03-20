@@ -2,7 +2,7 @@
 	<div>
     <headsSction/>
 		<transition name="component-fade" mode="out-in">
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
     </transition>
      <footsSction/>
 	</div>

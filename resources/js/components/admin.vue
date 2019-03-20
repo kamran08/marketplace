@@ -8,7 +8,7 @@
         </button>
 
         <a class="navbar-brand" href="#">
-            <img class="navbar-brand-full" src="img/logo.png" alt="CoreUI Logo">
+            <img class="navbar-brand-full" src="/img/logo.png" alt="CoreUI Logo">
         </a>
         
         <button @click="sideMenuFlagOpen"  class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -29,10 +29,13 @@
             </li>
             <li class="nav-item">
                 <span class="nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <p class="admin_name"><a href="/logout">Logout</a></p>
-
-                    <img class="img-avatar" src="img/logo.png" alt="admin@bootstrapmaster.com">
+                    <img class="img-avatar" :src="`${authInfo.image}`" >
                 </span>
+            </li>
+
+
+            <li class="nav-item">
+                <p class="admin_name"><a href="/logout">Logout</a></p>
             </li>
         </ul>
     </header>
@@ -112,7 +115,7 @@ export default {
             sideMenuFlag:true,
             contentFlag:true,
             memuActiveFlag:1,
-            authInfo:{},
+            
         }
     },
     methods:{
@@ -160,7 +163,8 @@ export default {
        
     },
     created(){
-        this.authInfo = window.authUser
+       this.$store.dispatch('setAuth', (window.authUser));
+     console.log("user",window.authUser)
     }
 }
 </script>

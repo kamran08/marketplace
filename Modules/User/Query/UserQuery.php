@@ -38,11 +38,8 @@ class UserQuery {
 
         return $service;
     }
-    public function getInfoBySearchCatagory(Request $request){
-      
-            if($key=='') $service = Service::with('image')->with('users')->with('category')->get();
-            else $service = Service::with('image')->with('users')->where('title', 'like', '%' . $key . '%')->get();  
-            return $service;
+    public function getInfoBySearchCatagory($id){
+      return Service::with('image','user','tag','extra','category','alltime','avgreview')->where('cat_id', $id)->withCount('reviews')->get();  
     }
     public function getCurrentStep($key){
       return  Service::where('id',$key)->select('nextStep')->first();   
@@ -111,7 +108,7 @@ class UserQuery {
     return Service::where('id',$service_id)->update(['nextStep' => $num]);
     }
    public function getServiceDetailsById($service_id){
-    return Service::where('id',$service_id)->with('image','user','tag','extra','category','alltime','reviews','reviews.user')->withCount('reviews')->first();
+    return Service::where('id',$service_id)->with('image','user','tag','extra','category','alltime','reviews.user', 'avgreview')->withCount('reviews')->first();
     }
    public function getServiceDescritption($service_id){
     return Service::where('id',$service_id)->with('alltime')->first();

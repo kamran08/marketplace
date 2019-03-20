@@ -239,12 +239,22 @@ textarea {
     text-decoration: none;
 }
 ._2big_menu_list li:hover, ._2menu_main_ul_list_ul li a:hover {
-    color: #2a41e8;
+    color: #10a2ef;
 }
 ._2menu_mess {
     position: relative;
     width: 19px;
     display: inline-block;
+}
+.mobile_only{
+    display: none;
+}
+.moile_button {
+    text-align: right;
+    display: none;
+}
+.moile_button i {
+    font-size: 16px;
 }
 ._2menu_mess i {
     font-size: 19px;
@@ -914,8 +924,9 @@ textarea {
 
 /*========= 9.Log in =======*/
 ._login {
-    height: 100vh;
     overflow: auto;
+    min-height: 100vh;
+    padding-bottom: 45px;
 }
 ._login_main {
     background: #fff;
@@ -939,13 +950,13 @@ textarea {
 ._login_input_group {
     margin-bottom: 37px;
 }
-._login_input i {
+/* ._login_input i {
     font-size: 12px;
     color: #838386;
     margin-right: 21px;
     margin-top: 3px;
     width: 13px;
-}
+} */
 ._login_input {
     display: flex;
     align-items: center;
@@ -1334,7 +1345,21 @@ textarea {
     font-size: 13px;
     font-weight: 600;
 }
-.Details_main_rigth{}
+.Details_main_rigth{
+    margin-top: 141px;
+}
+.uper{
+    text-transform: uppercase;
+}
+._1menu_sign_ul li{
+    text-transform: uppercase;
+}
+._2menu_main_ul_list_ul li{
+    text-transform: uppercase;
+}
+._1big_menu_ul li{
+    text-transform: uppercase;
+}
 .Details_pro {
     padding: 1px 0 7px;
 }
@@ -1732,8 +1757,7 @@ textarea {
 }
 .select_time{}
 .select_time .row {
-    margin-top: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 .pro_edit_all i{}
 .booked_date{
@@ -1779,6 +1803,32 @@ textarea {
     -webkit-line-clamp: 2;
     font-size: 15px;
     cursor: pointer;
+}
+.tags_all ._profile_card_title {
+    min-height: auto;
+}
+.User_List_table {
+    width: 100%;
+}
+.line{
+    text-decoration: line-through;
+}
+.User_List_table  tr{}
+.User_List_table  tr th{}
+.User_List_table_main .table_button {
+    background: #e7eef3;
+    border-radius: 4px;
+    color: black;
+    font-weight: 700;
+    box-shadow: 0px 1px 7px 0px #00a4f666;
+}
+.User_List_table_main {
+    padding-right: 0px;
+}
+.User_List_table_main {
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 5px 5px 5px 0px;
 }
 ._profile_card_title {
     margin: 7px 0 0;
@@ -1844,18 +1894,6 @@ textarea {
 .pro_menu_active{
     color: #249ebd !important;
 }
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
 /*========= 15.Profile =======*/
 
 /*========= 16.Order=======*/
@@ -2177,7 +2215,7 @@ textarea {
 }
 ._banner_button {
     padding: 5px 36px;
-    width: 249px;
+    width: 291px;
     margin: 22px auto 0;
 }
 ._banner_title {
@@ -2193,8 +2231,24 @@ textarea {
     margin-left: 0;
 }
     /* new */
-
-
+._1menu_search {
+    display: none;
+}
+._1menu_sign {
+    display: none;
+}
+.mobile_only{
+    display: block
+}
+._1big_menu {
+    display: none;
+}
+.moile_button {
+    display: block;
+}
+._login {
+    min-height: auto;
+}
 
 }
 
@@ -2233,12 +2287,182 @@ textarea {
     top: 28%;
     width: 90%;
 }
-
-
-
+._1menu_search {
+    display: none;
+}
+._1menu_sign {
+    display: none;
+}
+.mobile_only{
+    display: block
+}
+._1big_menu {
+    display: none;
+}
+.moile_button {
+    display: block;
+}
 
 
 
 
 }
 /*========= RESPONSIVE =======*/
+
+
+/*========= MOBILE MENU  =============*/
+.mobile_menu_page {
+    overflow: auto;
+    height: 100vh;
+    flex: 1 1;
+}
+.mobile_menu_content {
+    position: relative;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.mobile_menu {
+    color: #686f7a;
+    font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+    width: 570px;
+    background: #fff;
+    height: 100vh;
+    display: flex;
+    left: -285px;
+    position: absolute;
+    height: 100%;
+    transition: 1s all ease;
+    top: 0;
+}
+.mobile_menu_content_all {
+    width: 285px;
+    box-shadow: 0px 0px 1px 1px #ddd;
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 11111;
+    background: white;
+    transition: .3s all ease;
+}
+.bag_cencel {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #00000080;
+    color: #fff;
+    text-align: right;
+    padding: 14px 18px 0;
+}
+.bag_cencel i {
+    font-size: 17px;
+}
+.mobile_menu p {
+    margin: 0px;
+}
+.mobile_menu_frist_page_ul{}
+.mobile_menu_frist_page_ul li {
+    font-size: 15px;
+    padding: 12px 20px;
+    cursor: pointer;
+}
+.mobile_menu_button {
+    padding: 15px 0px;
+}
+.mobile_menu_button button:focus{
+    outline: none;
+}
+.mobile_menu_button button {
+    width: 100%;
+    white-space: nowrap;
+    padding: 11px 12px;
+    font-size: 15px;
+    line-height: 1.35135;
+    border-radius: 2px;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+}
+.mobile_menu_button_sign {
+    color: #fff;
+    background-color: #00a4f6;
+    border: 1px solid transparent;
+    margin-bottom: 15px;
+}
+.mobile_menu_button_log {
+    color: #686f7a;
+    background-color: #fff;
+    border: 1px solid #686f7a;
+}
+.mobile_menu_frist_page_ul_name_arrow {
+    display: flex;
+    align-items: center;
+}
+.mobile_menu_frist_page_ul_arrow {
+    font-weight: 400;
+    font-family: cursive;
+    transition: .3s all ease;
+    font-size: 22px;
+    line-height: 0;
+}
+.mobile_menu_frist_page_ul_name {
+    flex: 1 1;
+}
+.mobile_menu_frist_page_header{
+    border-bottom: 1px solid #e8e9eb;
+}
+.mobile_menu_second_page_ul {
+    background: #f2f3f5;
+    border: none;
+    color: #686f7a;
+    display: block;
+    font-weight: 400;
+    padding: 20px !important;
+}
+.mobile_menu_frist_page_ul_name_arrow i {
+    font-size: 20px;
+    margin-right: 10px;
+    padding-top: 2px;
+}
+.mobile_menu_second_page_ul .mobile_menu_back i {
+    padding: 0;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 0px;
+}
+.mobile_menu_second_page_ul .mobile_menu_back{
+    margin-top: 4px;
+    line-height: 0;
+}
+.mobile_menu_second_page_ul .mobile_menu_frist_page_ul_name_arrow{
+    align-items: inherit;
+}
+.mobile_menu_page_active{
+    font-weight: bold;
+}
+.tri_back {
+    line-height: 0;
+}
+.tri_back i {
+    font-size: 17px;
+    font-weight: 600;
+    margin-right: 0px;
+}
+.tri_page {
+    padding: 7px 0;
+}
+/*========= MOBILE MENU  =============*/
+
+.mobile_menu_frist_page_ul li{
+    text-transform: uppercase;
+}
+.router-link-exact-active{
+    color: #10a2ef !important;
+}
