@@ -26,7 +26,7 @@
                             <p class="_profile_card_name_text">Time: {{item.bookingTime}}</p> 
                         </div>
                         <div class="_profile_card_title _flex_space">
-                            <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle Booking</button>
+                            <button class="table_button_red" type="button" @click="updateStatus(3,index,item.buyer_id,item.seller_id)">Cancle Booking</button>
                         </div>
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
@@ -50,7 +50,13 @@ export default {
     data(){
         return{
             list:[],
-            toDayDate:''
+            toDayDate:'',
+             noti:{
+                notifor:'',
+                notifrom:'',
+                notitxt:'',
+                url:'',
+            }
         }
     },
     methods:{
@@ -79,9 +85,14 @@ export default {
             this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
             this.getNewList(this.toDayDate)
         },
-        async updateStatus(status,index){
+        async updateStatus(status,index,buyer_id,seller_id){
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
+                this.noti.notitxt = 'seller cancled your service'
+                this.noti.notifor = buyer_id
+                this.noti.notifrom = seller_id
+                this.noti.url = 'bprofile/'+buyer_id+'?'+'tab=4'
+                const res2 = await this.callApi('post','notifications', this.noti)
                 this.i("This booking has been cancled!");
                 this.list[index].status = 3 
                 

@@ -99,18 +99,18 @@
                                  <div class="_login_input_group">
                                     <div class="_login_input">
                                        <div class="_login_input_inp">
-                                          <Input v-model="formdata.price" placeholder="Price" type="text" />
+                                          <Input v-model="formdata.price" placeholder="Price" type="number" />
                                        </div>
                                     </div>
                                  </div>
                            </div>
                         </div>
-                       
+                       <!-- ormdata.openingMassage -->
 
                         <div class="_login_input_group">
                            <div class="_login_input">
                               <div class="_login_input_inp">
-                                 <Input v-model="formdata.openingMassage" placeholder="Opening Massage" type="number" />
+                                 <Input v-model="formdata.openingMassage" placeholder="Opening Massage" type="text" />
                               </div>
                            </div>
                         </div>

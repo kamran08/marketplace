@@ -26,8 +26,8 @@
                             <p class="_profile_card_name_text">Time: {{item.bookingTime}}</p> 
                         </div>
                         <div class="_profile_card_title _flex_space">
-                            <button class="table_button_green" type="button" @click="updateStatus(2,index)">Mark Complete</button>
-                            <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle Booking</button>
+                            <button class="table_button_green" type="button" @click="updateStatus(2,index,item.buyer_id,item.seller_id)">Mark Complete</button>
+                            <button class="table_button_red" type="button" @click="updateStatus(3,index,item.buyer_id,item.seller_id)">Cancle Booking</button>
                         </div>
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
@@ -96,6 +96,12 @@ export default {
                 booking_id:'',
             },
             modalData:{},
+            noti:{
+                notifor:'',
+                notifrom:'',
+                notitxt:'',
+                url:'',
+            }
         }
     },
     methods:{
@@ -150,17 +156,39 @@ export default {
             this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
             this.getNewList(this.toDayDate)
         },
-        async updateStatus(status,index){
+        async updateStatus(status,index,buyer_id,seller_id){
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
                 if(status==2){
-                    this.i("Serive has been marked completed!");
+                    this.noti.notitxt = 'buyer started your service'
+                    this.noti.notifor = seller_id
+                    this.noti.notifrom = buyer_id
+                    this.noti.url = 'sprofile/'+seller_id+'?'+'tab=3'
+                    const res2 = await this.callApi('post','notifications', this.noti)
+                    if(res2.status===200){
+                     this.i("Serive has been marked completed!");
                     this.list[index].status = 2 
                     this.reviewModal = true;
                     this.modalData = this.list[index]
+                    }
+                    else{
+                        this.swr()
+                    }
+                  
                 }
-                this.i("This booking has been cancled!");
-                this.list[index].status = 3 
+                 else if(status==3){
+                    this.noti.notitxt = 'buyer cancled your service'
+                    this.noti.notifor = seller_id
+                    this.noti.notifrom = buyer_id
+                    this.noti.url = 'sprofile/'+seller_id+'?'+'tab=5'
+                    const res2 = await this.callApi('post','notifications', this.noti)
+                    if(res2.status==200){
+                        this.i("This booking has been cancled!");
+                        this.list[index].status = 3 
+                    }
+                   
+                }
+                
             }
             else{
                 this.e();

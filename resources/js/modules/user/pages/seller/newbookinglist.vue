@@ -23,8 +23,8 @@
                             <p class="_profile_card_name_text">Time: {{item.bookingTime}}</p> 
                         </div>
                         <div class="_profile_card_title _flex_space">
-                            <button class="table_button" type="button" @click="updateStatus(1,index)" >Approve</button>
-                            <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle</button>
+                            <button class="table_button" type="button" @click="updateStatus(1,index,item.buyer_id,item.seller_id)" >Approve</button>
+                            <button class="table_button_red" type="button" @click="updateStatus(3,index,item.buyer_id,item.seller_id)">Cancle</button>
                         </div>
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
@@ -48,6 +48,12 @@ export default {
     data(){
         return{
             list:[],
+            noti:{
+                notifor:'',
+                notifrom:'',
+                notitxt:'',
+                url:'',
+            }
         }
     },
     methods:{
@@ -60,14 +66,26 @@ export default {
                 this.swr();
             }
         },
-        async updateStatus(status,index){
+        async updateStatus(status,index,buyer_id,seller_id){
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
                 if(status==1){
+                    this.noti.notitxt = 'user comlited your service'
+                    this.noti.notifor = seller_id
+                    this.noti.notifrom = buyer_id
+                    this.noti.url = 'sprofile/'+seller_id+'?'+'tab=2'
+                   // console.log(this.noti)
+                    const res2 = await this.callApi('post','notifications', this.noti)
+                    if(res2.status==200)
                     this.s("This booking has been approved!");
                     this.list[index].status = 1 
                 }
                 else if(status==3){
+                    this.noti.notitxt = 'seller cancled your service'
+                    this.noti.notifor = seller_id
+                    this.noti.notifrom = buyer_id
+                    this.noti.url = 'sprofile/'+seller_id+'?'+'tab=4'
+                    const res2 = await this.callApi('post','notifications', this.noti)
                     this.i("This booking has been cancled!");
                     this.list[index].status = 3 
                 }
@@ -78,6 +96,7 @@ export default {
         }
     },
     created(){
+
         this.getNewList();
     }
 }

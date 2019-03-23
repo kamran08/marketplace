@@ -35,9 +35,38 @@
 							<li v-if="authInfo.userType==4" class="uper"><a href="/system_admin">{{authInfo.name}}(Dashboard)</a></li>
 							<li><a href="/logout" >LOGOUT</a></li>
 							<li v-if="authInfo" >
-									<div class="_2menu_mess ">
-											<i class="fas fa-bell"></i>
-											<div class="_2menu_mess_num _bg">3</div>
+									<div class="_2menu_mess" >
+											<div @click="openNoti">
+											<i class="fas fa-bell" ></i>
+											<div class="_2menu_mess_num _bg" v-if="allnoti.length">{{allnoti.length}}</div>
+											<div class="_2menu_mess_num _bg" v-if="!allnoti.length">0</div>
+											</div>
+											<div class="not_list" v-if="open">
+												<div class="noti_all">
+													<p class="noti_title">Notifications</p>
+
+													<div class="noti_main_content"  >
+															<!-- ITEMS -->
+														<div class="noti_main" >
+														<!-- /?	<img class="noti_img" src="/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg" alt="" title=""> -->
+
+															<div class="noti_status" v-for="(item,index) in allnoti" :key="index">
+															<a :href="item.url">	<p class="noti_status_text"><strong>{{item.user.name}}</strong> {{item.notitxt}} </p> </a>
+
+																<p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p>
+															</div>
+														</div>
+															<!-- ITEMS -->
+
+									
+													</div>
+
+
+													<p class="noti_more">
+														See More
+													</p>
+												</div>
+											</div>
 									</div>
 							</li>
 							<li v-if="authInfo" >
@@ -74,11 +103,9 @@
                                 </div>
                             </li>
 
-                            <li v-for="(item, index) in menuItems" :key="index" v-if="item.valid==authInfo.userType || item.valid=='all'"
+              <li v-for="(item, index) in menuItems" :key="index" v-if="item.valid==authInfo.userType || item.valid=='all'"
 															@click="goNextPage(item)"
 														>{{item.name}}</li>
-
-                            
                             <li v-if="!authInfo">
                                 <div class="mobile_menu_button">
                                     <button class="mobile_menu_button_sign" type="button" 	@click="notAuth('/register')">Sign Up</button>
@@ -150,6 +177,7 @@ export default {
 		data(){
 			return{
 				alljobs:[],
+				allnoti:[],
 				visible: false,
 				defultImage:"/img/prfile.png",
 				left: '0px',
@@ -162,7 +190,8 @@ export default {
 					 {name: 'Profile', url: '/bprofile', valid: 2, id: true},
 					 {name: 'Dashboard', url: '/system_admin', valid: 4, id: false},
 					 
-				]
+				],
+				open:false
 			}
 	},
 	
@@ -170,10 +199,20 @@ export default {
 		const res = await this.callApi('get', 'get-all-catgory')
 		if(res.status===200){
 			this.alljobs = res.data;
+			console.log('i am running')
 		}
 		else{
 			this.swr();
 		}
+	   const res1 = await this.callApi('get',`getAllNotifications/${this.authInfo.id}`)
+		if(res1.status===200){
+			this.allnoti = res1.data;
+			console.log(this.allnoti)
+		}
+		else{
+			this.swr()
+		}
+	
 	},
 	methods:{
 	  handleOpen () {
@@ -201,6 +240,12 @@ export default {
 			}
 			this.leftMain = '-100%'
 			return this.$router.push(url)
+		},
+		openNoti(){
+			if(this.open==true){
+				this.open=false;
+			}
+			else this.open = true;
 		}
 	}
 }

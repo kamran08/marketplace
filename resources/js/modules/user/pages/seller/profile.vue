@@ -230,7 +230,7 @@ export default {
     },
     data(){
         return{
-            sellerTab:3,
+            sellerTab:1,
             user_id:this.$route.params.id,
             userInfo:[],
             edituserInfo:[],
@@ -273,7 +273,12 @@ export default {
 
     },
     created(){
-        this.getProfileInfo();
+           if(this.$route.query.tab>0 && this.$route.query.tab<6){
+           this.sellerTab = this.$route.query.tab
+            window.history.pushState(this.sellerTab, 'Title', '/sprofile/'+this.$route.params.id);
+           }
+  
+            this.getProfileInfo();
     }
 }
 </script>

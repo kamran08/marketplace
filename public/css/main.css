@@ -15,6 +15,7 @@
 14.Comment
 15.Profile
 16.Order
+17.notification
 ====================================*/
 
 /*===== 1.common css ======*/
@@ -1975,6 +1976,104 @@ textarea {
     border-radius: 3px;
 }
 /*========= 16.Order=======*/
+
+/*========= 17.notification =======*/
+.not_list {
+    position: absolute;
+    background: #fff;
+    border: 1px solid rgba(100, 100, 100, .4);
+    border-radius: 0 0 2px 2px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+    color: #1d2129;
+    top: 38px;
+    width: 430px;
+    right: -72px;
+    z-index: 111;
+    text-align: left;
+}
+.noti_all {
+    position: relative;
+}
+.noti_all::before {
+    position: absolute;
+    content: '';
+    border-bottom: 15px solid rgba(100, 100, 100, .4);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    right: 64px;
+    top: -15px;
+}
+.noti_all::after {
+    position: absolute;
+    content: '';
+    border-bottom: 15px solid #fff;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    right: 64px;
+    top: -14px;
+}
+.noti_title {
+    color: #333;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 11px 15px 7px;
+}
+.noti_main {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 12px 15px;
+    cursor: pointer;
+}
+.noti_img {
+    height: 48px;
+    margin-right: 12px;
+    width: 48px;
+    border-radius: 50%;
+}
+.noti_main_content {
+    border-bottom: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    max-height: 371px;
+    overflow: auto;
+}
+.noti_status {}
+.noti_status_text {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    max-height: 2.67em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+}
+.noti_status_time {
+    font-size: 10px;
+    color: #666;
+    margin: 8px 0 0;
+    text-transform: initial;
+}
+.noti_status_time i{
+    font-size: 12px;
+}
+.noti_more {
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 9px 0;
+}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+.{}
+/*========= 17.notification =======*/
 
 
 /*========= RESPONSIVE =======*/

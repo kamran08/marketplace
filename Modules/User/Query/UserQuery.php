@@ -10,6 +10,7 @@ use App\Tag;
 use App\Image;
 use App\TimeSetting;
 use App\Booking;
+use App\Notification;
 use Mockery\CountValidator\Exact;
 class UserQuery {
    
@@ -207,6 +208,12 @@ class UserQuery {
     }
    public function giveReview($data){
     return Review::create($data);
+    }
+    public function getAllNotifications($key){
+      return Notification::where('notifor',$key)->with('user')->get();
+    }
+   public function notifications($data){
+     return Notification::create($data);
     }
 
  

@@ -33,7 +33,7 @@
 			<div class="container">
 					<!--~~~~ Title and Filter ~~~~~~~-->
 				<div class="_title_header _b_color2" >
-					<h3 class="_title">{{allcatagoryBysearch.length}} SERVICES AVAILABLE</h3>
+					<h3 class="_title">{{products.length}} SERVICES AVAILABLE</h3>
 
 					<div class="Marketplace_filter _dis_flex">
 						<!-- <p class="_search_num">100+ jobs in Grapphics &Design </p> -->

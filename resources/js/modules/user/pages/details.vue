@@ -45,7 +45,6 @@
                                     </p>
 
                                 </div>
-
                                 <div class="_tags">
                                     <ul class="_tags_ul">
                                         <li v-for="(item,index) in serviceDetails.tag" :key="index">{{item.tagName}}</li>
@@ -194,6 +193,12 @@
                                             <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
                                         </div>
                                     </div>
+                                    <div class="Details_pro_button _b_color2" v-if="authInfo.id == serviceDetails.user_id"  >
+                                        <div class="_block_buttons_main _dis_flex">
+                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">see the time slote</button>
+                                            <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -267,7 +272,6 @@
                                         {{item.bookingTime}}
                                     </button>
                                 </div>
-
                                 <div v-if="item.isBooked">
                                     <button class="table_button_red line" type="button">
                                         {{item.bookingTime}}
@@ -282,14 +286,16 @@
                 </div>
                     
             </div>
-            <div slot="footer">
-                <Button @click="bookingTimeModal = false">Close</Button>
-                <Button @click="insertOrder">Order</Button>
+            <div slot="footer" v-if="authInfo.userType!=1">
+                    <Button @click="bookingTimeModal = false">Close</Button>
+                    <Button @click="insertOrder">Order</Button>
+            </div>
+            <div slot="footer" v-if="authInfo.userType==1">
+                    <Button @click="bookingTimeModal = false">Close</Button>
             </div>
         </Modal>
 </div>
 </template>
-
 <script>
 export default {
     data(){
@@ -419,6 +425,7 @@ export default {
         },
     },
    async created(){
+       console.log(this.authInfo)
         this.getServiceDetails();
     },
 

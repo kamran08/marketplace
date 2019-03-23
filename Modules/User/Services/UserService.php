@@ -588,6 +588,33 @@ class UserService extends Controller {
         $data['buyer_id'] = Auth::user()->id;
         return $this->query->giveReview($data);
       }
+      public function notifications($key){
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+          return $this->query->notifications($key);
+      }
+      public function getAllNotifications($key){
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+        if($key==Auth::user()->id){
+         //   $user='';
+         //   if(Auth::user()->type==1){
+         //      $user = ''
+         //   }
+          return $this->query->getAllNotifications($key);
+        }
+        else{
+           return;
+        }
+       
+        
+      }
   
  
 

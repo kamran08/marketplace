@@ -33,7 +33,8 @@
                                     </div>
 
                                     <div class="_login_input_button">
-                                        <button class="_btn _login_input_button_btn _bg" type="submit" @click="login" name="submit">SIGN IN</button>
+                                        <button class="_btn _login_input_button_btn _bg" type="submit" v-if="!load" @click="login(true)" name="submit">SIGN IN</button>
+                                        <button class="_btn _login_input_button_btn _bg" type="submit" v-if="load" @click="login(false)" >loading.....</button>
                                         
                                     </div>
                                     
@@ -59,15 +60,18 @@ export default {
                 password: ''
             },
             status : false,
+            load:false
         }
     },
      methods: {
-        async login(){
+        async login(e){
             
-           
+            
             if(this.logdata.email==='' || this.logdata.password===''){
+                this.load = false
                return this.e('All fields are required')
             }
+            this.load = e;
             const res = await this.callApi('post', 'login', this.logdata)
             if(res.status===200){
                  this.s('Login successfull!')
@@ -75,6 +79,7 @@ export default {
                 this.$router.push('/');
             }else{
                 if(res.status===401){
+                    this.load = false
                     this.e(res.data.msg)
                 }
             }
