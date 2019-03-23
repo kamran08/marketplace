@@ -17,6 +17,7 @@ export default {
  
   created(){
      this.$store.dispatch('setAuth', (window.authUser));
+     console.log("user",window.authUser)
   },
 
 }

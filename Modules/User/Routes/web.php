@@ -94,6 +94,11 @@ Route::post( 'app/updateTag', 'UserController@updateTag');
 // insert catagory 
 Route::post( 'app/insert-catagory', 'UserController@insertCatagory'); 
 
+/// notifications 
+
+Route::get('app/getAllNotifications/{id}', 'UserController@getAllNotifications');
+Route::post('app/notifications', 'UserController@notifications');
+
 
 
 Route::get('/logout', function () {

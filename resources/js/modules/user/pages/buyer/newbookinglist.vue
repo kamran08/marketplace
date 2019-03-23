@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="_profile_card_all" v-if="list.length" >
+        <div class="_profile_card_all tags_all" v-if="list.length" >
             <!-- card -->
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==0"  >
@@ -14,7 +14,13 @@
                         </div>
                         <div class="_profile_card_title _flex_space">
                             <p  class="_profile_card_name_text_link">Booked by: <router-link :to="{ name:'bprofile'}" >{{item.buyer_info.name}}</router-link></p>
-                            <p  class="_profile_card_name_text_link">Extra Service : {{(item.extraService.length)? "No ": "Yes"}}</p>
+                            <div  class="_profile_card_name_text_link">Extra Service : 
+                                     <!-- <span class="job_tags_main" v-for="(ex, k) in item.extraService" :key="k">  {{ex.serviceName}} </span> -->
+                                     <div class="job_tags"  v-for="(ex, k) in item.extraService" :key="k"> 
+                                        <div class="job_tags_main">  {{ex.serviceName}}(${{ex.servicePrice}}) </div>
+                                    </div>
+                               
+                            </div>
                         
                         </div>
                         <div class="_profile_card_title _flex_space">

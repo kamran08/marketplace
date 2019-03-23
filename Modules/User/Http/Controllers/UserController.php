@@ -245,9 +245,15 @@ class UserController extends Controller
       
         $data = $this->userService->getTimeSolte($id);
         // \Log::info($data);
-        
-      //  return 1; 
-        
+
+        //  return 1; 
+    }
+    //notifications /////////////
+    public function notifications(Request  $request) {
+        return $this->userService->notifications($request->all());
+    }
+    public function getAllNotifications($key) {
+        return $this->userService->getAllNotifications($key);
     }
 
 

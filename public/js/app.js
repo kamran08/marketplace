@@ -54782,7 +54782,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54799,6 +54799,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
 //
 //
 //
@@ -55007,68 +55009,91 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                console.log(this.formdata);
 
-                // if( this.formdata.daliveryTime == ''|| this.formdata.openingMassage =='' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == '' || this.formdata.user_id == ''){
-                //     this.i("All fields are requrired");
-                //     return;
-                // }
+                if (!(this.formdata.openingMassage == '' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == '')) {
+                  _context.next = 4;
+                  break;
+                }
+
+                this.i("All fields are requrired");
+                return _context.abrupt('return');
+
+              case 4:
                 _iteratorNormalCompletion = true;
                 _didIteratorError = false;
                 _iteratorError = undefined;
-                _context.prev = 3;
-                for (_iterator = this.formdata.servicingTime[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                  item = _step.value;
+                _context.prev = 7;
+                _iterator = this.formdata.servicingTime[Symbol.iterator]();
 
-                  if (item.isOn == true) {
-                    if (item.startTime == "" || item.endTime == "" || item.duration == "") {
-                      this.e("Please fill the time solts of " + item.day + " !");
-                    }
-                  }
+              case 9:
+                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                  _context.next = 17;
+                  break;
                 }
-                // return;
-                // this.nextStep = 1
-                _context.next = 11;
+
+                item = _step.value;
+
+                if (!(item.isOn == true)) {
+                  _context.next = 14;
+                  break;
+                }
+
+                if (!(item.startTime == "" || item.endTime == "" || item.duration == "")) {
+                  _context.next = 14;
+                  break;
+                }
+
+                return _context.abrupt('return', this.e("Please fill the time solts of " + item.day + " !"));
+
+              case 14:
+                _iteratorNormalCompletion = true;
+                _context.next = 9;
                 break;
 
-              case 7:
-                _context.prev = 7;
-                _context.t0 = _context['catch'](3);
+              case 17:
+                _context.next = 23;
+                break;
+
+              case 19:
+                _context.prev = 19;
+                _context.t0 = _context['catch'](7);
                 _didIteratorError = true;
                 _iteratorError = _context.t0;
 
-              case 11:
-                _context.prev = 11;
-                _context.prev = 12;
+              case 23:
+                _context.prev = 23;
+                _context.prev = 24;
 
                 if (!_iteratorNormalCompletion && _iterator.return) {
                   _iterator.return();
                 }
 
-              case 14:
-                _context.prev = 14;
+              case 26:
+                _context.prev = 26;
 
                 if (!_didIteratorError) {
-                  _context.next = 17;
+                  _context.next = 29;
                   break;
                 }
 
                 throw _iteratorError;
 
-              case 17:
-                return _context.finish(14);
+              case 29:
+                return _context.finish(26);
 
-              case 18:
-                return _context.finish(11);
+              case 30:
+                return _context.finish(23);
 
-              case 19:
-                _context.next = 21;
+              case 31:
+                _context.next = 33;
                 return this.callApi('post', 'insert-all-services', this.formdata);
 
-              case 21:
+              case 33:
                 res1 = _context.sent;
 
                 if (!(res1.status === 201)) {
-                  _context.next = 27;
+                  _context.next = 39;
                   break;
                 }
 
@@ -55076,81 +55101,81 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 this.$router.push({ name: 'jobImage', params: { id: res1.data.id } });
                 //  console.log(res1)
 
-                _context.next = 54;
+                _context.next = 66;
                 break;
 
-              case 27:
+              case 39:
                 if (!(res1.status === 402)) {
-                  _context.next = 31;
+                  _context.next = 43;
                   break;
                 }
 
                 this.e("You are not Authenticated User!!!");
-                _context.next = 54;
+                _context.next = 66;
                 break;
 
-              case 31:
+              case 43:
                 if (!(res1.status === 406)) {
-                  _context.next = 53;
+                  _context.next = 65;
                   break;
                 }
 
                 _iteratorNormalCompletion2 = true;
                 _didIteratorError2 = false;
                 _iteratorError2 = undefined;
-                _context.prev = 35;
+                _context.prev = 47;
 
                 for (_iterator2 = res1.data.dayError[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
                   e = _step2.value;
 
                   this.e(e);
                 }
-                _context.next = 43;
+                _context.next = 55;
                 break;
 
-              case 39:
-                _context.prev = 39;
-                _context.t1 = _context['catch'](35);
+              case 51:
+                _context.prev = 51;
+                _context.t1 = _context['catch'](47);
                 _didIteratorError2 = true;
                 _iteratorError2 = _context.t1;
 
-              case 43:
-                _context.prev = 43;
-                _context.prev = 44;
+              case 55:
+                _context.prev = 55;
+                _context.prev = 56;
 
                 if (!_iteratorNormalCompletion2 && _iterator2.return) {
                   _iterator2.return();
                 }
 
-              case 46:
-                _context.prev = 46;
+              case 58:
+                _context.prev = 58;
 
                 if (!_didIteratorError2) {
-                  _context.next = 49;
+                  _context.next = 61;
                   break;
                 }
 
                 throw _iteratorError2;
 
-              case 49:
-                return _context.finish(46);
+              case 61:
+                return _context.finish(58);
 
-              case 50:
-                return _context.finish(43);
+              case 62:
+                return _context.finish(55);
 
-              case 51:
-                _context.next = 54;
+              case 63:
+                _context.next = 66;
                 break;
 
-              case 53:
+              case 65:
                 this.swr();
 
-              case 54:
+              case 66:
               case 'end':
                 return _context.stop();
             }
           }
-        }, _callee, this, [[3, 7, 11, 19], [12,, 14, 18], [35, 39, 43, 51], [44,, 46, 50]]);
+        }, _callee, this, [[7, 19, 23, 31], [24,, 26, 30], [47, 51, 55, 63], [56,, 58, 62]]);
       }));
 
       function join() {
@@ -55235,46 +55260,37 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "_1steps_from" }, [
                 _c("form", [
-                  _c("div", { staticClass: "_login_input_group" }, [
-                    _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-user-md" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.formdata.title,
-                              expression: "formdata.title"
-                            }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: { placeholder: "Job title", type: "text" },
-                          domProps: { value: _vm.formdata.title },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.formdata,
-                                "title",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "_login_input_group" }, [
+                  _c("div", {}, [
                     _c("div", { staticClass: "row" }, [
                       _c("div", { staticClass: "col-12 col-md-6" }, [
+                        _c("div", { staticClass: "_login_input_group" }, [
+                          _c("div", { staticClass: "_login_input" }, [
+                            _c(
+                              "div",
+                              { staticClass: "_login_input_inp" },
+                              [
+                                _c("Input", {
+                                  attrs: {
+                                    placeholder: "Job title",
+                                    type: "text"
+                                  },
+                                  model: {
+                                    value: _vm.formdata.title,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.formdata, "title", $$v)
+                                    },
+                                    expression: "formdata.title"
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-12 col-md-6" }, [
                         _c("div", { staticClass: "_login_input" }, [
-                          _c("i", { staticClass: "fas fa-check-square" }),
-                          _vm._v(" "),
                           _c(
                             "div",
                             { staticClass: "_login_input_inp" },
@@ -55282,7 +55298,6 @@ var render = function() {
                               _c(
                                 "Select",
                                 {
-                                  staticStyle: { width: "200px" },
                                   model: {
                                     value: _vm.formdata.cat_id,
                                     callback: function($$v) {
@@ -55321,32 +55336,31 @@ var render = function() {
                           ) {
                             return _c(
                               "div",
-                              { key: index, staticClass: "row" },
+                              {
+                                key: index,
+                                staticClass: "row align-items-center"
+                              },
                               [
                                 _c(
                                   "div",
-                                  { staticClass: "col-1 col-md-1" },
+                                  { staticClass: "col-3 col-md-3" },
                                   [
-                                    _c("Checkbox", {
-                                      model: {
-                                        value: item.isOn,
-                                        callback: function($$v) {
-                                          _vm.$set(item, "isOn", $$v)
-                                        },
-                                        expression: "item.isOn"
-                                      }
-                                    })
+                                    _c(
+                                      "Checkbox",
+                                      {
+                                        model: {
+                                          value: item.isOn,
+                                          callback: function($$v) {
+                                            _vm.$set(item, "isOn", $$v)
+                                          },
+                                          expression: "item.isOn"
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(item.day))]
+                                    )
                                   ],
                                   1
                                 ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "col-3 col-md-3" }, [
-                                  _c(
-                                    "p",
-                                    { staticClass: "_1steps_input_title" },
-                                    [_vm._v(_vm._s(item.day))]
-                                  )
-                                ]),
                                 _vm._v(" "),
                                 _c(
                                   "div",
@@ -55394,36 +55408,27 @@ var render = function() {
                                   1
                                 ),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "col-2 col-md-2" }, [
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
+                                _c(
+                                  "div",
+                                  { staticClass: "col-3 col-md-3" },
+                                  [
+                                    _c("Input", {
+                                      staticClass: "_login_input_inp_field",
+                                      attrs: {
+                                        placeholder: "Duration",
+                                        type: "number"
+                                      },
+                                      model: {
                                         value: item.duration,
+                                        callback: function($$v) {
+                                          _vm.$set(item, "duration", $$v)
+                                        },
                                         expression: "item.duration"
                                       }
-                                    ],
-                                    staticClass: "_login_input_inp_field",
-                                    attrs: {
-                                      placeholder: "Duration",
-                                      type: "number"
-                                    },
-                                    domProps: { value: item.duration },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          item,
-                                          "duration",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  })
-                                ])
+                                    })
+                                  ],
+                                  1
+                                )
                               ]
                             )
                           })
@@ -55439,138 +55444,105 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "_login_input" }, [
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "div",
+                        { staticClass: "_login_input_inp" },
+                        [
+                          _c("Input", {
+                            attrs: {
+                              type: "textarea",
+                              autosize: { minRows: 4, maxRows: 5 },
+                              placeholder: "DESCRIPTION"
+                            },
+                            model: {
                               value: _vm.formdata.description,
+                              callback: function($$v) {
+                                _vm.$set(_vm.formdata, "description", $$v)
+                              },
                               expression: "formdata.description"
                             }
-                          ],
-                          staticClass: "_1steps_textarea",
-                          attrs: { rows: "4", cols: "50" },
-                          domProps: { value: _vm.formdata.description },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.formdata,
-                                "description",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-12 col-md-6" }, [
+                      _c("div", { staticClass: "_login_input_group" }, [
+                        _c("div", { staticClass: "_login_input" }, [
+                          _c(
+                            "div",
+                            { staticClass: "_login_input_inp" },
+                            [
+                              _c("Input", {
+                                attrs: {
+                                  placeholder: "Video link",
+                                  type: "text"
+                                },
+                                model: {
+                                  value: _vm.formdata.videoLink,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.formdata, "videoLink", $$v)
+                                  },
+                                  expression: "formdata.videoLink"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 col-md-6" }, [
+                      _c("div", { staticClass: "_login_input_group" }, [
+                        _c("div", { staticClass: "_login_input" }, [
+                          _c(
+                            "div",
+                            { staticClass: "_login_input_inp" },
+                            [
+                              _c("Input", {
+                                attrs: { placeholder: "Price", type: "number" },
+                                model: {
+                                  value: _vm.formdata.price,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.formdata, "price", $$v)
+                                  },
+                                  expression: "formdata.price"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ])
                       ])
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "_login_input_group" }, [
                     _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-user-md" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.formdata.videoLink,
-                              expression: "formdata.videoLink"
-                            }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: { placeholder: "Job title", type: "text" },
-                          domProps: { value: _vm.formdata.videoLink },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.formdata,
-                                "videoLink",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "_login_input_group" }, [
-                    _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-envelope" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "div",
+                        { staticClass: "_login_input_inp" },
+                        [
+                          _c("Input", {
+                            attrs: {
+                              placeholder: "Opening Massage",
+                              type: "text"
+                            },
+                            model: {
                               value: _vm.formdata.openingMassage,
+                              callback: function($$v) {
+                                _vm.$set(_vm.formdata, "openingMassage", $$v)
+                              },
                               expression: "formdata.openingMassage"
                             }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: {
-                            placeholder: "Opening Massage",
-                            type: "text"
-                          },
-                          domProps: { value: _vm.formdata.openingMassage },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.formdata,
-                                "openingMassage",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "_login_input_group" }, [
-                    _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-dollar-sign" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.formdata.price,
-                              expression: "formdata.price"
-                            }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: { placeholder: "Price", type: "text" },
-                          domProps: { value: _vm.formdata.price },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.formdata,
-                                "price",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -55583,7 +55555,7 @@ var render = function() {
                           attrs: { type: "button" },
                           on: { click: _vm.join }
                         },
-                        [_vm._v("Join Now ")]
+                        [_vm._v("Join Now 2")]
                       )
                     ])
                   ])
@@ -55610,13 +55582,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-1 col-md-1" }, [
-        _c("i", { staticClass: "far fa-clock" })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-10 col-md-10" }, [
+      _c("div", { staticClass: "col-12 col-md-12 _dis_flex" }, [
         _c("p", { staticClass: "_1steps_input_title" }, [
-          _vm._v("Servicing Time  ")
+          _vm._v("Service days")
         ])
       ])
     ])
@@ -56776,26 +56744,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56806,7 +56754,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 			ok: '',
 			id: '',
 			defaultImage: 'uploads/_85730600_monkey2.jpg',
-			allServices: []
+			allServices: [],
+			products: []
 
 		};
 	},
@@ -56893,7 +56842,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 								res = _context3.sent;
 
 								if (res.status === 200) {
-									this.allServices = res.data;
+									this.products = res.data;
+									console.log(this.products);
 								} else {
 									swr();
 								}
@@ -56967,7 +56917,9 @@ var render = function() {
             ? _c("h2", { staticClass: "_banner_title" }, [
                 _vm._v("Earn money with us")
               ])
-            : _vm._e(),
+            : _c("h2", { staticClass: "_banner_title" }, [
+                _vm._v("EXPLORE THE AWESOME SERVIES")
+              ]),
           _vm._v(" "),
           _vm.authInfo.userType == 1
             ? _c(
@@ -56978,8 +56930,8 @@ var render = function() {
                     "router-link",
                     { attrs: { to: { name: "jobDescription" } } },
                     [
-                      _c("p", { staticClass: "_banner_post_title" }, [
-                        _vm._v("Post a Job")
+                      _c("p", { staticClass: "_banner_post_title uper" }, [
+                        _vm._v("Post a service")
                       ]),
                       _vm._v(" "),
                       _c("p", { staticClass: "_banner_cirlce_plus" }, [
@@ -57001,9 +56953,7 @@ var render = function() {
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "_title_header _b_color2" }, [
           _c("h3", { staticClass: "_title" }, [
-            _vm._v(
-              _vm._s(_vm.allcatagoryBysearch.length) + " SERVICES AVAILABLE"
-            )
+            _vm._v(_vm._s(_vm.products.length) + " SERVICES AVAILABLE")
           ]),
           _vm._v(" "),
           _vm._m(1)
@@ -57020,20 +56970,32 @@ var render = function() {
                     "ul",
                     { staticClass: "_Categories_menu_ul" },
                     [
-                      _c("li", [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t\t\t\tAll\n\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t"
-                        )
-                      ]),
+                      _c(
+                        "li",
+                        {
+                          staticClass: "uper",
+                          on: {
+                            click: function($event) {
+                              _vm.$router.push("/marketplace")
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t\t\tAll\n\t\t\t\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      ),
                       _vm._v(" "),
                       _vm._l(_vm.allcatagory, function(item, i) {
                         return _c(
                           "li",
                           {
                             key: i,
+                            staticClass: "uper",
                             on: {
                               click: function($event) {
-                                _vm.filterbySelect(item.catName)
+                                _vm.$router.push("/marketplace?cat=" + item.id)
                               }
                             }
                           },
@@ -57051,51 +57013,156 @@ var render = function() {
               _c("div", { staticClass: "Marketplace_search_result_prduct" }, [
                 _c(
                   "div",
-                  { staticClass: "row" },
-                  _vm._l(_vm.allcatagoryBysearch, function(item, i) {
+                  { staticClass: "job_row row" },
+                  _vm._l(_vm.products, function(service, i) {
                     return _c(
                       "div",
-                      { key: i, staticClass: "col-6 col-md-4 job_all" },
+                      {
+                        key: i,
+                        staticClass: "col-12 col-md-4 col-lg-4 job_all"
+                      },
                       [
                         _c("div", { staticClass: "_1job_card" }, [
-                          _vm._m(3, true),
+                          _c("div", { staticClass: "_1job_card_rating" }, [
+                            service.avgreview
+                              ? _c(
+                                  "ul",
+                                  { staticClass: "_1job_card_rating_ul" },
+                                  [
+                                    _c(
+                                      "li",
+                                      {
+                                        class:
+                                          service.avgreview.averageRating >= 1
+                                            ? "_color"
+                                            : ""
+                                      },
+                                      [_c("i", { staticClass: "fas fa-star" })]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "li",
+                                      {
+                                        class:
+                                          service.avgreview.averageRating >= 2
+                                            ? "_color"
+                                            : ""
+                                      },
+                                      [_c("i", { staticClass: "fas fa-star" })]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "li",
+                                      {
+                                        class:
+                                          service.avgreview.averageRating >= 3
+                                            ? "_color"
+                                            : ""
+                                      },
+                                      [_c("i", { staticClass: "fas fa-star" })]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "li",
+                                      {
+                                        class:
+                                          service.avgreview.averageRating >= 4
+                                            ? "_color"
+                                            : ""
+                                      },
+                                      [_c("i", { staticClass: "fas fa-star" })]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "li",
+                                      {
+                                        class:
+                                          service.avgreview.averageRating >= 5
+                                            ? "_color"
+                                            : ""
+                                      },
+                                      [_c("i", { staticClass: "fas fa-star" })]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "li",
+                                      { staticClass: "_1job_card_rating_num" },
+                                      [
+                                        _vm._v(
+                                          "(" +
+                                            _vm._s(service.reviews_count) +
+                                            ")"
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            service.reviews_count == 0
+                              ? _c(
+                                  "ul",
+                                  { staticClass: "_1job_card_rating_ul" },
+                                  [
+                                    _vm._m(3, true),
+                                    _vm._v(" "),
+                                    _vm._m(4, true),
+                                    _vm._v(" "),
+                                    _vm._m(5, true),
+                                    _vm._v(" "),
+                                    _vm._m(6, true),
+                                    _vm._v(" "),
+                                    _vm._m(7, true),
+                                    _vm._v(" "),
+                                    _c(
+                                      "li",
+                                      { staticClass: "_1job_card_rating_num" },
+                                      [_vm._v("(0)")]
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ]),
                           _vm._v(" "),
-                          item.image.length > 0
-                            ? _c(
-                                "div",
-                                _vm._l(item.image.slice(1), function(img, j) {
-                                  return _c(
-                                    "div",
-                                    { key: j, staticClass: "_1job_card_img" },
-                                    [
-                                      _c("img", {
-                                        staticClass: "_1job_card_img_pic",
-                                        attrs: {
-                                          src: img.imageName,
-                                          alt: "",
-                                          title: ""
-                                        }
-                                      })
-                                    ]
-                                  )
-                                })
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          !item.image.length
-                            ? _c("div", [
-                                _c("div", { staticClass: "_1job_card_img" }, [
+                          _c(
+                            "div",
+                            { staticClass: "_1job_card_img" },
+                            [
+                              _c("img", {
+                                attrs: {
+                                  src: "",
+                                  alt: "",
+                                  sizes: "",
+                                  srcset: ""
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "router-link",
+                                {
+                                  attrs: {
+                                    to: {
+                                      name: "details",
+                                      params: { id: service.id }
+                                    }
+                                  }
+                                },
+                                [
                                   _c("img", {
                                     staticClass: "_1job_card_img_pic",
                                     attrs: {
-                                      src: _vm.defaultImage,
+                                      src: service.image[0]
+                                        ? service.image[0].imageUrl
+                                        : _vm.defaultImg,
                                       alt: "",
                                       title: ""
                                     }
                                   })
-                                ])
-                              ])
-                            : _vm._e(),
+                                ]
+                              )
+                            ],
+                            1
+                          ),
                           _vm._v(" "),
                           _c("div", { staticClass: "_1job_card_status" }, [
                             _c(
@@ -57104,7 +57171,7 @@ var render = function() {
                                 staticClass:
                                   "_1job_card_status_text _text_overflow2"
                               },
-                              [_vm._v(_vm._s(item.description))]
+                              [_vm._v(_vm._s(service.title))]
                             )
                           ]),
                           _vm._v(" "),
@@ -57115,7 +57182,7 @@ var render = function() {
                                 { staticClass: "_1job_card_by_span" },
                                 [_vm._v("by")]
                               ),
-                              _vm._v(" " + _vm._s(item.users.userName))
+                              _vm._v("   " + _vm._s(service.user.userName))
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "_1job_card_dollar" }, [
@@ -57124,7 +57191,7 @@ var render = function() {
                                 {
                                   staticClass: "_1job_card_dollar_text _color"
                                 },
-                                [_vm._v(_vm._s(item.price))]
+                                [_vm._v(_vm._s(service.price))]
                               ),
                               _vm._v(" "),
                               _c(
@@ -57140,9 +57207,7 @@ var render = function() {
                       ]
                     )
                   })
-                ),
-                _vm._v(" "),
-                _vm._m(4)
+                )
               ])
             ])
           ])
@@ -57168,30 +57233,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "Marketplace_filter _dis_flex" }, [
-      _c("div", { staticClass: "_flex_space" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "Marketplace_filter_main _dis_flex" }, [
-        _c("input", {
-          staticClass: "_filter_btn filter_drop _b_color2",
-          attrs: { type: "text" }
-        }),
-        _vm._v("Filter"),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "_filter_btn filter_bg _b_color2",
-            attrs: { type: "button" }
-          },
-          [_c("i", { staticClass: "fas fa-align-justify" })]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "_filter_btn _b_color2", attrs: { type: "button" } },
-          [_c("i", { staticClass: "fas fa-align-justify" })]
-        )
-      ])
+      _c("div", { staticClass: "_flex_space" })
     ])
   },
   function() {
@@ -57206,51 +57248,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_1job_card_rating" }, [
-      _c("ul", { staticClass: "_1job_card_rating_ul" }, [
-        _c("li", { staticClass: "_color" }, [
-          _c("i", { staticClass: "fas fa-star" })
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_color" }, [
-          _c("i", { staticClass: "fas fa-star" })
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_color" }, [
-          _c("i", { staticClass: "fas fa-star" })
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [_c("i", { staticClass: "fas fa-star" })]),
-        _vm._v(" "),
-        _c("li", {}, [_c("i", { staticClass: "fas fa-star" })]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_1job_card_rating_num" }, [_vm._v("(2k+)")])
-      ])
-    ])
+    return _c("li", [_c("i", { staticClass: "fas fa-star" })])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_pagination" }, [
-      _c("ul", { staticClass: "_pagination_ul" }, [
-        _c("li", [_vm._v("«")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("1")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("2")]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_pagination_actiove" }, [_vm._v("3")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("4")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("5")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("6")]),
-        _vm._v(" "),
-        _c("li", [_vm._v("»")])
-      ])
-    ])
+    return _c("li", [_c("i", { staticClass: "fas fa-star" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("i", { staticClass: "fas fa-star" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", {}, [_c("i", { staticClass: "fas fa-star" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", {}, [_c("i", { staticClass: "fas fa-star" })])
   }
 ]
 render._withStripped = true
@@ -59521,10 +59543,7 @@ var render = function() {
                           "router-link",
                           {
                             attrs: {
-                              to: {
-                                name: "editJobExtraService",
-                                params: { id: _vm.service_id }
-                              }
+                              to: "/admin/editJobImage/" + _vm.service_id
                             }
                           },
                           [_vm._v("Next")]
@@ -60810,7 +60829,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61068,7 +61087,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     data: function data() {
         return {
-            sellerTab: 3,
+            sellerTab: 1,
             user_id: this.$route.params.id,
             userInfo: [],
             edituserInfo: [],
@@ -61158,6 +61177,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     created: function created() {
+        if (this.$route.query.tab > 0 && this.$route.query.tab < 6) {
+            this.sellerTab = this.$route.query.tab;
+            window.history.pushState(this.sellerTab, 'Title', '/sprofile/' + this.$route.params.id);
+        }
+
         this.getProfileInfo();
     }
 });
@@ -61248,7 +61272,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61317,7 +61341,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     data: function data() {
         return {
             list: [],
-            toDayDate: ''
+            toDayDate: '',
+            noti: {
+                notifor: '',
+                notifrom: '',
+                notitxt: '',
+                url: ''
+            }
         };
     },
 
@@ -61372,8 +61402,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.getNewList(this.toDayDate);
         },
         updateStatus: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(status, index) {
-                var res;
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(status, index, buyer_id, seller_id) {
+                var res, res2;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
@@ -61384,14 +61414,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 res = _context2.sent;
 
-                                if (res.status == 200) {
-                                    this.i("This booking has been cancled!");
-                                    this.list[index].status = 3;
-                                } else {
-                                    this.e();
+                                if (!(res.status == 200)) {
+                                    _context2.next = 15;
+                                    break;
                                 }
 
-                            case 4:
+                                this.noti.notitxt = 'seller cancled your service';
+                                this.noti.notifor = buyer_id;
+                                this.noti.notifrom = seller_id;
+                                this.noti.url = 'bprofile/' + buyer_id + '?' + 'tab=4';
+                                _context2.next = 10;
+                                return this.callApi('post', 'notifications', this.noti);
+
+                            case 10:
+                                res2 = _context2.sent;
+
+                                this.i("This booking has been cancled!");
+                                this.list[index].status = 3;
+
+                                _context2.next = 16;
+                                break;
+
+                            case 15:
+                                this.e();
+
+                            case 16:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -61399,7 +61446,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee2, this);
             }));
 
-            function updateStatus(_x2, _x3) {
+            function updateStatus(_x2, _x3, _x4, _x5) {
                 return _ref2.apply(this, arguments);
             }
 
@@ -61573,7 +61620,12 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      _vm.updateStatus(3, index)
+                                      _vm.updateStatus(
+                                        3,
+                                        index,
+                                        item.buyer_id,
+                                        item.seller_id
+                                      )
                                     }
                                   }
                                 },
@@ -62515,7 +62567,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62581,7 +62633,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            list: []
+            list: [],
+            noti: {
+                notifor: '',
+                notifrom: '',
+                notitxt: '',
+                url: ''
+            }
         };
     },
 
@@ -62620,8 +62678,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             return getNewList;
         }(),
         updateStatus: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(status, index) {
-                var res;
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(status, index, buyer_id, seller_id) {
+                var res, res2, _res;
+
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
@@ -62632,19 +62691,59 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 res = _context2.sent;
 
-                                if (res.status == 200) {
-                                    if (status == 1) {
-                                        this.s("This booking has been approved!");
-                                        this.list[index].status = 1;
-                                    } else if (status == 3) {
-                                        this.i("This booking has been cancled!");
-                                        this.list[index].status = 3;
-                                    }
-                                } else {
-                                    this.e();
+                                if (!(res.status == 200)) {
+                                    _context2.next = 28;
+                                    break;
                                 }
 
-                            case 4:
+                                if (!(status == 1)) {
+                                    _context2.next = 16;
+                                    break;
+                                }
+
+                                this.noti.notitxt = 'user comlited your service';
+                                this.noti.notifor = seller_id;
+                                this.noti.notifrom = buyer_id;
+                                this.noti.url = 'sprofile/' + seller_id + '?' + 'tab=2';
+                                // console.log(this.noti)
+                                _context2.next = 11;
+                                return this.callApi('post', 'notifications', this.noti);
+
+                            case 11:
+                                res2 = _context2.sent;
+
+                                if (res2.status == 200) this.s("This booking has been approved!");
+                                this.list[index].status = 1;
+                                _context2.next = 26;
+                                break;
+
+                            case 16:
+                                if (!(status == 3)) {
+                                    _context2.next = 26;
+                                    break;
+                                }
+
+                                this.noti.notitxt = 'seller cancled your service';
+                                this.noti.notifor = seller_id;
+                                this.noti.notifrom = buyer_id;
+                                this.noti.url = 'sprofile/' + seller_id + '?' + 'tab=4';
+                                _context2.next = 23;
+                                return this.callApi('post', 'notifications', this.noti);
+
+                            case 23:
+                                _res = _context2.sent;
+
+                                this.i("This booking has been cancled!");
+                                this.list[index].status = 3;
+
+                            case 26:
+                                _context2.next = 29;
+                                break;
+
+                            case 28:
+                                this.e();
+
+                            case 29:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -62652,7 +62751,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee2, this);
             }));
 
-            function updateStatus(_x, _x2) {
+            function updateStatus(_x, _x2, _x3, _x4) {
                 return _ref2.apply(this, arguments);
             }
 
@@ -62660,6 +62759,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }()
     },
     created: function created() {
+
         this.getNewList();
     }
 });
@@ -62793,7 +62893,12 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      _vm.updateStatus(1, index)
+                                      _vm.updateStatus(
+                                        1,
+                                        index,
+                                        item.buyer_id,
+                                        item.seller_id
+                                      )
                                     }
                                   }
                                 },
@@ -62807,7 +62912,12 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      _vm.updateStatus(3, index)
+                                      _vm.updateStatus(
+                                        3,
+                                        index,
+                                        item.buyer_id,
+                                        item.seller_id
+                                      )
                                     }
                                   }
                                 },
@@ -64178,7 +64288,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64422,7 +64532,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     data: function data() {
         return {
-            sellerTab: 3,
+            sellerTab: 1,
             user_id: this.$route.params.id,
             userInfo: [],
             edituserInfo: [],
@@ -64512,6 +64622,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     created: function created() {
+        if (this.$route.query.tab > 0 && this.$route.query.tab < 5) {
+            this.sellerTab = this.$route.query.tab;
+            window.history.pushState(this.sellerTab, 'Title', '/sprofile/' + this.$route.params.id);
+        }
         this.getProfileInfo();
     }
 });
@@ -64602,7 +64716,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64716,7 +64830,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 seller_id: '',
                 booking_id: ''
             },
-            modalData: {}
+            modalData: {},
+            noti: {
+                notifor: '',
+                notifrom: '',
+                notitxt: '',
+                url: ''
+            }
         };
     },
 
@@ -64826,8 +64946,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.getNewList(this.toDayDate);
         },
         updateStatus: function () {
-            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(status, index) {
-                var res;
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(status, index, buyer_id, seller_id) {
+                var res, res2, _res;
+
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
@@ -64838,20 +64959,67 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 res = _context3.sent;
 
-                                if (res.status == 200) {
-                                    if (status == 2) {
-                                        this.i("Serive has been marked completed!");
-                                        this.list[index].status = 2;
-                                        this.reviewModal = true;
-                                        this.modalData = this.list[index];
-                                    }
-                                    this.i("This booking has been cancled!");
-                                    this.list[index].status = 3;
-                                } else {
-                                    this.e();
+                                if (!(res.status == 200)) {
+                                    _context3.next = 26;
+                                    break;
                                 }
 
-                            case 4:
+                                if (!(status == 2)) {
+                                    _context3.next = 15;
+                                    break;
+                                }
+
+                                this.noti.notitxt = 'buyer started your service';
+                                this.noti.notifor = seller_id;
+                                this.noti.notifrom = buyer_id;
+                                this.noti.url = 'sprofile/' + seller_id + '?' + 'tab=3';
+                                _context3.next = 11;
+                                return this.callApi('post', 'notifications', this.noti);
+
+                            case 11:
+                                res2 = _context3.sent;
+
+                                if (res2.status === 200) {
+                                    this.i("Serive has been marked completed!");
+                                    this.list[index].status = 2;
+                                    this.reviewModal = true;
+                                    this.modalData = this.list[index];
+                                } else {
+                                    this.swr();
+                                }
+
+                                _context3.next = 24;
+                                break;
+
+                            case 15:
+                                if (!(status == 3)) {
+                                    _context3.next = 24;
+                                    break;
+                                }
+
+                                this.noti.notitxt = 'buyer cancled your service';
+                                this.noti.notifor = seller_id;
+                                this.noti.notifrom = buyer_id;
+                                this.noti.url = 'sprofile/' + seller_id + '?' + 'tab=5';
+                                _context3.next = 22;
+                                return this.callApi('post', 'notifications', this.noti);
+
+                            case 22:
+                                _res = _context3.sent;
+
+                                if (_res.status == 200) {
+                                    this.i("This booking has been cancled!");
+                                    this.list[index].status = 3;
+                                }
+
+                            case 24:
+                                _context3.next = 27;
+                                break;
+
+                            case 26:
+                                this.e();
+
+                            case 27:
                             case 'end':
                                 return _context3.stop();
                         }
@@ -64859,7 +65027,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee3, this);
             }));
 
-            function updateStatus(_x2, _x3) {
+            function updateStatus(_x2, _x3, _x4, _x5) {
                 return _ref3.apply(this, arguments);
             }
 
@@ -65051,7 +65219,12 @@ var render = function() {
                                     attrs: { type: "button" },
                                     on: {
                                       click: function($event) {
-                                        _vm.updateStatus(2, index)
+                                        _vm.updateStatus(
+                                          2,
+                                          index,
+                                          item.buyer_id,
+                                          item.seller_id
+                                        )
                                       }
                                     }
                                   },
@@ -65065,7 +65238,12 @@ var render = function() {
                                     attrs: { type: "button" },
                                     on: {
                                       click: function($event) {
-                                        _vm.updateStatus(3, index)
+                                        _vm.updateStatus(
+                                          3,
+                                          index,
+                                          item.buyer_id,
+                                          item.seller_id
+                                        )
                                       }
                                     }
                                   },
@@ -65803,7 +65981,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65820,6 +65998,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -65963,7 +66147,7 @@ var render = function() {
     _vm.list.length
       ? _c(
           "div",
-          { staticClass: "_profile_card_all" },
+          { staticClass: "_profile_card_all tags_all" },
           _vm._l(_vm.list, function(item, index) {
             return _c("div", { key: index }, [
               item.status == 0
@@ -66037,16 +66221,36 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c(
-                                "p",
+                                "div",
                                 { staticClass: "_profile_card_name_text_link" },
                                 [
                                   _vm._v(
-                                    "Extra Service : " +
-                                      _vm._s(
-                                        item.extraService.length ? "No " : "Yes"
-                                      )
-                                  )
-                                ]
+                                    "Extra Service : \n                                 "
+                                  ),
+                                  _vm._v(" "),
+                                  _vm._l(item.extraService, function(ex, k) {
+                                    return _c(
+                                      "div",
+                                      { key: k, staticClass: "job_tags" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "job_tags_main" },
+                                          [
+                                            _vm._v(
+                                              "  " +
+                                                _vm._s(ex.serviceName) +
+                                                "($" +
+                                                _vm._s(ex.servicePrice) +
+                                                ") "
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  })
+                                ],
+                                2
                               )
                             ]
                           ),
@@ -67455,7 +67659,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Waiting-For-Approval")]
+                        [_vm._v("Awaiting approval")]
                       )
                     : _vm._e(),
                   _vm._v(" "),
@@ -67470,7 +67674,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Running-Bookings")]
+                        [_vm._v("Bookings")]
                       )
                     : _vm._e(),
                   _vm._v(" "),
@@ -67485,7 +67689,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Completed-Service")]
+                        [_vm._v("Completed")]
                       )
                     : _vm._e(),
                   _vm._v(" "),
@@ -67500,7 +67704,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Canceled-Bookings")]
+                        [_vm._v("Cancelled")]
                       )
                     : _vm._e()
                 ])
@@ -67677,7 +67881,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -67972,11 +68176,31 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            serviceDetails: {},
+            serviceDetails: false,
             order: {
                 totalPrice: 0,
                 extraPrice: 0,
@@ -68238,9 +68462,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 while (1) {
                     switch (_context4.prev = _context4.next) {
                         case 0:
+                            console.log(this.authInfo);
                             this.getServiceDetails();
 
-                        case 1:
+                        case 2:
                         case "end":
                             return _context4.stop();
                     }
@@ -68296,7 +68521,7 @@ var render = function() {
                                 attrs: {
                                   to: {
                                     name: "editJobDescription",
-                                    params: { id: _vm.item.id }
+                                    params: { id: _vm.serviceDetails.id }
                                   }
                                 }
                               },
@@ -68338,12 +68563,12 @@ var render = function() {
                   _vm._m(0)
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "Details_slider _b_color2 _padd_20" },
-                  [
-                    _vm.serviceDetails.image.length
-                      ? _c("img", {
+                _vm.serviceDetails.image.length
+                  ? _c(
+                      "div",
+                      { staticClass: "Details_slider _b_color2 _padd_20" },
+                      [
+                        _c("img", {
                           staticClass: "Details_slider_img",
                           attrs: {
                             src: _vm.serviceDetails.image[0].imageUrl,
@@ -68351,9 +68576,9 @@ var render = function() {
                             alt: ""
                           }
                         })
-                      : _vm._e()
-                  ]
-                ),
+                      ]
+                    )
+                  : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "Details_block _b_color2 _padd_20" }, [
                   _vm._m(1),
@@ -68393,7 +68618,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "Price (" + _vm._s(_vm.serviceDetails.price) + ")"
+                              "Price " + _vm._s(_vm.serviceDetails.price) + "$"
                             )
                           ]
                         )
@@ -68416,141 +68641,168 @@ var render = function() {
                       "div",
                       { staticClass: "_commnet_all" },
                       _vm._l(_vm.serviceDetails.reviews, function(item, index) {
-                        return _c(
-                          "div",
-                          {
-                            key: index,
-                            staticClass: "_commnet_main _b_color2 _dis_flex"
-                          },
-                          [
-                            _c("div", { staticClass: "_commnet_img" }, [
-                              _c("img", {
-                                staticClass: "_commnet_img_pic",
-                                attrs: {
-                                  src: item.user.image
-                                    ? item.user.image
-                                    : _vm.defultImage,
-                                  alt: "",
-                                  title: ""
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
+                        return _vm.serviceDetails.reviews.length
+                          ? _c(
                               "div",
                               {
-                                staticClass: "_commnet_status_name _flex_space"
+                                key: index,
+                                staticClass: "_commnet_main _b_color2 _dis_flex"
                               },
                               [
+                                _c("div", { staticClass: "_commnet_img" }, [
+                                  _c("img", {
+                                    staticClass: "_commnet_img_pic",
+                                    attrs: {
+                                      src: item.user.image
+                                        ? item.user.image
+                                        : _vm.defultImage,
+                                      alt: "",
+                                      title: ""
+                                    }
+                                  })
+                                ]),
+                                _vm._v(" "),
                                 _c(
                                   "div",
-                                  { staticClass: "_commnet_name _dis_flex" },
+                                  {
+                                    staticClass:
+                                      "_commnet_status_name _flex_space"
+                                  },
                                   [
                                     _c(
                                       "div",
                                       {
-                                        staticClass:
-                                          "_commnet_name_title _flex_space"
+                                        staticClass: "_commnet_name _dis_flex"
                                       },
                                       [
                                         _c(
-                                          "p",
-                                          { staticClass: "_commnet_pro_name" },
-                                          [_vm._v(_vm._s(item.user.name))]
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "_commnet_name_title _flex_space"
+                                          },
+                                          [
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass: "_commnet_pro_name"
+                                              },
+                                              [_vm._v(_vm._s(item.user.name))]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass: "_commnet_pro_date"
+                                              },
+                                              [_vm._v(_vm._s(item.created_at))]
+                                            )
+                                          ]
                                         ),
                                         _vm._v(" "),
                                         _c(
-                                          "p",
-                                          { staticClass: "_commnet_pro_date" },
-                                          [_vm._v(_vm._s(item.created_at))]
+                                          "ul",
+                                          {
+                                            staticClass: "_1job_card_rating_ul"
+                                          },
+                                          [
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  item.rating >= 1
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  item.rating >= 2
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  item.rating >= 3
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  item.rating >= 4
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  item.rating >= 5
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            )
+                                          ]
                                         )
                                       ]
                                     ),
                                     _vm._v(" "),
                                     _c(
-                                      "ul",
-                                      { staticClass: "_1job_card_rating_ul" },
+                                      "div",
+                                      { staticClass: "_commnet_status" },
                                       [
                                         _c(
-                                          "li",
+                                          "p",
                                           {
-                                            class:
-                                              item.rating >= 1 ? "_color" : ""
+                                            staticClass: "_commnet_status_text"
                                           },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-star"
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "li",
-                                          {
-                                            class:
-                                              item.rating >= 2 ? "_color" : ""
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-star"
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "li",
-                                          {
-                                            class:
-                                              item.rating >= 3 ? "_color" : ""
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-star"
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "li",
-                                          {
-                                            class:
-                                              item.rating >= 4 ? "_color" : ""
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-star"
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "li",
-                                          {
-                                            class:
-                                              item.rating >= 5 ? "_color" : ""
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-star"
-                                            })
-                                          ]
+                                          [_vm._v(" " + _vm._s(item.comment))]
                                         )
                                       ]
                                     )
                                   ]
-                                ),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "_commnet_status" }, [
-                                  _c(
-                                    "p",
-                                    { staticClass: "_commnet_status_text" },
-                                    [_vm._v(" " + _vm._s(item.comment))]
-                                  )
-                                ])
+                                )
                               ]
                             )
-                          ]
-                        )
+                          : _vm._e()
                       })
                     )
                   : _vm._e()
@@ -68575,28 +68827,198 @@ var render = function() {
                           "Details_pro_rating _dis_flex align-items-center _padd_20"
                       },
                       [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "_1job_card_dollar" }, [
-                          _c(
-                            "p",
-                            { staticClass: "_1job_card_dollar_text _color" },
-                            [_vm._v("  " + _vm._s(_vm.serviceDetails.price))]
-                          ),
+                        _c("div", { staticClass: " _flex_space" }, [
+                          _vm.serviceDetails.avgreview
+                            ? _c(
+                                "ul",
+                                { staticClass: "_1job_card_rating_ul" },
+                                [
+                                  _c(
+                                    "li",
+                                    {
+                                      class:
+                                        _vm.serviceDetails.avgreview
+                                          .averageRating >= 1
+                                          ? "_color"
+                                          : ""
+                                    },
+                                    [_c("i", { staticClass: "fas fa-star" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      class:
+                                        _vm.serviceDetails.avgreview
+                                          .averageRating >= 2
+                                          ? "_color"
+                                          : ""
+                                    },
+                                    [_c("i", { staticClass: "fas fa-star" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      class:
+                                        _vm.serviceDetails.avgreview
+                                          .averageRating >= 3
+                                          ? "_color"
+                                          : ""
+                                    },
+                                    [_c("i", { staticClass: "fas fa-star" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      class:
+                                        _vm.serviceDetails.avgreview
+                                          .averageRating >= 4
+                                          ? "_color"
+                                          : ""
+                                    },
+                                    [_c("i", { staticClass: "fas fa-star" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    {
+                                      class:
+                                        _vm.serviceDetails.avgreview
+                                          .averageRating >= 5
+                                          ? "_color"
+                                          : ""
+                                    },
+                                    [_c("i", { staticClass: "fas fa-star" })]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    { staticClass: "_1job_card_rating_num" },
+                                    [
+                                      _vm._v(
+                                        "(" +
+                                          _vm._s(
+                                            _vm.serviceDetails.reviews_count
+                                          ) +
+                                          ")"
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
-                          _c(
-                            "p",
-                            { staticClass: "_1job_card_dollar_sine _color" },
-                            [_vm._v("$")]
-                          )
-                        ])
+                          _vm.serviceDetails.reviews_count == 0
+                            ? _c(
+                                "ul",
+                                { staticClass: "_1job_card_rating_ul" },
+                                [
+                                  _vm._m(2),
+                                  _vm._v(" "),
+                                  _vm._m(3),
+                                  _vm._v(" "),
+                                  _vm._m(4),
+                                  _vm._v(" "),
+                                  _vm._m(5),
+                                  _vm._v(" "),
+                                  _vm._m(6),
+                                  _vm._v(" "),
+                                  _c(
+                                    "li",
+                                    { staticClass: "_1job_card_rating_num" },
+                                    [_vm._v("(0)")]
+                                  )
+                                ]
+                              )
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "_1job_card_dollar  _text_right" },
+                          [
+                            _c(
+                              "p",
+                              { staticClass: "_1job_card_dollar_text _color" },
+                              [_vm._v("  " + _vm._s(_vm.serviceDetails.price))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              { staticClass: "_1job_card_dollar_sine _color" },
+                              [_vm._v("$")]
+                            )
+                          ]
+                        )
                       ]
                     ),
                     _vm._v(" "),
-                    _vm._m(3),
+                    _c("div", { staticClass: "_padd_20" }, [
+                      _c("div", { staticClass: "Details_pro_over _b_color2" }, [
+                        _c(
+                          "div",
+                          { staticClass: "Details_pro_renge _dis_flex " },
+                          [
+                            _c("i", { staticClass: "fas fa-star" }),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "Details_pro_renge_name _flex_space"
+                              },
+                              [_vm._v("Overrall rating")]
+                            ),
+                            _vm._v(" "),
+                            _vm.serviceDetails.avgreview
+                              ? _c(
+                                  "p",
+                                  { staticClass: "Details_pro_renge_num" },
+                                  [
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(
+                                          _vm.serviceDetails.avgreview
+                                            .averageRating
+                                        )
+                                    )
+                                  ]
+                                )
+                              : _c(
+                                  "p",
+                                  { staticClass: "Details_pro_renge_num" },
+                                  [_vm._v(" 0")]
+                                )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "Details_pro_renge _dis_flex" },
+                          [
+                            _c("i", { staticClass: "fas fa-reply" }),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                staticClass:
+                                  "Details_pro_renge_name _flex_space"
+                              },
+                              [_vm._v("Total Review")]
+                            ),
+                            _vm._v(" "),
+                            _c("p", { staticClass: "Details_pro_renge_num" }, [
+                              _vm._v(_vm._s(_vm.serviceDetails.reviews_count))
+                            ])
+                          ]
+                        )
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "Details_pro_extra _padd_20" }, [
-                      _vm._m(4),
+                      _vm._m(7),
                       _vm._v(" "),
                       _c(
                         "div",
@@ -68713,7 +69135,37 @@ var render = function() {
                                         ]
                                       ),
                                       _vm._v(" "),
-                                      _vm._m(5)
+                                      _vm._m(8)
+                                    ]
+                                  )
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.authInfo.id == _vm.serviceDetails.user_id
+                            ? _c(
+                                "div",
+                                { staticClass: "Details_pro_button _b_color2" },
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "_block_buttons_main _dis_flex"
+                                    },
+                                    [
+                                      _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "_bg _btn _block_buttons_btn",
+                                          attrs: { type: "button" },
+                                          on: { click: _vm.modalOn }
+                                        },
+                                        [_vm._v("see the time slote")]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._m(9)
                                     ]
                                   )
                                 ]
@@ -68738,7 +69190,7 @@ var render = function() {
                       attrs: { src: "img/Rectangle40.png", title: "", alt: "" }
                     }),
                     _vm._v(" "),
-                    _vm._m(6),
+                    _vm._m(10),
                     _vm._v(" "),
                     _c("div", { staticClass: "Details_profie_location" }, [
                       _c(
@@ -68818,7 +69270,7 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(7)
+                      _vm._m(11)
                     ])
                   ]
                 )
@@ -68831,7 +69283,7 @@ var render = function() {
       _c(
         "Modal",
         {
-          attrs: { title: "Select The Time", closable: false, width: "600" },
+          attrs: { title: "Select The Time", closable: false, width: "700" },
           model: {
             value: _vm.bookingTimeModal,
             callback: function($$v) {
@@ -68873,64 +69325,72 @@ var render = function() {
             _vm._v(" "),
             _vm.bookingTimeByDay.length
               ? _c("div", [
-                  _c("p", { staticClass: "list_title" }, [_vm._v("Time List")]),
+                  _c("p", { staticClass: "list_title" }, [
+                    _vm._v("SELECT FROM AVAILBLE TIME SLOTS")
+                  ]),
                   _vm._v(" "),
-                  _c(
-                    "table",
-                    { staticClass: "User_List_table" },
-                    [
-                      _c("tr", [
-                        _c("th", [_vm._v("No")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Time")]),
-                        _vm._v(" "),
-                        _c("th", [_vm._v("Status")])
-                      ]),
-                      _vm._v(" "),
+                  _c("div", { staticClass: "User_List_table" }, [
+                    _c(
+                      "div",
+                      { staticClass: "_flex_row" },
                       _vm._l(_vm.bookingTimeByDay, function(item, index) {
-                        return _c("tr", { key: index }, [
-                          _c("td", [_vm._v(_vm._s(index + 1))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.bookingTime))]),
-                          _vm._v(" "),
-                          !item.isBooked
-                            ? _c("td", [
-                                _c(
-                                  "button",
-                                  {
-                                    class:
-                                      _vm.bookingTimeFalg === index
-                                        ? "table_button_green"
-                                        : "table_button",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        _vm.assignDate(item.bookingTime, index)
+                        return _c(
+                          "div",
+                          { key: index, staticClass: "User_List_table_main" },
+                          [
+                            !item.isBooked
+                              ? _c("div", [
+                                  _c(
+                                    "button",
+                                    {
+                                      class:
+                                        _vm.bookingTimeFalg === index
+                                          ? "table_button_green"
+                                          : "table_button",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.assignDate(
+                                            item.bookingTime,
+                                            index
+                                          )
+                                        }
                                       }
-                                    }
-                                  },
-                                  [_vm._v("Click to Book")]
-                                )
-                              ])
-                            : _vm._e(),
-                          _vm._v(" "),
-                          item.isBooked
-                            ? _c("td", [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "table_button_red",
-                                    attrs: { type: "button" }
-                                  },
-                                  [_vm._v("Booked")]
-                                )
-                              ])
-                            : _vm._e()
-                        ])
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\r\n                                        " +
+                                          _vm._s(item.bookingTime) +
+                                          "\r\n                                    "
+                                      )
+                                    ]
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            item.isBooked
+                              ? _c("div", [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "table_button_red line",
+                                      attrs: { type: "button" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\r\n                                        " +
+                                          _vm._s(item.bookingTime) +
+                                          "\r\n                                    "
+                                      )
+                                    ]
+                                  )
+                                ])
+                              : _vm._e()
+                          ]
+                        )
                       })
-                    ],
-                    2
-                  )
+                    )
+                  ])
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -68946,28 +69406,51 @@ var render = function() {
               : _vm._e()
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { attrs: { slot: "footer" }, slot: "footer" },
-            [
-              _c(
-                "Button",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.bookingTimeModal = false
-                    }
-                  }
-                },
-                [_vm._v("close")]
-              ),
-              _vm._v(" "),
-              _c("Button", { on: { click: _vm.insertOrder } }, [
-                _vm._v("Order")
-              ])
-            ],
-            1
-          )
+          _vm.authInfo.userType != 1
+            ? _c(
+                "div",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "Button",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.bookingTimeModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c("Button", { on: { click: _vm.insertOrder } }, [
+                    _vm._v("Order")
+                  ])
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.authInfo.userType == 1
+            ? _c(
+                "div",
+                { attrs: { slot: "footer" }, slot: "footer" },
+                [
+                  _c(
+                    "Button",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.bookingTimeModal = false
+                        }
+                      }
+                    },
+                    [_vm._v("Close")]
+                  )
+                ],
+                1
+              )
+            : _vm._e()
         ]
       )
     ],
@@ -68995,65 +69478,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_flex_space" }, [
-      _c("ul", { staticClass: "_1job_card_rating_ul" }, [
-        _c("li", { staticClass: "_color" }, [
-          _c("i", { staticClass: "fas fa-star" })
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_color" }, [
-          _c("i", { staticClass: "fas fa-star" })
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_color" }, [
-          _c("i", { staticClass: "fas fa-star" })
-        ]),
-        _vm._v(" "),
-        _c("li", {}, [_c("i", { staticClass: "fas fa-star" })]),
-        _vm._v(" "),
-        _c("li", {}, [_c("i", { staticClass: "fas fa-star" })]),
-        _vm._v(" "),
-        _c("li", { staticClass: "_1job_card_rating_num" }, [_vm._v("(2k+)")])
-      ])
-    ])
+    return _c("li", [_c("i", { staticClass: "fas fa-star" })])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_padd_20" }, [
-      _c("div", { staticClass: "Details_pro_over _b_color2" }, [
-        _c("div", { staticClass: "Details_pro_renge _dis_flex " }, [
-          _c("i", { staticClass: "fas fa-star" }),
-          _vm._v(" "),
-          _c("p", { staticClass: "Details_pro_renge_name _flex_space" }, [
-            _vm._v("Overrall rating")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "Details_pro_renge_num" }, [_vm._v("3.2")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "Details_pro_renge _dis_flex" }, [
-          _c("i", { staticClass: "fas fa-reply" }),
-          _vm._v(" "),
-          _c("p", { staticClass: "Details_pro_renge_name _flex_space" }, [
-            _vm._v("Reviws")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "Details_pro_renge_num" }, [_vm._v("3.2")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "Details_pro_renge _dis_flex" }, [
-          _c("i", { staticClass: "fas fa-shopping-cart" }),
-          _vm._v(" "),
-          _c("p", { staticClass: "Details_pro_renge_name _flex_space" }, [
-            _vm._v("Sales")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "Details_pro_renge_num" }, [_vm._v("200")])
-        ])
-      ])
-    ])
+    return _c("li", [_c("i", { staticClass: "fas fa-star" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [_c("i", { staticClass: "fas fa-star" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", {}, [_c("i", { staticClass: "fas fa-star" })])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", {}, [_c("i", { staticClass: "fas fa-star" })])
   },
   function() {
     var _vm = this
@@ -69062,6 +69511,16 @@ var staticRenderFns = [
     return _c("div", { staticClass: "Details_pro_extra_title" }, [
       _c("h4", { staticClass: "_title3" }, [_vm._v("Extra")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "_btn2 _block_buttons_btn2", attrs: { type: "button" } },
+      [_c("i", { staticClass: "fas fa-heart" })]
+    )
   },
   function() {
     var _vm = this
@@ -69223,9 +69682,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -69234,30 +69690,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 email: '',
                 password: ''
             },
-            status: false
+            status: false,
+            load: false
         };
     },
 
     methods: {
         login: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee(e) {
                 var res;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 if (!(this.logdata.email === '' || this.logdata.password === '')) {
-                                    _context.next = 2;
+                                    _context.next = 3;
                                     break;
                                 }
 
+                                this.load = false;
                                 return _context.abrupt('return', this.e('All fields are required'));
 
-                            case 2:
-                                _context.next = 4;
+                            case 3:
+                                this.load = e;
+                                _context.next = 6;
                                 return this.callApi('post', 'login', this.logdata);
 
-                            case 4:
+                            case 6:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
@@ -69266,11 +69725,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     this.$router.push('/');
                                 } else {
                                     if (res.status === 401) {
+                                        this.load = false;
                                         this.e(res.data.msg);
                                     }
                                 }
 
-                            case 6:
+                            case 8:
                             case 'end':
                                 return _context.stop();
                         }
@@ -69278,7 +69738,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 }, _callee, this);
             }));
 
-            function login() {
+            function login(_x) {
                 return _ref.apply(this, arguments);
             }
 
@@ -69325,54 +69785,44 @@ var render = function() {
                   [
                     _c("div", { staticClass: "_login_input_group" }, [
                       _c("div", { staticClass: "_login_input" }, [
-                        _c("i", { staticClass: "fas fa-user" }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "_login_input_inp" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
+                        _c(
+                          "div",
+                          { staticClass: "_login_input_inp" },
+                          [
+                            _c("Input", {
+                              attrs: {
+                                placeholder: "Email",
+                                type: "email",
+                                required: ""
+                              },
+                              on: {
+                                keyup: function($event) {
+                                  if (
+                                    !("button" in $event) &&
+                                    _vm._k(
+                                      $event.keyCode,
+                                      "enter",
+                                      13,
+                                      $event.key,
+                                      "Enter"
+                                    )
+                                  ) {
+                                    return null
+                                  }
+                                  return _vm.check($event)
+                                }
+                              },
+                              model: {
                                 value: _vm.logdata.email,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.logdata, "email", $$v)
+                                },
                                 expression: "logdata.email"
                               }
-                            ],
-                            staticClass: "_login_input_inp_field",
-                            attrs: {
-                              placeholder: "Email",
-                              type: "email",
-                              required: ""
-                            },
-                            domProps: { value: _vm.logdata.email },
-                            on: {
-                              keyup: function($event) {
-                                if (
-                                  !("button" in $event) &&
-                                  _vm._k(
-                                    $event.keyCode,
-                                    "enter",
-                                    13,
-                                    $event.key,
-                                    "Enter"
-                                  )
-                                ) {
-                                  return null
-                                }
-                                return _vm.check($event)
-                              },
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.logdata,
-                                  "email",
-                                  $event.target.value
-                                )
-                              }
-                            }
-                          })
-                        ])
+                            })
+                          ],
+                          1
+                        )
                       ])
                     ]),
                     _vm._v(" "),
@@ -69398,51 +69848,63 @@ var render = function() {
                       ? _c("div", { staticClass: "this is for test " }, [
                           _c("div", { staticClass: "_login_input_group" }, [
                             _c("div", { staticClass: "_login_input" }, [
-                              _c("i", { staticClass: "fas fa-lock" }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "_login_input_inp" }, [
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
+                              _c(
+                                "div",
+                                { staticClass: "_login_input_inp" },
+                                [
+                                  _c("Input", {
+                                    attrs: {
+                                      placeholder: "Password",
+                                      type: "password"
+                                    },
+                                    model: {
                                       value: _vm.logdata.password,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.logdata, "password", $$v)
+                                      },
                                       expression: "logdata.password"
                                     }
-                                  ],
-                                  staticClass: "_login_input_inp_field",
-                                  attrs: {
-                                    placeholder: "Password",
-                                    type: "password"
-                                  },
-                                  domProps: { value: _vm.logdata.password },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.logdata,
-                                        "password",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                })
-                              ])
+                                  })
+                                ],
+                                1
+                              )
                             ])
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "_login_input_button" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "_btn _login_input_button_btn _bg",
-                                attrs: { type: "submit", name: "submit" },
-                                on: { click: _vm.login }
-                              },
-                              [_vm._v("SIGN IN")]
-                            )
+                            !_vm.load
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "_btn _login_input_button_btn _bg",
+                                    attrs: { type: "submit", name: "submit" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.login(true)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("SIGN IN")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.load
+                              ? _c(
+                                  "button",
+                                  {
+                                    staticClass:
+                                      "_btn _login_input_button_btn _bg",
+                                    attrs: { type: "submit" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.login(false)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("loading.....")]
+                                )
+                              : _vm._e()
                           ])
                         ])
                       : _vm._e(),
@@ -69641,17 +70103,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -69750,115 +70201,79 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "_login_input_group" }, [
                     _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-envelope" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "div",
+                        { staticClass: "_login_input_inp" },
+                        [
+                          _c("Input", {
+                            attrs: {
+                              placeholder: "Full Name",
+                              type: "text",
+                              required: ""
+                            },
+                            model: {
                               value: _vm.regesterData.name,
+                              callback: function($$v) {
+                                _vm.$set(_vm.regesterData, "name", $$v)
+                              },
                               expression: "regesterData.name"
                             }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: {
-                            placeholder: "Full Name",
-                            type: "text",
-                            required: ""
-                          },
-                          domProps: { value: _vm.regesterData.name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.regesterData,
-                                "name",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "_login_input_group" }, [
                     _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-envelope" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "div",
+                        { staticClass: "_login_input_inp" },
+                        [
+                          _c("Input", {
+                            attrs: {
+                              placeholder: "Email",
+                              ttype: "email",
+                              required: ""
+                            },
+                            model: {
                               value: _vm.regesterData.email,
+                              callback: function($$v) {
+                                _vm.$set(_vm.regesterData, "email", $$v)
+                              },
                               expression: "regesterData.email"
                             }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: {
-                            placeholder: "Email",
-                            type: "email",
-                            required: ""
-                          },
-                          domProps: { value: _vm.regesterData.email },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.regesterData,
-                                "email",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "_login_input_group" }, [
                     _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-user" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "div",
+                        { staticClass: "_login_input_inp" },
+                        [
+                          _c("Input", {
+                            attrs: {
+                              placeholder: "Username",
+                              type: "text",
+                              required: ""
+                            },
+                            model: {
                               value: _vm.regesterData.userName,
+                              callback: function($$v) {
+                                _vm.$set(_vm.regesterData, "userName", $$v)
+                              },
                               expression: "regesterData.userName"
                             }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: {
-                            placeholder: "Username",
-                            type: "text",
-                            required: ""
-                          },
-                          domProps: { value: _vm.regesterData.userName },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.regesterData,
-                                "userName",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -69867,12 +70282,9 @@ var render = function() {
                       "div",
                       { staticClass: "_login_input" },
                       [
-                        _c("i", { staticClass: "fas fa-lock" }),
-                        _vm._v(" "),
                         _c(
                           "Select",
                           {
-                            staticStyle: { width: "200px" },
                             attrs: { placeholder: "Join as a" },
                             model: {
                               value: _vm.regesterData.userType,
@@ -69887,7 +70299,7 @@ var render = function() {
                               _vm._v("Seller")
                             ]),
                             _vm._v(" "),
-                            _c("Option", { attrs: { value: "1" } }, [
+                            _c("Option", { attrs: { value: "2" } }, [
                               _vm._v("Buyer")
                             ])
                           ],
@@ -69900,73 +70312,53 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "_login_input_group" }, [
                     _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-lock" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "div",
+                        { staticClass: "_login_input_inp" },
+                        [
+                          _c("Input", {
+                            attrs: {
+                              placeholder: "Password",
+                              type: "password",
+                              required: ""
+                            },
+                            model: {
                               value: _vm.regesterData.password,
+                              callback: function($$v) {
+                                _vm.$set(_vm.regesterData, "password", $$v)
+                              },
                               expression: "regesterData.password"
                             }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: {
-                            placeholder: "Password",
-                            type: "password",
-                            required: ""
-                          },
-                          domProps: { value: _vm.regesterData.password },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.regesterData,
-                                "password",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "_login_input_group" }, [
                     _c("div", { staticClass: "_login_input" }, [
-                      _c("i", { staticClass: "fas fa-lock" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "_login_input_inp" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
+                      _c(
+                        "div",
+                        { staticClass: "_login_input_inp" },
+                        [
+                          _c("Input", {
+                            attrs: {
+                              placeholder: "Confirm your password",
+                              type: "password",
+                              required: ""
+                            },
+                            model: {
                               value: _vm.confirmPassword,
+                              callback: function($$v) {
+                                _vm.confirmPassword = $$v
+                              },
                               expression: "confirmPassword"
                             }
-                          ],
-                          staticClass: "_login_input_inp_field",
-                          attrs: {
-                            placeholder: "Confirm your password",
-                            type: "password",
-                            required: ""
-                          },
-                          domProps: { value: _vm.confirmPassword },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.confirmPassword = $event.target.value
-                            }
-                          }
-                        })
-                      ])
+                          })
+                        ],
+                        1
+                      )
                     ])
                   ]),
                   _vm._v(" "),
@@ -113737,13 +114129,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     modules: __WEBPACK_IMPORTED_MODULE_3__modules__["default"],
     state: {
-        authUser: 'false',
+        authUser: false,
         tabFlag: 1,
         searhData: 'this is search data',
-        TabInfo: 1,
-        User_id: '1',
-        Service_id: 1,
-        userType: ''
+        TabInfo: 1
+        // User_id:'1',
+        // Service_id:1,
+        // userType:''
+
 
     },
     //started getter
@@ -114117,18 +114510,132 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
 		return {
 			alljobs: [],
+			allnoti: [],
 			visible: false,
-			defultImage: "/img/prfile.png"
+			defultImage: "/img/prfile.png",
+			left: '0px',
+			leftMain: '-100%',
+			menuItems: [{ name: 'Home', url: '/', valid: 'all', id: false }, { name: 'Marketplace', url: '/marketplace', valid: 'all', id: false }, { name: 'Post service', url: '/jobDescription', valid: 1, id: false }, { name: 'Profile', url: '/sprofile', valid: 1, id: true }, { name: 'Profile', url: '/bprofile', valid: 2, id: true }, { name: 'Dashboard', url: '/system_admin', valid: 4, id: false }],
+			open: false
 		};
 	},
 	created: function () {
 		var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-			var res;
+			var res, res1;
 			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 				while (1) {
 					switch (_context.prev = _context.next) {
@@ -114141,11 +114648,24 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 							if (res.status === 200) {
 								this.alljobs = res.data;
+								console.log('i am running');
+							} else {
+								this.swr();
+							}
+							_context.next = 6;
+							return this.callApi('get', 'getAllNotifications/' + this.authInfo.id);
+
+						case 6:
+							res1 = _context.sent;
+
+							if (res1.status === 200) {
+								this.allnoti = res1.data;
+								console.log(this.allnoti);
 							} else {
 								this.swr();
 							}
 
-						case 4:
+						case 8:
 						case 'end':
 							return _context.stop();
 					}
@@ -114167,6 +114687,28 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 		handleClose: function handleClose(id) {
 			this.$store.dispatch('setUserType', id);
 			this.visible = false;
+		},
+		goNextPage: function goNextPage(item) {
+			this.leftMain = '-100%';
+			if (item.name === 'Dashboard') {
+				window.location = '/admin';
+			}
+			if (item.id) {
+				return this.$router.push(item.url + '/' + this.authInfo.id);
+			}
+			return this.$router.push(item.url);
+		},
+		notAuth: function notAuth(url) {
+			if (url == '/logout') {
+				window.location = '/logout';
+			}
+			this.leftMain = '-100%';
+			return this.$router.push(url);
+		},
+		openNoti: function openNoti() {
+			if (this.open == true) {
+				this.open = false;
+			} else this.open = true;
 		}
 	}
 });
@@ -114181,9 +114723,25 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "_1menu _1flex" }, [
-      _vm._m(0),
+      _c(
+        "div",
+        {
+          staticClass: "_1menu_logo",
+          on: {
+            click: function($event) {
+              _vm.$router.push("/")
+            }
+          }
+        },
+        [
+          _c("img", {
+            staticClass: "_1menu_logo_pic",
+            attrs: { src: "/img/logo.png", title: "", alt: "" }
+          })
+        ]
+      ),
       _vm._v(" "),
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "_1menu_sign _1flex_space" }, [
         !this.authInfo
@@ -114199,7 +114757,17 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(2),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: { path: "/marketplace" } } },
+                      [_vm._v("MARKETPLACE")]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c(
                   "li",
@@ -114239,7 +114807,31 @@ var render = function() {
                   1
                 ),
                 _vm._v(" "),
-                _vm._m(3),
+                _vm.authInfo.userType == 1
+                  ? _c(
+                      "li",
+                      [
+                        _c(
+                          "router-link",
+                          { attrs: { to: { path: "/jobDescription" } } },
+                          [_vm._v("POST SERVICE")]
+                        )
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: { path: "/marketplace" } } },
+                      [_vm._v("MARKETPLACE")]
+                    )
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _vm.authInfo.userType == 1
                   ? _c(
@@ -114284,18 +114876,124 @@ var render = function() {
                   : _vm._e(),
                 _vm._v(" "),
                 _vm.authInfo.userType == 4
-                  ? _c("li", [
+                  ? _c("li", { staticClass: "uper" }, [
                       _c("a", { attrs: { href: "/system_admin" } }, [
                         _vm._v(_vm._s(_vm.authInfo.name) + "(Dashboard)")
                       ])
                     ])
                   : _vm._e(),
                 _vm._v(" "),
-                _vm._m(4),
+                _vm._m(1),
                 _vm._v(" "),
-                _vm.authInfo ? _c("li", [_vm._m(5)]) : _vm._e(),
+                _vm.authInfo
+                  ? _c("li", [
+                      _c("div", { staticClass: "_2menu_mess" }, [
+                        _c("div", { on: { click: _vm.openNoti } }, [
+                          _c("i", { staticClass: "fas fa-bell" }),
+                          _vm._v(" "),
+                          _vm.allnoti.length
+                            ? _c(
+                                "div",
+                                { staticClass: "_2menu_mess_num _bg" },
+                                [_vm._v(_vm._s(_vm.allnoti.length))]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !_vm.allnoti.length
+                            ? _c(
+                                "div",
+                                { staticClass: "_2menu_mess_num _bg" },
+                                [_vm._v("0")]
+                              )
+                            : _vm._e()
+                        ]),
+                        _vm._v(" "),
+                        _vm.open
+                          ? _c("div", { staticClass: "not_list" }, [
+                              _c("div", { staticClass: "noti_all" }, [
+                                _c("p", { staticClass: "noti_title" }, [
+                                  _vm._v("Notifications")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "noti_main_content" },
+                                  [
+                                    _c(
+                                      "div",
+                                      { staticClass: "noti_main" },
+                                      _vm._l(_vm.allnoti, function(
+                                        item,
+                                        index
+                                      ) {
+                                        return _c(
+                                          "div",
+                                          {
+                                            key: index,
+                                            staticClass: "noti_status"
+                                          },
+                                          [
+                                            _c(
+                                              "a",
+                                              { attrs: { href: item.url } },
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "noti_status_text"
+                                                  },
+                                                  [
+                                                    _c("strong", [
+                                                      _vm._v(
+                                                        _vm._s(item.user.name)
+                                                      )
+                                                    ]),
+                                                    _vm._v(
+                                                      " " +
+                                                        _vm._s(item.notitxt) +
+                                                        " "
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "p",
+                                              {
+                                                staticClass: "noti_status_time"
+                                              },
+                                              [
+                                                _c("Icon", {
+                                                  attrs: {
+                                                    type: "md-chatboxes"
+                                                  }
+                                                }),
+                                                _vm._v(" 10mins")
+                                              ],
+                                              1
+                                            )
+                                          ]
+                                        )
+                                      })
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "noti_more" }, [
+                                  _vm._v(
+                                    "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSee More\n\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                                  )
+                                ])
+                              ])
+                            ])
+                          : _vm._e()
+                      ])
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
-                _vm.authInfo ? _c("li", [_vm._m(6)]) : _vm._e(),
+                _vm.authInfo ? _c("li", [_vm._m(2)]) : _vm._e(),
                 _vm._v(" "),
                 _vm.authInfo
                   ? _c("li", [
@@ -114320,7 +115018,190 @@ var render = function() {
               ])
             ])
           : _vm._e()
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "moile_button _flex_space",
+          on: {
+            click: function($event) {
+              _vm.leftMain = "0px"
+            }
+          }
+        },
+        [_c("i", { staticClass: "fas fa-list-ul" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "mobile_menu_content_all",
+          style: "left:" + _vm.leftMain
+        },
+        [
+          _c("div", { staticClass: "mobile_menu_content" }, [
+            _c(
+              "div",
+              { staticClass: "mobile_menu", style: "left:" + _vm.left },
+              [
+                _c("div", { staticClass: "mobile_menu_page" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "mobile_menu_frist_page_ul" },
+                    [
+                      _c(
+                        "li",
+                        {
+                          staticClass: "mobile_menu_frist_page_header",
+                          on: {
+                            click: function($event) {
+                              _vm.left = "-285px"
+                            }
+                          }
+                        },
+                        [_vm._m(3)]
+                      ),
+                      _vm._v(" "),
+                      _vm._l(_vm.menuItems, function(item, index) {
+                        return item.valid == _vm.authInfo.userType ||
+                          item.valid == "all"
+                          ? _c(
+                              "li",
+                              {
+                                key: index,
+                                on: {
+                                  click: function($event) {
+                                    _vm.goNextPage(item)
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(item.name))]
+                            )
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      !_vm.authInfo
+                        ? _c("li", [
+                            _c("div", { staticClass: "mobile_menu_button" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "mobile_menu_button_sign",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.notAuth("/register")
+                                    }
+                                  }
+                                },
+                                [_vm._v("Sign Up")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "mobile_menu_button_log",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.notAuth("/login")
+                                    }
+                                  }
+                                },
+                                [_vm._v("Log In")]
+                              )
+                            ])
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.authInfo
+                        ? _c("li", [
+                            _c("div", { staticClass: "mobile_menu_button" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "mobile_menu_button_sign",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.notAuth("/logout")
+                                    }
+                                  }
+                                },
+                                [_vm._v("LOGOUT")]
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "mobile_menu_page" }, [
+                  _c("div", { staticClass: "mobile_menu_second_page_ul" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "mobile_menu_frist_page_ul_name_arrow",
+                        on: {
+                          click: function($event) {
+                            _vm.left = "0px"
+                          }
+                        }
+                      },
+                      [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          { staticClass: "mobile_menu_frist_page_ul_name" },
+                          [_vm._v("Menu")]
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "mobile_menu_frist_page_ul" },
+                    _vm._l(_vm.alljobs, function(job, i) {
+                      return _c(
+                        "li",
+                        {
+                          key: i,
+                          on: {
+                            click: function($event) {
+                              _vm.notAuth("/marketplace?cat=" + job.id)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(job.catName))]
+                      )
+                    })
+                  )
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _vm.leftMain == "0px"
+            ? _c(
+                "div",
+                {
+                  staticClass: "bag_cencel",
+                  on: {
+                    click: function($event) {
+                      _vm.leftMain = "-100%"
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "fas fa-times" })]
+              )
+            : _vm._e()
+        ]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "_1big_menu" }, [
@@ -114328,24 +115209,24 @@ var render = function() {
         "ul",
         { staticClass: "_1big_menu_ul" },
         _vm._l(_vm.alljobs, function(job, i) {
-          return _c("li", { key: i }, [_vm._v(_vm._s(job.catName))])
+          return _c(
+            "li",
+            {
+              key: i,
+              on: {
+                click: function($event) {
+                  _vm.$router.push("/marketplace?cat=" + job.id)
+                }
+              }
+            },
+            [_vm._v(_vm._s(job.catName))]
+          )
         })
       )
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_1menu_logo" }, [
-      _c("img", {
-        staticClass: "_1menu_logo_pic",
-        attrs: { src: "img/logo.png", title: "", alt: "" }
-      })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -114366,33 +115247,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", [
-      _c("a", { attrs: { href: "", title: "" } }, [_vm._v("Job Brower")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "", title: "" } }, [_vm._v("JOB BROWSE")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
       _c("a", { attrs: { href: "/logout" } }, [_vm._v("LOGOUT")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "_2menu_mess " }, [
-      _c("i", { staticClass: "fas fa-bell" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "_2menu_mess_num _bg" }, [_vm._v("3")])
     ])
   },
   function() {
@@ -114403,6 +115258,26 @@ var staticRenderFns = [
       _c("i", { staticClass: "fas fa-envelope" }),
       _vm._v(" "),
       _c("div", { staticClass: "_2menu_mess_num _bg" }, [_vm._v("4")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mobile_menu_frist_page_ul_name_arrow" }, [
+      _c("p", { staticClass: "mobile_menu_frist_page_ul_name" }, [
+        _vm._v("Categories")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "mobile_menu_frist_page_ul_arrow" }, [_vm._v(">")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "mobile_menu_back" }, [
+      _c("i", { staticClass: "fas fa-chevron-left" })
     ])
   }
 ]
@@ -114586,7 +115461,7 @@ var render = function() {
       _c(
         "transition",
         { attrs: { name: "component-fade", mode: "out-in" } },
-        [_c("router-view")],
+        [_c("router-view", { key: _vm.$route.fullPath })],
         1
       ),
       _vm._v(" "),

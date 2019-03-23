@@ -420,3 +420,301 @@ textarea {
     border-radius: 3px;
 }
 /* new css */
+
+
+/*========= 12.Post Steps =======*/
+._job_step {
+    padding: 66px 0 20px;
+}
+._job_step_main{}
+._job_step_title {
+    text-align: center;
+}
+._1steps {
+    background: #d4dee7;
+    display: flex;
+    justify-content: space-between;
+    width: 290px;
+    margin: 0 auto;
+    border-radius: 31px;
+    height: 19px;
+}
+._1steps_all {
+    padding: 30px 0 0;
+}
+._1steps_one {}
+._1steps_no {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 19px;
+}
+._1steps_main {
+    width: 44px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+._1steps_one_done:before {
+    position: absolute;
+    content: '';
+    width: 144px;
+    background: #10a2ef;
+    height: 19px;
+    z-index: -1;
+    left: 0;
+    border-radius: 30px;
+}
+._1steps_two{}
+._1steps_three{}
+._1steps_on {
+    box-shadow: 0px 0px 43px rgba(117, 189, 234, 0.74);
+    background: #fff;
+    border-radius: 30px;
+    color: #10a2ef;
+}
+._1steps_one_done i {
+    color: #fff;
+    font-size: 11px;
+}
+._1steps_one_done {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+._1steps_one_done ._1steps_no {
+	display: none;
+}
+._1steps_from {
+    padding: 59px 0 20px;
+}
+._1steps_input_title {
+    color: #8b8b8b;
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+._1steps_textarea:focus{
+	border-bottom: 1px solid #10a2ef;
+}
+._1steps_textarea {
+    width: 100%;
+    border: 1px solid #d4d4d4;
+}
+._1steps_DISCARD_btn {
+    background: none;
+    border: none;
+    color: #8b8b8b;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    padding: 7px 34px;
+    border-radius: 31px;
+    margin-left: 10px;
+}
+._1steps_shadow {
+	box-shadow: 2px 5px 43px rgba(188, 207, 219, 0.65);
+}
+._1steps_img {
+    border-radius: 3px;
+    padding: 0px 0px;
+    margin: 39px 0 22px;
+}
+._1steps_img_pic {
+    border-radius: 3px;
+}
+._1steps_img_select {
+    border-top: 1px solid #d4d4d4;
+    margin: 16px 0 40px;
+    padding: 16px 0 0;
+}
+._1steps_img_select_pic {
+    display: flex;
+}
+._1steps_img_select_pic li:last-child{
+	margin-right: 0px;
+}
+._1steps_img_select_pic li {
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 15px;
+    position: relative;
+    height: 93px;
+    cursor: pointer;
+    width: 136px;
+}
+.job_tags {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    margin-right: 10px;
+    padding: 3px 11px;
+    border-radius: 3px;
+    margin-bottom: 11px;
+    cursor: pointer;
+}
+._tag_button{
+    margin-top: 30px;
+}
+._login_input_tags{
+    margin-bottom: 15px;
+}
+.all_job_tags {
+    padding: 32px 0px 0;
+}
+.job_tags_main{}
+.step_tags{}
+.step_tags_main{}
+._job_extra{}
+._job_extra ._1steps_all {
+    margin-bottom: 31px;
+}
+._1steps_img_select_pic li img {
+	min-width: 100%;
+	min-height: 100%;
+    border-radius: 3px;
+}
+._1steps_add  .ivu-upload-drag {
+    height: 93px;
+    padding-top: 6px;
+}
+._1steps_add {
+    text-align: center;
+}
+._1steps_add i {
+    color: #8b8b8b;
+    font-size: 34px;
+    margin-top: 23px;
+}
+._1steps_cencel {
+    position: absolute;
+    top: -9px;
+    left: -8px;
+    background: #fff;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    padding-right: 1px;
+}
+._1steps_cencel i {
+    color: #6b6868;
+    font-size: 12px;
+    transform: rotate(45deg);
+}
+._1steps_img_select_active {
+    border: 2px solid #10a2ef;
+}
+/*========= 12.Post Steps =======*/
+
+/*========= 9.Log in =======*/
+._login {
+    overflow: auto;
+    min-height: 100vh;
+    padding-bottom: 45px;
+}
+._login_main {
+    background: #fff;
+    box-shadow: 2px 5px 43px rgba(188, 207, 219, 0.65);
+    margin-top: 100px;
+    padding: 0;
+    border-radius: 3px;
+}
+._login_header {
+    border-radius: 3px 3px 0 0;
+    padding: 23px 0;
+}
+._login_header_title {
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+}
+._login_form {
+    padding: 51px 41px 36px;
+}
+._login_input_group {
+    margin-bottom: 37px;
+}
+/* ._login_input i {
+    font-size: 12px;
+    color: #838386;
+    margin-right: 21px;
+    margin-top: 3px;
+    width: 13px;
+} */
+._login_input {
+    display: flex;
+    align-items: center;
+}
+._login_input_inp {
+    flex: 1 1;
+}
+._login_input_inp_field:focus{
+	border-bottom: 1px solid #10a2ef;
+}
+._login_input_inp_field {
+    border: none;
+    border-bottom: 1px solid #d4d4d4;
+    transition: .3s all ease;
+    font-size: 13px;
+    padding: 2px 4px 4px 0;
+    width: 100%;
+    transition: .3s all ease;
+}
+._login_input_button {
+    text-align: center;
+}
+._login_input_button_btn {
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    padding: 7px 34px;
+    border-radius: 31px;
+}
+.forget:hover{
+	text-decoration: underline;
+}
+.forget {
+    font-size: 13px;
+    cursor: pointer;
+    color: #10a2ef;
+    margin-top: 8px;
+    text-align: right;
+    display: inline-block;
+}
+._other_signin {
+    margin-top: 26px;
+}
+._other_signin_ul{
+	text-align: right;
+}
+._other_signin_ul li i {
+    font-size: 12px;
+}
+._other_signin_ul li {
+    display: inline-block;
+    padding-left: 11px;
+    cursor: pointer;
+}
+._linkedin{}
+._linkedin i {
+    color: #10a2ef;
+}
+._facebook{}
+._facebook i {
+    color: blue;
+}
+._twitter{}
+._twitter i {
+    color: red;
+}
+._or_sign {
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 16px;
+    cursor: inherit !important;
+}
+._forgrt_div{
+	text-align: right;
+}
+/*========= 9.Log in =======*/

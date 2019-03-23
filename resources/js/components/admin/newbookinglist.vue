@@ -21,7 +21,9 @@
                                     <div class="_profile_card_title _flex_space">
                                         <p  class="_profile_card_name_text_link">Booked by: <router-link :to="{ name:'bprofile'}" >{{item.buyer_info.name}}</router-link></p>
                                     
-                                        <p  class="_profile_card_name_text_link">Extra Service : {{(item.extraService.length)? "No ": "Yes"}}</p>
+                                        <p  class="_profile_card_name_text_link">Extra Service : 
+                                            asdasd
+                                        </p>
                                     
                                     </div>
                                     <div class="_profile_card_title _flex_space">

@@ -54,7 +54,7 @@
                      </div>
                      <div class="_login_input_button">
                         <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Update</button>
-                        <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg"  type="button"><router-link :to="{name: 'editJobExtraService' , params:{id:service_id}}"  >Next</router-link></button></p>
+                        <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg"  type="button"><router-link :to="`/admin/editJobImage/${service_id}`"  >Next</router-link></button></p>
                         <!-- <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button> -->
                      </div>
                   </div>

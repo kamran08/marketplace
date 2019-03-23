@@ -14,10 +14,8 @@
                                 <form v-on:submit.prevent="" >
                                     <div class="_login_input_group">
                                         <div class="_login_input">
-                                            <i class="fas fa-user"></i>
-
                                             <div class="_login_input_inp">
-                                                <input class="_login_input_inp_field" v-model="logdata.email" v-on:keyup.enter="check" placeholder="Email" type="email" required>
+                                                 <Input v-model="logdata.email" v-on:keyup.enter="check" placeholder="Email" type="email" required />
                                             </div>
                                         </div>
                                     </div>
@@ -27,17 +25,16 @@
                                     <div class="this is for test " v-if="status">
                                     <div class="_login_input_group">
                                         <div class="_login_input">
-                                            <i class="fas fa-lock"></i>
-
                                             <div class="_login_input_inp">
-                                                <input class="_login_input_inp_field" v-model="logdata.password" placeholder="Password" type="password">
+                                                <Input v-model="logdata.password"  placeholder="Password" type="password" />
                                             </div>
                                         </div>
                                         
                                     </div>
 
                                     <div class="_login_input_button">
-                                        <button class="_btn _login_input_button_btn _bg" type="submit" @click="login" name="submit">SIGN IN</button>
+                                        <button class="_btn _login_input_button_btn _bg" type="submit" v-if="!load" @click="login(true)" name="submit">SIGN IN</button>
+                                        <button class="_btn _login_input_button_btn _bg" type="submit" v-if="load" @click="login(false)" >loading.....</button>
                                         
                                     </div>
                                     
@@ -63,15 +60,18 @@ export default {
                 password: ''
             },
             status : false,
+            load:false
         }
     },
      methods: {
-        async login(){
+        async login(e){
             
-           
+            
             if(this.logdata.email==='' || this.logdata.password===''){
+                this.load = false
                return this.e('All fields are required')
             }
+            this.load = e;
             const res = await this.callApi('post', 'login', this.logdata)
             if(res.status===200){
                  this.s('Login successfull!')
@@ -79,6 +79,7 @@ export default {
                 this.$router.push('/');
             }else{
                 if(res.status===401){
+                    this.load = false
                     this.e(res.data.msg)
                 }
             }

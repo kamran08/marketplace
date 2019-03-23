@@ -9,6 +9,15 @@ import bookinglist from './components/admin/bookinglist.vue';
 import completedList from './components/admin/completedList.vue';
 import canclebookinglist from './components/admin/canclebookinglist.vue';
 
+
+// Job Insert Components
+import editJobDescription from './components/admin/editJobDescription.vue';
+import editJobExtraService from './components/admin/jobExtraService.vue';
+import editJobImage from './components/admin/jobImage.vue';
+import editJobTag from './components/admin/jobTag.vue';
+
+
+
 const defaultroutes = [
     {
         path: '/admin',
@@ -31,6 +40,51 @@ const defaultroutes = [
     //     }
     // },
     {
+        path: '/admin/editJobDescription/:id',
+        name: 'editJobDescription',
+        title: 'Edit service',
+        component: editJobDescription,
+        meta: {
+            guest : true,
+            allowedUserType: ['All']
+        }
+    },
+    {
+        path: '/admin/editJobImage/:id',
+        name: 'editJobImage',
+        title: 'Edit service',
+        component: editJobImage,
+        meta: {
+            guest : true,
+            allowedUserType: ['All']
+        }
+    },
+    {
+        path: '/admin/editJobExtraService/:id',
+        name: 'editJobExtraService',
+        title: 'Edit service',
+        component: editJobExtraService,
+        meta: {
+            guest : true,
+            allowedUserType: ['All']
+        }
+    },
+    {
+        path: '/admin/editJobTag/:id',
+        name: 'editJobTag',
+        title: 'Edit service',
+        component: editJobTag,
+        meta: {
+            guest : true,
+            allowedUserType: ['All']
+        }
+    },
+
+
+
+
+
+    {
         path: '/admin/servicelist',
         name: 'servicelist',
         title: 'service list',
@@ -40,6 +94,7 @@ const defaultroutes = [
             allowedUserType: ['All']
         }
     },
+    
     {
         path: '/admin/category',
         name: 'category',

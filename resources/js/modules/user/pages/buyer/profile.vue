@@ -184,10 +184,10 @@
                     <div class="col-12 col-md-8 col-lg-8">
                         <div class="_box_shadow2 pro_menu _border_radious ">
                             <ul class="pro_menu_list">
-                                <li v-if="authInfo.id==user_id" :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">Waiting-For-Approval</li>
-                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Running-Bookings</li>
-                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''" @click="sellerTab=4">Completed-Service</li>
-                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==5)? 'pro_menu_active':''"  @click="sellerTab=5">Canceled-Bookings</li>
+                                <li v-if="authInfo.id==user_id" :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">Awaiting approval</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Bookings</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''" @click="sellerTab=4">Completed</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==5)? 'pro_menu_active':''"  @click="sellerTab=5">Cancelled</li>
                             </ul>
                         </div>
                         <newbookinglist v-if="sellerTab==2 && authInfo.id==user_id" ></newbookinglist>
@@ -219,7 +219,7 @@ export default {
     },
     data(){
         return{
-            sellerTab:3,
+            sellerTab:1,
             user_id:this.$route.params.id,
             userInfo:[],
             edituserInfo:[],
@@ -262,6 +262,10 @@ export default {
 
     },
     created(){
+          if(this.$route.query.tab>0 && this.$route.query.tab<5){
+           this.sellerTab = this.$route.query.tab
+            window.history.pushState(this.sellerTab, 'Title', '/sprofile/'+this.$route.params.id);
+           }
         this.getProfileInfo();
     }
 }

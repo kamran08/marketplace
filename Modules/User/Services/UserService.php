@@ -49,6 +49,7 @@ class UserService extends Controller {
     public function getAllService(){
        $service = $this->query->getAllService();
        return $service;
+
       // \Log::info($user);
     }
     public function getInfoBySearch($key){
@@ -58,7 +59,13 @@ class UserService extends Controller {
     }
     public function getInfoBySearchCatagory($request){
        $str = $request->str;
-       return $request->all();
+       $cat = $request->cat;
+       if($cat){
+         return $this->query->getInfoBySearchCatagory($cat);
+       }else{
+         return $this->query->getAllServiceList();
+       }
+       
        $service = $this->query->getInfoBySearchCatagory($request);
        return $service;
     }
@@ -258,8 +265,15 @@ class UserService extends Controller {
       }
       $data['id'] = Auth::user()->id;
       $data['userType'] = Auth::user()->userType;
+      
+      $goru = $this->query->getNewList($data);
+      foreach($goru as $d){
+         if($d['extraService']){
+             $d['extraService'] = json_decode($d['extraService']);
+         }
+      }
+      return $goru;
 
-      return $this->query->getNewList($data);
     }
     public function getServiceList($id){
       return $this->query->getServiceList($id);
@@ -284,7 +298,15 @@ class UserService extends Controller {
       }
       $data['id'] = Auth::user()->id;
       $data['userType'] = Auth::user()->userType;
-      return  $this->query->getBookingList($data);
+
+     
+      $goru = $this->query->getBookingList($data);
+      foreach($goru as $d){
+         if($d['extraService']){
+             $d['extraService'] = json_decode($d['extraService']);
+         }
+      }
+      return $goru;
     }
 
     public function getAllBookingList($data){
@@ -460,6 +482,9 @@ class UserService extends Controller {
           ], 402);
 
       }
+      unset($data['reviews_count']);
+      unset($data['avgreview']);
+
       return $this->query->updateUserInfo($id,$data);
     }
 
@@ -562,6 +587,33 @@ class UserService extends Controller {
         }
         $data['buyer_id'] = Auth::user()->id;
         return $this->query->giveReview($data);
+      }
+      public function notifications($key){
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+          return $this->query->notifications($key);
+      }
+      public function getAllNotifications($key){
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+        if($key==Auth::user()->id){
+         //   $user='';
+         //   if(Auth::user()->type==1){
+         //      $user = ''
+         //   }
+          return $this->query->getAllNotifications($key);
+        }
+        else{
+           return;
+        }
+       
+        
       }
   
  

@@ -10,10 +10,10 @@
             <div class="container">
                 <div class="row">
                         <!--~~~~~~~ Details Main left ~~~~~~~-->
-                    <div class="col-12 col-md-8 col-lg-8">
+                    <div class="col-12 col-md-8 col-lg-8" >
                         <div class="Details_main_left">
                             <div class="Details_main_title">
-                            <h3 class="_title3"> {{serviceDetails.title}} <span class="Details_main_title_span _color" v-if="authInfo.id==serviceDetails.user_id" ><i class="fas fa-pen"></i><router-link :to="{name:'editJobDescription' ,params:{id:item.id}}">Edit</router-link></span></h3>
+                            <h3 class="_title3"> {{serviceDetails.title}} <span class="Details_main_title_span _color" v-if="authInfo.id==serviceDetails.user_id" ><i class="fas fa-pen"></i><router-link :to="{name:'editJobDescription' ,params:{id:serviceDetails.id}}">Edit</router-link></span></h3>
                             </div>
 
                             <div class="Details_main_left_menu _dis_flex">
@@ -30,8 +30,8 @@
                                 </div> 
                             </div>
 
-                            <div class="Details_slider _b_color2 _padd_20">
-                                <img class="Details_slider_img" v-if="serviceDetails.image.length" :src="serviceDetails.image[0].imageUrl" title="" alt="">
+                            <div class="Details_slider _b_color2 _padd_20" v-if="serviceDetails.image.length">
+                                <img class="Details_slider_img"  :src="serviceDetails.image[0].imageUrl" title="" alt="">
                             </div>
 
                             <div class="Details_block _b_color2 _padd_20">
@@ -45,7 +45,6 @@
                                     </p>
 
                                 </div>
-
                                 <div class="_tags">
                                     <ul class="_tags_ul">
                                         <li v-for="(item,index) in serviceDetails.tag" :key="index">{{item.tagName}}</li>
@@ -54,7 +53,7 @@
 
                                 <div class="_block_buttons">
                                     <div class="_block_buttons_main _dis_flex">
-                                        <button class="_bg _btn _block_buttons_btn" type="button">Price ({{serviceDetails.price}})</button>
+                                        <button class="_bg _btn _block_buttons_btn" type="button">Price {{serviceDetails.price}}$</button>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +66,7 @@
 
                             <div class="_commnet_all" v-if="serviceDetails.reviews_count!=0" >
                                     <!-- items --> 
-                                <div class="_commnet_main _b_color2 _dis_flex" v-for="(item,index) in serviceDetails.reviews" :key="index"  >
+                                <div class="_commnet_main _b_color2 _dis_flex" v-for="(item,index) in serviceDetails.reviews" :key="index"  v-if="serviceDetails.reviews.length">
                                     <div class="_commnet_img">
                                         <img class="_commnet_img_pic" :src="(item.user.image)? item.user.image : defultImage" alt="" title="">
                                     </div>
@@ -109,18 +108,26 @@
                                 <!--~~~~~~~ Details Right Rating Extra ~~~~~~~-->
                         <div class="Details_pro _mr_b30 _box_shadow2 _border_radious">
                             <div class="Details_pro_rating _dis_flex align-items-center _padd_20">
-                                <div class="_flex_space">
-                                    <ul class="_1job_card_rating_ul">
-                                        <li class="_color"><i class="fas fa-star"></i></li>
-                                        <li class="_color"><i class="fas fa-star"></i></li>
-                                        <li class="_color"><i class="fas fa-star"></i></li>
-                                        <li class=""><i class="fas fa-star"></i></li>
-                                        <li class=""><i class="fas fa-star"></i></li>
-                                        <li class="_1job_card_rating_num">(2k+)</li>
-                                    </ul>
-                                </div>
+                                <div class=" _flex_space">
+								<ul class="_1job_card_rating_ul" v-if="serviceDetails.avgreview" >
+                                    <li :class="(serviceDetails.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(serviceDetails.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(serviceDetails.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(serviceDetails.avgreview.averageRating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(serviceDetails.avgreview.averageRating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li class="_1job_card_rating_num">({{serviceDetails.reviews_count}})</li>
+                                </ul>
+								<ul class="_1job_card_rating_ul" v-if="serviceDetails.reviews_count==0" >
+									<li ><i class="fas fa-star"></i></li>
+									<li ><i class="fas fa-star"></i></li>
+									<li ><i class="fas fa-star"></i></li>
+									<li class=""><i class="fas fa-star"></i></li>
+									<li class=""><i class="fas fa-star"></i></li>
+									 <li class="_1job_card_rating_num">(0)</li>
+								</ul>
+							</div>
 
-                                <div class="_1job_card_dollar">
+                                <div class="_1job_card_dollar  _text_right">
                                     <p class="_1job_card_dollar_text _color">  {{serviceDetails.price}}</p>
                                     <p class="_1job_card_dollar_sine _color">$</p>
                                 </div>
@@ -133,24 +140,25 @@
 
                                         <p class="Details_pro_renge_name _flex_space">Overrall rating</p>
 
-                                        <p class="Details_pro_renge_num">3.2</p>
+                                        <p class="Details_pro_renge_num" v-if="serviceDetails.avgreview"> {{serviceDetails.avgreview.averageRating}}</p>
+                                        <p class="Details_pro_renge_num" v-else> 0</p>
                                     </div>
 
                                     <div class="Details_pro_renge _dis_flex">
                                         <i class="fas fa-reply"></i>
 
-                                        <p class="Details_pro_renge_name _flex_space">Reviws</p>
+                                        <p class="Details_pro_renge_name _flex_space">Total Review</p>
 
-                                        <p class="Details_pro_renge_num">3.2</p>
+                                        <p class="Details_pro_renge_num">{{serviceDetails.reviews_count}}</p>
                                     </div>
 
-                                    <div class="Details_pro_renge _dis_flex">
+                                    <!-- <div class="Details_pro_renge _dis_flex">
                                         <i class="fas fa-shopping-cart"></i>
 
                                         <p class="Details_pro_renge_name _flex_space">Sales</p>
 
                                         <p class="Details_pro_renge_num">200</p>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
@@ -182,6 +190,12 @@
                                     <div class="Details_pro_button _b_color2" v-if="authInfo.userType==2"  >
                                         <div class="_block_buttons_main _dis_flex">
                                             <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">ORDER NOW (${{totalOderPrice}})</button>
+                                            <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="Details_pro_button _b_color2" v-if="authInfo.id == serviceDetails.user_id"  >
+                                        <div class="_block_buttons_main _dis_flex">
+                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">see the time slote</button>
                                             <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
                                         </div>
                                     </div>
@@ -241,46 +255,52 @@
             v-model="bookingTimeModal"
             title="Select The Time"
             :closable = "false"
-            width='600'
+            width='700'
         >
             <div class="User_List">
                  <div span="24" class="booked_date _text_center _box_shadow2">
                       <DatePicker :options="options3" type="date" format="yyyy-MM-dd" v-model="selectBookingTime" :value="selectBookingTime" @on-change="getSlots" placeholder="Select date" style="width: 220px"></DatePicker>
                 </div>
                 <div v-if="bookingTimeByDay.length">
-                    <p class="list_title">Time List</p>
-                    <table class="User_List_table"  >
-                        <tr>
-                            <th>No</th>
-                            <th>Time</th>
-                            <th>Status</th>
-                        </tr>
-                        <tr v-for="(item,index) in bookingTimeByDay" :key="index" >
-                            <td>{{index+1}}</td>
-                            <td>{{item.bookingTime}}</td>
-                            <td v-if="!item.isBooked"><button :class="(bookingTimeFalg===index)? 'table_button_green': 'table_button'" @click="assignDate(item.bookingTime,index)"  type="button">Click to Book</button></td>
-                            <td v-if="item.isBooked" ><button class="table_button_red"  type="button">Booked</button></td>
-                        </tr>
-                    </table>
+                    <p class="list_title">SELECT FROM AVAILBLE TIME SLOTS</p>
+                    <div class="User_List_table"  >
+                        
+                        <div class="_flex_row" >
+                            <div class="User_List_table_main" v-for="(item,index) in bookingTimeByDay" :key="index" >
+                                <div v-if="!item.isBooked">
+                                    <button :class="(bookingTimeFalg===index)? 'table_button_green': 'table_button'" @click="assignDate(item.bookingTime,index)"  type="button">
+                                        {{item.bookingTime}}
+                                    </button>
+                                </div>
+                                <div v-if="item.isBooked">
+                                    <button class="table_button_red line" type="button">
+                                        {{item.bookingTime}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div span="24" class="booked_date_order _text_center _box_shadow2" v-if="bookingTimeByDay.length==0" >
                     <h3>Service Not Avaiable This day</h3>
                 </div>
                     
             </div>
-            <div slot="footer">
-                <Button @click="bookingTimeModal = false">close</Button>
-                <Button @click="insertOrder">Order</Button>
+            <div slot="footer" v-if="authInfo.userType!=1">
+                    <Button @click="bookingTimeModal = false">Close</Button>
+                    <Button @click="insertOrder">Order</Button>
+            </div>
+            <div slot="footer" v-if="authInfo.userType==1">
+                    <Button @click="bookingTimeModal = false">Close</Button>
             </div>
         </Modal>
 </div>
 </template>
-
 <script>
 export default {
     data(){
         return{
-            serviceDetails:{},
+            serviceDetails:false,
             order:{
                 totalPrice:0,
                 extraPrice:0,
@@ -405,6 +425,7 @@ export default {
         },
     },
    async created(){
+       console.log(this.authInfo)
         this.getServiceDetails();
     },
 

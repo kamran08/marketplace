@@ -8,33 +8,34 @@
                   <div class="_job_step_title">
                      <h3 class="_title">POST A JOB</h3>
                   </div>
-                            <div class="_1steps_all">
-                                <Steps :current="LinkFlagTab-1">
-                                    <Step title="step 1" content=""></Step>
-                                    <Step title="step 2" content=""></Step>
-                                    <Step title="step 3" content=""></Step>
-                                    <Step title="step 4" content=""></Step>
-                                </Steps>
-                            </div>
+                  
+                  <div class="_1steps_all">
+                     <Steps :current="LinkFlagTab-1">
+                        <Step title="step 1" content=""></Step>
+                        <Step title="step 2" content=""></Step>
+                        <Step title="step 3" content=""></Step>
+                        <Step title="step 4" content=""></Step>
+                     </Steps>
+                  </div>
+
                   <div class="_1steps_from">
                      <form>
-                        <div class="_login_input_group">
-                           <div class="_login_input">
-                              <i class="fas fa-user-md"></i>
-                              <div class="_login_input_inp">
-                                 <input class="_login_input_inp_field" v-model="formdata.title" placeholder="Job title" type="text">
-                              </div>
-                           </div>
-                        </div>
-
-                        <div class="_login_input_group">
+                        <div class="">
                            <div class="row">
                               <div class="col-12 col-md-6">
+                                 <div class="_login_input_group">
+                                    <div class="_login_input">
+                                       <div class="_login_input_inp">
+                                          <Input v-model="formdata.title" placeholder="Job title" type="text" />
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="col-12 col-md-6">
                                  <div class="_login_input">
-                                    <i class="fas fa-check-square"></i>
                                     <div class="_login_input_inp">
-                                       
-                                        <Select v-model="formdata.cat_id" style="width:200px">
+                                       <Select  v-model="formdata.cat_id">
                                           <Option v-for="(item,index) in alljobs" :value="item.id" :key="index">{{ item.catName }}</Option>
                                        </Select>
                                     </div>
@@ -48,29 +49,25 @@
                               
                               <div class="_login_input_inp select_time">
                                  <div class="row">
-                                    <div class="col-1 col-md-1">
-                                       <i class="far fa-clock"></i>
+                                    <div class="col-12 col-md-12 _dis_flex">
+                                       <p class="_1steps_input_title" >Service days</p>
                                     </div>
-                                    <div class="col-10 col-md-10">
-                                       <p class="_1steps_input_title" >Servicing Time  </p>
-                                    </div>
-                                    
                                  </div>
-                                 <div class="row" v-for="(item,index) in formdata.servicingTime" :key="index">
-                                    <div class="col-1 col-md-1">
-                                      <Checkbox v-model="item.isOn"></Checkbox>
-                                    </div>
+                                 <div class="row align-items-center" v-for="(item,index) in formdata.servicingTime" :key="index">
                                     <div class="col-3 col-md-3">
-                                       <p class="_1steps_input_title" >{{item.day}}</p>
+                                      <Checkbox v-model="item.isOn">{{item.day}}</Checkbox>
                                     </div>
+
                                     <div class="col-3 col-md-3">
                                        <TimePicker v-model="item.startTime" format="HH:mm" type="time" placement="bottom-end" placeholder="Start Time" ></TimePicker>
                                     </div>
+
                                     <div class="col-3 col-md-3">
                                        <TimePicker v-model="item.endTime" format="HH:mm" type="time" placement="bottom-end" placeholder="End Time" ></TimePicker>
                                     </div>
-                                    <div class="col-2 col-md-2">
-                                       <input class="_login_input_inp_field" v-model="item.duration" placeholder="Duration" type="number">
+
+                                    <div class="col-3 col-md-3">
+                                       <Input class="_login_input_inp_field" v-model="item.duration" placeholder="Duration" type="number"></Input>
                                     </div>
                                  </div>
                               </div>
@@ -81,41 +78,46 @@
                            <p class="_1steps_input_title" >DESCRIPTION</p>
                            <div class="_login_input">
                               <div class="_login_input_inp">
-                                 <textarea class="_1steps_textarea" rows="4" cols="50" v-model="formdata.description"></textarea>
+                                 <Input v-model="formdata.description" type="textarea" :autosize="{minRows: 4,maxRows: 5}" placeholder="DESCRIPTION" />
                               </div>
                            </div>
                         </div>
                         
-                        <div class="_login_input_group">
-                           <div class="_login_input">
-                              <i class="fas fa-user-md"></i>
-                              <div class="_login_input_inp">
-                                 <input class="_login_input_inp_field" v-model="formdata.videoLink" placeholder="Job title" type="text">
-                              </div>
+
+                        <div class="row">
+                           <div class="col-12 col-md-6">
+                                 <div class="_login_input_group">
+                                    <div class="_login_input">
+                                       <div class="_login_input_inp">
+                                          <Input v-model="formdata.videoLink" placeholder="Video link" type="text" />
+                                       </div>
+                                    </div>
+                                 </div>
+                           </div>
+
+                           <div class="col-12 col-md-6">
+                                 <div class="_login_input_group">
+                                    <div class="_login_input">
+                                       <div class="_login_input_inp">
+                                          <Input v-model="formdata.price" placeholder="Price" type="number" />
+                                       </div>
+                                    </div>
+                                 </div>
                            </div>
                         </div>
+                       <!-- ormdata.openingMassage -->
 
                         <div class="_login_input_group">
                            <div class="_login_input">
-                              <i class="fas fa-envelope"></i>
                               <div class="_login_input_inp">
-                                 <input class="_login_input_inp_field" v-model="formdata.openingMassage" placeholder="Opening Massage" type="text">
-                              </div>
-                           </div>
-                        </div>
-
-                        <div class="_login_input_group">
-                           <div class="_login_input">
-                              <i class="fas fa-dollar-sign"></i>
-                              <div class="_login_input_inp">
-                                 <input class="_login_input_inp_field" v-model="formdata.price" placeholder="Price" type="text">
+                                 <Input v-model="formdata.openingMassage" placeholder="Opening Massage" type="text" />
                               </div>
                            </div>
                         </div>
 
                         <div class="_login_input_button">
                            
-                           <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Join Now </button></p>
+                           <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Join Now 2</button></p>
 		            	
                            <!-- <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button> -->
                         </div>
@@ -206,15 +208,15 @@ export default {
     },
     methods:{
         async join(){
-  
-            // if( this.formdata.daliveryTime == ''|| this.formdata.openingMassage =='' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == '' || this.formdata.user_id == ''){
-            //     this.i("All fields are requrired");
-            //     return;
-            // }
+            console.log(this.formdata)
+            if(this.formdata.openingMassage =='' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == ''){
+                this.i("All fields are requrired");
+                return;
+            }
             for(let item of this.formdata.servicingTime){
                if(item.isOn==true){
                  if(item.startTime=="" || item.endTime == "" || item.duration== ""){
-                    this.e("Please fill the time solts of "+ item.day+" !");
+                    return this.e("Please fill the time solts of "+ item.day+" !");
                  }
                }
             }
