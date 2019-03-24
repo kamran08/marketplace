@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Request;
 Route::prefix('user')->group(function() {
     Route::get('/', 'UserController@index');
 });
-Route::get('app/get-all-catgory', 'UserController@getAllcat');
+Route::get('app/get-all-category', 'UserController@getAllcat');
+
+Route::get('app/sub-category', 'UserController@getAllSubcat');
+
+
 Route::get('/app/get-all-service', 'UserController@getAllService');
 Route::get( '/app/get-all-info-by-search/{key}', 'UserController@getInfoBySearch');
 Route::get( '/app/get-courrent-step/{key}', 'UserController@getCurrentStep');
@@ -75,6 +79,8 @@ Route::post('app/deleteCategory','UserController@deleteCategory');
 Route::post('app/deleteService','UserController@deleteService');
 Route::post('app/updateService','UserController@updateService');
 Route::post('app/categoryUpdate','UserController@categoryUpdate');
+Route::put('app/sub-category', 'UserController@updateSubCategory');
+Route::delete('app/sub-category', 'UserController@deleteSubCategory');
 Route::get( 'app/getAllServiceList', 'UserController@getAllServiceList'); 
 
 
@@ -93,11 +99,14 @@ Route::post( 'app/updateTag', 'UserController@updateTag');
 
 // insert catagory 
 Route::post( 'app/insert-catagory', 'UserController@insertCatagory'); 
+Route::post( 'app/sub-category', 'UserController@insertSubCatagory'); 
 
 /// notifications 
 
-Route::get('app/getAllNotifications/{id}', 'UserController@getAllNotifications');
+Route::get('app/getAllNotifications', 'UserController@getAllNotifications');
+
 Route::post('app/notifications', 'UserController@notifications');
+Route::put('app/updateNotification', 'UserController@updateNotification');
 
 
 

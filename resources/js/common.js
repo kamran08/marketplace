@@ -12,10 +12,12 @@ export default {
         ...mapGetters({
           
             tagInfo:'getFlag',
-            authInfo:'getAuthUser',
+            authInfo:'getAuthUser', 
             searchData:'getSearchData',
             LinkFlagTab: 'getTabInfo',
-            getUserTyper:'getUserType'
+            getUserTyper:'getUserType',
+            noficationCount:'getNoficationCount',
+            noficationData:'getNoficationData',
         }),
     },
     methods: {

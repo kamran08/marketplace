@@ -7,7 +7,39 @@
                         <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
                     </div>
                     <!-- card -->
-                    <div class="_profile_card_all _overflow" v-if="list.length"  >
+                    <div class="_profile_card_all list_head _box_shadow2 _border_radious _overflow" v-if="list.length"  >
+                        <table class="table_C table-striped">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Booked-by</th>
+                                <th>Service-Provider</th>
+                                <th>Extra</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Total Price</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody >
+                            <tr v-for="(item,index) in list" :key="index" v-if="item.status==1 "  >
+                                <td>{{item.service.title}}</td>
+                                <td>{{item.buyer_info.name}}</td>
+                                <td>{{item.seller_info.name}}</td>
+                                <td>{{item.extraService.length}}</td>
+                                <td>{{item.bookingDate}}</td>
+                                <td>{{item.bookingTime}}</td>
+                                <td>{{item.totalPrice}}</td>
+                                <td>
+                                     <button class="table_button_green" type="button" @click="updateStatus(2,index)">Mark Complete</button>
+                                        <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle Booking</button>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="_profile_card_all _overflow" v-if="list.length"  >
                         <div v-for="(item,index) in list" :key="index" >
                             <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==1 "  >
                                 <div class="_profile_card_pic">
@@ -47,7 +79,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div span="24" class="booked_date _text_center _border_radious _box_shadow2" v-if="list.length==0" >
                         <h2>No Bookings This Day</h2>
                     </div>

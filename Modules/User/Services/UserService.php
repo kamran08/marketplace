@@ -44,7 +44,10 @@ class UserService extends Controller {
          $item['staus'] = true;
       }
        return $user;
-      // \Log::info($user);
+    }
+    public function getAllSubcat(){
+       $user = $this->query->getAllSubcat();
+       return $user;
     }
     public function getAllService(){
        $service = $this->query->getAllService();
@@ -281,11 +284,17 @@ class UserService extends Controller {
     public function deleteService($data){
       return $this->query->deleteService($data['id']);
     }
+    public function deleteSubCategory($data){
+      return $this->query->deleteSubCategory($data['id']);
+    }
     public function updateService($data){
       return $this->query->updateService($data);
     }
     public function categoryUpdate($data){
       return $this->query->categoryUpdate($data);
+    }
+    public function updateSubCategory($data){
+      return $this->query->updateSubCategory($data);
     }
     public function getAllServiceList(){
       return $this->query->getAllServiceList();
@@ -354,6 +363,9 @@ class UserService extends Controller {
     }
     public function insertCatagory($data){
       return $this->query->insertCatagory($data);
+    }
+    public function insertSubCatagory($data){
+      return $this->query->insertSubCatagory($data);
     }
 
     public function UpdateServiceDescription($data){
@@ -596,22 +608,35 @@ class UserService extends Controller {
         }
           return $this->query->notifications($key);
       }
-      public function getAllNotifications($key){
+      public function getAllNotifications(){
          if(!Auth::check()){
             return response()->json([
               'message' => "You are not Authenticate User!",
            ], 402);
         }
-        if($key==Auth::user()->id){
-         //   $user='';
-         //   if(Auth::user()->type==1){
-         //      $user = ''
-         //   }
-          return $this->query->getAllNotifications($key);
+
+        $id = Auth::user()->id;
+         $notificationCount = $this->query->getNewNotifications($id);
+         $notificationData = $this->query->getAllNotifications($id);
+        
+         return response()->json([
+            'notificationCount'=> $notificationCount,
+            'notificationData'=> $notificationData,
+         ],200);
+        
+      }
+
+      public function updateNotification($data){
+
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
         }
-        else{
-           return;
-        }
+         $data['seen'] = 0;
+          return $this->query->updateNotification($data);
+        
+       
        
         
       }

@@ -96,6 +96,9 @@ class UserController extends Controller
     public function getAllcat()  {
        return $this->userService->getAllcat();
     }
+    public function getAllSubcat()  {
+       return $this->userService->getAllSubcat();
+    }
     public function getAllService(){
         return $this->userService->getAllService();
     }
@@ -124,6 +127,9 @@ class UserController extends Controller
     }
     public function insertCatagory(Request $request){
         return $this->userService->insertCatagory($request->all());
+    }
+    public function insertSubCatagory(Request $request){
+        return $this->userService->insertSubCatagory($request->all());
     }
     public function getCurrentStep($key){
         return $this->userService->getCurrentStep($key);
@@ -195,11 +201,17 @@ class UserController extends Controller
     public function deleteService(Request $request){
         return $this->userService->deleteService($request->all());
     }
+    public function deleteSubCategory(Request $request){
+        return $this->userService->deleteSubCategory($request->all());
+    }
     public function updateService(Request $request){
         return $this->userService->updateService($request->all());
     }
     public function categoryUpdate(Request $request){
         return $this->userService->categoryUpdate($request->all());
+    }
+    public function updateSubCategory(Request $request){
+        return $this->userService->updateSubCategory($request->all());
     }
     public function getAllServiceList(){
         return $this->userService->getAllServiceList();
@@ -252,8 +264,11 @@ class UserController extends Controller
     public function notifications(Request  $request) {
         return $this->userService->notifications($request->all());
     }
-    public function getAllNotifications($key) {
-        return $this->userService->getAllNotifications($key);
+    public function getAllNotifications() {
+        return $this->userService->getAllNotifications();
+    }
+    public function updateNotification(Request  $request) {
+        return $this->userService->updateNotification($request->all());
     }
 
 

@@ -20,9 +20,8 @@
                                 :format="['jpg','jpeg','png']"
                                 :max-size="2048"
                                 action="/app/getServiceImage">
-                                <!-- action="/app/uploadServiceImages"> -->
-                                <div  >
-                                    <i class="fas fa-plus " style="width:64px;"></i>
+                                <div >
+                                    <i class="fas fa-plus upload_icon " style="width:64px;"></i>
                                 </div>
                                 </Upload>
                                 <img   v-if="formdata.image" class="_1steps_img_pic" :src="formdata.image"  title="">
@@ -44,7 +43,6 @@
                             <thead>
                             <tr>
                                 <th>Name</th>
-                                <!-- <th>UserType</th> -->
                                 <th>photo link</th>
                                 <th>Action</th>
                             </tr>

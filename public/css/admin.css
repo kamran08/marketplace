@@ -20,6 +20,9 @@
 .nav_active{
     background: #8d9fb1 !important;
 }
+.category_list{
+    margin-bottom: 7px;
+}
 
 /*===== 1.common css ======*/
 p{
@@ -251,7 +254,8 @@ textarea {
 .booked_date{
     padding: 15px 15px;
     background: #fff;
-    margin: 0 0 25px;
+    margin: 0 auto 25px;
+    width: 300px;
 }
 .booked_date_order{
     padding: 15px 15px;

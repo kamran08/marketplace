@@ -15,6 +15,8 @@ export default new Vuex.Store({
         tabFlag: 1,
         searhData:'this is search data',
         TabInfo:1,
+        notificationCount:0,
+        notificationData:[],
         // User_id:'1',
         // Service_id:1,
         // userType:''
@@ -43,6 +45,12 @@ export default new Vuex.Store({
         },
         getUserType(state) {
             return state.userType
+        },
+        getNoficationCount(state) {
+            return state.notificationCount
+        },
+        getNoficationData(state) {
+            return state.notificationData
         }
     },// getter end
 
@@ -70,6 +78,15 @@ export default new Vuex.Store({
         setUserType: (state, payload) => {
             state.userType = payload;
         },
+        setNoficationCount: (state, payload) => {
+            state.notificationCount += payload;
+        },
+        setNoficationData: (state, payload) => {
+            state.notificationData = payload;
+        },
+        setNoficationFirst: (state, payload) => {
+            state.notificationCount = payload;
+        },
       
     },/// mutation end
 
@@ -95,6 +112,15 @@ export default new Vuex.Store({
         },
         setUserType: (context, payload) => {
             context.commit('setUserType', payload)
+        },
+        setNoficationCount: (context, payload) => {
+            context.commit('setNoficationCount', payload)
+        },
+        setNoficationData: (context, payload) => {
+            context.commit('setNoficationData', payload)
+        },
+        setNoficationFirst: (context, payload) => {
+            context.commit('setNoficationFirst', payload)
         },
 
     

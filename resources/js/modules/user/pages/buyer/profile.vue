@@ -262,11 +262,11 @@ export default {
 
     },
     created(){
-          if(this.$route.query.tab>0 && this.$route.query.tab<5){
-           this.sellerTab = this.$route.query.tab
-            window.history.pushState(this.sellerTab, 'Title', '/sprofile/'+this.$route.params.id);
-           }
-        this.getProfileInfo();
+          if(this.$route.query.tab>0 && this.$route.query.tab<5)
+            this.sellerTab = this.$route.query.tab
+            window.history.pushState(this.sellerTab, 'Title', '/bprofile/'+this.$route.params.id);
+           
+           this.getProfileInfo();
     }
 }
 </script>

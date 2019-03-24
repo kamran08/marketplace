@@ -60829,7 +60829,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61272,7 +61272,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61341,13 +61341,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     data: function data() {
         return {
             list: [],
-            toDayDate: '',
-            noti: {
-                notifor: '',
-                notifrom: '',
-                notitxt: '',
-                url: ''
-            }
+            toDayDate: ''
         };
     },
 
@@ -61403,7 +61397,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         updateStatus: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(status, index, buyer_id, seller_id) {
-                var res, res2;
+                var res;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
@@ -61414,31 +61408,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 2:
                                 res = _context2.sent;
 
-                                if (!(res.status == 200)) {
-                                    _context2.next = 15;
-                                    break;
+                                if (res.status == 200) {
+                                    this.insertNotification(buyer_id, seller_id);
+                                    this.i("This booking has been cancled!");
+                                    this.list[index].status = 3;
+                                } else {
+                                    this.e();
                                 }
 
-                                this.noti.notitxt = 'seller cancled your service';
-                                this.noti.notifor = buyer_id;
-                                this.noti.notifrom = seller_id;
-                                this.noti.url = 'bprofile/' + buyer_id + '?' + 'tab=4';
-                                _context2.next = 10;
-                                return this.callApi('post', 'notifications', this.noti);
-
-                            case 10:
-                                res2 = _context2.sent;
-
-                                this.i("This booking has been cancled!");
-                                this.list[index].status = 3;
-
-                                _context2.next = 16;
-                                break;
-
-                            case 15:
-                                this.e();
-
-                            case 16:
+                            case 4:
                             case 'end':
                                 return _context2.stop();
                         }
@@ -61451,6 +61429,39 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return updateStatus;
+        }(),
+        insertNotification: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3(buyer_id, seller_id) {
+                var notifications, res;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                notifications = {
+                                    notitxt: 'seller cancled your service',
+                                    notifor: buyer_id,
+                                    notifrom: seller_id,
+                                    url: 'bprofile/' + buyer_id + '?' + 'tab=4'
+                                };
+                                _context3.next = 3;
+                                return this.callApi('post', 'notifications', this.noti);
+
+                            case 3:
+                                res = _context3.sent;
+
+                            case 4:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this);
+            }));
+
+            function insertNotification(_x6, _x7) {
+                return _ref3.apply(this, arguments);
+            }
+
+            return insertNotification;
         }()
     },
     created: function created() {
@@ -64622,10 +64633,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }
     },
     created: function created() {
-        if (this.$route.query.tab > 0 && this.$route.query.tab < 5) {
-            this.sellerTab = this.$route.query.tab;
-            window.history.pushState(this.sellerTab, 'Title', '/sprofile/' + this.$route.params.id);
-        }
+        if (this.$route.query.tab > 0 && this.$route.query.tab < 5) this.sellerTab = this.$route.query.tab;
+        window.history.pushState(this.sellerTab, 'Title', '/bprofile/' + this.$route.params.id);
+
         this.getProfileInfo();
     }
 });
@@ -113142,7 +113152,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         authInfo: 'getAuthUser',
         searchData: 'getSearchData',
         LinkFlagTab: 'getTabInfo',
-        getUserTyper: 'getUserType'
+        getUserTyper: 'getUserType',
+        noficationCount: 'getNoficationCount',
+        noficationData: 'getNoficationData'
     })),
     methods: {
         /**
@@ -113600,6 +113612,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -113730,24 +113743,19 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "_1search_section_search_button" },
-            [
-              _c("router-link", [
-                _c(
-                  "button",
-                  {
-                    staticClass: "_1search_section_search_button_btn _bg",
-                    attrs: { name: "s", type: "button" },
-                    on: { click: _vm.showdata }
-                  },
-                  [_vm._v("SEARCH NOW")]
-                )
-              ])
-            ],
-            1
-          )
+          _c("div", { staticClass: "_1search_section_search_button" }, [
+            _c("a", [
+              _c(
+                "button",
+                {
+                  staticClass: "_1search_section_search_button_btn _bg",
+                  attrs: { type: "button" },
+                  on: { click: _vm.showdata }
+                },
+                [_vm._v("SEARCH NOW")]
+              )
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -114132,7 +114140,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         authUser: false,
         tabFlag: 1,
         searhData: 'this is search data',
-        TabInfo: 1
+        TabInfo: 1,
+        notificationCount: 0,
+        notificationData: []
         // User_id:'1',
         // Service_id:1,
         // userType:''
@@ -114161,6 +114171,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         getUserType: function getUserType(state) {
             return state.userType;
+        },
+        getNoficationCount: function getNoficationCount(state) {
+            return state.notificationCount;
+        },
+        getNoficationData: function getNoficationData(state) {
+            return state.notificationData;
         }
     }, // getter end
 
@@ -114187,6 +114203,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         setUserType: function setUserType(state, payload) {
             state.userType = payload;
+        },
+        setNoficationCount: function setNoficationCount(state, payload) {
+            state.notificationCount += payload;
+        },
+        setNoficationData: function setNoficationData(state, payload) {
+            state.notificationData = payload;
+        },
+        setNoficationFirst: function setNoficationFirst(state, payload) {
+            state.notificationCount = payload;
         }
 
     }, /// mutation end
@@ -114213,6 +114238,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         setUserType: function setUserType(context, payload) {
             context.commit('setUserType', payload);
+        },
+        setNoficationCount: function setNoficationCount(context, payload) {
+            context.commit('setNoficationCount', payload);
+        },
+        setNoficationData: function setNoficationData(context, payload) {
+            context.commit('setNoficationData', payload);
+        },
+        setNoficationFirst: function setNoficationFirst(context, payload) {
+            context.commit('setNoficationFirst', payload);
         } // action end 
 
 
@@ -114305,7 +114339,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -114356,10 +114390,18 @@ exports.push([module.i, "\n.component-fade-enter-active, .component-fade-leave-a
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_header_vue__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_header_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__pages_header_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_footer_vue__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_footer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__pages_footer_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_header_vue__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_header_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__pages_header_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_footer_vue__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_footer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__pages_footer_vue__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
 //
 //
 //
@@ -114377,13 +114419,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-   components: {
-      headsSction: __WEBPACK_IMPORTED_MODULE_0__pages_header_vue___default.a,
-      footsSction: __WEBPACK_IMPORTED_MODULE_1__pages_footer_vue___default.a
-   },
-   created: function created() {
-      this.$store.dispatch('setAuth', window.authUser);
-   }
+  components: {
+    headsSction: __WEBPACK_IMPORTED_MODULE_1__pages_header_vue___default.a,
+    footsSction: __WEBPACK_IMPORTED_MODULE_2__pages_footer_vue___default.a
+  },
+  methods: {
+    getNotificationCount: function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+        var res1;
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.callApi('get', 'getAllNotifications');
+
+              case 2:
+                res1 = _context.sent;
+
+                if (res1.status === 200) {
+                  this.$store.dispatch('setNoficationFirst', res1.data.notificationCount);
+                  this.$store.dispatch('setNoficationData', res1.data.notificationData);
+                } else {
+                  this.swr();
+                }
+
+              case 4:
+              case 'end':
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getNotificationCount() {
+        return _ref.apply(this, arguments);
+      }
+
+      return getNotificationCount;
+    }()
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$store.dispatch('setAuth', window.authUser);
+    if (this.authInfo) {
+      setInterval(function () {
+        _this.getNotificationCount();
+      }, 5000);
+    }
+  }
 });
 
 /***/ }),
@@ -114619,6 +114704,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	data: function data() {
@@ -114635,7 +114722,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 	},
 	created: function () {
 		var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-			var res, res1;
+			var res;
 			return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
 				while (1) {
 					switch (_context.prev = _context.next) {
@@ -114652,20 +114739,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 							} else {
 								this.swr();
 							}
-							_context.next = 6;
-							return this.callApi('get', 'getAllNotifications/' + this.authInfo.id);
 
-						case 6:
-							res1 = _context.sent;
-
-							if (res1.status === 200) {
-								this.allnoti = res1.data;
-								console.log(this.allnoti);
-							} else {
-								this.swr();
-							}
-
-						case 8:
+						case 4:
 						case 'end':
 							return _context.stop();
 					}
@@ -114682,6 +114757,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 	methods: {
 		handleOpen: function handleOpen() {
+			psprofile;
 			if (this.visible == false) this.visible = true;else this.visible = false;
 		},
 		handleClose: function handleClose(id) {
@@ -114709,8 +114785,47 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 			if (this.open == true) {
 				this.open = false;
 			} else this.open = true;
-		}
+		},
+		isSeen: function () {
+			var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(item) {
+				var res;
+				return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+					while (1) {
+						switch (_context2.prev = _context2.next) {
+							case 0:
+								this.$router.push(item.url);
+
+								if (!item.seen) {
+									_context2.next = 6;
+									break;
+								}
+
+								_context2.next = 4;
+								return this.callApi('put', 'updateNotification', { id: item.id });
+
+							case 4:
+								res = _context2.sent;
+
+								if (res.status !== 200) {
+									this.swr();
+								}
+
+							case 6:
+							case 'end':
+								return _context2.stop();
+						}
+					}
+				}, _callee2, this);
+			}));
+
+			function isSeen(_x) {
+				return _ref2.apply(this, arguments);
+			}
+
+			return isSeen;
+		}()
 	}
+
 });
 
 /***/ }),
@@ -114891,21 +115006,9 @@ var render = function() {
                         _c("div", { on: { click: _vm.openNoti } }, [
                           _c("i", { staticClass: "fas fa-bell" }),
                           _vm._v(" "),
-                          _vm.allnoti.length
-                            ? _c(
-                                "div",
-                                { staticClass: "_2menu_mess_num _bg" },
-                                [_vm._v(_vm._s(_vm.allnoti.length))]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          !_vm.allnoti.length
-                            ? _c(
-                                "div",
-                                { staticClass: "_2menu_mess_num _bg" },
-                                [_vm._v("0")]
-                              )
-                            : _vm._e()
+                          _c("div", { staticClass: "_2menu_mess_num _bg" }, [
+                            _vm._v(_vm._s(_vm.noficationCount))
+                          ])
                         ]),
                         _vm._v(" "),
                         _vm.open
@@ -114918,67 +115021,77 @@ var render = function() {
                                 _c(
                                   "div",
                                   { staticClass: "noti_main_content" },
-                                  [
-                                    _c(
+                                  _vm._l(_vm.noficationData, function(
+                                    item,
+                                    index
+                                  ) {
+                                    return _c(
                                       "div",
-                                      { staticClass: "noti_main" },
-                                      _vm._l(_vm.allnoti, function(
-                                        item,
-                                        index
-                                      ) {
-                                        return _c(
+                                      {
+                                        key: index,
+                                        staticClass: "noti_main ",
+                                        class: item.seen ? "noti_new" : ""
+                                      },
+                                      [
+                                        _c(
                                           "div",
-                                          {
-                                            key: index,
-                                            staticClass: "noti_status"
-                                          },
+                                          { staticClass: "noti_status" },
                                           [
-                                            _c(
-                                              "a",
-                                              { attrs: { href: item.url } },
-                                              [
-                                                _c(
-                                                  "p",
-                                                  {
-                                                    staticClass:
-                                                      "noti_status_text"
-                                                  },
-                                                  [
-                                                    _c("strong", [
-                                                      _vm._v(
-                                                        _vm._s(item.user.name)
-                                                      )
-                                                    ]),
-                                                    _vm._v(
-                                                      " " +
-                                                        _vm._s(item.notitxt) +
-                                                        " "
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "p",
-                                              {
-                                                staticClass: "noti_status_time"
-                                              },
-                                              [
-                                                _c("Icon", {
-                                                  attrs: {
-                                                    type: "md-chatboxes"
+                                            _c("div", [
+                                              _c(
+                                                "a",
+                                                {
+                                                  on: {
+                                                    click: function($event) {
+                                                      _vm.isSeen(item)
+                                                    }
                                                   }
-                                                }),
-                                                _vm._v(" 10mins")
-                                              ],
-                                              1
-                                            )
+                                                },
+                                                [
+                                                  _c(
+                                                    "p",
+                                                    {
+                                                      staticClass:
+                                                        "noti_status_text"
+                                                    },
+                                                    [
+                                                      _c("strong", [
+                                                        _vm._v(
+                                                          _vm._s(item.user.name)
+                                                        )
+                                                      ]),
+                                                      _vm._v(
+                                                        " " +
+                                                          _vm._s(item.notitxt) +
+                                                          " "
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "p",
+                                                {
+                                                  staticClass:
+                                                    "noti_status_time"
+                                                },
+                                                [
+                                                  _c("Icon", {
+                                                    attrs: {
+                                                      type: "md-chatboxes"
+                                                    }
+                                                  }),
+                                                  _vm._v(" 10mins")
+                                                ],
+                                                1
+                                              )
+                                            ])
                                           ]
                                         )
-                                      })
+                                      ]
                                     )
-                                  ]
+                                  })
                                 ),
                                 _vm._v(" "),
                                 _c("p", { staticClass: "noti_more" }, [

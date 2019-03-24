@@ -38,8 +38,7 @@
 									<div class="_2menu_mess" >
 											<div @click="openNoti">
 											<i class="fas fa-bell" ></i>
-											<div class="_2menu_mess_num _bg" v-if="allnoti.length">{{allnoti.length}}</div>
-											<div class="_2menu_mess_num _bg" v-if="!allnoti.length">0</div>
+											<div class="_2menu_mess_num _bg" >{{noficationCount}}</div>
 											</div>
 											<div class="not_list" v-if="open">
 												<div class="noti_all">
@@ -47,13 +46,16 @@
 
 													<div class="noti_main_content"  >
 															<!-- ITEMS -->
-														<div class="noti_main" >
+														<div class="noti_main "  v-for="(item,index) in noficationData" :key="index" :class="(item.seen)? 'noti_new' : ''">
 														<!-- /?	<img class="noti_img" src="/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg" alt="" title=""> -->
 
-															<div class="noti_status" v-for="(item,index) in allnoti" :key="index">
-															<a :href="item.url">	<p class="noti_status_text"><strong>{{item.user.name}}</strong> {{item.notitxt}} </p> </a>
+															<div class="noti_status" >
+																<div >
+																	<a  @click="isSeen(item)">	<p class="noti_status_text"><strong>{{item.user.name}}</strong> {{item.notitxt}} </p></a>
 
-																<p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p>
+																	<p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p>
+																</div>
+															
 															</div>
 														</div>
 															<!-- ITEMS -->
@@ -204,35 +206,29 @@ export default {
 		else{
 			this.swr();
 		}
-	   const res1 = await this.callApi('get',`getAllNotifications/${this.authInfo.id}`)
-		if(res1.status===200){
-			this.allnoti = res1.data;
-			console.log(this.allnoti)
-		}
-		else{
-			this.swr()
-		}
+
+	  
 	
 	},
 	methods:{
-	  handleOpen () {
-      if(this.visible==false)
-      this.visible = true;
-      else this.visible = false;
-    },
-    handleClose (id) {
-			this.$store.dispatch('setUserType',id);
-      this.visible = false;
+		handleOpen () {psprofile
+		if(this.visible==false)
+		this.visible = true;
+		else this.visible = false;
+    	},
+		handleClose (id) {
+				this.$store.dispatch('setUserType',id);
+		this.visible = false;
 		},
 		goNextPage(item){
-			 this.leftMain = '-100%'
-			 if(item.name==='Dashboard'){
-				  window.location = '/admin'
-			 }
-			 if(item.id){
-				 	return this.$router.push(item.url+'/'+this.authInfo.id)
-			 }
-			 return this.$router.push(item.url)
+		 this.leftMain = '-100%'
+		 if(item.name==='Dashboard'){
+			  window.location = '/admin'
+		 }
+		 if(item.id){
+			 	return this.$router.push(item.url+'/'+this.authInfo.id)
+		 }
+		 return this.$router.push(item.url)
 		},
 		notAuth(url){
 			if(url=='/logout'){
@@ -246,8 +242,18 @@ export default {
 				this.open=false;
 			}
 			else this.open = true;
-		}
-	}
+		},
+		async isSeen(item){
+			this.$router.push(item.url)
+			if(item.seen){
+				const res = await this.callApi('put','updateNotification',{id:item.id})
+				if(res.status!==200){
+					this.swr();
+				}
+			}
+		},
+	},
+	
 }
 </script>
 

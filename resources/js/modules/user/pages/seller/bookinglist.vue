@@ -51,12 +51,6 @@ export default {
         return{
             list:[],
             toDayDate:'',
-             noti:{
-                notifor:'',
-                notifrom:'',
-                notitxt:'',
-                url:'',
-            }
         }
     },
     methods:{
@@ -85,14 +79,11 @@ export default {
             this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
             this.getNewList(this.toDayDate)
         },
+
         async updateStatus(status,index,buyer_id,seller_id){
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
-                this.noti.notitxt = 'seller cancled your service'
-                this.noti.notifor = buyer_id
-                this.noti.notifrom = seller_id
-                this.noti.url = 'bprofile/'+buyer_id+'?'+'tab=4'
-                const res2 = await this.callApi('post','notifications', this.noti)
+                this.insertNotification(buyer_id,seller_id)
                 this.i("This booking has been cancled!");
                 this.list[index].status = 3 
                 
@@ -100,7 +91,18 @@ export default {
             else{
                 this.e();
             }
-        }
+        },
+
+        async insertNotification(buyer_id,seller_id){
+
+            let notifications = {
+                notitxt : 'seller cancled your service',
+                notifor : buyer_id,
+                notifrom : seller_id,
+                url : 'bprofile/'+buyer_id+'?'+'tab=4',
+            }
+            const res = await this.callApi('post','notifications', this.noti)
+        },
     },
     created(){
         let d = new Date();
@@ -111,6 +113,7 @@ export default {
         this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
         this.getNewList(this.toDayDate);
     }
+    
 }
 </script>
 

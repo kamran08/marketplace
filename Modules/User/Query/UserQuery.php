@@ -3,6 +3,7 @@ namespace Modules\User\Query;
 use Illuminate\Http\Request;
 use App\User;
 use App\Category;
+use App\Subcategory;
 use App\Service;
 use App\Extra;
 use App\Review;
@@ -25,6 +26,10 @@ class UserQuery {
   
     public function getAllcat(){
          $cat = Category::all();
+        return $cat;
+    }
+    public function getAllSubcat(){
+         $cat = Subcategory::with('category')->get();
         return $cat;
     }
     public function getAllService(){
@@ -130,8 +135,13 @@ class UserQuery {
     return User::all();
     }
    public function insertCatagory($data){
-     //\Log::info($data);
     return Category::create($data);
+    }
+   public function insertSubCatagory($data){
+    return Subcategory::create($data);
+    }
+    public function deleteSubCategory($id){
+      return Subcategory::where('id',$id)->delete();
     }
    public function updateUser($data){
       return User::where('id',$data['id'])->update($data);
@@ -139,6 +149,10 @@ class UserQuery {
    public function categoryUpdate($data){
 
       return Category::where('id',$data['id'])->update($data);
+    }
+   public function updateSubCategory($data){
+
+      return Subcategory::where('id',$data['id'])->update($data);
     }
    public function UpdateServiceDescription($data){
       return Service::where('id',$data['id'])->update($data);
@@ -155,6 +169,7 @@ class UserQuery {
    public function deleteService($data){
       return Service::where('id',$data['id'])->delete();
     }
+
    public function updateService($data){
       return Service::where('id',$data['id'])->update($data);
     }
@@ -210,10 +225,16 @@ class UserQuery {
     return Review::create($data);
     }
     public function getAllNotifications($key){
-      return Notification::where('notifor',$key)->with('user')->get();
+      return Notification::where('notifor',$key)->with('user')->orderBy('id','desc')->get();
+    }
+    public function getNewNotifications($key){
+      return Notification::where([['notifor',$key],['seen',1]])->with('user')->count();
     }
    public function notifications($data){
      return Notification::create($data);
+    }
+   public function updateNotification($data){
+     return Notification::where('id',$data['id'])->update($data);
     }
 
  

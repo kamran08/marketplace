@@ -10,7 +10,8 @@
 					<input class="_1search_section_search_input" v-model="search" placeholder="a logo design" type="text">
 				</div>
 				<div class="_1search_section_search_button">
-					<router-link> <button class="_1search_section_search_button_btn _bg" name="s" type="button" @click="showdata">SEARCH NOW</button></router-link>
+					<!-- <router-link > <button class="_1search_section_search_button_btn _bg"  type="button" @click="showdata">SEARCH NOW</button></router-link> -->
+					<a > <button class="_1search_section_search_button_btn _bg"  type="button" @click="showdata">SEARCH NOW</button></a>
 				</div>
 			</div>
 		</div>

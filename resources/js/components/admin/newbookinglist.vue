@@ -7,7 +7,40 @@
                         <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
                     </div>
                     <!-- card -->
-                    <div class="_profile_card_all _overflow _border_radious _box_shadow2" v-if="list.length"  >
+                    <div class="_profile_card_all list_head _box_shadow2 _border_radious _overflow" v-if="list.length"  >
+                        <table class="table_C table-striped">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Booked-by</th>
+                                <th>Service-Provider</th>
+                                <th>Extra</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Total Price</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody >
+                            <tr v-for="(item,index) in list" :key="index"  v-if="item.status==0"  >
+                                <td>{{item.service.title}}</td>
+                                <td>{{item.buyer_info.name}}</td>
+                                <td>{{item.seller_info.name}}</td>
+                                <td>{{item.extraService.length}}</td>
+                                <td>{{item.bookingDate}}</td>
+                                <td>{{item.bookingTime}}</td>
+                                <td>{{item.totalPrice}}</td>
+                                <td>
+                                   <button v-if="item.status==0" class="table_button" type="button" >Waiting For Approve</button>
+                                    <button class="table_button_green" type="button" @click="updateStatus(1,index)" >Approve</button>
+                                    <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle</button>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="_profile_card_all _overflow _border_radious _box_shadow2" v-if="list.length"  >
                         <div v-for="(item,index) in list" :key="index" >
                             <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==0"  >
                                 <div class="_profile_card_pic">
@@ -35,9 +68,7 @@
                                         <p class="_profile_card_name_text">Time: {{item.bookingTime}}</p> 
                                     </div>
                                     <div class="_profile_card_title _flex_space">
-                                        <button v-if="item.status==0" class="table_button" type="button" >Waiting For Approve</button>
-                                        <button class="table_button_green" type="button" @click="updateStatus(1,index)" >Approve</button>
-                                        <button class="table_button_red" type="button" @click="updateStatus(3,index)">Cancle</button>
+                                        
                                     </div>
                                     <div class="_dis_flex _profile_card_doller">
                                         <div class="_1job_card_dollar">
@@ -48,7 +79,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div span="24" class="booked_date _text_center _box_shadow2 _border_radious" v-if="list.length==0" >
                         <h2>No Canceled Bookings This Day</h2>
                     </div>

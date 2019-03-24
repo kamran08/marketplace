@@ -4,6 +4,7 @@ Vue.use(Router);
 import user from './components/admin/user.vue';
 import servicelist from './components/admin/servicelist.vue';
 import category from './components/admin/category.vue';
+import subcategory from './components/admin/subcategory.vue';
 import newbookinglist from './components/admin/newbookinglist.vue';
 import bookinglist from './components/admin/bookinglist.vue';
 import completedList from './components/admin/completedList.vue';
@@ -100,6 +101,16 @@ const defaultroutes = [
         name: 'category',
         title: 'category list',
         component: category,
+        meta: {
+            guest : true,
+            allowedUserType: ['All']
+        }
+    },
+    {
+        path: '/admin/subcategory',
+        name: 'subcategory',
+        title: 'Sub Category list',
+        component: subcategory,
         meta: {
             guest : true,
             allowedUserType: ['All']

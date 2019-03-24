@@ -274,8 +274,9 @@ export default {
     },
     created(){
            if(this.$route.query.tab>0 && this.$route.query.tab<6){
-           this.sellerTab = this.$route.query.tab
+             this.sellerTab = this.$route.query.tab
             window.history.pushState(this.sellerTab, 'Title', '/sprofile/'+this.$route.params.id);
+            
            }
   
             this.getProfileInfo();

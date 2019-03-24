@@ -69,6 +69,11 @@
                   <i class="far fa-user nav-icon"></i> Category-List
                 </a>
             </li>
+            <li class="nav-item" :class="(memuActiveFlag==3)? 'nav_active' : ''" @click="routerPush(8)" >
+                <a class="nav-link" >
+                  <i class="far fa-user nav-icon"></i> Sub Category-List
+                </a>
+            </li>
             <li class="nav-item" :class="(memuActiveFlag==4)? 'nav_active' : ''" @click="routerPush(4)" >
                 <a class="nav-link" >
                   <i class="far fa-user nav-icon"></i> Waiting-Bookings
@@ -157,6 +162,14 @@ export default {
             else if (index == 7){
                  this.memuActiveFlag = index
                  this.$router.push('/admin/canclebookinglist');
+            }
+            else if (index == 7){
+                 this.memuActiveFlag = index
+                 this.$router.push('/admin/canclebookinglist');
+            }
+            else if (index == 8){
+                 this.memuActiveFlag = index
+                 this.$router.push('/admin/subcategory');
             }
 
         }
