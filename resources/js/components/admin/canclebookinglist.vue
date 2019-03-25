@@ -7,7 +7,7 @@
                         <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
                     </div>
                     <!-- card -->
-                    <div class="_profile_card_all list_head _box_shadow2 _border_radious _overflow" v-if="list.length"  >
+                    <div class="_profile_card_all list_head _box_shadow2 _border_radious _overflow" v-if="list.length && isloading"  >
                         <table class="table_C table-striped">
                             <thead>
                             <tr>
@@ -79,6 +79,9 @@
                     <div span="24" class="booked_date _text_center _box_shadow2 _border_radious" v-if="list.length==0" >
                         <h2>No Canceled Bookings This Day</h2>
                     </div>
+                    <div span="14" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+                        <h2>Loading .....</h2>
+                    </div>
                     <!-- card -->
                 </div>
             </div>
@@ -91,7 +94,8 @@ export default {
     data(){
         return{
             list:[],
-            toDayDate:''
+            toDayDate:'',
+            isloading:true
         }
     },
     methods:{
@@ -103,10 +107,12 @@ export default {
             const res  = await  this.callApi('post',`getAllBookingList`,data);
             if(res.status===200){
                 this.list = res.data
-                console.log(this.list)
+                this.isloading = true
+                // console.log(this.list)
             }
             else{
                 this.swr();
+                this.isloading = true
             }
         },
         getSlots(){
@@ -133,6 +139,7 @@ export default {
         }
     },
     created(){
+        this.isloading = false
         let d = new Date();
         let monthNumber = d.getMonth()+1
         monthNumber = ("0" + monthNumber).slice(-2);

@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all" v-if="list.length"  >
+        <div class="_profile_card_all" v-if="list.length && isloading"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==2"  >
                     <div class="_profile_card_pic">
@@ -41,6 +41,9 @@
         </div>
         <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
             <h2>No Bookings This Day</h2>
+        </div>
+        <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+           <h2>Loading .....</h2>
         </div>
         <!-- card -->
                 <Modal
@@ -97,6 +100,7 @@ export default {
             },
             modalData:{},
             dataIndex:'',
+            isloading:true
         }
     },
     methods:{
@@ -106,6 +110,7 @@ export default {
             this.dataIndex = index;
         },
         async getNewList(newDate){
+            this.isloading = false
             let data = {
                 date:newDate,
                 status:2,
@@ -118,6 +123,7 @@ export default {
             else{
                 this.swr();
             }
+            this.isloading = true
         },
         getSlots(){
             // FORMATE THE DATE 

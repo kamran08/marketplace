@@ -56744,6 +56744,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56755,7 +56758,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 			id: '',
 			defaultImage: 'uploads/_85730600_monkey2.jpg',
 			allServices: [],
-			products: []
+			products: [],
+			isloading: true
 
 		};
 	},
@@ -56768,19 +56772,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 					while (1) {
 						switch (_context.prev = _context.next) {
 							case 0:
-								_context.next = 2;
+								this.isloading = false;
+								_context.next = 3;
 								return this.callApi('get', 'get-all-catgory');
 
-							case 2:
+							case 3:
 								res = _context.sent;
 
 								if (res.status === 200) {
 									this.allcatagory = res.data;
+									this.isloading = true;
 								} else {
 									this.swr();
+									this.isloading = true;
 								}
 
-							case 4:
+							case 5:
 							case 'end':
 								return _context.stop();
 						}
@@ -56949,271 +56956,348 @@ var render = function() {
       _vm._m(0)
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "Marketplace_content" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "_title_header _b_color2" }, [
-          _c("h3", { staticClass: "_title" }, [
-            _vm._v(_vm._s(_vm.products.length) + " SERVICES AVAILABLE")
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "Marketplace_search_result" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-12 col-md-3" }, [
-              _c("div", { staticClass: "Marketplace_Categories_menu" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c("div", { staticClass: "_Categories_menu" }, [
-                  _c(
-                    "ul",
-                    { staticClass: "_Categories_menu_ul" },
-                    [
-                      _c(
-                        "li",
-                        {
-                          staticClass: "uper",
-                          on: {
-                            click: function($event) {
-                              _vm.$router.push("/marketplace")
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n\t\t\t\t\t\t\t\t\t\t\tAll\n\t\t\t\t\t\t\t\t\t\t"
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm._l(_vm.allcatagory, function(item, i) {
-                        return _c(
-                          "li",
-                          {
-                            key: i,
-                            staticClass: "uper",
-                            on: {
-                              click: function($event) {
-                                _vm.$router.push("/marketplace?cat=" + item.id)
-                              }
-                            }
-                          },
-                          [_vm._v(_vm._s(item.catName))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ])
+    !_vm.isloading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "booked_date _text_center _box_shadow2 _border_radious",
+            attrs: { span: "14", align: "center" }
+          },
+          [_c("h2", [_vm._v("Loading .....")])]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.isloading
+      ? _c("div", { staticClass: "Marketplace_content" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "_title_header _b_color2" }, [
+              _c("h3", { staticClass: "_title" }, [
+                _vm._v(_vm._s(_vm.products.length) + " SERVICES AVAILABLE")
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-12 col-md-9" }, [
-              _c("div", { staticClass: "Marketplace_search_result_prduct" }, [
-                _c(
-                  "div",
-                  { staticClass: "job_row row" },
-                  _vm._l(_vm.products, function(service, i) {
-                    return _c(
-                      "div",
-                      {
-                        key: i,
-                        staticClass: "col-12 col-md-4 col-lg-4 job_all"
-                      },
-                      [
-                        _c("div", { staticClass: "_1job_card" }, [
-                          _c("div", { staticClass: "_1job_card_rating" }, [
-                            service.avgreview
-                              ? _c(
-                                  "ul",
-                                  { staticClass: "_1job_card_rating_ul" },
+            _c("div", { staticClass: "Marketplace_search_result" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-12 col-md-3" }, [
+                  _c("div", { staticClass: "Marketplace_Categories_menu" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "_Categories_menu" }, [
+                      _c(
+                        "ul",
+                        { staticClass: "_Categories_menu_ul" },
+                        [
+                          _c(
+                            "li",
+                            {
+                              staticClass: "uper",
+                              on: {
+                                click: function($event) {
+                                  _vm.$router.push("/marketplace")
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t\t\tAll\n\t\t\t\t\t\t\t\t\t\t"
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.allcatagory, function(item, i) {
+                            return _c(
+                              "li",
+                              {
+                                key: i,
+                                staticClass: "uper",
+                                on: {
+                                  click: function($event) {
+                                    _vm.$router.push(
+                                      "/marketplace?cat=" + item.id
+                                    )
+                                  }
+                                }
+                              },
+                              [_vm._v(_vm._s(item.catName))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-12 col-md-9" }, [
+                  _c(
+                    "div",
+                    { staticClass: "Marketplace_search_result_prduct" },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "job_row row" },
+                        _vm._l(_vm.products, function(service, i) {
+                          return _c(
+                            "div",
+                            {
+                              key: i,
+                              staticClass: "col-12 col-md-4 col-lg-4 job_all"
+                            },
+                            [
+                              _c("div", { staticClass: "_1job_card" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "_1job_card_rating" },
+                                  [
+                                    service.avgreview
+                                      ? _c(
+                                          "ul",
+                                          {
+                                            staticClass: "_1job_card_rating_ul"
+                                          },
+                                          [
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  service.avgreview
+                                                    .averageRating >= 1
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  service.avgreview
+                                                    .averageRating >= 2
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  service.avgreview
+                                                    .averageRating >= 3
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  service.avgreview
+                                                    .averageRating >= 4
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                class:
+                                                  service.avgreview
+                                                    .averageRating >= 5
+                                                    ? "_color"
+                                                    : ""
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fas fa-star"
+                                                })
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                staticClass:
+                                                  "_1job_card_rating_num"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "(" +
+                                                    _vm._s(
+                                                      service.reviews_count
+                                                    ) +
+                                                    ")"
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e(),
+                                    _vm._v(" "),
+                                    service.reviews_count == 0
+                                      ? _c(
+                                          "ul",
+                                          {
+                                            staticClass: "_1job_card_rating_ul"
+                                          },
+                                          [
+                                            _vm._m(3, true),
+                                            _vm._v(" "),
+                                            _vm._m(4, true),
+                                            _vm._v(" "),
+                                            _vm._m(5, true),
+                                            _vm._v(" "),
+                                            _vm._m(6, true),
+                                            _vm._v(" "),
+                                            _vm._m(7, true),
+                                            _vm._v(" "),
+                                            _c(
+                                              "li",
+                                              {
+                                                staticClass:
+                                                  "_1job_card_rating_num"
+                                              },
+                                              [_vm._v("(0)")]
+                                            )
+                                          ]
+                                        )
+                                      : _vm._e()
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "_1job_card_img" },
+                                  [
+                                    _c("img", {
+                                      attrs: {
+                                        src: "",
+                                        alt: "",
+                                        sizes: "",
+                                        srcset: ""
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "router-link",
+                                      {
+                                        attrs: {
+                                          to: {
+                                            name: "details",
+                                            params: { id: service.id }
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("img", {
+                                          staticClass: "_1job_card_img_pic",
+                                          attrs: {
+                                            src: service.image[0]
+                                              ? service.image[0].imageUrl
+                                              : _vm.defaultImg,
+                                            alt: "",
+                                            title: ""
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "_1job_card_status" },
                                   [
                                     _c(
-                                      "li",
+                                      "p",
                                       {
-                                        class:
-                                          service.avgreview.averageRating >= 1
-                                            ? "_color"
-                                            : ""
+                                        staticClass:
+                                          "_1job_card_status_text _text_overflow2"
                                       },
-                                      [_c("i", { staticClass: "fas fa-star" })]
-                                    ),
+                                      [_vm._v(_vm._s(service.title))]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  { staticClass: "_1job_card_bottom" },
+                                  [
+                                    _c("p", { staticClass: "_1job_card_by" }, [
+                                      _c(
+                                        "span",
+                                        { staticClass: "_1job_card_by_span" },
+                                        [_vm._v("by")]
+                                      ),
+                                      _vm._v(
+                                        "   " + _vm._s(service.user.userName)
+                                      )
+                                    ]),
                                     _vm._v(" "),
                                     _c(
-                                      "li",
-                                      {
-                                        class:
-                                          service.avgreview.averageRating >= 2
-                                            ? "_color"
-                                            : ""
-                                      },
-                                      [_c("i", { staticClass: "fas fa-star" })]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "li",
-                                      {
-                                        class:
-                                          service.avgreview.averageRating >= 3
-                                            ? "_color"
-                                            : ""
-                                      },
-                                      [_c("i", { staticClass: "fas fa-star" })]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "li",
-                                      {
-                                        class:
-                                          service.avgreview.averageRating >= 4
-                                            ? "_color"
-                                            : ""
-                                      },
-                                      [_c("i", { staticClass: "fas fa-star" })]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "li",
-                                      {
-                                        class:
-                                          service.avgreview.averageRating >= 5
-                                            ? "_color"
-                                            : ""
-                                      },
-                                      [_c("i", { staticClass: "fas fa-star" })]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "li",
-                                      { staticClass: "_1job_card_rating_num" },
+                                      "div",
+                                      { staticClass: "_1job_card_dollar" },
                                       [
-                                        _vm._v(
-                                          "(" +
-                                            _vm._s(service.reviews_count) +
-                                            ")"
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "_1job_card_dollar_text _color"
+                                          },
+                                          [_vm._v(_vm._s(service.price))]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "p",
+                                          {
+                                            staticClass:
+                                              "_1job_card_dollar_sine _color"
+                                          },
+                                          [_vm._v("$")]
                                         )
                                       ]
                                     )
                                   ]
                                 )
-                              : _vm._e(),
-                            _vm._v(" "),
-                            service.reviews_count == 0
-                              ? _c(
-                                  "ul",
-                                  { staticClass: "_1job_card_rating_ul" },
-                                  [
-                                    _vm._m(3, true),
-                                    _vm._v(" "),
-                                    _vm._m(4, true),
-                                    _vm._v(" "),
-                                    _vm._m(5, true),
-                                    _vm._v(" "),
-                                    _vm._m(6, true),
-                                    _vm._v(" "),
-                                    _vm._m(7, true),
-                                    _vm._v(" "),
-                                    _c(
-                                      "li",
-                                      { staticClass: "_1job_card_rating_num" },
-                                      [_vm._v("(0)")]
-                                    )
-                                  ]
-                                )
-                              : _vm._e()
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "_1job_card_img" },
-                            [
-                              _c("img", {
-                                attrs: {
-                                  src: "",
-                                  alt: "",
-                                  sizes: "",
-                                  srcset: ""
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c(
-                                "router-link",
-                                {
-                                  attrs: {
-                                    to: {
-                                      name: "details",
-                                      params: { id: service.id }
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("img", {
-                                    staticClass: "_1job_card_img_pic",
-                                    attrs: {
-                                      src: service.image[0]
-                                        ? service.image[0].imageUrl
-                                        : _vm.defaultImg,
-                                      alt: "",
-                                      title: ""
-                                    }
-                                  })
-                                ]
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "_1job_card_status" }, [
-                            _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "_1job_card_status_text _text_overflow2"
-                              },
-                              [_vm._v(_vm._s(service.title))]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "_1job_card_bottom" }, [
-                            _c("p", { staticClass: "_1job_card_by" }, [
-                              _c(
-                                "span",
-                                { staticClass: "_1job_card_by_span" },
-                                [_vm._v("by")]
-                              ),
-                              _vm._v("   " + _vm._s(service.user.userName))
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "_1job_card_dollar" }, [
-                              _c(
-                                "p",
-                                {
-                                  staticClass: "_1job_card_dollar_text _color"
-                                },
-                                [_vm._v(_vm._s(service.price))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                {
-                                  staticClass: "_1job_card_dollar_sine _color"
-                                },
-                                [_vm._v("$")]
-                              )
-                            ])
-                          ])
-                        ])
-                      ]
-                    )
-                  })
-                )
+                              ])
+                            ]
+                          )
+                        })
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
         ])
-      ])
-    ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -61272,7 +61356,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61336,12 +61420,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             list: [],
-            toDayDate: ''
+            toDayDate: '',
+            isloading: true
         };
     },
 
@@ -61353,24 +61441,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                this.isloading = false;
                                 data = {
                                     date: newDate,
                                     status: 1
                                 };
-                                _context.next = 3;
+                                _context.next = 4;
                                 return this.callApi('post', 'getBookingList', data);
 
-                            case 3:
+                            case 4:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
                                     this.list = res.data;
-                                    console.log(this.list);
+                                    this.isloading = true;
                                 } else {
                                     this.swr();
+                                    this.isloading = true;
                                 }
 
-                            case 5:
+                            case 6:
                             case 'end':
                                 return _context.stop();
                         }
@@ -61441,7 +61531,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     notitxt: 'seller cancled your service',
                                     notifor: buyer_id,
                                     notifrom: seller_id,
-                                    url: 'bprofile/' + buyer_id + '?' + 'tab=4'
+                                    url: '/bprofile/' + buyer_id + '?' + 'tab=4'
                                 };
                                 _context3.next = 3;
                                 return this.callApi('post', 'notifications', this.noti);
@@ -61511,7 +61601,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _vm.list.length
+    _vm.list.length && _vm.isloading
       ? _c(
           "div",
           { staticClass: "_profile_card_all seller_pro" },
@@ -61687,6 +61777,18 @@ var render = function() {
           },
           [_c("h2", [_vm._v("No Bookings This Day")])]
         )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.isloading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "booked_date _text_center _box_shadow2 _border_radious",
+            attrs: { span: "14", align: "center" }
+          },
+          [_c("h2", [_vm._v("Loading .....")])]
+        )
       : _vm._e()
   ])
 }
@@ -61786,7 +61888,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -61850,12 +61952,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             list: [],
-            toDayDate: ''
+            toDayDate: '',
+            isloading: true
         };
     },
 
@@ -61867,24 +61973,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                this.isloading = false;
                                 data = {
                                     date: newDate,
                                     status: 3
                                 };
-                                _context.next = 3;
+                                _context.next = 4;
                                 return this.callApi('post', 'getBookingList', data);
 
-                            case 3:
+                            case 4:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
                                     this.list = res.data;
-                                    console.log(this.list);
-                                } else {
-                                    this.swr();
-                                }
+                                } else {}
+                                this.isloading = true;
 
-                            case 5:
+                            case 7:
                             case 'end':
                                 return _context.stop();
                         }
@@ -61991,7 +62096,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _vm.list.length
+    _vm.list.length && _vm.isloading
       ? _c(
           "div",
           { staticClass: "_profile_card_all" },
@@ -62144,6 +62249,18 @@ var render = function() {
           },
           [_c("h2", [_vm._v("No Canceled Bookings This Day")])]
         )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.isloading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "booked_date _text_center _box_shadow2 _border_radious",
+            attrs: { span: "14", align: "center" }
+          },
+          [_c("h2", [_vm._v("Loading .....")])]
+        )
       : _vm._e()
   ])
 }
@@ -62259,7 +62376,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62321,13 +62438,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             list: [],
             toDayDate: '',
-            user_id: this.$route.params.id
+            user_id: this.$route.params.id,
+            isloading: true
         };
     },
 
@@ -62339,10 +62460,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                this.isloading = false;
+                                _context.next = 3;
                                 return this.callApi('get', 'getServiceList/' + this.user_id);
 
-                            case 2:
+                            case 3:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
@@ -62350,8 +62472,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 } else {
                                     this.swr();
                                 }
+                                this.isloading = true;
 
-                            case 4:
+                            case 6:
                             case 'end':
                                 return _context.stop();
                         }
@@ -62380,7 +62503,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.list.length
+    _vm.list.length && _vm.isloading
       ? _c(
           "div",
           { staticClass: "_profile_card_all" },
@@ -62457,6 +62580,18 @@ var render = function() {
               )
             ])
           })
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.isloading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "booked_date _text_center _box_shadow2 _border_radious",
+            attrs: { span: "14", align: "center" }
+          },
+          [_c("h2", [_vm._v("Loading .....")])]
         )
       : _vm._e()
   ])
@@ -62578,7 +62713,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -62640,6 +62775,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -62649,7 +62787,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 notifor: '',
                 notifrom: '',
                 notitxt: '',
-                url: ''
+                url: '',
+                isloading: true
             }
         };
     },
@@ -62662,10 +62801,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                this.isloading = false;
+                                _context.next = 3;
                                 return this.callApi('get', 'getNewList');
 
-                            case 2:
+                            case 3:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
@@ -62673,8 +62813,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 } else {
                                     this.swr();
                                 }
+                                this.isloading = true;
 
-                            case 4:
+                            case 6:
                             case 'end':
                                 return _context.stop();
                         }
@@ -62715,7 +62856,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.noti.notitxt = 'user comlited your service';
                                 this.noti.notifor = seller_id;
                                 this.noti.notifrom = buyer_id;
-                                this.noti.url = 'sprofile/' + seller_id + '?' + 'tab=2';
+                                this.noti.url = '/sprofile/' + seller_id + '?' + 'tab=2';
                                 // console.log(this.noti)
                                 _context2.next = 11;
                                 return this.callApi('post', 'notifications', this.noti);
@@ -62737,7 +62878,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.noti.notitxt = 'seller cancled your service';
                                 this.noti.notifor = seller_id;
                                 this.noti.notifrom = buyer_id;
-                                this.noti.url = 'sprofile/' + seller_id + '?' + 'tab=4';
+                                this.noti.url = '/sprofile/' + seller_id + '?' + 'tab=4';
                                 _context2.next = 23;
                                 return this.callApi('post', 'notifications', this.noti);
 
@@ -62784,189 +62925,226 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.list.length
+    _vm.list.length && _vm.isloading
       ? _c(
           "div",
           { staticClass: "_profile_card_all" },
-          _vm._l(_vm.list, function(item, index) {
-            return _c("div", { key: index }, [
-              item.status == 0
-                ? _c(
-                    "div",
-                    {
-                      staticClass:
-                        "_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "
-                    },
-                    [
-                      _c("div", { staticClass: "_profile_card_pic" }, [
-                        _c("img", {
-                          staticClass: "_profile_card_img",
-                          attrs: {
-                            src: item.service.image[0].imageUrl,
-                            alt: "",
-                            title: ""
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "_profile_card_name _flex_space _dis_flex"
-                        },
-                        [
-                          _c(
-                            "div",
-                            { staticClass: "_profile_card_title _flex_space" },
-                            [
-                              _c(
-                                "p",
-                                { staticClass: "_profile_card_name_text_link" },
-                                [
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "details",
-                                          params: { id: item.service.id }
-                                        }
-                                      }
-                                    },
-                                    [_vm._v(_vm._s(item.service.title))]
-                                  )
-                                ],
-                                1
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "_profile_card_title _flex_space" },
-                            [
-                              _c(
-                                "p",
-                                { staticClass: "_profile_card_name_text_link" },
-                                [
-                                  _vm._v("Booked by: "),
-                                  _c(
-                                    "router-link",
-                                    { attrs: { to: { name: "bprofile" } } },
-                                    [_vm._v(_vm._s(item.buyer_info.name))]
-                                  )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                { staticClass: "_profile_card_name_text_link" },
-                                [
-                                  _vm._v(
-                                    "Extra Service : " +
-                                      _vm._s(
-                                        item.extraService.length ? "No " : "Yes"
-                                      )
-                                  )
-                                ]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "_profile_card_title _flex_space" },
-                            [
-                              _c(
-                                "p",
-                                { staticClass: "_profile_card_name_text" },
-                                [_vm._v("Date: " + _vm._s(item.bookingDate))]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "p",
-                                { staticClass: "_profile_card_name_text" },
-                                [_vm._v("Time: " + _vm._s(item.bookingTime))]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "_profile_card_title _flex_space" },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "table_button",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.updateStatus(
-                                        1,
-                                        index,
-                                        item.buyer_id,
-                                        item.seller_id
-                                      )
-                                    }
-                                  }
-                                },
-                                [_vm._v("Approve")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "table_button_red",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.updateStatus(
-                                        3,
-                                        index,
-                                        item.buyer_id,
-                                        item.seller_id
-                                      )
-                                    }
-                                  }
-                                },
-                                [_vm._v("Cancle")]
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "_dis_flex _profile_card_doller" },
-                            [
-                              _c("div", { staticClass: "_1job_card_dollar" }, [
+          [
+            _vm._l(_vm.list, function(item, index) {
+              return _c("div", { key: index }, [
+                item.status == 0
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "
+                      },
+                      [
+                        _c("div", { staticClass: "_profile_card_pic" }, [
+                          _c("img", {
+                            staticClass: "_profile_card_img",
+                            attrs: {
+                              src: item.service.image[0].imageUrl,
+                              alt: "",
+                              title: ""
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "_profile_card_name _flex_space _dis_flex"
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "_profile_card_title _flex_space"
+                              },
+                              [
                                 _c(
                                   "p",
                                   {
-                                    staticClass: "_1job_card_dollar_text _color"
+                                    staticClass: "_profile_card_name_text_link"
                                   },
-                                  [_vm._v(" " + _vm._s(item.totalPrice))]
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        attrs: {
+                                          to: {
+                                            name: "details",
+                                            params: { id: item.service.id }
+                                          }
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(item.service.title))]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "_profile_card_title _flex_space"
+                              },
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "_profile_card_name_text_link"
+                                  },
+                                  [
+                                    _vm._v("Booked by: "),
+                                    _c(
+                                      "router-link",
+                                      { attrs: { to: { name: "bprofile" } } },
+                                      [_vm._v(_vm._s(item.buyer_info.name))]
+                                    )
+                                  ],
+                                  1
                                 ),
                                 _vm._v(" "),
                                 _c(
                                   "p",
                                   {
-                                    staticClass: "_1job_card_dollar_sine _color"
+                                    staticClass: "_profile_card_name_text_link"
                                   },
-                                  [_vm._v("$")]
+                                  [
+                                    _vm._v(
+                                      "Extra Service : " +
+                                        _vm._s(
+                                          item.extraService.length
+                                            ? "No "
+                                            : "Yes"
+                                        )
+                                    )
+                                  ]
                                 )
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    ]
-                  )
-                : _vm._e()
-            ])
-          })
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "_profile_card_title _flex_space"
+                              },
+                              [
+                                _c(
+                                  "p",
+                                  { staticClass: "_profile_card_name_text" },
+                                  [_vm._v("Date: " + _vm._s(item.bookingDate))]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  { staticClass: "_profile_card_name_text" },
+                                  [_vm._v("Time: " + _vm._s(item.bookingTime))]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "_profile_card_title _flex_space"
+                              },
+                              [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "table_button",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.updateStatus(
+                                          1,
+                                          index,
+                                          item.buyer_id,
+                                          item.seller_id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Approve")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "table_button_red",
+                                    attrs: { type: "button" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.updateStatus(
+                                          3,
+                                          index,
+                                          item.buyer_id,
+                                          item.seller_id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Cancle")]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "_dis_flex _profile_card_doller" },
+                              [
+                                _c(
+                                  "div",
+                                  { staticClass: "_1job_card_dollar" },
+                                  [
+                                    _c(
+                                      "p",
+                                      {
+                                        staticClass:
+                                          "_1job_card_dollar_text _color"
+                                      },
+                                      [_vm._v(" " + _vm._s(item.totalPrice))]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "p",
+                                      {
+                                        staticClass:
+                                          "_1job_card_dollar_sine _color"
+                                      },
+                                      [_vm._v("$")]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ]
+                    )
+                  : _vm._e()
+              ])
+            }),
+            _vm._v(" "),
+            !_vm.isloading
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "booked_date _text_center _box_shadow2 _border_radious",
+                    attrs: { span: "14", align: "center" }
+                  },
+                  [_c("h2", [_vm._v("Loading .....")])]
+                )
+              : _vm._e()
+          ],
+          2
         )
       : _vm._e(),
     _vm._v(" "),
@@ -63078,7 +63256,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -63142,12 +63320,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             list: [],
-            toDayDate: ''
+            toDayDate: '',
+            isloading: true
         };
     },
 
@@ -63159,14 +63341,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                this.isloading = false;
                                 data = {
                                     date: newDate,
                                     status: 2
                                 };
-                                _context.next = 3;
+                                _context.next = 4;
                                 return this.callApi('post', 'getBookingList', data);
 
-                            case 3:
+                            case 4:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
@@ -63175,8 +63358,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 } else {
                                     this.swr();
                                 }
+                                this.isloading = true;
 
-                            case 5:
+                            case 7:
                             case 'end':
                                 return _context.stop();
                         }
@@ -63283,7 +63467,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _vm.list.length
+    _vm.list.length && _vm.isloading
       ? _c(
           "div",
           { staticClass: "_profile_card_all" },
@@ -63435,6 +63619,18 @@ var render = function() {
             attrs: { span: "24" }
           },
           [_c("h2", [_vm._v("No Bookings This Day")])]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.isloading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "booked_date _text_center _box_shadow2 _border_radious",
+            attrs: { span: "14", align: "center" }
+          },
+          [_c("h2", [_vm._v("Loading .....")])]
         )
       : _vm._e()
   ])
@@ -64726,7 +64922,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -64743,6 +64939,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -64846,7 +65045,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 notifrom: '',
                 notitxt: '',
                 url: ''
-            }
+            },
+            isloading: true
         };
     },
 
@@ -64858,14 +65058,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                this.isloading = false;
                                 data = {
                                     date: newDate,
                                     status: 1
                                 };
-                                _context.next = 3;
+                                _context.next = 4;
                                 return this.callApi('post', 'getBookingList', data);
 
-                            case 3:
+                            case 4:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
@@ -64874,8 +65075,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 } else {
                                     this.swr();
                                 }
+                                this.isloading = true;
 
-                            case 5:
+                            case 7:
                             case 'end':
                                 return _context.stop();
                         }
@@ -64982,7 +65184,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 this.noti.notitxt = 'buyer started your service';
                                 this.noti.notifor = seller_id;
                                 this.noti.notifrom = buyer_id;
-                                this.noti.url = 'sprofile/' + seller_id + '?' + 'tab=3';
+                                this.noti.url = '/sprofile/' + seller_id + '?' + 'tab=3';
                                 _context3.next = 11;
                                 return this.callApi('post', 'notifications', this.noti);
 
@@ -65042,6 +65244,39 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return updateStatus;
+        }(),
+        insertNotification: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(buyer_id, seller_id) {
+                var notifications, res;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                notifications = {
+                                    notitxt: 'seller cancled your service',
+                                    notifor: buyer_id,
+                                    notifrom: seller_id,
+                                    url: '/bprofile/' + buyer_id + '?' + 'tab=4'
+                                };
+                                _context4.next = 3;
+                                return this.callApi('post', 'notifications', this.noti);
+
+                            case 3:
+                                res = _context4.sent;
+
+                            case 4:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this);
+            }));
+
+            function insertNotification(_x6, _x7) {
+                return _ref4.apply(this, arguments);
+            }
+
+            return insertNotification;
         }()
     },
     created: function created() {
@@ -65093,7 +65328,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.list.length
+      _vm.list.length && _vm.isloading
         ? _c(
             "div",
             { staticClass: "_profile_card_all seller_pro" },
@@ -65312,6 +65547,18 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
+      !_vm.isloading
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "booked_date _text_center _box_shadow2 _border_radious",
+              attrs: { span: "14", align: "center" }
+            },
+            [_c("h2", [_vm._v("Loading .....")])]
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "Modal",
         {
@@ -65518,7 +65765,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -65582,12 +65829,16 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             list: [],
-            toDayDate: ''
+            toDayDate: '',
+            isloading: true
         };
     },
 
@@ -65599,14 +65850,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                this.isloading = false;
                                 data = {
                                     date: newDate,
                                     status: 3
                                 };
-                                _context.next = 3;
+                                _context.next = 4;
                                 return this.callApi('post', 'getBookingList', data);
 
-                            case 3:
+                            case 4:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
@@ -65615,8 +65867,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 } else {
                                     this.swr();
                                 }
+                                this.isloading = true;
 
-                            case 5:
+                            case 7:
                             case 'end':
                                 return _context.stop();
                         }
@@ -65723,7 +65976,7 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _vm.list.length
+    _vm.list.length && _vm.isloading
       ? _c(
           "div",
           { staticClass: "_profile_card_all" },
@@ -65876,6 +66129,18 @@ var render = function() {
           },
           [_c("h2", [_vm._v("No Canceled Bookings This Day")])]
         )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.isloading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "booked_date _text_center _box_shadow2 _border_radious",
+            attrs: { span: "14", align: "center" }
+          },
+          [_c("h2", [_vm._v("Loading .....")])]
+        )
       : _vm._e()
   ])
 }
@@ -65991,7 +66256,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -66058,11 +66323,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            list: []
+            list: [],
+            isloading: true
         };
     },
 
@@ -66074,10 +66343,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                this.isloading = false;
+                                _context.next = 3;
                                 return this.callApi('get', 'getNewList');
 
-                            case 2:
+                            case 3:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
@@ -66085,8 +66355,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 } else {
                                     this.swr();
                                 }
+                                this.isloading = true;
 
-                            case 4:
+                            case 6:
                             case 'end':
                                 return _context.stop();
                         }
@@ -66154,7 +66425,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.list.length
+    _vm.list.length && _vm.isloading
       ? _c(
           "div",
           { staticClass: "_profile_card_all tags_all" },
@@ -66342,6 +66613,18 @@ var render = function() {
           },
           [_c("h2", [_vm._v("No New Bookings ")])]
         )
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.isloading
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "booked_date _text_center _box_shadow2 _border_radious",
+            attrs: { span: "14", align: "center" }
+          },
+          [_c("h2", [_vm._v("Loading .....")])]
+        )
       : _vm._e()
   ])
 }
@@ -66441,7 +66724,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -66541,6 +66824,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -66556,7 +66842,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 booking_id: ''
             },
             modalData: {},
-            dataIndex: ''
+            dataIndex: '',
+            isloading: true
         };
     },
 
@@ -66573,14 +66860,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                this.isloading = false;
                                 data = {
                                     date: newDate,
                                     status: 2
                                 };
-                                _context.next = 3;
+                                _context.next = 4;
                                 return this.callApi('post', 'getBookingList', data);
 
-                            case 3:
+                            case 4:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
@@ -66589,8 +66877,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 } else {
                                     this.swr();
                                 }
+                                this.isloading = true;
 
-                            case 5:
+                            case 7:
                             case 'end':
                                 return _context.stop();
                         }
@@ -66722,7 +67011,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm.list.length
+      _vm.list.length && _vm.isloading
         ? _c(
             "div",
             { staticClass: "_profile_card_all" },
@@ -66925,6 +67214,18 @@ var render = function() {
               attrs: { span: "24" }
             },
             [_c("h2", [_vm._v("No Bookings This Day")])]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.isloading
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "booked_date _text_center _box_shadow2 _border_radious",
+              attrs: { span: "14", align: "center" }
+            },
+            [_c("h2", [_vm._v("Loading .....")])]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -67891,7 +68192,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -68206,10 +68507,15 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            isloading: true,
             serviceDetails: false,
             order: {
                 totalPrice: 0,
@@ -68243,19 +68549,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                _context.next = 2;
+                                this.isloading = false;
+                                _context.next = 3;
                                 return this.callApi('get', "getServiceDetailsById/" + this.$route.params.id);
 
-                            case 2:
+                            case 3:
                                 res = _context.sent;
 
                                 if (res.status === 200) {
                                     this.serviceDetails = res.data;
+                                    this.isloading = true;
                                 } else {
                                     this.swr();
+                                    this.isloading = true;
                                 }
 
-                            case 4:
+                            case 5:
                             case "end":
                                 return _context.stop();
                         }
@@ -68280,19 +68589,23 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                     date: newDate,
                                     service_id: this.order.service_id
                                 };
-                                _context2.next = 3;
+
+                                this.isloading = false;
+                                _context2.next = 4;
                                 return this.callApi('post', "getslots", sdata);
 
-                            case 3:
+                            case 4:
                                 res = _context2.sent;
 
                                 if (res.status === 200) {
                                     this.bookingTimeByDay = res.data;
+                                    this.isloading = true;
                                 } else {
                                     this.swr();
+                                    this.isloading = true;
                                 }
 
-                            case 5:
+                            case 6:
                             case "end":
                                 return _context2.stop();
                         }
@@ -68472,10 +68785,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 while (1) {
                     switch (_context4.prev = _context4.next) {
                         case 0:
+                            this.isloading = false;
                             console.log(this.authInfo);
                             this.getServiceDetails();
 
-                        case 2:
+                        case 3:
                         case "end":
                             return _context4.stop();
                     }
@@ -68502,7 +68816,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm.serviceDetails
+      _vm.serviceDetails && _vm.isloading
         ? _c("div", { staticClass: "Details_header" }, [
             _c("img", {
               staticClass: "Details_header_img",
@@ -68511,784 +68825,942 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _c("div", { staticClass: "Details_main" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-12 col-md-8 col-lg-8" }, [
-              _c("div", { staticClass: "Details_main_left" }, [
-                _c("div", { staticClass: "Details_main_title" }, [
-                  _c("h3", { staticClass: "_title3" }, [
-                    _vm._v(" " + _vm._s(_vm.serviceDetails.title) + " "),
-                    _vm.authInfo.id == _vm.serviceDetails.user_id
-                      ? _c(
-                          "span",
-                          { staticClass: "Details_main_title_span _color" },
-                          [
-                            _c("i", { staticClass: "fas fa-pen" }),
-                            _c(
-                              "router-link",
-                              {
-                                attrs: {
-                                  to: {
-                                    name: "editJobDescription",
-                                    params: { id: _vm.serviceDetails.id }
-                                  }
-                                }
-                              },
-                              [_vm._v("Edit")]
-                            )
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "Details_main_left_menu _dis_flex" }, [
-                  _vm.serviceDetails.category
-                    ? _c(
-                        "div",
-                        {
-                          staticClass: "Details_main_left_menu_left _flex_space"
-                        },
-                        [
-                          _c(
-                            "p",
-                            { staticClass: "Details_main_left_menu_date_text" },
-                            [
-                              _vm._v(
-                                "\r\n                                        Category > "
-                              ),
-                              _c("span", { staticClass: "_color" }, [
-                                _vm._v(
-                                  _vm._s(_vm.serviceDetails.category.catName)
+      !_vm.isloading
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "booked_date _text_center _box_shadow2 _border_radious",
+              attrs: { span: "14", align: "center" }
+            },
+            [_c("h2", [_vm._v("Loading .....")])]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isloading
+        ? _c("div", { staticClass: "Details_main" }, [
+            _c("div", { staticClass: "container" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-12 col-md-8 col-lg-8" }, [
+                  _c("div", { staticClass: "Details_main_left" }, [
+                    _c("div", { staticClass: "Details_main_title" }, [
+                      _c("h3", { staticClass: "_title3" }, [
+                        _vm._v(" " + _vm._s(_vm.serviceDetails.title) + " "),
+                        _vm.authInfo.id == _vm.serviceDetails.user_id
+                          ? _c(
+                              "span",
+                              { staticClass: "Details_main_title_span _color" },
+                              [
+                                _c("i", { staticClass: "fas fa-pen" }),
+                                _c(
+                                  "router-link",
+                                  {
+                                    attrs: {
+                                      to: {
+                                        name: "editJobDescription",
+                                        params: { id: _vm.serviceDetails.id }
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Edit")]
                                 )
-                              ])
-                            ]
-                          )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._m(0)
-                ]),
-                _vm._v(" "),
-                _vm.serviceDetails.image.length
-                  ? _c(
-                      "div",
-                      { staticClass: "Details_slider _b_color2 _padd_20" },
-                      [
-                        _c("img", {
-                          staticClass: "Details_slider_img",
-                          attrs: {
-                            src: _vm.serviceDetails.image[0].imageUrl,
-                            title: "",
-                            alt: ""
-                          }
-                        })
-                      ]
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("div", { staticClass: "Details_block _b_color2 _padd_20" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "Details_block_status" }, [
-                    _c("p", { staticClass: "Details_block_status_text" }, [
-                      _vm._v(
-                        "\r\n                                         " +
-                          _vm._s(_vm.serviceDetails.description) +
-                          "\r\n                                    "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "_tags" }, [
-                    _c(
-                      "ul",
-                      { staticClass: "_tags_ul" },
-                      _vm._l(_vm.serviceDetails.tag, function(item, index) {
-                        return _c("li", { key: index }, [
-                          _vm._v(_vm._s(item.tagName))
-                        ])
-                      })
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "_block_buttons" }, [
-                    _c(
-                      "div",
-                      { staticClass: "_block_buttons_main _dis_flex" },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "_bg _btn _block_buttons_btn",
-                            attrs: { type: "button" }
-                          },
-                          [
-                            _vm._v(
-                              "Price " + _vm._s(_vm.serviceDetails.price) + "$"
+                              ],
+                              1
                             )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "_comment" }, [
-                _c("p", { staticClass: "_comment_title" }, [
-                  _vm._v("REVIEWS "),
-                  _c("span", { staticClass: "_comment_title_span" }, [
-                    _vm._v("(" + _vm._s(_vm.serviceDetails.reviews_count) + ")")
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm.serviceDetails.reviews_count != 0
-                  ? _c(
+                          : _vm._e()
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
                       "div",
-                      { staticClass: "_commnet_all" },
-                      _vm._l(_vm.serviceDetails.reviews, function(item, index) {
-                        return _vm.serviceDetails.reviews.length
+                      { staticClass: "Details_main_left_menu _dis_flex" },
+                      [
+                        _vm.serviceDetails.category
                           ? _c(
                               "div",
                               {
-                                key: index,
-                                staticClass: "_commnet_main _b_color2 _dis_flex"
+                                staticClass:
+                                  "Details_main_left_menu_left _flex_space"
                               },
                               [
-                                _c("div", { staticClass: "_commnet_img" }, [
-                                  _c("img", {
-                                    staticClass: "_commnet_img_pic",
-                                    attrs: {
-                                      src: item.user.image
-                                        ? item.user.image
-                                        : _vm.defultImage,
-                                      alt: "",
-                                      title: ""
-                                    }
-                                  })
-                                ]),
-                                _vm._v(" "),
                                 _c(
-                                  "div",
+                                  "p",
                                   {
                                     staticClass:
-                                      "_commnet_status_name _flex_space"
+                                      "Details_main_left_menu_date_text"
                                   },
                                   [
+                                    _vm._v(
+                                      "\r\n                                        Category > "
+                                    ),
+                                    _c("span", { staticClass: "_color" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.serviceDetails.category.catName
+                                        )
+                                      )
+                                    ])
+                                  ]
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._m(0)
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.serviceDetails.image.length
+                      ? _c(
+                          "div",
+                          { staticClass: "Details_slider _b_color2 _padd_20" },
+                          [
+                            _c("img", {
+                              staticClass: "Details_slider_img",
+                              attrs: {
+                                src: _vm.serviceDetails.image[0].imageUrl,
+                                title: "",
+                                alt: ""
+                              }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "Details_block _b_color2 _padd_20" },
+                      [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "Details_block_status" }, [
+                          _c(
+                            "p",
+                            { staticClass: "Details_block_status_text" },
+                            [
+                              _vm._v(
+                                "\r\n                                         " +
+                                  _vm._s(_vm.serviceDetails.description) +
+                                  "\r\n                                    "
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "_tags" }, [
+                          _c(
+                            "ul",
+                            { staticClass: "_tags_ul" },
+                            _vm._l(_vm.serviceDetails.tag, function(
+                              item,
+                              index
+                            ) {
+                              return _c("li", { key: index }, [
+                                _vm._v(_vm._s(item.tagName))
+                              ])
+                            })
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "_block_buttons" }, [
+                          _c(
+                            "div",
+                            { staticClass: "_block_buttons_main _dis_flex" },
+                            [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "_bg _btn _block_buttons_btn",
+                                  attrs: { type: "button" }
+                                },
+                                [
+                                  _vm._v(
+                                    "Price " +
+                                      _vm._s(_vm.serviceDetails.price) +
+                                      "$"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "_comment" }, [
+                    _c("p", { staticClass: "_comment_title" }, [
+                      _vm._v("REVIEWS "),
+                      _c("span", { staticClass: "_comment_title_span" }, [
+                        _vm._v(
+                          "(" + _vm._s(_vm.serviceDetails.reviews_count) + ")"
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.serviceDetails.reviews_count != 0
+                      ? _c(
+                          "div",
+                          { staticClass: "_commnet_all" },
+                          _vm._l(_vm.serviceDetails.reviews, function(
+                            item,
+                            index
+                          ) {
+                            return _vm.serviceDetails.reviews.length
+                              ? _c(
+                                  "div",
+                                  {
+                                    key: index,
+                                    staticClass:
+                                      "_commnet_main _b_color2 _dis_flex"
+                                  },
+                                  [
+                                    _c("div", { staticClass: "_commnet_img" }, [
+                                      _c("img", {
+                                        staticClass: "_commnet_img_pic",
+                                        attrs: {
+                                          src: item.user.image
+                                            ? item.user.image
+                                            : _vm.defultImage,
+                                          alt: "",
+                                          title: ""
+                                        }
+                                      })
+                                    ]),
+                                    _vm._v(" "),
                                     _c(
                                       "div",
                                       {
-                                        staticClass: "_commnet_name _dis_flex"
+                                        staticClass:
+                                          "_commnet_status_name _flex_space"
                                       },
                                       [
                                         _c(
                                           "div",
                                           {
                                             staticClass:
-                                              "_commnet_name_title _flex_space"
+                                              "_commnet_name _dis_flex"
                                           },
                                           [
                                             _c(
-                                              "p",
+                                              "div",
                                               {
-                                                staticClass: "_commnet_pro_name"
+                                                staticClass:
+                                                  "_commnet_name_title _flex_space"
                                               },
-                                              [_vm._v(_vm._s(item.user.name))]
+                                              [
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "_commnet_pro_name"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(item.user.name)
+                                                    )
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "p",
+                                                  {
+                                                    staticClass:
+                                                      "_commnet_pro_date"
+                                                  },
+                                                  [
+                                                    _vm._v(
+                                                      _vm._s(item.created_at)
+                                                    )
+                                                  ]
+                                                )
+                                              ]
                                             ),
                                             _vm._v(" "),
                                             _c(
-                                              "p",
+                                              "ul",
                                               {
-                                                staticClass: "_commnet_pro_date"
+                                                staticClass:
+                                                  "_1job_card_rating_ul"
                                               },
-                                              [_vm._v(_vm._s(item.created_at))]
+                                              [
+                                                _c(
+                                                  "li",
+                                                  {
+                                                    class:
+                                                      item.rating >= 1
+                                                        ? "_color"
+                                                        : ""
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "fas fa-star"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "li",
+                                                  {
+                                                    class:
+                                                      item.rating >= 2
+                                                        ? "_color"
+                                                        : ""
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "fas fa-star"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "li",
+                                                  {
+                                                    class:
+                                                      item.rating >= 3
+                                                        ? "_color"
+                                                        : ""
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "fas fa-star"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "li",
+                                                  {
+                                                    class:
+                                                      item.rating >= 4
+                                                        ? "_color"
+                                                        : ""
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "fas fa-star"
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "li",
+                                                  {
+                                                    class:
+                                                      item.rating >= 5
+                                                        ? "_color"
+                                                        : ""
+                                                  },
+                                                  [
+                                                    _c("i", {
+                                                      staticClass: "fas fa-star"
+                                                    })
+                                                  ]
+                                                )
+                                              ]
                                             )
                                           ]
                                         ),
                                         _vm._v(" "),
                                         _c(
-                                          "ul",
-                                          {
-                                            staticClass: "_1job_card_rating_ul"
-                                          },
+                                          "div",
+                                          { staticClass: "_commnet_status" },
                                           [
                                             _c(
-                                              "li",
+                                              "p",
                                               {
-                                                class:
-                                                  item.rating >= 1
-                                                    ? "_color"
-                                                    : ""
+                                                staticClass:
+                                                  "_commnet_status_text"
                                               },
                                               [
-                                                _c("i", {
-                                                  staticClass: "fas fa-star"
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "li",
-                                              {
-                                                class:
-                                                  item.rating >= 2
-                                                    ? "_color"
-                                                    : ""
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "fas fa-star"
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "li",
-                                              {
-                                                class:
-                                                  item.rating >= 3
-                                                    ? "_color"
-                                                    : ""
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "fas fa-star"
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "li",
-                                              {
-                                                class:
-                                                  item.rating >= 4
-                                                    ? "_color"
-                                                    : ""
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "fas fa-star"
-                                                })
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "li",
-                                              {
-                                                class:
-                                                  item.rating >= 5
-                                                    ? "_color"
-                                                    : ""
-                                              },
-                                              [
-                                                _c("i", {
-                                                  staticClass: "fas fa-star"
-                                                })
+                                                _vm._v(
+                                                  " " + _vm._s(item.comment)
+                                                )
                                               ]
                                             )
                                           ]
                                         )
                                       ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "_commnet_status" },
-                                      [
-                                        _c(
-                                          "p",
-                                          {
-                                            staticClass: "_commnet_status_text"
-                                          },
-                                          [_vm._v(" " + _vm._s(item.comment))]
-                                        )
-                                      ]
                                     )
                                   ]
                                 )
-                              ]
-                            )
-                          : _vm._e()
-                      })
-                    )
-                  : _vm._e()
-              ])
-            ]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "col-12 col-md-4 col-lg-4 Details_main_rigth" },
-              [
+                              : _vm._e()
+                          })
+                        )
+                      : _vm._e()
+                  ])
+                ]),
+                _vm._v(" "),
                 _c(
                   "div",
                   {
-                    staticClass:
-                      "Details_pro _mr_b30 _box_shadow2 _border_radious"
+                    staticClass: "col-12 col-md-4 col-lg-4 Details_main_rigth"
                   },
                   [
                     _c(
                       "div",
                       {
                         staticClass:
-                          "Details_pro_rating _dis_flex align-items-center _padd_20"
+                          "Details_pro _mr_b30 _box_shadow2 _border_radious"
                       },
                       [
-                        _c("div", { staticClass: " _flex_space" }, [
-                          _vm.serviceDetails.avgreview
-                            ? _c(
-                                "ul",
-                                { staticClass: "_1job_card_rating_ul" },
+                        _c(
+                          "div",
+                          {
+                            staticClass:
+                              "Details_pro_rating _dis_flex align-items-center _padd_20"
+                          },
+                          [
+                            _c("div", { staticClass: " _flex_space" }, [
+                              _vm.serviceDetails.avgreview
+                                ? _c(
+                                    "ul",
+                                    { staticClass: "_1job_card_rating_ul" },
+                                    [
+                                      _c(
+                                        "li",
+                                        {
+                                          class:
+                                            _vm.serviceDetails.avgreview
+                                              .averageRating >= 1
+                                              ? "_color"
+                                              : ""
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-star"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "li",
+                                        {
+                                          class:
+                                            _vm.serviceDetails.avgreview
+                                              .averageRating >= 2
+                                              ? "_color"
+                                              : ""
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-star"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "li",
+                                        {
+                                          class:
+                                            _vm.serviceDetails.avgreview
+                                              .averageRating >= 3
+                                              ? "_color"
+                                              : ""
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-star"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "li",
+                                        {
+                                          class:
+                                            _vm.serviceDetails.avgreview
+                                              .averageRating >= 4
+                                              ? "_color"
+                                              : ""
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-star"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "li",
+                                        {
+                                          class:
+                                            _vm.serviceDetails.avgreview
+                                              .averageRating >= 5
+                                              ? "_color"
+                                              : ""
+                                        },
+                                        [
+                                          _c("i", {
+                                            staticClass: "fas fa-star"
+                                          })
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "li",
+                                        {
+                                          staticClass: "_1job_card_rating_num"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "(" +
+                                              _vm._s(
+                                                _vm.serviceDetails.reviews_count
+                                              ) +
+                                              ")"
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.serviceDetails.reviews_count == 0
+                                ? _c(
+                                    "ul",
+                                    { staticClass: "_1job_card_rating_ul" },
+                                    [
+                                      _vm._m(2),
+                                      _vm._v(" "),
+                                      _vm._m(3),
+                                      _vm._v(" "),
+                                      _vm._m(4),
+                                      _vm._v(" "),
+                                      _vm._m(5),
+                                      _vm._v(" "),
+                                      _vm._m(6),
+                                      _vm._v(" "),
+                                      _c(
+                                        "li",
+                                        {
+                                          staticClass: "_1job_card_rating_num"
+                                        },
+                                        [_vm._v("(0)")]
+                                      )
+                                    ]
+                                  )
+                                : _vm._e()
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              { staticClass: "_1job_card_dollar  _text_right" },
+                              [
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "_1job_card_dollar_text _color"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "  " + _vm._s(_vm.serviceDetails.price)
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "p",
+                                  {
+                                    staticClass: "_1job_card_dollar_sine _color"
+                                  },
+                                  [_vm._v("$")]
+                                )
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "_padd_20" }, [
+                          _c(
+                            "div",
+                            { staticClass: "Details_pro_over _b_color2" },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "Details_pro_renge _dis_flex " },
                                 [
+                                  _c("i", { staticClass: "fas fa-star" }),
+                                  _vm._v(" "),
                                   _c(
-                                    "li",
+                                    "p",
                                     {
-                                      class:
-                                        _vm.serviceDetails.avgreview
-                                          .averageRating >= 1
-                                          ? "_color"
-                                          : ""
+                                      staticClass:
+                                        "Details_pro_renge_name _flex_space"
                                     },
-                                    [_c("i", { staticClass: "fas fa-star" })]
+                                    [_vm._v("Overrall rating")]
+                                  ),
+                                  _vm._v(" "),
+                                  _vm.serviceDetails.avgreview
+                                    ? _c(
+                                        "p",
+                                        {
+                                          staticClass: "Details_pro_renge_num"
+                                        },
+                                        [
+                                          _vm._v(
+                                            " " +
+                                              _vm._s(
+                                                _vm.serviceDetails.avgreview
+                                                  .averageRating
+                                              )
+                                          )
+                                        ]
+                                      )
+                                    : _c(
+                                        "p",
+                                        {
+                                          staticClass: "Details_pro_renge_num"
+                                        },
+                                        [_vm._v(" 0")]
+                                      )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "Details_pro_renge _dis_flex" },
+                                [
+                                  _c("i", { staticClass: "fas fa-reply" }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    {
+                                      staticClass:
+                                        "Details_pro_renge_name _flex_space"
+                                    },
+                                    [_vm._v("Total Review")]
                                   ),
                                   _vm._v(" "),
                                   _c(
-                                    "li",
-                                    {
-                                      class:
-                                        _vm.serviceDetails.avgreview
-                                          .averageRating >= 2
-                                          ? "_color"
-                                          : ""
-                                    },
-                                    [_c("i", { staticClass: "fas fa-star" })]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "li",
-                                    {
-                                      class:
-                                        _vm.serviceDetails.avgreview
-                                          .averageRating >= 3
-                                          ? "_color"
-                                          : ""
-                                    },
-                                    [_c("i", { staticClass: "fas fa-star" })]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "li",
-                                    {
-                                      class:
-                                        _vm.serviceDetails.avgreview
-                                          .averageRating >= 4
-                                          ? "_color"
-                                          : ""
-                                    },
-                                    [_c("i", { staticClass: "fas fa-star" })]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "li",
-                                    {
-                                      class:
-                                        _vm.serviceDetails.avgreview
-                                          .averageRating >= 5
-                                          ? "_color"
-                                          : ""
-                                    },
-                                    [_c("i", { staticClass: "fas fa-star" })]
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "li",
-                                    { staticClass: "_1job_card_rating_num" },
+                                    "p",
+                                    { staticClass: "Details_pro_renge_num" },
                                     [
                                       _vm._v(
-                                        "(" +
-                                          _vm._s(
-                                            _vm.serviceDetails.reviews_count
-                                          ) +
-                                          ")"
+                                        _vm._s(_vm.serviceDetails.reviews_count)
                                       )
                                     ]
                                   )
                                 ]
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.serviceDetails.reviews_count == 0
-                            ? _c(
-                                "ul",
-                                { staticClass: "_1job_card_rating_ul" },
-                                [
-                                  _vm._m(2),
-                                  _vm._v(" "),
-                                  _vm._m(3),
-                                  _vm._v(" "),
-                                  _vm._m(4),
-                                  _vm._v(" "),
-                                  _vm._m(5),
-                                  _vm._v(" "),
-                                  _vm._m(6),
-                                  _vm._v(" "),
-                                  _c(
-                                    "li",
-                                    { staticClass: "_1job_card_rating_num" },
-                                    [_vm._v("(0)")]
-                                  )
-                                ]
-                              )
-                            : _vm._e()
+                            ]
+                          )
                         ]),
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "_1job_card_dollar  _text_right" },
+                          { staticClass: "Details_pro_extra _padd_20" },
                           [
-                            _c(
-                              "p",
-                              { staticClass: "_1job_card_dollar_text _color" },
-                              [_vm._v("  " + _vm._s(_vm.serviceDetails.price))]
-                            ),
+                            _vm._m(7),
                             _vm._v(" "),
                             _c(
-                              "p",
-                              { staticClass: "_1job_card_dollar_sine _color" },
-                              [_vm._v("$")]
+                              "div",
+                              { staticClass: "Details_pro_extra_all" },
+                              [
+                                _vm.serviceDetails.extra
+                                  ? _vm._l(_vm.serviceDetails.extra, function(
+                                      item,
+                                      index
+                                    ) {
+                                      return _c(
+                                        "div",
+                                        {
+                                          key: index,
+                                          staticClass:
+                                            "Details_pro_extra_main _b_color2 _dis_flex"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "Details_pro_extra_redio"
+                                            },
+                                            [
+                                              _c(
+                                                "p",
+                                                [
+                                                  _c("Checkbox", {
+                                                    model: {
+                                                      value: item.staus,
+                                                      callback: function($$v) {
+                                                        _vm.$set(
+                                                          item,
+                                                          "staus",
+                                                          $$v
+                                                        )
+                                                      },
+                                                      expression: "item.staus"
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "Details_pro_extra_status"
+                                            },
+                                            [
+                                              _c(
+                                                "p",
+                                                {
+                                                  staticClass:
+                                                    "Details_pro_extra_status_text _text_overflow2"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(item.serviceName)
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "Details_pro_extra_do"
+                                            },
+                                            [
+                                              _c(
+                                                "p",
+                                                {
+                                                  staticClass:
+                                                    "Details_pro_extra_do_text  _color"
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(item.servicePrice)
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "p",
+                                                {
+                                                  staticClass:
+                                                    "Details_pro_extra_ds _color"
+                                                },
+                                                [_vm._v("$")]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.authInfo.userType == 2
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "Details_pro_button _b_color2"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "_block_buttons_main _dis_flex"
+                                          },
+                                          [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "_bg _btn _block_buttons_btn",
+                                                attrs: { type: "button" },
+                                                on: { click: _vm.modalOn }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "ORDER NOW ($" +
+                                                    _vm._s(_vm.totalOderPrice) +
+                                                    ")"
+                                                )
+                                              ]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._m(8)
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.authInfo.id == _vm.serviceDetails.user_id
+                                  ? _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "Details_pro_button _b_color2"
+                                      },
+                                      [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "_block_buttons_main _dis_flex"
+                                          },
+                                          [
+                                            _c(
+                                              "button",
+                                              {
+                                                staticClass:
+                                                  "_bg _btn _block_buttons_btn",
+                                                attrs: { type: "button" },
+                                                on: { click: _vm.modalOn }
+                                              },
+                                              [_vm._v("see the time slote")]
+                                            ),
+                                            _vm._v(" "),
+                                            _vm._m(9)
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ],
+                              2
                             )
                           ]
                         )
                       ]
                     ),
                     _vm._v(" "),
-                    _c("div", { staticClass: "_padd_20" }, [
-                      _c("div", { staticClass: "Details_pro_over _b_color2" }, [
-                        _c(
-                          "div",
-                          { staticClass: "Details_pro_renge _dis_flex " },
-                          [
-                            _c("i", { staticClass: "fas fa-star" }),
-                            _vm._v(" "),
-                            _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "Details_pro_renge_name _flex_space"
-                              },
-                              [_vm._v("Overrall rating")]
-                            ),
-                            _vm._v(" "),
-                            _vm.serviceDetails.avgreview
-                              ? _c(
-                                  "p",
-                                  { staticClass: "Details_pro_renge_num" },
-                                  [
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(
-                                          _vm.serviceDetails.avgreview
-                                            .averageRating
-                                        )
-                                    )
-                                  ]
-                                )
-                              : _c(
-                                  "p",
-                                  { staticClass: "Details_pro_renge_num" },
-                                  [_vm._v(" 0")]
-                                )
-                          ]
-                        ),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "Details_profie _mr_b30 _box_shadow2 _border_radious _padd_20"
+                      },
+                      [
+                        _c("img", {
+                          staticClass: "Details_profie_img",
+                          attrs: {
+                            src: "img/Rectangle40.png",
+                            title: "",
+                            alt: ""
+                          }
+                        }),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "Details_pro_renge _dis_flex" },
-                          [
-                            _c("i", { staticClass: "fas fa-reply" }),
-                            _vm._v(" "),
-                            _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "Details_pro_renge_name _flex_space"
-                              },
-                              [_vm._v("Total Review")]
-                            ),
-                            _vm._v(" "),
-                            _c("p", { staticClass: "Details_pro_renge_num" }, [
-                              _vm._v(_vm._s(_vm.serviceDetails.reviews_count))
-                            ])
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "Details_pro_extra _padd_20" }, [
-                      _vm._m(7),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "Details_pro_extra_all" },
-                        [
-                          _vm.serviceDetails.extra
-                            ? _vm._l(_vm.serviceDetails.extra, function(
-                                item,
-                                index
-                              ) {
-                                return _c(
-                                  "div",
-                                  {
-                                    key: index,
-                                    staticClass:
-                                      "Details_pro_extra_main _b_color2 _dis_flex"
-                                  },
-                                  [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "Details_pro_extra_redio"
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          [
-                                            _c("Checkbox", {
-                                              model: {
-                                                value: item.staus,
-                                                callback: function($$v) {
-                                                  _vm.$set(item, "staus", $$v)
-                                                },
-                                                expression: "item.staus"
-                                              }
-                                            })
-                                          ],
-                                          1
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "Details_pro_extra_status"
-                                      },
-                                      [
-                                        _c(
-                                          "p",
-                                          {
-                                            staticClass:
-                                              "Details_pro_extra_status_text _text_overflow2"
-                                          },
-                                          [_vm._v(_vm._s(item.serviceName))]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "Details_pro_extra_do" },
-                                      [
-                                        _c(
-                                          "p",
-                                          {
-                                            staticClass:
-                                              "Details_pro_extra_do_text  _color"
-                                          },
-                                          [_vm._v(_vm._s(item.servicePrice))]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "p",
-                                          {
-                                            staticClass:
-                                              "Details_pro_extra_ds _color"
-                                          },
-                                          [_vm._v("$")]
-                                        )
-                                      ]
+                        _vm._m(10),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "Details_profie_location" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "Details_pro_renge _dis_flex _b_color2"
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-map-marker-alt" }),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  staticClass:
+                                    "Details_pro_renge_name _flex_space"
+                                },
+                                [_vm._v("Email")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "Details_pro_renge_num" },
+                                [_vm._v(_vm._s(_vm.serviceDetails.user.email))]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "Details_pro_renge _dis_flex none_f _b_color2"
+                            },
+                            [
+                              _c("i", { staticClass: "fas fa-globe-europe" }),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  staticClass:
+                                    "Details_pro_renge_name _flex_space"
+                                },
+                                [_vm._v("Phone")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "Details_pro_renge_num" },
+                                [
+                                  _c("p", [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm.serviceDetails.user.phone
+                                          ? _vm.serviceDetails.user.phone
+                                          : "---"
+                                      )
                                     )
-                                  ]
-                                )
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm.authInfo.userType == 2
-                            ? _c(
-                                "div",
-                                { staticClass: "Details_pro_button _b_color2" },
-                                [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "_block_buttons_main _dis_flex"
-                                    },
-                                    [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "_bg _btn _block_buttons_btn",
-                                          attrs: { type: "button" },
-                                          on: { click: _vm.modalOn }
-                                        },
-                                        [
-                                          _vm._v(
-                                            "ORDER NOW ($" +
-                                              _vm._s(_vm.totalOderPrice) +
-                                              ")"
-                                          )
-                                        ]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._m(8)
-                                    ]
-                                  )
+                                  ])
                                 ]
                               )
-                            : _vm._e(),
+                            ]
+                          ),
                           _vm._v(" "),
-                          _vm.authInfo.id == _vm.serviceDetails.user_id
-                            ? _c(
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "Details_pro_renge _dis_flex _b_color2"
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fas fa-exclamation-circle"
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  staticClass:
+                                    "Details_pro_renge_name _flex_space"
+                                },
+                                [_vm._v("Bio")]
+                              ),
+                              _vm._v(" "),
+                              _c(
                                 "div",
-                                { staticClass: "Details_pro_button _b_color2" },
+                                { staticClass: "boi_text_div _w_100" },
                                 [
-                                  _c(
-                                    "div",
-                                    {
-                                      staticClass:
-                                        "_block_buttons_main _dis_flex"
-                                    },
-                                    [
-                                      _c(
-                                        "button",
-                                        {
-                                          staticClass:
-                                            "_bg _btn _block_buttons_btn",
-                                          attrs: { type: "button" },
-                                          on: { click: _vm.modalOn }
-                                        },
-                                        [_vm._v("see the time slote")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._m(9)
-                                    ]
-                                  )
+                                  _c("p", { staticClass: "boi_text" }, [
+                                    _vm._v(
+                                      _vm._s(_vm.serviceDetails.openingMassage)
+                                    )
+                                  ])
                                 ]
                               )
-                            : _vm._e()
-                        ],
-                        2
-                      )
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "Details_profie _mr_b30 _box_shadow2 _border_radious _padd_20"
-                  },
-                  [
-                    _c("img", {
-                      staticClass: "Details_profie_img",
-                      attrs: { src: "img/Rectangle40.png", title: "", alt: "" }
-                    }),
-                    _vm._v(" "),
-                    _vm._m(10),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "Details_profie_location" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "Details_pro_renge _dis_flex _b_color2"
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-map-marker-alt" }),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticClass: "Details_pro_renge_name _flex_space"
-                            },
-                            [_vm._v("Email")]
+                            ]
                           ),
                           _vm._v(" "),
-                          _c("p", { staticClass: "Details_pro_renge_num" }, [
-                            _vm._v(_vm._s(_vm.serviceDetails.user.email))
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "Details_pro_renge _dis_flex none_f _b_color2"
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-globe-europe" }),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticClass: "Details_pro_renge_name _flex_space"
-                            },
-                            [_vm._v("Phone")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "Details_pro_renge_num" }, [
-                            _c("p", [
-                              _vm._v(
-                                _vm._s(
-                                  _vm.serviceDetails.user.phone
-                                    ? _vm.serviceDetails.user.phone
-                                    : "---"
-                                )
-                              )
-                            ])
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "Details_pro_renge _dis_flex _b_color2"
-                        },
-                        [
-                          _c("i", { staticClass: "fas fa-exclamation-circle" }),
-                          _vm._v(" "),
-                          _c(
-                            "p",
-                            {
-                              staticClass: "Details_pro_renge_name _flex_space"
-                            },
-                            [_vm._v("Bio")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "boi_text_div _w_100" }, [
-                            _c("p", { staticClass: "boi_text" }, [
-                              _vm._v(_vm._s(_vm.serviceDetails.openingMassage))
-                            ])
-                          ])
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm._m(11)
-                    ])
+                          _vm._m(11)
+                        ])
+                      ]
+                    )
                   ]
                 )
-              ]
-            )
+              ])
+            ])
           ])
-        ])
-      ]),
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "Modal",

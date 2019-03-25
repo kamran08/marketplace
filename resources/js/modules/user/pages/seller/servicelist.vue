@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="_profile_card_all" v-if="list.length" >
+        <div class="_profile_card_all" v-if="list.length && isloading" >
             <!-- card -->
               <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 ">
@@ -39,6 +39,9 @@
                 </div>
             </div>
         </div>
+        <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+           <h2>Loading .....</h2>
+        </div>
         <!-- card -->
     </div>
 </template>
@@ -50,10 +53,12 @@ export default {
             list:[],
             toDayDate:'',
             user_id:this.$route.params.id,
+            isloading:true
         }
     },
     methods:{
         async getServiceList(){
+            this.isloading = false
             const res  = await  this.callApi('get',`getServiceList/${this.user_id}`)
             if(res.status===200){
                 this.list = res.data
@@ -62,6 +67,7 @@ export default {
             else{
                 this.swr();
             }
+            this.isloading = true
         },
     },
     created(){

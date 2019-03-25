@@ -27,9 +27,12 @@
             </div>
 		</div>
 				<!--======== Banner =========-->
-
+		
+		<div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+           <h2>Loading .....</h2>
+        </div>
 				<!--======== Content =========-->
-		<div class="Marketplace_content">
+		<div class="Marketplace_content" v-if="isloading">
 			<div class="container">
 					<!--~~~~ Title and Filter ~~~~~~~-->
 				<div class="_title_header _b_color2" >
@@ -167,17 +170,21 @@ export default {
 			defaultImage:'uploads/_85730600_monkey2.jpg',
 			allServices: [],
 			products: [],
+			isloading:true,
 			
         }
 	},
     methods:{
 		async get_all_category(){
+			this.isloading = false
 			const res = await this.callApi('get', 'get-all-catgory')
 			if(res.status===200){
 				this.allcatagory = res.data
+				this.isloading = true
 			}
 			else{
 				this.swr();
+				this.isloading = true
 			}
 		},
 		async filterbySelect(key){

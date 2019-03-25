@@ -4,7 +4,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-12 padd_top">
                     <!-- card -->
-                    <div class="_profile_card_all list_head _overflow _box_shadow2 _border_radious" v-if="list.length"  >
+                    <div class="_profile_card_all list_head _overflow _box_shadow2 _border_radious" v-if="list.length && isloading"  >
                         <table class="table_C table-striped">
                             <thead>
                             <tr>
@@ -32,8 +32,11 @@
                         </table>
                     </div>
 
-                    <div span="24" class="booked_date _text_center _box_shadow2 _border_radious" v-if="list.length==0" >
+                    <div span="24" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="list.length==0" >
                         <h2>No Canceled Bookings This Day</h2>
+                    </div>
+                    <div span="14" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+                        <h2>Loading .....</h2>
                     </div>
                     <!-- card -->
                 </div>
@@ -47,19 +50,21 @@ export default {
     data(){
         return{
             list:[],
-            toDayDate:''
+            toDayDate:'',
+            isloading:true
         }
     },
     methods:{
         async getAllUserList(){
-
+            this.isloading = false;
             const res  = await  this.callApi('get',`getAllUserList`);
             if(res.status===200){
                 this.list = res.data
-               
+                this.isloading = true
             }
             else{
                 this.swr();
+                this.isloading = true
             }
         },
         async updateStatus(status,index){
@@ -104,7 +109,6 @@ export default {
         },
     },
     created(){
-
         this.getAllUserList();
     }
 }

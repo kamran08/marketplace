@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-9 padd_top" >
-                    <div class="_profile_card_all" v-if="list.length" >
+                    <div class="_profile_card_all" v-if="list.length && isloading" >
                         <!-- card -->
                         <div v-for="(item,index) in list" :key="index" >
                             <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 ">
@@ -60,7 +60,12 @@
                             </div>
                         </div>
                     </div>
+                    <div span="14" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+                        <h2>Loading .....</h2>
+                    </div>
                     <!-- card -->
+
+
                 </div>
             </div>
         </div>
@@ -74,17 +79,20 @@ export default {
             list:[],
             toDayDate:'',
             user_id:this.$route.params.id,
+            isloading:true
         }
     },
     methods:{
         async getServiceList(){
+            this.isloading = false
             const res  = await  this.callApi('get',`getAllServiceList`)
             if(res.status===200){
                 this.list = res.data
-                
+                this.isloading = true
             }
             else{
                 this.swr();
+                this.isloading = true
             }
         },
         async deleteService(index){

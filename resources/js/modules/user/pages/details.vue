@@ -1,12 +1,15 @@
 <template>
 <div >
-<div class="Details_header" v-if="serviceDetails" >
+    
+        <div class="Details_header" v-if="serviceDetails && isloading" >
             <img class="Details_header_img" src="img/banner.png" alt="" title="">
         </div>
                 <!--======= Details Header Image ======-->
-
+        <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+           <h2>Loading .....</h2>
+        </div>
                 <!--======= Details Main ======-->
-        <div class="Details_main">
+        <div class="Details_main" v-if="isloading" >
             <div class="container">
                 <div class="row">
                         <!--~~~~~~~ Details Main left ~~~~~~~-->
@@ -294,12 +297,14 @@
                     <Button @click="bookingTimeModal = false">Close</Button>
             </div>
         </Modal>
+       
 </div>
 </template>
 <script>
 export default {
     data(){
         return{
+            isloading:true,
             serviceDetails:false,
             order:{
                 totalPrice:0,
@@ -326,12 +331,15 @@ export default {
     },
     methods:{
         async  getServiceDetails(){
+            this.isloading = false
             const res = await this.callApi('get',`getServiceDetailsById/${this.$route.params.id}`) 
             if(res.status===200){
                 this.serviceDetails = res.data;
+                this.isloading = true
             }
             else{
                 this.swr();
+                this.isloading = true
             }
         },
         async  getBookingTimeByDay(newDate){
@@ -339,12 +347,15 @@ export default {
                 date:newDate,
                 service_id: this.order.service_id
             }
+             this.isloading = false
             const res = await this.callApi('post',`getslots`,sdata)
             if(res.status===200){
                 this.bookingTimeByDay = res.data;
+                 this.isloading = true
             }
             else{
                 this.swr();
+                 this.isloading = true
             }
         },
         bookingTime(){
@@ -425,6 +436,7 @@ export default {
         },
     },
    async created(){
+       this.isloading = false
        console.log(this.authInfo)
         this.getServiceDetails();
     },

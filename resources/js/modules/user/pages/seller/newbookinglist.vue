@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="_profile_card_all" v-if="list.length" >
+        <div class="_profile_card_all" v-if="list.length && isloading" >
             <!-- card -->
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==0"  >
@@ -35,6 +35,9 @@
                     </div>
                 </div>
             </div>
+            <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+                  <h2>Loading .....</h2>
+             </div>
             <!-- card -->
         </div>
         <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
@@ -53,11 +56,13 @@ export default {
                 notifrom:'',
                 notitxt:'',
                 url:'',
+                isloading:true
             }
         }
     },
     methods:{
         async getNewList(){
+            this.isloading = false
             const res  = await  this.callApi('get','getNewList')
             if(res.status===200){
                 this.list = res.data
@@ -65,6 +70,7 @@ export default {
             else{
                 this.swr();
             }
+            this.isloading = true
         },
         async updateStatus(status,index,buyer_id,seller_id){
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
@@ -73,7 +79,7 @@ export default {
                     this.noti.notitxt = 'user comlited your service'
                     this.noti.notifor = seller_id
                     this.noti.notifrom = buyer_id
-                    this.noti.url = 'sprofile/'+seller_id+'?'+'tab=2'
+                    this.noti.url = '/sprofile/'+seller_id+'?'+'tab=2'
                    // console.log(this.noti)
                     const res2 = await this.callApi('post','notifications', this.noti)
                     if(res2.status==200)
@@ -84,7 +90,7 @@ export default {
                     this.noti.notitxt = 'seller cancled your service'
                     this.noti.notifor = seller_id
                     this.noti.notifrom = buyer_id
-                    this.noti.url = 'sprofile/'+seller_id+'?'+'tab=4'
+                    this.noti.url = '/sprofile/'+seller_id+'?'+'tab=4'
                     const res2 = await this.callApi('post','notifications', this.noti)
                     this.i("This booking has been cancled!");
                     this.list[index].status = 3 

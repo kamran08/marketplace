@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all seller_pro" v-if="list.length"  >
+        <div class="_profile_card_all seller_pro" v-if="list.length && isloading"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==1 "  >
                     <div class="_profile_card_pic">
@@ -41,6 +41,9 @@
         </div>
         <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
             <h2>No Bookings This Day</h2>
+        </div>
+        <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+           <h2>Loading .....</h2>
         </div>
         <!-- card -->
         <Modal
@@ -101,11 +104,13 @@ export default {
                 notifrom:'',
                 notitxt:'',
                 url:'',
-            }
+            },
+            isloading: true
         }
     },
     methods:{
         async getNewList(newDate){
+            this.isloading = false
             let data = {
                 date:newDate,
                 status:1,
@@ -118,6 +123,7 @@ export default {
             else{
                 this.swr();
             }
+            this.isloading = true
         },
         async SendReview(){
             if(this.reviewData.comment=='' || this.reviewData.rating=='' ){
@@ -160,10 +166,10 @@ export default {
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
                 if(status==2){
-                    this.noti.notitxt = 'buyer started your service'
+                    this.noti.notitxt = 'buyer marked completed'
                     this.noti.notifor = seller_id
                     this.noti.notifrom = buyer_id
-                    this.noti.url = 'sprofile/'+seller_id+'?'+'tab=3'
+                    this.noti.url = '/sprofile/'+seller_id+'?'+'tab=3'
                     const res2 = await this.callApi('post','notifications', this.noti)
                     if(res2.status===200){
                      this.i("Serive has been marked completed!");
@@ -180,20 +186,27 @@ export default {
                     this.noti.notitxt = 'buyer cancled your service'
                     this.noti.notifor = seller_id
                     this.noti.notifrom = buyer_id
-                    this.noti.url = 'sprofile/'+seller_id+'?'+'tab=5'
+                    this.noti.url = '/sprofile/'+seller_id+'?'+'tab=5'
                     const res2 = await this.callApi('post','notifications', this.noti)
                     if(res2.status==200){
                         this.i("This booking has been cancled!");
                         this.list[index].status = 3 
                     }
-                   
                 }
-                
             }
             else{
                 this.e();
             }
-        }
+        },
+         async insertNotification(buyer_id,seller_id){
+            let notifications = {
+                notitxt : 'seller cancled your service',
+                notifor : buyer_id,
+                notifrom : seller_id,
+                url : '/bprofile/'+buyer_id+'?'+'tab=4',
+            }
+            const res = await this.callApi('post','notifications', this.noti)
+        },
     },
     created(){
         let d = new Date();

@@ -38,7 +38,7 @@
                     </div>
                         <!-- card -->
 
-                    <div class="_profile_card_all list_head _box_shadow2 _border_radious _overflow" v-if="list.length"  >
+                    <div class="_profile_card_all list_head _box_shadow2 _border_radious _overflow" v-if="list.length && isloading"  >
                         <table class="table_C table-striped">
                             <thead>
                             <tr>
@@ -71,8 +71,9 @@
 
                         </table>
                     </div>
-                    <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
-                        <h2>No Canceled Bookings This Day</h2>
+                 
+                    <div span="14" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+                        <h2>Loading .....</h2>
                     </div>
                     <!-- card -->
                     <Modal class="product_image" v-model="imageModal" width="900">
@@ -134,8 +135,7 @@ export default {
             imageModalUpload:false,
             imageUrl:'',
             isEdit:-1,
-
-           
+            isloading:true,
         }
     },
     methods:{
@@ -158,15 +158,17 @@ export default {
         },
 
         async getAllCatagory(){
-
+            this.isloading = false
             const res  = await  this.callApi('get','get-all-catgory');
             if(res.status===200){
                 this.list = res.data
+                this.isloading = true
                 console.log(res.data)
                
             }
             else{
                 this.swr();
+                this.isloading = true
             }
         },
         editOn(index){
@@ -241,7 +243,6 @@ export default {
         },
     },
     created(){
-
         this.getAllCatagory();
         for(let item of this.list){
             item.list.isTrue = true;

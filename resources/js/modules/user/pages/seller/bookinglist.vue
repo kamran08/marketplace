@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all seller_pro" v-if="list.length"  >
+        <div class="_profile_card_all seller_pro" v-if="list.length && isloading"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==1"  >
                     <div class="_profile_card_pic">
@@ -41,6 +41,9 @@
         <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
             <h2>No Bookings This Day</h2>
         </div>
+        <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
+           <h2>Loading .....</h2>
+        </div>
         <!-- card -->
     </div>
 </template>
@@ -51,10 +54,12 @@ export default {
         return{
             list:[],
             toDayDate:'',
+            isloading:true
         }
     },
     methods:{
         async getNewList(newDate){
+            this.isloading = false
             let data = {
                 date:newDate,
                 status:1,
@@ -62,10 +67,11 @@ export default {
             const res  = await  this.callApi('post',`getBookingList`,data);
             if(res.status===200){
                 this.list = res.data
-                console.log(this.list)
+                this.isloading = true
             }
             else{
                 this.swr();
+                this.isloading = true
             }
         },
         getSlots(){
@@ -99,7 +105,7 @@ export default {
                 notitxt : 'seller cancled your service',
                 notifor : buyer_id,
                 notifrom : seller_id,
-                url : 'bprofile/'+buyer_id+'?'+'tab=4',
+                url : '/bprofile/'+buyer_id+'?'+'tab=4',
             }
             const res = await this.callApi('post','notifications', this.noti)
         },
