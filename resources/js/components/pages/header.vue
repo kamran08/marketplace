@@ -59,11 +59,7 @@
 															</div>
 														</div>
 															<!-- ITEMS -->
-
-									
 													</div>
-
-
 													<p class="noti_more">
 														See More
 													</p>
@@ -71,12 +67,55 @@
 											</div>
 									</div>
 							</li>
-							<li v-if="authInfo" >
+							<!-- <li v-if="authInfo" >
 									<div class="_2menu_mess ">
 											<i class="fas fa-envelope"></i>
 											<div class="_2menu_mess_num _bg">4</div>
 									</div>
+							</li> -->
+							<!--  messanger ok  -->
+									<li v-if="authInfo" >
+									<div class="_2menu_mess" >
+											<div>
+											<i class="fas fa-envelope" ></i>
+											<div class="_2menu_mess_num _bg" >4</div>
+											</div>
+											<div class="not_list">
+												<div class="noti_all">
+													<p class="noti_title">message</p>
+													<div class="noti_main_content"  >
+															<!-- ITEMS -->
+														<div class="noti_main ">
+															<div class="noti_status" >
+																<div >
+																	<li> <router-link :to="{ name: 'messanger'}"> <p class="noti_status_text"><strong>sadek ahmed</strong> send a message </p> </router-link></li>
+																	<!-- <a>	</a> -->
+
+																	<p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p>
+																</div>
+															
+															</div>
+														</div>
+															<!-- ITEMS -->
+													</div>
+													<p class="noti_more">
+														See More message
+													</p>
+												</div>
+											</div>
+									</div>
 							</li>
+
+
+
+							<!-- massanger -->
+
+
+
+
+
+
+
 							<li v-if="authInfo">
 									<div class="_2menu_profile">
 											<img class="_2menu_profile_pic" :src="(authInfo.image)? authInfo.image: defultImage" alt="" title="">

@@ -195,7 +195,7 @@ export default {
 			else{
 				this.swr();
 			}
-			const res1 = await this.callApi('get', 'get-all-catgory')
+			const res1 = await this.callApi('get', 'get-all-category')
 			if(res1.status===200){
 				this.alljobs = res1.data;
 			}

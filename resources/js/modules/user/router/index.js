@@ -22,6 +22,7 @@ import order from '../pages/order.vue';
 import sprofile from '../pages/seller/profile.vue';
 import bprofile from '../pages/buyer/profile.vue';
 import details from '../pages/details.vue';
+import messanger from '../pages/messanger.vue';
 
 // Auth Components
 import login from '../pages/Auth/login.vue';
@@ -30,7 +31,7 @@ import getEmail from '../pages/Auth/getEmail.vue';
 import passwordreset from '../pages/Auth/passwordreset.vue';
 
 const routes = [
-    
+
     {
         path: '/editJobDescription/:id',
         name: 'editJobDescription',
@@ -213,14 +214,14 @@ const routes = [
 
     },
     {
-      path: '/passwordreset/:token',
-      name: 'passwordreset',
-      component: passwordreset,
-      meta: {
-          guest: true,
-          allowedUserType: ['All'],
-          title: 'Password Reset Field',
-      }
+        path: '/passwordreset/:token',
+        name: 'passwordreset',
+        component: passwordreset,
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'Password Reset Field',
+        }
 
     },
 
@@ -257,6 +258,18 @@ const routes = [
             guest: true,
             allowedUserType: ['All'],
             title: 'jobTag',
+        }
+
+    },
+    {
+        path: '/messanger',
+        name: 'messanger',
+        component: messanger,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'messanger',
         }
 
     },
