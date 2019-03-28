@@ -617,12 +617,19 @@ class UserService extends Controller {
 
         $id = Auth::user()->id;
          $notificationCount = $this->query->getNewNotifications($id);
-         $notificationData = $this->query->getAllNotifications($id);
+         //$notificationData = $this->query->getAllNotifications($id);
+
+        // $msgNotificationCount = $this->query->getMsgNewNotifications($id);
+         $msgNotificationData = $this->query->getMsgAllNotifications($id);
+         // check iof array is empty or not if not then 
+         // update seen to 0
         
          return response()->json([
             'notificationCount'=> $notificationCount,
-            'notificationData'=> $notificationData,
-         ],200);
+            // 'notificationData'=> $notificationData,
+            // 'msgNotificationCount'=> $msgNotificationCount,
+            'msgNotificationData'=> $msgNotificationData,
+         ],200); 
         
       }
 

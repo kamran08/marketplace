@@ -38,7 +38,7 @@
 									<div class="_2menu_mess" >
 											<div @click="openNoti">
 											<i class="fas fa-bell" ></i>
-											<div class="_2menu_mess_num _bg" >{{noficationCount}}</div>
+											<div v-if="noficationCount>0" class="_2menu_mess_num _bg" >{{noficationCount}}</div>
 											</div>
 											<div class="not_list" v-if="open">
 												<div class="noti_all">
@@ -76,46 +76,43 @@
 							<!--  messanger ok  -->
 									<li v-if="authInfo" >
 									<div class="_2menu_mess" >
-											<div>
-											<i class="fas fa-envelope" ></i>
-											<div class="_2menu_mess_num _bg" >4</div>
+											<div >
+												<router-link :to="{ name: 'messanger'}">
+													<i class="fas fa-envelope" ></i>
+													<div v-if="msgNoficationData.length>0" class="_2menu_mess_num _bg" >{{msgNoficationData.length}}</div>
+												</router-link>
 											</div>
-											<div class="not_list">
+											<!-- <div class="not_list" v-if="messagebox" >
 												<div class="noti_all">
 													<p class="noti_title">message</p>
 													<div class="noti_main_content"  >
-															<!-- ITEMS -->
-														<div class="noti_main ">
+															
+														<div class="noti_main " v-if="msgNoficationData.length" v-for="(item,index) in msgNoficationData" :key="index" >
 															<div class="noti_status" >
 																<div >
-																	<li> <router-link :to="{ name: 'messanger'}"> <p class="noti_status_text"><strong>sadek ahmed</strong> send a message </p> </router-link></li>
-																	<!-- <a>	</a> -->
+																	<li> <router-link :to="{ name: 'messanger'}"> <p class="noti_status_text"><strong>{{item.sender.name}}</strong> send a message </p> </router-link></li>
+																	
 
-																	<p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p>
+																	<p class="noti_status_time"><Icon type="md-chatboxes" /> {{item.created_at}}</p>
 																</div>
 															
 															</div>
 														</div>
-															<!-- ITEMS -->
+														<div class="noti_main " v-else >
+															<div class="noti_status" >
+																<div >
+																	<li><p class="noti_status_text">No new messages</p></li>
+																</div>
+															</div>
+														</div>
+															
 													</div>
-													<p class="noti_more">
-														See More message
-													</p>
+													<p class="noti_more"><router-link :to="{ name: 'messanger'}">See More message</router-link></p>
 												</div>
-											</div>
+											</div> -->
 									</div>
 							</li>
-
-
-
 							<!-- massanger -->
-
-
-
-
-
-
-
 							<li v-if="authInfo">
 									<div class="_2menu_profile">
 											<img class="_2menu_profile_pic" :src="(authInfo.image)? authInfo.image: defultImage" alt="" title="">
@@ -132,21 +129,19 @@
 
 						<!--====== MOBILE MENU ==========-->
 				 <div class="mobile_menu_content_all" :style="`left:${leftMain}`">
-           <div class="mobile_menu_content">
-                <div class="mobile_menu" :style="`left:${left}`">
-                        <!-- frist page -->
-                    <div class="mobile_menu_page">
-                        <ul class="mobile_menu_frist_page_ul">
-                            <li class="mobile_menu_frist_page_header" @click="left='-285px'">
-                                <div class="mobile_menu_frist_page_ul_name_arrow" >
-                                    <p class="mobile_menu_frist_page_ul_name">Categories</p>
-                                    <p class="mobile_menu_frist_page_ul_arrow">></p>
-                                </div>
-                            </li>
+           			<div class="mobile_menu_content">
+						<div class="mobile_menu" :style="`left:${left}`">
+							<!-- frist page -->
+							<div class="mobile_menu_page">
+								<ul class="mobile_menu_frist_page_ul">
+									<li class="mobile_menu_frist_page_header" @click="left='-285px'">
+										<div class="mobile_menu_frist_page_ul_name_arrow" >
+											<p class="mobile_menu_frist_page_ul_name">Categories</p>
+											<p class="mobile_menu_frist_page_ul_arrow">></p>
+										</div>
+									</li>
 
-              <li v-for="(item, index) in menuItems" :key="index" v-if="item.valid==authInfo.userType || item.valid=='all'"
-															@click="goNextPage(item)"
-														>{{item.name}}</li>
+              						<li v-for="(item, index) in menuItems" :key="index" v-if="item.valid==authInfo.userType || item.valid=='all'" @click="goNextPage(item)">{{item.name}}</li>
                             <li v-if="!authInfo">
                                 <div class="mobile_menu_button">
                                     <button class="mobile_menu_button_sign" type="button" 	@click="notAuth('/register')">Sign Up</button>
@@ -232,7 +227,8 @@ export default {
 					 {name: 'Dashboard', url: '/system_admin', valid: 4, id: false},
 					 
 				],
-				open:false
+				open:false,
+				messagebox:false,
 			}
 	},
 	

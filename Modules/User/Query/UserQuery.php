@@ -12,6 +12,7 @@ use App\Image;
 use App\TimeSetting;
 use App\Booking;
 use App\Notification;
+use App\Chat;
 use Mockery\CountValidator\Exact;
 class UserQuery {
    
@@ -230,6 +231,10 @@ class UserQuery {
     public function getNewNotifications($key){
       return Notification::where([['notifor',$key],['seen',1]])->with('user')->count();
     }
+    public function getMsgAllNotifications($key){
+      return Chat::where('seen',$key)->orderBy('id','desc')->get();
+    }
+    
    public function notifications($data){
      return Notification::create($data);
     }

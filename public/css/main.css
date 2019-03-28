@@ -2751,6 +2751,9 @@ body{
     color: #fff!important;
     padding-top: 2px !important;
 }
+.show_chat{
+    background: #fff!important;
+}
 
 .friend-mass-two-main:before {
   position: absolute;
@@ -2758,8 +2761,9 @@ body{
 }
 
 .mess-left-all {
-  padding: 0 22px 0 0;
-}
+    padding: 0 22px 0 0;
+    background: #efefef;
+  }
 
 .mess-all-mains {
   display: -webkit-box;
@@ -2948,7 +2952,9 @@ body{
   height: 100vh;
 }
 
-.messanger {}
+.messanger {
+   
+}
 
 .mess_spce {}
 
@@ -3004,7 +3010,7 @@ body{
   padding: 0 0 12px;
 }
 .mess-left-bottom {
-  background: #f4f4f4;
+  background: #dedddd;
   margin-bottom: 10px;
   border-radius: 7px;
 }
@@ -3014,7 +3020,7 @@ body{
     display: -ms-flexbox;
     display: flex;
     cursor: pointer;
-    background: #f4f4f4;
+    
     margin-bottom: 12px;
     border-radius: 7px;
     padding: 17px 16px;
@@ -3595,6 +3601,7 @@ body{
 .Details_profie {
     padding-top: 26px;
     padding-bottom: 9px;
+    margin-top: 60px;
 }
 
 .Details_profie_img {

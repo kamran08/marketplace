@@ -23,5 +23,6 @@ requireModule.keys().forEach(fileName => {
             // ...requireModule(fileName)[moduleName]
         }
     }
+    //console.log(fileName)
 })
 export default modules

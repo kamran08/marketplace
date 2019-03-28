@@ -22,7 +22,7 @@ import order from '../pages/order.vue';
 import sprofile from '../pages/seller/profile.vue';
 import bprofile from '../pages/buyer/profile.vue';
 import details from '../pages/details.vue';
-import messanger from '../pages/messanger.vue';
+
 
 // Auth Components
 import login from '../pages/Auth/login.vue';
@@ -261,18 +261,7 @@ const routes = [
         }
 
     },
-    {
-        path: '/messanger',
-        name: 'messanger',
-        component: messanger,
 
-        meta: {
-            guest: true,
-            allowedUserType: ['All'],
-            title: 'messanger',
-        }
-
-    },
 
 ]
 

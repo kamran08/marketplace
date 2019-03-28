@@ -17,7 +17,9 @@ export default {
             LinkFlagTab: 'getTabInfo',
             getUserTyper:'getUserType',
             noficationCount:'getNoficationCount',
-            noficationData:'getNoficationData',
+           // noficationData:'getNoficationData',
+            //msgNoficationCount:'getMsgNoficationCount',
+            msgNoficationData:'getMsgNoficationData',
         }),
     },
     methods: {
@@ -47,50 +49,92 @@ export default {
             }
         },
 
-        i(msg, i = 'Hey!') {
+        i(msg,i='Hey!') {
             this.$Notice.info({
                 title: i,
-                desc: msg
+                desc:  msg
             });
         },
-        s(msg, i = 'Great!') {
+        s(msg,i='Great!') {
             this.$Notice.success({
                 title: i,
-                desc: msg
+                desc:  msg
             });
         },
-        w(msg, i = 'Hi!') {
+        w(msg,i='Hi!') {
             this.$Notice.warning({
                 title: i,
-                desc: msg
+                desc:  msg
             });
         },
-        e(msg, i = 'Oops!') {
+        e(msg,i='Oops!') {
             this.$Notice.error({
                 title: i,
-                desc: msg
+                desc:  msg,
+               
             });
         },
         swr() {
             this.$Notice.error({
                 title: 'Oops',
-                desc: 'Something went wrong, please try again later'
+                desc:  'Something went wrong, please try again later'
             });
         },
-        ns(title) {
-            this.$Message.success(title);
+  
+        // message 
+  
+        ns(title){
+          this.$Message.success(title);
         },
-        ni(title) {
-            this.$Message.info(title);
+        ni(title){
+          this.$Message.info(title);
         },
-        nw(title) {
-            this.$Message.warning(title);
+        nw(title){
+          this.$Message.warning(title);
         },
-        ne(title) {
-            this.$Message.error(title);
+        ne(title){
+          this.$Message.error(title);
         },
-        nswr() {
-            this.$Message.error('Something went wrong, please try again later');
+        nswr(){
+          this.$Message.error('Something went wrong, please try again later');
         },
+        nl(t){
+          const msg = this.$Message.loading({
+                content: t,
+                duration: 0
+            });
+          return msg
+        }, 
+        uo(t){
+          const msg = this.$Message.info({
+                content: t,
+                closable: true,
+                duration: 2
+  
+            });
+          return msg
+       }, 
+       newp(title){
+          this.$Message.info({
+              content: title,
+              duration: 2, 
+              closable: true
+          });
+      },
+      sendWsMsgAlertFromClient(id){
+          const ws = adonis.Ws()
+          ws.connect()
+          const chat = ws.subscribe(`noti:${id}`)
+  
+          chat.on('ready', () => {
+              const data = {
+                type: 501,
+              }
+             chat.emit('message', data)
+          })
+      },
+      async clearTempFile(){
+          const res = await this.callApi('post', '/app/clear_temp')
+      },
     }
-} 
+  }

@@ -4,6 +4,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import teststore from './modules/test/store'
+import chat from './modules/chat/store'
 // load modules 
 import modules from './modules'
 Vue.use(Vuex);
@@ -17,9 +18,9 @@ export default new Vuex.Store({
         TabInfo:1,
         notificationCount:0,
         notificationData:[],
-        // User_id:'1',
-        // Service_id:1,
-        // userType:''
+        msgNotificationCount:0,
+        msgNotificationData:[],
+        
         
        
     },
@@ -51,6 +52,12 @@ export default new Vuex.Store({
         },
         getNoficationData(state) {
             return state.notificationData
+        },
+        getMsgNoficationCount(state) {
+            return state.msgNotificationCount
+        },
+        getMsgNoficationData(state) {
+            return state.msgNotificationData
         }
     },// getter end
 
@@ -87,6 +94,12 @@ export default new Vuex.Store({
         setNoficationFirst: (state, payload) => {
             state.notificationCount = payload;
         },
+        setMsgNoficationData: (state, payload) => {
+            state.msgNotificationData = payload;
+        },
+        setMsgNoficationFirst: (state, payload) => {
+            state.msgNotificationCount = payload;
+        },
       
     },/// mutation end
 
@@ -121,6 +134,12 @@ export default new Vuex.Store({
         },
         setNoficationFirst: (context, payload) => {
             context.commit('setNoficationFirst', payload)
+        },
+        setMsgNoficationData: (context, payload) => {
+            context.commit('setMsgNoficationData', payload)
+        },
+        setMsgNoficationFirst: (context, payload) => {
+            context.commit('setMsgNoficationFirst', payload)
         },
 
     
