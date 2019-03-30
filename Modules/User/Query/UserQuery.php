@@ -14,6 +14,7 @@ use App\Booking;
 use App\Notification;
 use App\Chat;
 use App\Reviewb;
+use Illuminate\Support\Facades\Hash;
 use Mockery\CountValidator\Exact; 
 class UserQuery {
    
@@ -46,8 +47,16 @@ class UserQuery {
 
         return $service;
     }
-    public function getInfoBySearchCatagory($id){
-      return Service::with('image','user','tag','extra','category','alltime','avgreview')->where('cat_id', $id)->withCount('reviews')->get();  
+    public function getInfoBySearchCatagory($id, $str){
+      $qurey = Service::with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews');
+      if($id){
+        $qurey->where('cat_id', $id);      
+      }
+      if($str){
+        $qurey->where('title', 'like', '%' . $str . '%');      
+      }
+      return $qurey->get();
+     
     }
     public function getallcatgory(){
       return Category::all();  
@@ -63,8 +72,8 @@ class UserQuery {
     }
     public function addExtra($data){
 
-    $flag =  Extra::insert($data);
-    return response()->json($flag);
+      $flag =  Extra::insert($data);
+      return response()->json($flag);
     }
     public function addTag($data){
 
@@ -211,7 +220,7 @@ class UserQuery {
     return Service::where('user_id',$data)->with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->get();
     }
    public function getAllServiceList(){
-    return Service::with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->get();
+    return Service::with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->get(); 
     }
    public function getBookingList($data){
      
@@ -264,6 +273,32 @@ class UserQuery {
     }
    public function updateNotification($data){
      return Notification::where('id',$data['id'])->update($data);
+    }
+   public function updateUserSettingsPassworld($data,$password){
+      $u = User::where('id', $data['id'])->first();  
+
+      if (Hash::check($password, $u->password))
+      {
+        return User::where('id',$data['id'])->update($data);
+      }
+
+      return response()->json([
+        'message' => "old Password doesn't match!",
+    ], 401);
+     
+    }
+   public function updateUserSettingsEmail($data,$email,$password){
+      $u = User::where([['id', $data['id']],['email',$email]])->first();  
+
+      if (Hash::check($password, $u->password))
+      {
+        return User::where('id',$data['id'])->update($data);
+      }
+
+      return response()->json([
+        'message' => " old Password doesn't match!",
+    ], 401);
+     
     }
 
  

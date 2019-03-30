@@ -19,6 +19,9 @@
 ====================================*/
 
 /*===== 1.common css ======*/
+.manue_selected{
+    color:#10a2ef !important;
+}
 body{
 	margin:0px auto;
 	padding:0px;
@@ -654,6 +657,7 @@ textarea {
     background: #2a394e;
     color: #fff;
     padding: 60px 0;
+    text-align: center;
 }
 ._footer_main{}
 ._footer_title {

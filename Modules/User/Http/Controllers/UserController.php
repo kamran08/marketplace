@@ -118,6 +118,10 @@ class UserController extends Controller
            
         return $this->userService->insertService($request->all());
     }
+    public function updateSeriveStep(Request $request){
+           
+        return $this->userService->updateSeriveStep($request->all());
+    }
     public function addExtra(Request $request){
            
         return $this->userService->addExtra($request->all());
@@ -269,7 +273,10 @@ class UserController extends Controller
     }
     //notifications /////////////
     public function notifications(Request  $request) {
-        return $this->userService->notifications($request->all());
+        return $this->userService->notifications($request->all()); 
+    }
+    public function updateUserSettings(Request  $request) {
+        return $this->userService->updateUserSettings($request->all()); 
     }
     public function getAllNotifications() {
         return $this->userService->getAllNotifications();

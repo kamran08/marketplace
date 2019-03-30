@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2019 at 03:11 AM
+-- Generation Time: Mar 30, 2019 at 10:00 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -257,7 +257,8 @@ INSERT INTO `extras` (`id`, `service_id`, `serviceName`, `servicePrice`, `create
 (35, 1, 'Service 1.4', '60.00', NULL, NULL),
 (36, 5, 'ss', '2.00', NULL, NULL),
 (37, 6, 'gfhhgfgh', '56.00', NULL, NULL),
-(38, 8, 'ex1', '20.00', NULL, NULL);
+(38, 8, 'ex1', '20.00', NULL, NULL),
+(39, 9, 'awd', '23.00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -290,7 +291,10 @@ INSERT INTO `images` (`id`, `service_id`, `imageUrl`, `created_at`, `updated_at`
 (11, 6, '/uploads/cRrmk48np2N0ueCpYo0MHjfXmf2ROY7HVPBEBIqo.png', NULL, NULL),
 (12, 6, '/uploads/KheTBI2d10Sl89JbHJ7UoKCxBemSfjrEeKETNtEv.png', NULL, NULL),
 (13, 7, '/uploads/gQAtlrLl2h6Uuek5fNLymkWYlIfdvWQ5nLmfdteq.png', NULL, NULL),
-(14, 8, '/uploads/TMwGAyaGyY2uYst9wMi9JYHDgJIgKRYPUqXXFoWl.png', NULL, NULL);
+(14, 8, '/uploads/TMwGAyaGyY2uYst9wMi9JYHDgJIgKRYPUqXXFoWl.png', NULL, NULL),
+(15, 9, '/uploads/4wlRrFl3q1znR3gBT91jTfeNuxIVdA9Gif5xvoOg.png', NULL, NULL),
+(16, 10, '/uploads/zKnKmKeValfG5FpVYYz3o7edjvE0QbMFsejAHIBq.jpeg', NULL, NULL),
+(17, 11, '/uploads/FUXKuJ7eCtvymYG98OwlWkJh5U53em8OTzvY0M2Z.jpeg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -434,9 +438,9 @@ CREATE TABLE `services` (
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cat_id` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `videoLink` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `videoLink` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `openingMassage` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `openingMassage` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `isComplete` tinyint(1) NOT NULL DEFAULT '0',
   `nextStep` int(11) NOT NULL DEFAULT '2',
   `isApproved` tinyint(1) NOT NULL DEFAULT '0',
@@ -455,7 +459,10 @@ INSERT INTO `services` (`id`, `user_id`, `title`, `cat_id`, `price`, `videoLink`
 (5, 2, 'KSKLJL;', 2, '20.00', 'dasfjkl', 'sdfah', 'sdaf', 0, 4, 0, '2019-03-17 05:00:14', '2019-03-17 05:00:25'),
 (6, 4, 'ggg', 6, '33.00', '22', 'ygjhghj', '22', 1, 5, 0, '2019-03-17 13:39:57', '2019-03-17 13:40:38'),
 (7, 4, 'test 1', 7, '10.00', 'youtube.com', 'some description', 'nice work', 0, 3, 1, '2019-03-21 04:51:09', '2019-03-21 04:51:34'),
-(8, 2, 'rahi', 2, '40.00', 'youtube.com', 'dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf', 'fine service', 0, 5, 0, '2019-03-21 06:48:46', '2019-03-21 06:50:32');
+(8, 2, 'rahi', 2, '40.00', 'youtube.com', 'dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf', 'fine service', 0, 5, 0, '2019-03-21 06:48:46', '2019-03-21 06:50:32'),
+(9, 3, 'sdfsdf', 5, '34.00', 'sdfsdf', 'sdfsdf', 'sdfsdf', 0, 5, 0, '2019-03-30 12:45:30', '2019-03-30 12:46:03'),
+(10, 3, 'sa', 1, '10.00', NULL, 'azdcvzv', NULL, 0, 5, 0, '2019-03-30 13:19:58', '2019-03-30 13:33:42'),
+(11, 3, 'sdf', 1, '10.00', NULL, 'fgfg', NULL, 0, 5, 0, '2019-03-30 13:37:37', '2019-03-30 14:10:36');
 
 -- --------------------------------------------------------
 
@@ -507,7 +514,24 @@ INSERT INTO `tags` (`id`, `service_id`, `tagName`, `created_at`, `updated_at`) V
 (17, 6, 'fggf', NULL, NULL),
 (18, 6, 'jkhk', NULL, NULL),
 (19, 6, 'lkjhk', NULL, NULL),
-(20, 8, 'salon', NULL, NULL);
+(20, 8, 'salon', NULL, NULL),
+(21, 9, 'aasd', NULL, NULL),
+(22, 9, 'asdasd', NULL, NULL),
+(23, 10, 'sd', NULL, NULL),
+(24, 10, 'f', NULL, NULL),
+(25, 10, 'df', NULL, NULL),
+(26, 10, 'sd', NULL, NULL),
+(27, 10, 'f', NULL, NULL),
+(28, 10, 'df', NULL, NULL),
+(29, 10, 'sd', NULL, NULL),
+(30, 10, 'f', NULL, NULL),
+(31, 10, 'df', NULL, NULL),
+(32, 10, 'sd', NULL, NULL),
+(33, 10, 'f', NULL, NULL),
+(34, 10, 'df', NULL, NULL),
+(35, 11, 'sds', NULL, NULL),
+(36, 11, 'dsfa', NULL, NULL),
+(37, 11, 'afsda', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -549,7 +573,10 @@ INSERT INTO `time_settings` (`id`, `service_id`, `day`, `startTime`, `endTime`, 
 (35, 7, 'Monday', '04:00', '10:00', 20, '2019-03-21 05:08:54', '2019-03-21 05:08:54'),
 (36, 8, 'Monday', '02:00', '04:00', 20, '2019-03-21 06:48:46', '2019-03-21 06:48:46'),
 (37, 9, 'Monday', '00:00', '03:00', 30, '2019-03-29 14:06:08', '2019-03-29 14:06:08'),
-(38, 4, 'Monday', '00:00', '04:00', 20, '2019-03-29 14:51:40', '2019-03-29 14:51:40');
+(38, 4, 'Monday', '00:00', '04:00', 20, '2019-03-29 14:51:40', '2019-03-29 14:51:40'),
+(39, 9, 'Monday', '01:00', '03:00', 20, '2019-03-30 12:45:30', '2019-03-30 12:45:30'),
+(40, 10, 'Monday', '00:00', '02:00', 10, '2019-03-30 13:19:58', '2019-03-30 13:19:58'),
+(41, 11, 'Monday', '00:00', '02:00', 10, '2019-03-30 13:37:37', '2019-03-30 13:37:37');
 
 -- --------------------------------------------------------
 
@@ -584,9 +611,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `userName`, `email`, `location`, `language`, `bio`, `paymentInfo`, `billingInfo`, `image`, `country`, `phone`, `userType`, `isActive`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Nazmul Chowdhury', 'nazmul', 'nazmul@gmail.com', 'Sylhet', 'volvo', 'sss', 'sss', 'ss', '/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg', 'ss', 'sss', 4, 1, NULL, '$2y$10$UwI/wodDT6856i0VZOVJL.H4ppdKJnh1R06Fk4NJyZ71brY.VQvi.', 'xVW3WyfLs0xTy5KXxd1iziuCKqumQoZk18ydHbFmPkY0REd5yF709JDbAR1a', '2019-03-10 05:38:59', '2019-03-17 13:45:35'),
-(2, 'Kamran Ahmed', 'Kamran', 'kamran@gmail.com', 'Sylhet', 'English', NULL, NULL, NULL, '/img/prfile.png', 'Bangladesh', '01681189844', 1, 1, NULL, '$2y$10$obubdCG8bKN7xX2PTqwIiuls/FzoD5SkK1.Oh9pcnhCa93eY1LEmy', 'duBlYwA4DikPVMJNrgh54FZ13NYezHupfCip7aiCKbN779p8kEpFteZZTCCQ', '2019-03-11 01:45:27', '2019-03-16 22:38:40'),
-(3, 'Sadek Ahmed', 'sadek', 'sadek@gmail.com', 'Sylhet', 'volvo', 'Ami Boss Boss Boss.. Kita mato .Bolda hokol... Kamran boro Bolda', NULL, NULL, '/uploads/pUkAHn2vOW4LgOPSMOvpqvYmkYFzaevYHSFgMXAN.jpeg', NULL, NULL, 2, 1, NULL, '$2y$10$obubdCG8bKN7xX2PTqwIiuls/FzoD5SkK1.Oh9pcnhCa93eY1LEmy', '6lPYCCY0hWNXL8yUURwgC3wayAUZN8e6KtVGCotAaaj8LfM2TGHDXkf3So0A', '2019-03-12 05:24:39', '2019-03-16 00:54:57'),
+(1, 'Nazmul Chowdhury', 'nazmul', 'nazmul@ymail.com', 'Sylhet', 'volvo', 'sss', 'sss', 'ss', '/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg', 'ss', 'sss', 4, 1, NULL, '$2y$10$UwI/wodDT6856i0VZOVJL.H4ppdKJnh1R06Fk4NJyZ71brY.VQvi.', '8oCfxpYEK9GySG43NwPJSoNcVrmsglRY5JRMjS7oXiutOuSZdooc05jnn6vL', '2019-03-10 05:38:59', '2019-03-30 11:35:16'),
+(2, 'Kamran Ahmed', 'Kamran', 'iamkamran@gmail.com', 'Sylhet', 'English', NULL, NULL, NULL, '/img/prfile.png', 'Bangladesh', '01681189844', 1, 1, NULL, '$2y$10$KcmPlpTpUh4uI/TeK10pHenIEBaZrcBRSVxZLOT8pdou0DMfx6x2e', 'afddHMozT10BMuW8Fug6fttpu5ha3Vy12UWrDaMLc5sMp6o4IBMxdlySkcCQ', '2019-03-11 01:45:27', '2019-03-30 09:50:50'),
+(3, 'Sadek Ahmed', 'sadek', 'iamsadek@gmail.com', 'Sylhet', 'volvo', 'Ami Boss Boss Boss.. Kita mato .Bolda hokol... Kamran boro Bolda', NULL, NULL, '/uploads/pUkAHn2vOW4LgOPSMOvpqvYmkYFzaevYHSFgMXAN.jpeg', NULL, NULL, 1, 1, NULL, '$2y$10$oJUrtYigrCmPhoR86sVxKe11jA7OCIsU7m6ao8T63YgXmRLDTcddm', 'yHbtHCwDNeq58aBCIfEbI4ELEP5C6xBGWJpknNiTLTyjKEssOhJgOAbllcFD', '2019-03-12 05:24:39', '2019-03-30 09:44:36'),
 (4, 'Numan Shipu 1', 'numan', 'numan@gmail.com', 'sylhet', 'volvo', 'this is my bio', 'no payment info', 'no billing info', '/img/prfile.png', 'New Zealand', '+641239190432', 1, 1, NULL, '$2y$10$aSwqXrBmg311NOuheGrUdefed0gPDVl5iPAoWmQFovDzF4EXxFVfa', 'wUruMbdbXJM6GzgBQHnChfpp2tUiK9Lsw1rYFC4eG1YikbpjcMxv7K7Oikpe', '2019-03-15 06:56:42', '2019-03-15 06:56:42');
 
 --
@@ -727,13 +754,13 @@ ALTER TABLE `conversations`
 -- AUTO_INCREMENT for table `extras`
 --
 ALTER TABLE `extras`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -763,7 +790,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -775,13 +802,13 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `time_settings`
 --
 ALTER TABLE `time_settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`

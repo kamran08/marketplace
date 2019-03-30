@@ -67,7 +67,7 @@
 										<li @click="$router.push('/marketplace')" class="uper">
 											All
 										</li>
-										<li v-for="(item,i) in allcatagory" :key="i" @click="$router.push(`/marketplace?cat=${item.id}`)" class="uper">{{item.catName}}</li>
+										<li v-for="(item,i) in allcatagory" :key="i" @click="searchWithSelect(item,i)" class="uper" :class="catId==item.id? 'manue_selected' : ''">{{item.catName}}</li>
 									
 									</ul>
 								</div>
@@ -171,6 +171,8 @@ export default {
 			allServices: [],
 			products: [],
 			isloading:true,
+			selectedMune:-1, 
+			catId: null
 			
         }
 	},
@@ -205,18 +207,31 @@ export default {
 			}else{
 				swr()
 			}
-		}
+		},
+	   searchWithSelect(item,i){
+		   	let a 
+			if(!this.$route.query.str){
+				 a = ''
+			}
+			else {
+				a = this.$route.query.str
+			}
+		    this.$router.push(`/marketplace?cat=${item.id}&str=${a}`)
+	   },
 
 	},
+
 	
 	async created(){
 		let str = ''
 		let cat = ''
 		if(this.$route.query.str){
 			str = this.$route.query.str
+			
 		}
 		if(this.$route.query.cat){
 			cat = this.$route.query.cat
+			this.catId = this.$route.query.cat
 		}
 		this.get_all_category();
 		let url = `get-all-catgory-by-search?str=${str}&cat=${cat}`

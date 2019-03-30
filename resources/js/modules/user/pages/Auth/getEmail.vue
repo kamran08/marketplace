@@ -10,9 +10,8 @@
 					<div class="_login_form">
 						<div class="_login_input_group">
 							<div class="_login_input">
-								<i class="fas fa-user"></i>
 								<div class="_login_input_inp">
-									<input class="_login_input_inp_field" v-model="formData.email" v-on:keyup.enter="check" placeholder="Email" type="email" required>
+                                    <Input v-model="formData.email"  @on-enter="resetPassword" placeholder="Email" type="email"/>
 								</div>
 							</div>
 						</div>
@@ -39,7 +38,7 @@ export default {
      methods: {
         async resetPassword(){
             if(this.formData.email==""){
-                this.i("All frields are required!");
+                this.i("Email field is empty!");
                 return;
             }
             const res = await this.callApi('post','passwordresetGetEmail',this.formData)

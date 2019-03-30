@@ -11,14 +11,14 @@
 				</div>
 				<div class="_1search_section_search_button">
 					<!-- <router-link > <button class="_1search_section_search_button_btn _bg"  type="button" @click="showdata">SEARCH NOW</button></router-link> -->
-					<a > <button class="_1search_section_search_button_btn _bg"  type="button" @click="showdata">SEARCH NOW</button></a>
+					<a > <button class="_1search_section_search_button_btn _bg"  type="button" @click="$router.push(`/marketplace?cat=&str=${search}`)">SEARCH NOW</button></a>
 				</div>
 			</div>
 		</div>
-			<div class="_1search_section_more">
+			<!-- <div class="_1search_section_more">
 				<i class="_1search_section_more_text">1,000+ more</i>
 				<i class="fas fa-angle-down"></i>
-			</div>
+			</div> -->
 	</div>
 			<!--==========================
 					Search Section

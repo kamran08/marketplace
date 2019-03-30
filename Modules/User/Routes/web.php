@@ -38,6 +38,7 @@ Route::post('app/register', 'UserController@register');
 Route::post( 'app/upload-avater', 'UserController@upload');
 Route::post( 'app/insert-all-services', 'UserController@insertService');
 Route::post( 'app/add-extra-services', 'UserController@addExtra');
+Route::post( 'app/updateSeriveStep', 'UserController@updateSeriveStep');
 Route::post( 'app/delate-extra', 'UserController@delateExtra');
 Route::post( 'app/add-tag', 'UserController@addTag');
 Route::post( 'app/getServiceImage', 'UserController@getImage');
@@ -118,6 +119,8 @@ Route::get('app/getNoficationAllData', 'UserController@getNoficationAllData');
 Route::post('app/notifications', 'UserController@notifications');
 Route::put('app/updateNotification', 'UserController@updateNotification');
 
+// UserUpdate
+Route::post('app/updateUserSettings','UserController@updateUserSettings');
 
 
 Route::get('/logout', function () {

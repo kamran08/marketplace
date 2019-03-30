@@ -11,36 +11,35 @@
                             </div>
 
                             <div class="_login_form">
-                                <form v-on:submit.prevent="" >
-                                    <div class="_login_input_group">
-                                        <div class="_login_input">
-                                            <div class="_login_input_inp">
-                                                 <Input v-model="logdata.email" v-on:keyup.enter="check" placeholder="Email" type="email" required />
-                                            </div>
+                                
+                                <div class="_login_input_group">
+                                    <div class="_login_input">
+                                        <div class="_login_input_inp">
+                                             <Input v-model="logdata.email"  @on-enter="check" placeholder="Email" type="email"/>
                                         </div>
                                     </div>
-                                    <div class="_login_input_button" v-if="!status">
-                                        <button class="_btn _login_input_button_btn _bg _email_signin_ICON" type="button" @click="check" > CONTINUE <i class="fas fa-chevron-right"></i></button>
-                                    </div>
-                                    <div class="this is for test " v-if="status">
-                                    <div class="_login_input_group">
-                                        <div class="_login_input">
-                                            <div class="_login_input_inp">
-                                                <Input v-model="logdata.password"  placeholder="Password" type="password" />
-                                            </div>
+                                </div>
+                                <div class="_login_input_button" v-if="!status">
+                                    <button class="_btn _login_input_button_btn _bg _email_signin_ICON" type="button" @click="check" > CONTINUE <i class="fas fa-chevron-right"></i></button>
+                                </div>
+                                <div class="this is for test " v-else>
+                                <div class="_login_input_group">
+                                    <div class="_login_input">
+                                        <div class="_login_input_inp">
+                                            <Input v-model="logdata.password" @on-enter="login(true)"  placeholder="Password" type="password" />
                                         </div>
-                                        
-                                    </div>
-
-                                    <div class="_login_input_button">
-                                        <button class="_btn _login_input_button_btn _bg" type="submit" v-if="!load" @click="login(true)" name="submit">SIGN IN</button>
-                                        <button class="_btn _login_input_button_btn _bg" type="submit" v-if="load" @click="login(false)" >loading.....</button>
-                                        
                                     </div>
                                     
-                                    </div>
-                                    <p class="forget _text_right" @click="$router.push('/getEmail')" >Forget your password?</p>
-                                </form>
+                                </div>
+                                <div class="_login_input_button">
+                                    <button class="_btn _login_input_button_btn _bg" v-if="!load"  @click="login(true)">SIGN IN</button>
+                                    <button class="_btn _login_input_button_btn _bg" v-if="load" >loading.....</button>
+                                    
+                                </div>
+                                
+                                </div>
+                                <p class="forget _text_right" @click="$router.push('/getEmail')" >Forget your password?</p>
+                               
                             </div>
                         </div>
 					</div>
@@ -87,8 +86,10 @@ export default {
 
       check(){
           console.log("call check");
-          if(this.logdata.email===''){
-              this.e('Email is empty!')
+          console.log(this.logdata.email);
+          if(this.logdata.email ==''){
+
+              this.i('Email is empty!')
               return 
           }
           this.status = true

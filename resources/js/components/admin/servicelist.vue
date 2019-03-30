@@ -2,7 +2,7 @@
     <div>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-12 col-md-9 padd_top" >
+                <div class="col-12 col-md-12 padd_top" >
                     <div class="_profile_card_all" v-if="list.length && isloading" >
                         <!-- card -->
                     <div class="_profile_card_all list_head _box_shadow2 _border_radious _overflow" v-if="list.length && isloading"  >

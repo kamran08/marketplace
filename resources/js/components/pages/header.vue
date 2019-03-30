@@ -8,7 +8,7 @@
 				<div class="_1menu_search _1flex">
 					<i class="fas fa-search"></i>
 					<div class="_1menu_input _1flex_space">
-						<input class="_1menu_input_int" placeholder="Search" type="text" name="fname">
+						<Input class="_1menu_input_int" placeholder="Search" v-model="search" type="text" name="fname" @on-enter="$router.push(`/marketplace?cat=&str=${search}`)"></Input>
 					</div>
 				</div>
 
@@ -205,6 +205,7 @@ export default {
 				open:false,
 				messagebox:false,
 				noficationData:[],
+				search: ''
 			}
 	},
 	

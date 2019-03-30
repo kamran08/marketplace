@@ -198,6 +198,7 @@
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Running-Bookings</li>
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''" @click="sellerTab=4">Completed-Service</li>
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==5)? 'pro_menu_active':''"  @click="sellerTab=5">Canceled-Bookings</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==7)? 'pro_menu_active':''"  @click="sellerTab=7">Settings</li>
                             </ul>
                         </div>
                         <servicelist v-if="sellerTab==1" ></servicelist>
@@ -206,6 +207,7 @@
                         <bookinglist v-if="sellerTab==3 && authInfo.id==user_id " ></bookinglist>
                         <completedList v-if="sellerTab==4 && authInfo.id==user_id " ></completedList>
                         <canclebookinglist v-if="sellerTab==5 && authInfo.id==user_id" ></canclebookinglist>
+                        <settings v-if="sellerTab==7 && authInfo.id==user_id" ></settings>
                     </div>
                         <!--~~~~~~~ Profile Details ~~~~~~~-->
                 </div>
@@ -242,6 +244,7 @@ import servicelist from './servicelist.vue'
 import newbookinglist from './newbookinglist.vue'
 import completedList from './completedList.vue'
 import reviewList from './reviewList.vue'
+import settings from './settings.vue'
 
         
 export default {
@@ -252,6 +255,7 @@ export default {
         newbookinglist,
         completedList,
         reviewList,
+        settings,
     },
     data(){
         return{

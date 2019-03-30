@@ -145,10 +145,16 @@ export default {
             this.imageModal = true;
         },
         async addNewCatagory(){
-            if( this.formdata.catName == '' || this.formdata.image == ' '){
-                this.i("All Category fields are required!");
+            if( this.formdata.catName == ''){
+                this.i("Category name is required!");
                 return;
             }
+            if( this.formdata.image == ''){
+                this.i("Category image is required!");
+                return;
+            }
+
+
             const res = await this.callApi('post', 'insert-catagory', this.formdata)
             if(res.status === 201){
                 this.s('Category Added');

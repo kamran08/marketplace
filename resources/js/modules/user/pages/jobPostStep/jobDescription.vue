@@ -89,7 +89,7 @@
                                  <div class="_login_input_group">
                                     <div class="_login_input">
                                        <div class="_login_input_inp">
-                                          <Input v-model="formdata.videoLink" placeholder="Video link" type="text" />
+                                          <!-- <Input v-model="formdata.videoLink" placeholder="Video link" type="text" /> -->
                                        </div>
                                     </div>
                                  </div>
@@ -107,17 +107,11 @@
                         </div>
                        <!-- ormdata.openingMassage -->
 
-                        <div class="_login_input_group">
-                           <div class="_login_input">
-                              <div class="_login_input_inp">
-                                 <Input v-model="formdata.openingMassage" placeholder="Opening Massage" type="text" />
-                              </div>
-                           </div>
-                        </div>
+                    
 
                         <div class="_login_input_button">
                            
-                           <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Join Now 2</button></p>
+                           <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Join Now</button></p>
 		            	
                            <!-- <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button> -->
                         </div>
@@ -140,9 +134,7 @@ export default {
                 cat_id:'',
                 user_id:'',
                 price:'',
-                videoLink:'',
                 description:'',
-                openingMassage:'',
                 servicingTime:[
                    {
                      startTime:'',
@@ -209,7 +201,7 @@ export default {
     methods:{
         async join(){
             console.log(this.formdata)
-            if(this.formdata.openingMassage =='' || this.formdata.description == '' || this.formdata.videoLink == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == ''){
+            if(this.formdata.description == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == ''){
                 this.i("All fields are requrired");
                 return;
             }
@@ -225,7 +217,7 @@ export default {
             const res1 = await this.callApi('post', 'insert-all-services',this.formdata)
             if(res1.status===201){
                 this.s("Data stored Successfully!");
-                this.$router.push({name: 'jobImage',params: {id:res1.data.id}});
+                //this.$router.push({name: 'jobImage',params: {id:res1.data.id}});
              //  console.log(res1)
                
             }

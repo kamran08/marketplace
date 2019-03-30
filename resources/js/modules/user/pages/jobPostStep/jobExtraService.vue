@@ -73,7 +73,11 @@ export default {
           ok:false,
           alljobs:'',
           visible: false,
-          catagory:'catagory'
+          catagory:'catagory',
+        updatevalue:{
+            id:this.$route.params,
+            num:4
+       }
 
         }
     },
@@ -89,9 +93,7 @@ export default {
             // this.$router.push({name: 'jobTag',params: {id:this.router}})
             if(this.formdata.serviceName!='' && this.formdata.servicePrice!='' && this.formdata.service_id!=''){
                 this.i('if you want to add current item please hit on add button or clear')
-
             }
-
             // //this.items.push({serviceName:this.formdata.serviceName,servicePrice:this.formdata.servicePrice,service_id:this.formdata.service_id})
             else if(this.items.length>0){
                 this.insertExtra(this.items);
@@ -99,7 +101,8 @@ export default {
                // this.$store.dispatch('setTabInfo',4);
             }
             else{
-                this.i('this service has not extra service')
+                this.updateSeriveStep(this.updatevalue);
+                this.$router.push({name: 'jobTag',params: {id:this.formdata.service_id}})
             }
               
         },
@@ -138,6 +141,9 @@ export default {
             this.formdata.servicePrice = ''
             this.formdata.service_id = ''
         },
+        async updateSeriveStep(data){
+            const res1 = await this.callApi('post', 'updateSeriveStep', data)
+        }
         
     },
     async created(){

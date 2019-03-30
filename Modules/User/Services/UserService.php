@@ -63,15 +63,9 @@ class UserService extends Controller {
     public function getInfoBySearchCatagory($request){
        $str = $request->str;
        $cat = $request->cat;
-       if($cat){
-         return $this->query->getInfoBySearchCatagory($cat);
-       }else{
-         return $this->query->getAllServiceList();
-       }
+       return $this->query->getInfoBySearchCatagory($cat, $str);
        
-       $service = $this->query->getInfoBySearchCatagory($request);
-       return $service;
-    }
+   }
     public function getallcatgory(){
          return $this->query->getallcatgory();
     }
@@ -81,6 +75,12 @@ class UserService extends Controller {
     }
     public function getCurrentStep($key){
        return  $this->query->getCurrentStep($key);
+       
+    }
+    public function updateSeriveStep($data){
+       $id = $data['id'];
+       $num = $data['num'];
+       return  $this->query->updateSeriveStep($id, $num);
        
     }
     public function insertService($data){
@@ -160,6 +160,7 @@ class UserService extends Controller {
       }
       return $this->query->updateSeriveStep($service_id,4);
     }
+
 
     public function addTag($data){
       if(!Auth::check()){
@@ -455,7 +456,7 @@ class UserService extends Controller {
             'notitxt' => 'booked your Service',
             'url' => "/sprofile/$sid?tab=2",
          ];
-         $this->query->notifications($ndata);
+         $this->query->notifications($ndata); 
       }
 
       return $rdata;
@@ -555,13 +556,13 @@ class UserService extends Controller {
 
  // Password Reset
  public function passwordresetGetEmail($request){
-    \Log::info($request->all());
-   $isFound = User::where('email',$request->email)->count();
-   if($isFound==0){
-       return response()->json([
-           'msg' => "Email doesn't exist!",
-       ],401);
-   }
+      
+      $isFound = User::where('email',$request->email)->count();
+      if($isFound==0){
+      return response()->json([
+         'msg' => "Email doesn't exist!",
+      ],401);
+      }
   
        $token=str_random(30);
        $token = \Hash::make($token);
@@ -571,20 +572,20 @@ class UserService extends Controller {
            'email' => $request->email,
            'token' => $token, //change 60 to any length you want $2y$10$.r/0Wp7TW/gUpGPQUgkct.WEX8s/.wGsCc9qT6pwbn.H/Jn2RXyB.
            'created_at' => \Carbon\Carbon::now()
-       ]);
+      ]);
 
            // Mail::to($request->email)
            // ->send(new Passwrordreset($savedData));
 
          return response()->json([
            'msg' => "password reset link has been Sent!",
-       ],200);
+         ],200);
    } 
    
    public function matchPasswordLink(Request $request){
       $token = $request->token;
       
-      // get the row from reset table matching this token  http://127.0.0.1:8000/passwordreset/check?token=$2y$10$.r/0Wp7TW/gUpGPQUgkct.WEX8s/.wGsCc9qT6pwbn.H/Jn2RXyB.
+      // get the row from reset table matching this token  http://127.0.0.1:8000/passwordreset/check?token=$2y$10$sfRj/D8kYRmoWJCrMsVzYOWZ.tkHdChc2Sa3IQ84nKOW2ryzcudwe
       $isTokenFound = \DB::table('password_resets')->where('token',$token)->first();
       // if token is valid return data only like this 
       if(!$isTokenFound){
@@ -632,6 +633,41 @@ class UserService extends Controller {
          $data['seller_id'] = Auth::user()->id;
          unset($data['type']);
          return $this->query->giveReviewb($data);
+       
+      }
+
+      public function updateUserSettings($data){
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 401);
+        }
+        $id = Auth::user()->id;
+        if($data['id'] != $id){
+         return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 401);
+        }
+        if($data['type']=='password'){
+         $oldPassword = $data['oldPassword'];
+         $data['password'] = Hash::make($data['newPassword']);
+         unset($data['type']);
+         unset($data['oldPassword']);
+         unset($data['confirm_password']);
+         unset($data['newPassword']);
+         return $this->query->updateUserSettingsPassworld($data,$oldPassword);
+        }
+
+         $oldEmail = $data['oldEmail'];
+         $password = $data['password'];
+         $data['email'] = $data['newEmail'];
+         unset($data['type']);
+         unset($data['oldEmail']);
+         unset($data['newEmail']);
+         unset($data['password']);
+         return $this->query->updateUserSettingsEmail($data,$oldEmail,$password);
+
+         
        
       }
       public function notifications($key){
