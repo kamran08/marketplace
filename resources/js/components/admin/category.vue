@@ -8,7 +8,7 @@
                             <div class="col-md-12 category_phone"  >
                                 <Input v-model="formdata.catName" placeholder="Catagory Name" />
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12" style=" min-height: 50px; " >
                                 <Upload
                                 ref="upload"
                                 type="drag"
@@ -20,8 +20,9 @@
                                 :format="['jpg','jpeg','png']"
                                 :max-size="2048"
                                 action="/app/getServiceImage">
-                                <div >
-                                    <i class="fas fa-plus upload_icon " style="width:64px;"></i>
+                                <div style="padding: 20px 0">
+                                    <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                                    <p>Click or drag photo here to upload</p>
                                 </div>
                                 </Upload>
                                 <img   v-if="formdata.image" class="_1steps_img_pic" :src="formdata.image"  title="">
@@ -144,7 +145,10 @@ export default {
             this.imageModal = true;
         },
         async addNewCatagory(){
-          
+            if( this.formdata.catName == '' || this.formdata.image == ' '){
+                this.i("All Category fields are required!");
+                return;
+            }
             const res = await this.callApi('post', 'insert-catagory', this.formdata)
             if(res.status === 201){
                 this.s('Category Added');
@@ -186,6 +190,7 @@ export default {
                 this.list.isTrue = false
             }
             else{
+
                 const res = await this.callApi('post',"updateUser",{id:this.list[index].id})
                 if(res.status==200){
                 if(status==1){
@@ -216,12 +221,16 @@ export default {
         },
         async Update(index){
              this.formdata.id = this.list[index].id
-             const res = await this.callApi('post', 'categoryUpdate', this.formdata)
+             let editData = {
+                 id : this.list[index].id
+             }
+             if(this.formdata.catName != '') editData.catname = this.formdata.catName
+             if(this.formdata.image != '') editData.image = this.formdata.image
+             const res = await this.callApi('post', 'categoryUpdate', editData)
             if(res.status === 200){
                 this.s('Category has been Updated');
-
-                this.list[index].catName = this.formdata.catName
-                this.list[index].image = this.formdata.image
+                if(this.formdata.catName != '') this.list[index].catname = this.formdata.catName
+                if(this.formdata.image != '') this.list[index].image = this.formdata.image
                 this.isEdit = -1
                 delete this.formdata.id
                 this.formdata.catName=""

@@ -72,6 +72,9 @@ class UserService extends Controller {
        $service = $this->query->getInfoBySearchCatagory($request);
        return $service;
     }
+    public function getallcatgory(){
+         return $this->query->getallcatgory();
+    }
     public function getAllUserList(){
        $service = $this->query->getAllUserList();
        return $service;
@@ -178,7 +181,7 @@ class UserService extends Controller {
             'message' => "Server Problem!",
          ], 401);
       }
-      return $this->query->updateSeriveStep($service_id,5);
+      return $this->query->updateFinalStep($service_id);
     }
     public function saveImages($data){
       if(!Auth::check()){
@@ -277,6 +280,10 @@ class UserService extends Controller {
       }
       return $goru;
 
+    }
+    public function getRiviewListById($id){
+      
+      return  $this->query->getRiviewListById($id);
     }
     public function getServiceList($id){
       return $this->query->getServiceList($id);
@@ -400,7 +407,9 @@ class UserService extends Controller {
                ], 406);
       }
        $id = Auth::user()->id;
-       if($data[ 'user_id'] != $id){
+       $type = Auth::user()->userType;
+
+       if($data[ 'user_id'] != $id && $type != 4 ){
          return response()->json([
             'message' => "You are not Authenticate User!",
         ], 402);
@@ -433,9 +442,24 @@ class UserService extends Controller {
         ], 402);
      }
       $data["buyer_id"]= Auth::user()->id;
+      $sid = $data['seller_id'];
       //$data["extraService"]= json_encode($data["extraService"]);
 
-      return $this->query->insertOrder($data);
+      $rdata = $this->query->insertOrder($data);
+      
+
+      if($rdata){
+         $ndata =[
+            'notifor' => $sid,
+            'notifrom' => $data['buyer_id'],
+            'notitxt' => 'booked your Service',
+            'url' => "/sprofile/$sid?tab=2",
+         ];
+         $this->query->notifications($ndata);
+      }
+
+      return $rdata;
+
      
    }
     public function getslots($data){
@@ -453,7 +477,7 @@ class UserService extends Controller {
       // echo "<pre>";
       // print_r($SerialNo);
       // echo "</pre>";
-      $startTime =  new DateTime($time->startTime);
+      $startTime =  new DateTime($time->startTime); 
       $startTimePre =  new DateTime($time->startTime);
       $endTime =  new DateTime($time->endTime);
       $duration = $time->duration;
@@ -597,8 +621,18 @@ class UserService extends Controller {
               'message' => "You are not Authenticate User!",
            ], 402);
         }
-        $data['buyer_id'] = Auth::user()->id;
-        return $this->query->giveReview($data);
+
+        if($data['type']==1){
+
+         $data['buyer_id'] = Auth::user()->id;
+         unset($data['type']);
+         return $this->query->giveReview($data);
+        }
+
+         $data['seller_id'] = Auth::user()->id;
+         unset($data['type']);
+         return $this->query->giveReviewb($data);
+       
       }
       public function notifications($key){
          if(!Auth::check()){
@@ -631,6 +665,25 @@ class UserService extends Controller {
             'msgNotificationData'=> $msgNotificationData,
          ],200); 
         
+      }
+
+      public function getNotificationData(){
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+         $id = Auth::user()->id;
+         return $this->query->getAllNotifications($id);
+      }
+      public function getNoficationAllData(){
+         if(!Auth::check()){
+            return response()->json([
+              'message' => "You are not Authenticate User!",
+           ], 402);
+        }
+         $id = Auth::user()->id;
+         return $this->query->getAllNotificationsAll($id);
       }
 
       public function updateNotification($data){

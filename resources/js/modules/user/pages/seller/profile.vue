@@ -13,7 +13,7 @@
 
                 <div class="row">
                         <!--~~~~~~~ Profile Card ~~~~~~~-->
-                    <div class="col-12 col-md-4 col-lg-4">
+                    <div class="col-12 col-md-4 col-lg-4" >
                         <!--~~~~~~~ Details Right Profile ~~~~~~~-->
                         <div class="Details_profie _mr_b30 _box_shadow2 _border_radious _padd_20">
                             <div class="Details_profie_img_div" v-if="authInfo.id==user_id" >
@@ -49,15 +49,15 @@
                             </div>
 
                             <div class="Details_profie_rating">
-                                <!-- <ul class="_1job_card_rating_ul" v-if="userInfo.reviews_count!==0 || userInfo.avgreview!=null" >
+                                <ul class="_1job_card_rating_ul" v-if="userInfo.reviews_count!==0" >
                                     <li :class="(userInfo.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li :class="(userInfo.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li :class="(userInfo.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li :class="(userInfo.avgreview.averageRating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li :class="(userInfo.avgreview.averageRating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li class="_1job_card_rating_num">({{userInfo.reviews_count}})</li>
-                                </ul> -->
-								<ul class="_1job_card_rating_ul"  >
+                                </ul>
+								<ul class="_1job_card_rating_ul" v-else  >
 									<li ><i class="fas fa-star"></i></li>
 									<li ><i class="fas fa-star"></i></li>
 									<li ><i class="fas fa-star"></i></li>
@@ -180,8 +180,8 @@
                                 </div>
 
 
-                                <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center">
-                                    <p class="_contect_me _color_green"> Contact me <i class="fas fa-comments"></i></p>
+                                <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="userInfo.id != authInfo.id" >
+                                    <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
                                 </div>
                             </div>
                         </div>
@@ -193,6 +193,7 @@
                         <div class="_box_shadow2 pro_menu _border_radious ">
                             <ul class="pro_menu_list">
                                 <li :class="(sellerTab==1)? 'pro_menu_active':''" @click="sellerTab=1">Service</li>
+                                <li :class="(sellerTab==6)? 'pro_menu_active':''" @click="sellerTab=6">Reviews</li>
                                 <li v-if="authInfo.id==user_id" :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">New-Bookings</li>
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Running-Bookings</li>
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''" @click="sellerTab=4">Completed-Service</li>
@@ -200,6 +201,7 @@
                             </ul>
                         </div>
                         <servicelist v-if="sellerTab==1" ></servicelist>
+                        <reviewList v-if="sellerTab==6" ></reviewList>
                         <newbookinglist v-if="sellerTab==2 && authInfo.id==user_id" ></newbookinglist>
                         <bookinglist v-if="sellerTab==3 && authInfo.id==user_id " ></bookinglist>
                         <completedList v-if="sellerTab==4 && authInfo.id==user_id " ></completedList>
@@ -208,6 +210,27 @@
                         <!--~~~~~~~ Profile Details ~~~~~~~-->
                 </div>
             </div>
+            <Modal
+                v-model="msgModal"
+                :title="userInfo.name"
+                :closable = "false"
+                width='500'
+            >
+            <div class="User_List">
+                 <div>
+                    <div class="form-group">
+                        <p class=" msg_box_header">Your Message</p>
+                        <textarea placeholder="Write your message..." class="form-control msg_box" v-model="msgData.msg" rows="3"></textarea>
+                    </div>
+                </div>
+                    
+            </div>
+            
+            <div slot="footer">
+                <Button type="warning"  @click="msgModal = false">Close</Button>
+                <Button type="success" @click="sendMsg">Send</Button>
+            </div>
+        </Modal>
         </div>
 
 </template>
@@ -218,6 +241,7 @@ import canclebookinglist from './canclebookinglist.vue'
 import servicelist from './servicelist.vue'
 import newbookinglist from './newbookinglist.vue'
 import completedList from './completedList.vue'
+import reviewList from './reviewList.vue'
 
         
 export default {
@@ -227,18 +251,26 @@ export default {
         servicelist,
         newbookinglist,
         completedList,
+        reviewList,
     },
     data(){
         return{
             sellerTab:1,
             user_id:this.$route.params.id,
-            userInfo:[],
+            userInfo:{},
             edituserInfo:[],
             isEdit:false,
             defultImage:'/uploads/pcpSlKaSylqS3Vj2WUvtVmghh8KyPwERrbGGamVP.jpeg',
             crfObj: {
                     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
+            msgModal:false,
+            msgData:{
+                msg: '',
+                con_id: '',
+                reciever:'',
+                conType:null
+            }
         }
     },
     methods:{
@@ -270,16 +302,37 @@ export default {
              this.userInfo.image = res;
             
         },
+        async sendMsg(){
+            if(this.msgData.msg===''){
+               return
+            }
+            // check if current buddy has any con_id or newly created one
+            
+            this.msgData.reciever=this.userInfo.id
+            this.msgData.conType= 1
+            const res = await this.callApi('post','insert-chat',this.msgData) 
+            if(res.status===201){
+                  this.msgData.msg=''
+                  this.msgData.reciever=''
+                  // update new chat 
+                  this.s("Message has been sent Successfully")
+                  this.msgModal = false;
+            }
+            else{
+                this.swr();
+            }
 
+
+         },
     },
     created(){
-           if(this.$route.query.tab>0 && this.$route.query.tab<6){
-             this.sellerTab = this.$route.query.tab
-             window.history.pushState(this.sellerTab, 'Title', '/sprofile/'+this.$route.params.id);
-            
-           }
-  
-            this.getProfileInfo();
+        if(this.$route.query.tab>0 && this.$route.query.tab<7){
+          this.sellerTab = this.$route.query.tab
+          window.history.pushState(this.sellerTab, 'Title', '/sprofile/'+this.$route.params.id);
+        }
+        
+        
+        this.getProfileInfo();
     }
 }
 </script>

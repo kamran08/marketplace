@@ -8,43 +8,18 @@
 						<p class="_footer_title">About Microjob Engine</p>
 
 						<ul class="_footer_ul">
-							<li>Sub menu 1</li>
-							<li>Sub menu 1</li>
-							<li>Sub menu 1</li>
+							<li>
+								<router-link :to="{name:'terms'}"> Terms & Privacy</router-link>
+
+								</li>
+							<li><router-link :to="{name:'about'}">About</router-link>
+								</li>
 							<li>Sub menu 1</li>
 							<li>Sub menu 1</li>
 						</ul>
 					</div>
 
-					<div class="col-6 col-md-3 _footer_main">
-						<p class="_footer_title">Link</p>
-
-						<ul class="_footer_ul">
-							<li>Sub menu 1</li>
-							<li>Sub menu 1</li>
-							<li>Sub menu 1</li>
-							<li>Sub menu 1</li>
-						</ul>
-					</div>
-
-					<div class="col-6 col-md-3 _footer_main">
-						<p class="_footer_title">Deshbord</p>
-
-						<ul class="_footer_ul">
-							<li>Sub menu 1</li>
-							<li>Sub menu 1</li>
-						</ul>
-					</div>
-
-					<div class="col-6 col-md-3 _footer_main">
-						<p class="_footer_title">Deshbord</p>
-
-						<ul class="_footer_ul">
-							<li>Sub menu 1</li>
-							<li>Sub menu 1</li>
-							<li>Sub menu 1</li>
-						</ul>
-					</div>
+					
 				</div>
 
 				<div class="row _footer_feb_row">

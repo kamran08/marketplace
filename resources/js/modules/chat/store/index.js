@@ -52,13 +52,14 @@ export default {
             state.chatListing[data.index].msg=data.msg
         },
         newComingChat(state,data){
-           
+            
             for(let d of data){
                 console.log(state.currentBuddyInfo)
                 if(d.con_id== state.currentBuddyInfo.con_id){
                     state.chat.push(d);
-                    state.chatListing[state.currentBuddyIndex].msg=d.msg
                 }
+                let index = state.chatListing.findIndex(c => c.con_id==d.con_id)
+                state.chatListing[index].msg=d.msg
             }
             
             

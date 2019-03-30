@@ -17,6 +17,7 @@
 						<ul class="_1menu_sign_ul">
 							<li> <router-link :to="{ path: '/'}">Home</router-link></li>
 							<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
+							<li><router-link :to="{ name: 'about'}">About</router-link></li>
 							<li><router-link :to="{ name: 'login'}"> Sign in </router-link></li>
 							<li class="_1menu_sign_ul_or">or</li>
 							<li><router-link :to="{ name: 'register'}">Join Us</router-link></li>
@@ -28,6 +29,7 @@
 						<ul class="_2menu_main_ul_list_ul">
 							<li> <router-link :to="{ path: '/'}">HOME</router-link></li>
 							<li v-if="authInfo.userType==1"> <router-link :to="{ path: '/jobDescription'}">POST SERVICE</router-link></li>
+							
 								<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
 							<!-- <li> <router-link :to="{ name: 'order'}">ORDER</router-link></li> -->
 							<li v-if="authInfo.userType==1" > <router-link :to="{ name: 'sprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li>
@@ -60,13 +62,15 @@
 														</div>
 															<!-- ITEMS -->
 													</div>
-													<p class="noti_more">
+													<router-link :to="{name:'notification'}" ><p class="noti_more">
 														See More
-													</p>
+													</p></router-link>
+													
 												</div>
 											</div>
 									</div>
 							</li>
+							
 							<!-- <li v-if="authInfo" >
 									<div class="_2menu_mess ">
 											<i class="fas fa-envelope"></i>
@@ -82,34 +86,6 @@
 													<div v-if="msgNoficationData.length>0" class="_2menu_mess_num _bg" >{{msgNoficationData.length}}</div>
 												</router-link>
 											</div>
-											<!-- <div class="not_list" v-if="messagebox" >
-												<div class="noti_all">
-													<p class="noti_title">message</p>
-													<div class="noti_main_content"  >
-															
-														<div class="noti_main " v-if="msgNoficationData.length" v-for="(item,index) in msgNoficationData" :key="index" >
-															<div class="noti_status" >
-																<div >
-																	<li> <router-link :to="{ name: 'messanger'}"> <p class="noti_status_text"><strong>{{item.sender.name}}</strong> send a message </p> </router-link></li>
-																	
-
-																	<p class="noti_status_time"><Icon type="md-chatboxes" /> {{item.created_at}}</p>
-																</div>
-															
-															</div>
-														</div>
-														<div class="noti_main " v-else >
-															<div class="noti_status" >
-																<div >
-																	<li><p class="noti_status_text">No new messages</p></li>
-																</div>
-															</div>
-														</div>
-															
-													</div>
-													<p class="noti_more"><router-link :to="{ name: 'messanger'}">See More message</router-link></p>
-												</div>
-											</div> -->
 									</div>
 							</li>
 							<!-- massanger -->
@@ -203,7 +179,6 @@
 			<div class="_1big_menu" >
 				<ul class="_1big_menu_ul">
 					<li v-for="(job,i) in alljobs" :key="i" @click="$router.push(`/marketplace?cat=${job.id}`)">{{job.catName}}</li>
-					<!-- this is for all catagory  --->
 				</ul>
 			</div>
 	</div>
@@ -229,6 +204,7 @@ export default {
 				],
 				open:false,
 				messagebox:false,
+				noficationData:[],
 			}
 	},
 	
@@ -272,11 +248,20 @@ export default {
 			this.leftMain = '-100%'
 			return this.$router.push(url)
 		},
-		openNoti(){
+		async openNoti(){
 			if(this.open==true){
 				this.open=false;
+				return;
 			}
-			else this.open = true;
+			const res = await this.callApi('get','getNotificationData')
+			if(res.status === 200){
+				this.noficationData =res.data;
+			}
+			else{
+				this.swr();
+			}
+			this.open = true;
+
 		},
 		async isSeen(item){
 			this.$router.push(item.url)

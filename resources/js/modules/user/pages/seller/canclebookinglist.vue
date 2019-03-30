@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all" v-if="list.length && isloading"  >
+        <div class="_profile_card_all tags_all" v-if="list.length && isloading"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==3"  >
                     <div class="_profile_card_pic">

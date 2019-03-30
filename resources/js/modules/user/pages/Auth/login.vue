@@ -76,7 +76,7 @@ export default {
             if(res.status===200){
                  this.s('Login successfull!')
                  this.$store.dispatch('setAuth',res.data.user)
-                this.$router.push('/');
+                  window.location='/'
             }else{
                 if(res.status===401){
                     this.load = false

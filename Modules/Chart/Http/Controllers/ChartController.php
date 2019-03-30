@@ -93,6 +93,7 @@ class ChartController extends Controller{
                                             us.image,
                                             us.email, 
                                             us.location,
+                                            us.phone,
                                             us.country,
                                             us.bio,
                                             us.userType,

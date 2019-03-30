@@ -5,7 +5,42 @@
                 <div class="col-12 col-md-9 padd_top" >
                     <div class="_profile_card_all" v-if="list.length && isloading" >
                         <!-- card -->
-                        <div v-for="(item,index) in list" :key="index" >
+                    <div class="_profile_card_all list_head _box_shadow2 _border_radious _overflow" v-if="list.length && isloading"  >
+                        <table class="table_C table-striped">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Service-Provider</th>
+                                <th>Extra</th>
+                                <th>Price</th>
+                                <th>Completed</th>
+                                <th>Step Completed</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody >
+                            <tr v-for="(item,index) in list" :key="index" >
+                                <td>
+                                    {{item.title}}
+                                </td>
+                                <td>{{item.user.name}}</td>
+                                <td>
+                                    {{item.extra.length}}
+                                </td>
+                                <td>{{item.price}}</td>
+                                <td>{{(item.isComplete == 0)? "No" : "Yes"}}</td>
+                                <td>{{item.nextStep-1}}</td>
+                                <td>
+                                    <button v-if="item.isApproved==0" class="table_button" type="button" @click="updateService(index)">Approve</button>
+                                    <router-link :to="`/admin/editJobDescription/${item.id}`"><button  class="table_button_green" type="button" >Edit</button></router-link>
+                                    <button class="table_button_red" type="button" @click="deleteService(index)">Delete</button>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                        <!-- <div v-for="(item,index) in list" :key="index" >
                             <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 ">
                                 <div class="_profile_card_pic">
                                     <img  class="_profile_card_img" :src="item.image[0].imageUrl" alt="" title="">
@@ -46,9 +81,7 @@
                                     
                                     </div>
                                     <div class="_profile_card_title _flex_space">
-                                        <button v-if="item.isApproved==0" class="table_button" type="button" @click="updateService(index)">Approve</button>
-                                        <router-link :to="`/admin/editJobDescription/${item.id}`"><button  class="table_button_green" type="button" >Edit</button></router-link>
-                                        <button class="table_button_red" type="button" @click="deleteService(index)">Delete</button>
+                                        
                                     </div>
                                     <div class="_dis_flex _profile_card_doller">
                                         <div class="_1job_card_dollar">
@@ -58,7 +91,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div span="14" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
                         <h2>Loading .....</h2>
@@ -99,13 +132,15 @@ export default {
             if(!confirm("Are you sure to delete this Service")){
                 return;
             }
+
             const res = await this.callApi('post',"deleteService",{id:this.list[index].id})
             if(res.status==200){
-                this.i("User has been  Deleted!")
+                this.i("Service has been  Deleted!")
+                this.list.splice(index,1);
                 
             }
             else{
-                this.e();
+                this.swr();
             }
         },
         async updateService(index){

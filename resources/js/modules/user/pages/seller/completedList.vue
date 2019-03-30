@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all" v-if="list.length && isloading"  >
+        <div class="_profile_card_all tags_all" v-if="list.length && isloading"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==2"  >
                     <div class="_profile_card_pic">
@@ -27,6 +27,7 @@
                         </div>
                         <div class="_profile_card_title _flex_space">
                             <button class="table_button" type="button" disabled>Completed</button>
+                             <button v-if="item.review_count==0" class="table_button" @click="ReviewModalOn(item,index)" type="button" >Give Feedback about customer</button>
                         </div>
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
@@ -44,6 +45,41 @@
         <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
            <h2>Loading .....</h2>
         </div>
+        <Modal
+            v-model="reviewModal"
+            title="Please leave a rivew for this service"
+            :closable = "false"
+            width='600'
+        >
+            <div class="row  justify-content-center">
+                <div class="col-md-12 text_center_custom">
+                    <div class="_login_input_group">
+                       <p class="_1steps_input_title" >How would you rate this Customer</p>
+                       <div class="_login_input">
+                          <div class="_login_input_inp">
+                              <Rate v-model="reviewData.rating" />
+                          </div>
+                       </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-12">
+                    <div class="_login_input_group">
+                       <p class="_1steps_input_title" >Experiance with this Customer</p>
+                       <div class="_login_input">
+                          <div class="_login_input_inp">
+                             <textarea class="_1steps_textarea" rows="4" cols="50" v-model="reviewData.comment"></textarea>
+                          </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+
+            <div slot="footer">
+                <Button @click="reviewModal=false">Close</Button>
+                <Button @click="SendReview">Send</Button>
+            </div>
+        </Modal>
         <!-- card -->
     </div>
 </template>
@@ -54,10 +90,26 @@ export default {
         return{
             list:[],
             toDayDate:'',
-            isloading:true
+            isloading:true,
+             reviewModal:false,
+                reviewData:{
+                comment:'',
+                rating:0,
+                service_id:'',
+                seller_id:'',
+                booking_id:'',
+                type:2
+            },
+            modalData:{},
+            dataIndex:'',
         }
     },
     methods:{
+        ReviewModalOn(item,index){
+            this.reviewModal = true;
+            this.modalData = item
+            this.dataIndex = index;
+        },
         async getNewList(newDate){
             this.isloading = false
             let data = {
@@ -95,7 +147,35 @@ export default {
             else{
                 this.e();
             }
-        }
+        },
+        async SendReview(){
+            if(this.reviewData.comment=='' || this.reviewData.rating=='' ){
+                return;
+            }
+
+            this.reviewData.service_id = this.modalData.service_id
+            this.reviewData.buyer_id = this.modalData.buyer_id
+            this.reviewData.booking_id = this.modalData.id
+            const res  = await  this.callApi('post',`giveReview`,this.reviewData);
+            if(res.status===201){
+                this.s("Thank you for your valuable feedback")
+                this.list[this.dataIndex].review_count = 1;
+                this.ClearRiviewTable();
+                this.reviewModal = false;
+            }
+            else{
+                this.swr();
+            }
+        },
+        ClearRiviewTable(){
+                this.reviewData.comment=''
+                this.reviewData.rating=0
+                this.reviewData.service_id=''
+                this.reviewData.seller_id=''
+                this.reviewData.booking_id=''
+                this.modalData = {}
+                this.dataIndex = ''
+        },
     },
     created(){
         let d = new Date();

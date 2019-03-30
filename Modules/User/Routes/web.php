@@ -32,7 +32,8 @@ Route::get( '/app/get-all-catgory-by-search', 'UserController@getInfoBySearchCat
 
 
 
-Route::post('app/login', 'UserController@login');
+
+Route::post('app/login', 'UserController@login'); 
 Route::post('app/register', 'UserController@register');
 Route::post( 'app/upload-avater', 'UserController@upload');
 Route::post( 'app/insert-all-services', 'UserController@insertService');
@@ -46,6 +47,7 @@ Route::post( 'app/unlinkImage', 'UserController@unlinkImage');
 Route::post( 'app/insertOrder', 'UserController@insertOrder');
 Route::post( 'app/getslots', 'UserController@getslots');
 Route::get( 'app/getNewList', 'UserController@getNewList');
+Route::get( 'app/getRiviewListById/{id}', 'UserController@getRiviewListById');
 Route::get( 'app/getServiceList/{id}', 'UserController@getServiceList'); 
 
 Route::post( 'app/getBookingList', 'UserController@getBookingList');
@@ -78,10 +80,15 @@ Route::post('app/deleteUser','UserController@deleteUser');
 Route::post('app/deleteCategory','UserController@deleteCategory');
 Route::post('app/deleteService','UserController@deleteService');
 Route::post('app/updateService','UserController@updateService');
+
 Route::post('app/categoryUpdate','UserController@categoryUpdate');
+Route::get( '/app/get-all-catgory', 'UserController@getallcatgory');
+
 Route::put('app/sub-category', 'UserController@updateSubCategory');
 Route::delete('app/sub-category', 'UserController@deleteSubCategory');
 Route::get( 'app/getAllServiceList', 'UserController@getAllServiceList'); 
+
+
 
 
 // job Edit 
@@ -89,6 +96,7 @@ Route::get( 'app/getServiceDescritption/{id}', 'UserController@getServiceDescrit
 Route::get( 'app/getServiceImages/{id}', 'UserController@getServiceImages'); 
 Route::get( 'app/getExtraServicebyId/{id}', 'UserController@getExtraServicebyId'); 
 Route::get( 'app/getTagbyId/{id}', 'UserController@getTagbyId'); 
+
 Route::post( 'app/UpdateServiceDescription', 'UserController@UpdateServiceDescription'); 
 Route::post( 'app/updateSaveServiceImage', 'UserController@updateSaveServiceImage'); 
 Route::post( 'app/UpdateExtraServices', 'UserController@UpdateExtraServices'); 
@@ -104,6 +112,8 @@ Route::post( 'app/sub-category', 'UserController@insertSubCatagory');
 /// notifications 
 
 Route::get('app/getAllNotifications', 'UserController@getAllNotifications');
+Route::get('app/getNotificationData', 'UserController@getNotificationData');
+Route::get('app/getNoficationAllData', 'UserController@getNoficationAllData');
 
 Route::post('app/notifications', 'UserController@notifications');
 Route::put('app/updateNotification', 'UserController@updateNotification');

@@ -97,15 +97,8 @@
                                 </div>
                                     <!-- items -->
                             </div>
-
-
-                            <!-- <div class="_commnet_main_more _b_color2 _dis_flex">
-                                <h2 class="_title4"><span class="_color _cursor">SEE MORE REVIEWS</span></h2>
-                            </div> -->
                         </div>
                     </div>
-
-
                         <!--~~~~~~~ Details Main Right ~~~~~~~-->
                     <div class="col-12 col-md-4 col-lg-4 Details_main_rigth">
                                 <!--~~~~~~~ Details Right Rating Extra ~~~~~~~-->
@@ -208,10 +201,15 @@
 
                                 <!--~~~~~~~ Details Right Profile ~~~~~~~-->
                         <div class="Details_profie _mr_b30 _box_shadow2 _border_radious _padd_20">
-                            <img class="Details_profie_img" src="img/Rectangle40.png" title="" alt="">
+                            <img class="Details_profie_img" :src="serviceDetails.user.image" title="" alt="">
 
                             <div class="Details_profie_title">
-                                <h3 class="_title3">Husain Shipu</h3>
+                                <h3 class="_title3">
+                                    
+                                    <router-link  :to="{name: 'sprofile' ,params:{id:serviceDetails.user.id}}" >{{serviceDetails.user.name}}</router-link>
+                                    
+                                
+                                    </h3>
                                 <div class="Details_profie_title_line"></div>
                             </div>
 
@@ -245,8 +243,8 @@
                                     </div>
                                 </div>
 
-                               <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center">
-                                    <p class="_contect_me _color_green"> Contact me <i class="fas fa-comments"></i></p>
+                               <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="serviceDetails.user.id != authInfo.id" >
+                                    <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
                                 </div>
                             </div>
                         </div>
@@ -297,6 +295,27 @@
                     <Button @click="bookingTimeModal = false">Close</Button>
             </div>
         </Modal>
+        <Modal
+                v-model="msgModal"
+                :title="(serviceDetails.user.name)? serviceDetails.user.name : '---'"
+                :closable = "false"
+                width='500'
+            >
+            <div class="User_List">
+                 <div>
+                    <div class="form-group">
+                        <p class=" msg_box_header">Your Message</p>
+                        <textarea placeholder="Write your message..." class="form-control msg_box" v-model="msgData.msg" rows="3"></textarea>
+                    </div>
+                </div>
+                    
+            </div>
+            
+            <div slot="footer">
+                <Button type="warning"  @click="msgModal = false">Close</Button>
+                <Button type="success" @click="sendMsg">Send</Button>
+            </div>
+        </Modal>
        
 </div>
 </template>
@@ -316,7 +335,7 @@ export default {
                 seller_id:'',
                 
             },
-             defultImage:'/img/prfile.png',
+            defultImage:'/img/prfile.png',
             bookingTimeModal:false,
             selectBookingTime : '',
             bookingTimeByDay : [],
@@ -327,9 +346,38 @@ export default {
                     return date && date.valueOf() < Date.now() - 86400000;
                 }
             },
+            msgData:{
+                msg: '',
+                con_id: '',
+                reciever:'',
+                conType:null
+            },
+            msgModal : false,
         }
     },
     methods:{
+         async sendMsg(){
+            if(this.msgData.msg===''){
+               return
+            }
+            // check if current buddy has any con_id or newly created one
+            
+            this.msgData.reciever=this.serviceDetails.user.id
+            this.msgData.conType= 1
+            const res = await this.callApi('post','insert-chat',this.msgData) 
+            if(res.status===201){
+                  this.msgData.msg=''
+                  this.msgData.reciever=''
+                  // update new chat 
+                  this.s("Message has  been sent Successfully")
+                  this.msgModal = false;
+            }
+            else{
+                this.swr();
+            }
+
+
+         },
         async  getServiceDetails(){
             this.isloading = false
             const res = await this.callApi('get',`getServiceDetailsById/${this.$route.params.id}`) 

@@ -23,6 +23,9 @@ class Booking extends Model
      public function review(){
          return $this->belongsTo('App\Review','id','booking_id');
      }
+     public function reviewb(){
+         return $this->belongsTo('App\Reviewb','id','booking_id');
+     }
 
     
 }

@@ -6,7 +6,7 @@
      	<transition name="component-fade" mode="out-in">
         <router-view :key="$route.fullPath"></router-view>
     </transition>
-      <footsSction/>
+      <footsSction v-if="($route.name!='messanger')" />
 	</div>
 
 
@@ -68,9 +68,10 @@ export default {
     created(){
       this.$store.dispatch('setAuth', (window.authUser));
       if(this.authInfo){
+        this.getNotificationCount();
         setInterval(()=>{
-        this.getNotificationCount()
-      },5000)
+          this.getNotificationCount()
+        },5000)
       }
       
      

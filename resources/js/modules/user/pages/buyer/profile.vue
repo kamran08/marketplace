@@ -9,7 +9,7 @@
                     <h3 class="_title">{{userInfo.name}} Profile</h3>
                 </div>
 
-                <p class="_title4"><i class="fas fa-chevron-left"></i> BACK</p>
+                <!-- <p class="_title4"><i class="fas fa-chevron-left"></i> BACK</p> -->
 
                 <div class="row">
                         <!--~~~~~~~ Profile Card ~~~~~~~-->
@@ -172,8 +172,8 @@
                                 </div>
 
 
-                                <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center">
-                                    <p class="_contect_me _color_green"> Contact me <i class="fas fa-comments"></i></p>
+                                 <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="userInfo.id != authInfo.id" >
+                                    <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
                                 </div>
                             </div>
                         </div>
@@ -184,12 +184,14 @@
                     <div class="col-12 col-md-8 col-lg-8">
                         <div class="_box_shadow2 pro_menu _border_radious ">
                             <ul class="pro_menu_list">
+                                <li :class="(sellerTab==6)? 'pro_menu_active':''" @click="sellerTab=6">Reviews</li>
                                 <li v-if="authInfo.id==user_id" :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">Awaiting approval</li>
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Bookings</li>
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''" @click="sellerTab=4">Completed</li>
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==5)? 'pro_menu_active':''"  @click="sellerTab=5">Cancelled</li>
                             </ul>
                         </div>
+                        <reviewList v-if="sellerTab==6" ></reviewList>
                         <newbookinglist v-if="sellerTab==2 && authInfo.id==user_id" ></newbookinglist>
                         <bookinglist v-if="sellerTab==3 && authInfo.id==user_id " ></bookinglist>
                         <completedList v-if="sellerTab==4 && authInfo.id==user_id " ></completedList>
@@ -198,6 +200,27 @@
                         <!--~~~~~~~ Profile Details ~~~~~~~-->
                 </div>
             </div>
+            <Modal
+                v-model="msgModal"
+                :title="userInfo.name"
+                :closable = "false"
+                width='500'
+            >
+            <div class="User_List">
+                 <div>
+                    <div class="form-group">
+                        <p class=" msg_box_header">Your Message</p>
+                        <textarea placeholder="Write your message..." class="form-control msg_box" v-model="msgData.msg" rows="3"></textarea>
+                    </div>
+                </div>
+                    
+            </div>
+            
+            <div slot="footer">
+                <Button type="warning"  @click="msgModal = false">Close</Button>
+                <Button type="success" @click="sendMsg">Send</Button>
+            </div>
+        </Modal>
         </div>
 
 </template>
@@ -207,6 +230,7 @@ import bookinglist from './bookinglist.vue'
 import canclebookinglist from './canclebookinglist.vue'
 import newbookinglist from './newbookinglist.vue'
 import completedList from './completedList.vue'
+import reviewList from './reviewList.vue'
 
 
         
@@ -216,10 +240,11 @@ export default {
         canclebookinglist,
         newbookinglist,
         completedList,
+        reviewList,
     },
     data(){
         return{
-            sellerTab:1,
+            sellerTab:2,
             user_id:this.$route.params.id,
             userInfo:[],
             edituserInfo:[],
@@ -228,6 +253,13 @@ export default {
             crfObj: {
                     'X-CSRF-TOKEN' : document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
+            msgModal:false,
+            msgData:{
+                msg: '',
+                con_id: '',
+                reciever:'',
+                conType:null
+            }
         }
     },
     methods:{
@@ -259,10 +291,32 @@ export default {
              this.userInfo.image = res;
             
         },
+        async sendMsg(){
+            if(this.msgData.msg===''){
+               return
+            }
+            // check if current buddy has any con_id or newly created one
+            
+            this.msgData.reciever=this.userInfo.id
+            this.msgData.conType= 1
+            const res = await this.callApi('post','insert-chat',this.msgData) 
+            if(res.status===201){
+                  this.msgData.msg=''
+                  this.msgData.reciever=''
+                  // update new chat 
+                  this.s("Message has been sent Successfully")
+                  this.msgModal = false;
+            }
+            else{
+                this.swr();
+            }
+
+
+         },
 
     },
     created(){
-          if(this.$route.query.tab>0 && this.$route.query.tab<5)
+          if(this.$route.query.tab>1 && this.$route.query.tab<7)
             this.sellerTab = this.$route.query.tab
             window.history.pushState(this.sellerTab, 'Title', '/bprofile/'+this.$route.params.id);
            

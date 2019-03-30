@@ -110,6 +110,10 @@ class UserController extends Controller
 
         return $this->userService->getInfoBySearchCatagory($request);
     }
+    public function getallcatgory(){
+
+        return $this->userService->getallcatgory();
+    }
     public function insertService(Request $request){
            
         return $this->userService->insertService($request->all());
@@ -169,7 +173,7 @@ class UserController extends Controller
         return $this->userService->UpdateExtraServices($request->all());
     }
     public function insertOrder(Request $request){
-        return $this->userService->insertOrder($request->all());
+        return $this->userService->insertOrder($request->all()); 
     }
     public function getslots(Request $request){
         return $this->userService->getslots($request->all());
@@ -194,6 +198,9 @@ class UserController extends Controller
     }
     public function getNewList(){
         return $this->userService->getNewList();
+    }
+    public function getRiviewListById($id){
+        return $this->userService->getRiviewListById($id);
     }
     public function getServiceList($id){
         return $this->userService->getServiceList($id);
@@ -266,6 +273,12 @@ class UserController extends Controller
     }
     public function getAllNotifications() {
         return $this->userService->getAllNotifications();
+    }
+    public function getNotificationData() {
+        return $this->userService->getNotificationData();
+    }
+    public function getNoficationAllData() {
+        return $this->userService->getNoficationAllData();
     }
     public function updateNotification(Request  $request) {
         return $this->userService->updateNotification($request->all());

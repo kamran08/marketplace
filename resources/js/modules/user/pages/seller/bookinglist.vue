@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all seller_pro" v-if="list.length && isloading"  >
+        <div class="_profile_card_all tags_all " v-if="list.length && isloading"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==1"  >
                     <div class="_profile_card_pic">
@@ -87,8 +87,10 @@ export default {
         },
 
         async updateStatus(status,index,buyer_id,seller_id){
+            
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
+
                 this.insertNotification(buyer_id,seller_id)
                 this.i("This booking has been cancled!");
                 this.list[index].status = 3 
@@ -100,9 +102,8 @@ export default {
         },
 
         async insertNotification(buyer_id,seller_id){
-
             let notifications = {
-                notitxt : 'seller cancled your service',
+                notitxt : 'cancelled your service',
                 notifor : buyer_id,
                 notifrom : seller_id,
                 url : '/bprofile/'+buyer_id+'?'+'tab=4',

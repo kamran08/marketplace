@@ -69,7 +69,7 @@
                   <i class="far fa-user nav-icon"></i> Category-List
                 </a>
             </li>
-            <li class="nav-item" :class="(memuActiveFlag==3)? 'nav_active' : ''" @click="routerPush(8)" >
+            <li class="nav-item" :class="(memuActiveFlag==8)? 'nav_active' : ''" @click="routerPush(8)" >
                 <a class="nav-link" >
                   <i class="far fa-user nav-icon"></i> Sub Category-List
                 </a>

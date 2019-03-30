@@ -22,6 +22,9 @@ import order from '../pages/order.vue';
 import sprofile from '../pages/seller/profile.vue';
 import bprofile from '../pages/buyer/profile.vue';
 import details from '../pages/details.vue';
+import terms from '../pages/terms.vue';
+import about from '../pages/about.vue';
+import notification from '../pages/notification.vue';
 
 
 // Auth Components
@@ -65,6 +68,18 @@ const routes = [
             guest: true,
             allowedUserType: ['All'],
             title: 'Login',
+        }
+
+    },
+    {
+        path: '/notification',
+        name: 'notification',
+        component: notification,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'Notification',
         }
 
     },
@@ -198,6 +213,30 @@ const routes = [
             guest: true,
             allowedUserType: ['All'],
             title: 'details',
+        }
+
+    },
+    {
+        path: '/terms',
+        name: 'terms',
+        component: terms,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'Terms&Condition',
+        }
+
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: about,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'About',
         }
 
     },

@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all" v-if="list.length && isloading"  >
+        <div class="_profile_card_all tags_all" v-if="list.length && isloading"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==2"  >
                     <div class="_profile_card_pic">
@@ -97,6 +97,7 @@ export default {
                 service_id:'',
                 seller_id:'',
                 booking_id:'',
+                type:1,
             },
             modalData:{},
             dataIndex:'',
@@ -149,7 +150,7 @@ export default {
                 this.s("Thank you for your valuable feedback")
                 this.list[this.dataIndex].review_count = 1;
                 this.ClearRiviewTable();
-                this.this.reviewModal = false;
+                this.reviewModal = false;
             }
             else{
                 this.swr();

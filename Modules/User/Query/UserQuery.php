@@ -13,7 +13,8 @@ use App\TimeSetting;
 use App\Booking;
 use App\Notification;
 use App\Chat;
-use Mockery\CountValidator\Exact;
+use App\Reviewb;
+use Mockery\CountValidator\Exact; 
 class UserQuery {
    
     public function getAll(){
@@ -47,6 +48,9 @@ class UserQuery {
     }
     public function getInfoBySearchCatagory($id){
       return Service::with('image','user','tag','extra','category','alltime','avgreview')->where('cat_id', $id)->withCount('reviews')->get();  
+    }
+    public function getallcatgory(){
+      return Category::all();  
     }
     public function getCurrentStep($key){
       return  Service::where('id',$key)->select('nextStep')->first();   
@@ -114,6 +118,9 @@ class UserQuery {
    public function updateSeriveStep($service_id,$num){
     return Service::where('id',$service_id)->update(['nextStep' => $num]);
     }
+   public function updateFinalStep($service_id){
+    return Service::where('id',$service_id)->update(['nextStep' => 5],['isComplete' => 1]);
+    }
    public function getServiceDetailsById($service_id){
     return Service::where('id',$service_id)->with('image','user','tag','extra','category','alltime','reviews.user', 'avgreview')->withCount('reviews')->first();
     }
@@ -167,8 +174,8 @@ class UserQuery {
    public function deleteTimeSettings($id){
       return TimeSetting::where('service_id',$id)->delete();
     }
-   public function deleteService($data){
-      return Service::where('id',$data['id'])->delete();
+   public function deleteService($id){
+      return Service::where('id',$id)->delete();
     }
 
    public function updateService($data){
@@ -189,6 +196,17 @@ class UserQuery {
       }
       return Booking::where([['buyer_id',$data['id']],['status',0]])->with('buyerInfo','sellerInfo','service','service.image')->get();
     }
+
+   public function getRiviewListById($data){
+      $user = User::where('id',$data)->select('id','userType')->first();
+      $type = $user->userType;
+      if($type==1){
+        return Review::where('seller_id',$data)->with('user')->get();
+      }
+
+      return Reviewb::where('buyer_id',$data)->with('user')->get();
+      
+    }
    public function getServiceList($data){
     return Service::where('user_id',$data)->with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->get();
     }
@@ -200,7 +218,7 @@ class UserQuery {
      if($data['userType']==1){
       return Booking::where([["seller_id",$data['id']],['bookingDate',$data['date']],['status',$data['status']]])->with('buyerInfo','sellerInfo','service','service.image')->withCount('review')->get();
      }
-     return Booking::where([["buyer_id",$data['id']],['bookingDate',$data['date']],['status',$data['status']]])->with('buyerInfo','sellerInfo','service','service.image')->withCount('review')->get();
+     return Booking::where([["buyer_id",$data['id']],['bookingDate',$data['date']],['status',$data['status']]])->with('buyerInfo','sellerInfo','service','service.image')->withCount('reviewb')->get();
     }
 
    public function getAllBookingList($data){
@@ -225,7 +243,13 @@ class UserQuery {
    public function giveReview($data){
     return Review::create($data);
     }
+   public function giveReviewb($data){
+    return Reviewb::create($data);
+    }
     public function getAllNotifications($key){
+      return Notification::where('notifor',$key)->with('user')->orderBy('id','desc')->limit(5)->get();
+    }
+    public function getAllNotificationsAll($key){
       return Notification::where('notifor',$key)->with('user')->orderBy('id','desc')->get();
     }
     public function getNewNotifications($key){

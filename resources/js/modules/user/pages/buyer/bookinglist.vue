@@ -4,7 +4,7 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all seller_pro" v-if="list.length && isloading"  >
+        <div class="_profile_card_all tags_all" v-if="list.length && isloading"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 " v-if="item.status==1 "  >
                     <div class="_profile_card_pic">
@@ -99,12 +99,7 @@ export default {
                 booking_id:'',
             },
             modalData:{},
-            noti:{
-                notifor:'',
-                notifrom:'',
-                notitxt:'',
-                url:'',
-            },
+            
             isloading: true
         }
     },
@@ -166,16 +161,18 @@ export default {
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
                 if(status==2){
-                    this.noti.notitxt = 'buyer marked completed'
-                    this.noti.notifor = seller_id
-                    this.noti.notifrom = buyer_id
-                    this.noti.url = '/sprofile/'+seller_id+'?'+'tab=3'
-                    const res2 = await this.callApi('post','notifications', this.noti)
+                    let notid = {
+                        notifor:seller_id,
+                        notifrom:buyer_id,
+                        notitxt:'marked your service completed',
+                        url:'/sprofile/'+seller_id+'?'+'tab=4',
+                    }
+                    const res2 = await this.callApi('post','notifications', notid)
                     if(res2.status===200){
-                     this.i("Serive has been marked completed!");
-                    this.list[index].status = 2 
-                    this.reviewModal = true;
-                    this.modalData = this.list[index]
+                        this.i("Serive has been marked completed!");
+                        this.list[index].status = 2 
+                        this.reviewModal = true;
+                        this.modalData = this.list[index]
                     }
                     else{
                         this.swr()
@@ -183,10 +180,13 @@ export default {
                   
                 }
                  else if(status==3){
-                    this.noti.notitxt = 'buyer cancled your service'
-                    this.noti.notifor = seller_id
-                    this.noti.notifrom = buyer_id
-                    this.noti.url = '/sprofile/'+seller_id+'?'+'tab=5'
+                     let notid = {
+                        notifor:seller_id,
+                        notifrom:buyer_id,
+                        notitxt:'cancelled your service',
+                        url:'/sprofile/'+seller_id+'?'+'tab=5',
+                    }
+                    
                     const res2 = await this.callApi('post','notifications', this.noti)
                     if(res2.status==200){
                         this.i("This booking has been cancled!");

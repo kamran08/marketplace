@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2019 at 05:38 PM
+-- Generation Time: Mar 30, 2019 at 03:11 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -51,7 +51,7 @@ INSERT INTO `bookings` (`id`, `buyer_id`, `seller_id`, `service_id`, `totalPrice
 (1, 1, 1, 1, 1000, 500, '[]', '(12:40 AM - 01:00 AM)', '2019-03-11', 3, '2019-03-10 11:02:32', '2019-03-11 23:54:54'),
 (2, 2, 1, 1, 1100, 600, '[{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(01:00 AM - 01:20 AM)', '2019-03-11', 2, '2019-03-10 11:04:19', '2019-03-21 04:30:18'),
 (3, 2, 1, 1, 1400, 900, '[{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(02:20 AM - 02:40 AM)', '2019-03-11', 3, '2019-03-10 11:04:46', '2019-03-21 04:30:45'),
-(4, 1, 2, 1, 1900, 1400, '[{\"id\":1,\"service_id\":1,\"serviceName\":\"Service 1.2\",\"servicePrice\":\"500.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '10:00 - 10:30', '2019-03-11', 0, '2019-03-11 01:14:58', '2019-03-11 10:33:04'),
+(4, 1, 2, 1, 1900, 1400, '[{\"id\":1,\"service_id\":1,\"serviceName\":\"Service 1.2\",\"servicePrice\":\"500.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '10:00 - 10:30', '2019-03-11', 3, '2019-03-11 01:14:58', '2019-03-29 16:16:58'),
 (5, 1, 2, 1, 500, 0, '[]', '(04:00 AM - 04:20 AM)', '2019-03-11', 1, '2019-03-11 02:52:52', '2019-03-21 03:55:17'),
 (6, 3, 2, 2, 2, 0, '\"\\\"[]\\\"\"', '(12:40 AM - 01:00 AM)', '2019-03-12', 3, '2019-03-12 05:31:35', '2019-03-12 08:36:45'),
 (7, 5, 2, 2, 2, 0, '\"\\\"\\\\\\\"[]\\\\\\\"\\\"\"', '(01:20 AM - 01:40 AM)', '2019-03-12', 3, '2019-03-12 05:31:50', '2019-03-12 08:38:21'),
@@ -68,7 +68,12 @@ INSERT INTO `bookings` (`id`, `buyer_id`, `seller_id`, `service_id`, `totalPrice
 (18, 2, 1, 1, 30, 0, '[]', '(12:20 AM - 12:40 AM)', '2019-03-18', 0, '2019-03-17 16:05:31', '2019-03-17 16:05:31'),
 (19, 2, 1, 1, 30, 0, '[]', '(12:20 AM - 12:40 AM)', '2019-03-21', 0, '2019-03-21 05:17:27', '2019-03-21 05:17:27'),
 (20, 3, 4, 7, 10, 0, '[]', '(04:20 AM - 04:40 AM)', '2019-03-25', 2, '2019-03-24 01:39:04', '2019-03-24 04:44:48'),
-(21, 3, 4, 7, 10, 0, '[]', '(07:20 AM - 07:40 AM)', '2019-03-25', 3, '2019-03-24 01:39:16', '2019-03-24 04:45:14');
+(21, 3, 4, 7, 10, 0, '[]', '(07:20 AM - 07:40 AM)', '2019-03-25', 3, '2019-03-24 01:39:16', '2019-03-24 04:45:14'),
+(22, 3, 2, 4, 0, 0, '[]', '(12:20 AM - 12:40 AM)', '2019-04-01', 3, '2019-03-29 13:26:29', '2019-03-29 14:52:49'),
+(23, 3, 2, 4, 0, 0, '[]', '(12:40 AM - 01:00 AM)', '2019-04-01', 2, '2019-03-29 13:26:36', '2019-03-29 14:52:50'),
+(24, 3, 2, 1, 30, 0, '[]', '(12:40 AM - 01:00 AM)', '2019-04-01', 1, '2019-03-29 16:16:24', '2019-03-29 16:20:42'),
+(25, 3, 2, 1, 30, 0, '[]', '(01:40 AM - 02:00 AM)', '2019-04-01', 1, '2019-03-29 16:16:31', '2019-03-29 16:58:36'),
+(26, 3, 2, 8, 60, 20, '[{\"id\":38,\"service_id\":8,\"serviceName\":\"ex1\",\"servicePrice\":\"20.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(03:00 AM - 03:20 AM)', '2019-04-01', 0, '2019-03-29 19:12:09', '2019-03-29 19:12:09');
 
 -- --------------------------------------------------------
 
@@ -89,14 +94,15 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `catName`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'pedicure', '/uploads/cat1.svg', NULL, NULL),
-(2, 'facials', '/uploads/4cZ2GCup8usv3H1KqGHohsaIcHf38py9qtjDVf6e.jpeg', NULL, '2019-03-16 07:44:29'),
-(3, 'Hair', '/uploads/suPMJ9qDzboiDzalQ6bYjIcSqDU8pY7CtSzwCoDj.jpeg', NULL, '2019-03-16 07:45:39'),
+(1, 'Pedicure', '/uploads/5Gsjr0CbMgfCggfkM6xT8sT5lZ9Az12SNGvrjWDD.png', NULL, '2019-03-29 14:09:07'),
+(2, 'Facial', '/uploads/i4Zsf6oPg3eSQLz2iLAg0X5QY1PZNvB5cGsi8jMD.jpeg', NULL, '2019-03-29 14:15:52'),
+(3, 'Hair-Cut', '/uploads/i3DeX8VkJaav3sa3n7hDZItdDbwkJhV9q25AVdWd.jpeg', NULL, '2019-03-29 14:14:57'),
 (4, 'Make Up', '', NULL, '2019-03-16 07:42:50'),
 (5, 'manicure', '', NULL, '2019-03-16 07:43:03'),
 (6, 'wax', '/uploads/wax.svg', NULL, NULL),
 (7, 'new catagory', '/uploads/cat1.svg', '2019-03-16 06:17:16', '2019-03-16 06:17:16'),
-(8, 'new catagory', '/uploads/cat1.svg', '2019-03-16 06:17:58', '2019-03-16 06:17:58');
+(8, 'new catagory', '/uploads/cat1.svg', '2019-03-16 06:17:58', '2019-03-16 06:17:58'),
+(9, 'Room-Cleaning', '/uploads/QIVm0XOlCGeDPG864bzD2tLVdwcUXAoJpM1IjGPs.jpeg', '2019-03-29 14:08:27', '2019-03-29 14:08:27');
 
 -- --------------------------------------------------------
 
@@ -170,7 +176,31 @@ INSERT INTO `chats` (`id`, `msg_sender`, `con_id`, `msg`, `file`, `deleted`, `se
 (47, 2, 3, 'aso ni b a', NULL, 0, 0, '2019-03-28 10:19:02', '2019-03-28 10:19:51'),
 (48, 2, 3, 'new Msg Again', NULL, 0, 0, '2019-03-28 10:25:58', '2019-03-28 10:35:33'),
 (49, 2, 3, 'Another New msg', NULL, 0, 0, '2019-03-28 10:35:58', '2019-03-28 10:36:03'),
-(50, 2, 3, 'New New msg new', NULL, 0, 1, '2019-03-28 10:36:31', '2019-03-28 10:36:31');
+(50, 2, 3, 'New New msg new', NULL, 0, 0, '2019-03-28 10:36:31', '2019-03-29 06:27:52'),
+(51, 1, 3, 'eito asi basat', NULL, 0, 0, '2019-03-29 06:28:39', '2019-03-29 06:30:49'),
+(52, 2, 3, 'aibay kobe', NULL, 0, 0, '2019-03-29 06:31:09', '2019-03-29 06:31:09'),
+(53, 1, 3, 'ektu bade airam', NULL, 0, 0, '2019-03-29 06:31:23', '2019-03-29 06:31:24'),
+(54, 1, 3, 'tumi kunsomoy aibay', NULL, 0, 0, '2019-03-29 06:31:42', '2019-03-29 06:31:44'),
+(55, 2, 3, 'eito jokhon aibay call dio', NULL, 0, 0, '2019-03-29 06:31:56', '2019-03-29 06:31:59'),
+(56, 2, 3, 'hi bro', NULL, 0, 0, '2019-03-29 06:45:58', '2019-03-29 06:46:01'),
+(57, 2, 3, 'this is nice', NULL, 0, 0, '2019-03-29 06:46:12', '2019-03-29 06:46:30'),
+(58, 2, 3, 'hello Buddy', NULL, 0, 0, '2019-03-29 07:15:36', '2019-03-29 07:17:50'),
+(59, 2, 3, 'hello Nice Buddy', NULL, 0, 0, '2019-03-29 07:23:20', '2019-03-29 07:32:24'),
+(60, 2, 3, 'wow ni9e Buddy', NULL, 0, 0, '2019-03-29 07:33:00', '2019-03-29 07:37:03'),
+(61, 1, 3, 'hi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi brohi bro', NULL, 0, 0, '2019-03-29 08:56:30', '2019-03-29 08:56:34'),
+(62, 1, 3, 'dfjgbujdfjgbjhdf', NULL, 0, 0, '2019-03-29 08:58:28', '2019-03-29 08:58:29'),
+(63, 1, 3, 'jjhhjhhh', NULL, 0, 0, '2019-03-29 08:59:48', '2019-03-29 08:59:49'),
+(64, 1, 3, 'Hello', NULL, 0, 0, '2019-03-29 09:15:14', '2019-03-29 09:15:18'),
+(65, 1, 3, 'hello', NULL, 0, 0, '2019-03-29 09:16:30', '2019-03-29 09:16:33'),
+(66, 1, 4, 'kita ba vala ni', NULL, 0, 0, '2019-03-29 09:55:01', '2019-03-29 12:50:32'),
+(67, 1, 3, 'rahima america gese gi ajke jano ni??', NULL, 0, 0, '2019-03-29 09:56:29', '2019-03-29 09:56:33'),
+(68, 1, 7, 'kita b e shipu', NULL, 0, 4, '2019-03-29 09:57:19', '2019-03-29 09:57:19'),
+(69, 3, 5, 'hi kamran', NULL, 0, 0, '2019-03-29 12:50:24', '2019-03-29 12:50:47'),
+(70, 2, 5, 'iojiojk', NULL, 0, 0, '2019-03-29 12:50:53', '2019-03-29 12:50:56'),
+(71, 3, 5, 'okkkkkk', NULL, 0, 0, '2019-03-29 12:51:01', '2019-03-29 12:51:05'),
+(72, 2, 5, 'uijhi', NULL, 0, 0, '2019-03-29 12:51:10', '2019-03-29 12:51:21'),
+(73, 3, 5, 'kkkkk', NULL, 0, 0, '2019-03-29 12:51:29', '2019-03-29 12:51:33'),
+(74, 3, 5, 'Hello I have contacted a msg', NULL, 0, 0, '2019-03-29 13:26:52', '2019-03-29 15:09:38');
 
 -- --------------------------------------------------------
 
@@ -197,7 +227,8 @@ INSERT INTO `conversations` (`id`, `sender`, `reciever`, `status`, `type`, `conT
 (3, 1, 2, 0, 1, 1, NULL, NULL),
 (4, 3, 1, 0, 1, 1, NULL, NULL),
 (5, 3, 2, 0, 1, 1, NULL, NULL),
-(6, 3, 4, 0, 1, 1, NULL, NULL);
+(6, 3, 4, 0, 1, 1, NULL, NULL),
+(7, 1, 4, 0, 1, 1, '2019-03-29 09:57:19', '2019-03-29 09:57:19');
 
 -- --------------------------------------------------------
 
@@ -291,7 +322,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2019_03_20_205458_create_notifications_table', 1),
 (15, '2019_03_24_070223_create_subcategories_table', 4),
 (16, '2019_03_27_123832_create_chats_table', 5),
-(17, '2019_03_27_123940_create_conversations_table', 5);
+(17, '2019_03_27_123940_create_conversations_table', 5),
+(18, '2019_03_30_013937_create_reviewbs_table', 6);
 
 -- --------------------------------------------------------
 
@@ -315,10 +347,8 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `notifor`, `notifrom`, `notitxt`, `url`, `seen`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'admin aproved your service', '/sprofile/1?tab=3', 1, '2019-03-20 16:52:00', '2019-03-20 16:52:00'),
-(2, 1, 2, 'seller aproved your service', '/sprofile/1?tab=2', 1, '2019-03-21 04:06:45', '2019-03-21 04:06:45'),
-(3, 2, 3, 'seller cancled your service', '/bprofile/2?tab=4', 0, '2019-03-21 04:11:20', '2019-03-23 09:25:18'),
-(4, 2, 1, 'seller aproved your service', '/bprofile/2?tab=2', 1, '2019-03-21 04:30:19', '2019-03-23 06:42:18');
+(9, 3, 2, 'approved your booking', '/bprofile/3?tab=3', 0, '2019-03-29 16:58:37', '2019-03-29 16:58:45'),
+(10, 2, 3, 'booked your Service', '/sprofile/2?tab=2', 0, '2019-03-29 19:12:09', '2019-03-29 19:20:17');
 
 -- --------------------------------------------------------
 
@@ -342,6 +372,31 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reviewbs`
+--
+
+CREATE TABLE `reviewbs` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `buyer_id` int(11) NOT NULL,
+  `seller_id` int(11) NOT NULL,
+  `booking_id` int(10) UNSIGNED NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reviewbs`
+--
+
+INSERT INTO `reviewbs` (`id`, `service_id`, `buyer_id`, `seller_id`, `booking_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
+(1, 4, 3, 2, 23, 4, 'He is quite good in behavbe', '2019-03-29 20:09:15', '2019-03-29 20:09:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reviews`
 --
 
@@ -352,7 +407,7 @@ CREATE TABLE `reviews` (
   `seller_id` int(11) NOT NULL,
   `booking_id` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
-  `comment` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -363,8 +418,8 @@ CREATE TABLE `reviews` (
 
 INSERT INTO `reviews` (`id`, `service_id`, `buyer_id`, `seller_id`, `booking_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
 (1, 3, 2, 4, 12, 4, 'This is Nice Service', '2019-03-15 15:09:04', '2019-03-15 15:09:04'),
-(2, 3, 2, 4, 10, 5, 'This is May be Nice Project', '2019-03-15 15:27:32', '2019-03-15 15:27:32'),
-(3, 3, 2, 4, 14, 5, 'This is ReView number 3', '2019-03-15 15:28:18', '2019-03-15 15:28:18'),
+(2, 3, 4, 2, 10, 5, 'This is May be Nice Project', '2019-03-15 15:27:32', '2019-03-15 15:27:32'),
+(3, 3, 3, 2, 14, 5, 'This is ReView number 3', '2019-03-15 15:28:18', '2019-03-15 15:28:18'),
 (4, 1, 2, 1, 3, 4, 'dfs', '2019-03-21 04:28:46', '2019-03-21 04:28:46');
 
 -- --------------------------------------------------------
@@ -394,12 +449,11 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `user_id`, `title`, `cat_id`, `price`, `videoLink`, `description`, `openingMassage`, `isComplete`, `nextStep`, `isApproved`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Service 1', 1, '30.00', 'https://www.youtube.com/watch?v=3eA3oVc6lF4', 'This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.', 'Opening message of  Service 1', 0, 4, 1, '2019-03-10 06:00:01', '2019-03-16 04:00:08'),
-(2, 2, 'gh', 2, '2.00', 'S', 'SD', 'DS', 0, 2, 0, '2019-03-11 01:47:49', '2019-03-11 01:47:49'),
-(3, 4, 'Service Shipu 1', 1, '30.00', 'https://www.youtube.com/watch?v=JXpJAOa_azk', 'This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service .This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service .', 'Hi i am good Service Man', 0, 5, 1, '2019-03-15 11:27:16', '2019-03-16 01:47:05'),
-(4, 2, 'sdkljkl;', 1, '0.00', '.xgvodfmnv', 'jhytghjfggh', 'dfgdfg', 0, 3, 0, '2019-03-17 04:27:10', '2019-03-17 04:47:54'),
+(1, 2, 'Service 1', 1, '30.00', 'https://www.youtube.com/watch?v=3eA3oVc6lF4', 'This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.', 'Opening message of  Service 1', 0, 4, 1, '2019-03-10 06:00:01', '2019-03-16 04:00:08'),
+(3, 4, 'Service Shipu 1', 1, '30.00', 'https://www.youtube.com/watch?v=JXpJAOa_azk', 'This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service .This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service .', 'Hi i am good Service Man', 1, 5, 1, '2019-03-15 11:27:16', '2019-03-16 01:47:05'),
+(4, 2, 'Service Title', 1, '0.00', '.xgvodfmnv', 'jhytghjfggh', 'dfgdfg', 0, 3, 0, '2019-03-17 04:27:10', '2019-03-17 04:47:54'),
 (5, 2, 'KSKLJL;', 2, '20.00', 'dasfjkl', 'sdfah', 'sdaf', 0, 4, 0, '2019-03-17 05:00:14', '2019-03-17 05:00:25'),
-(6, 4, 'ggg', 6, '33.00', '22', 'ygjhghj', '22', 0, 5, 0, '2019-03-17 13:39:57', '2019-03-17 13:40:38'),
+(6, 4, 'ggg', 6, '33.00', '22', 'ygjhghj', '22', 1, 5, 0, '2019-03-17 13:39:57', '2019-03-17 13:40:38'),
 (7, 4, 'test 1', 7, '10.00', 'youtube.com', 'some description', 'nice work', 0, 3, 1, '2019-03-21 04:51:09', '2019-03-21 04:51:34'),
 (8, 2, 'rahi', 2, '40.00', 'youtube.com', 'dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf', 'fine service', 0, 5, 0, '2019-03-21 06:48:46', '2019-03-21 06:50:32');
 
@@ -489,12 +543,13 @@ INSERT INTO `time_settings` (`id`, `service_id`, `day`, `startTime`, `endTime`, 
 (27, 1, 'Wednesday', '00:00', '05:00', 20, '2019-03-16 03:10:42', '2019-03-16 03:10:42'),
 (28, 1, 'Thursday', '00:00', '05:00', 20, '2019-03-16 03:10:42', '2019-03-16 03:10:42'),
 (29, 1, 'Friday', '00:00', '08:00', 20, '2019-03-16 03:10:42', '2019-03-16 03:10:42'),
-(30, 4, 'Monday', '00:00', '04:00', 20, '2019-03-17 04:27:10', '2019-03-17 04:27:10'),
 (31, 5, 'Monday', '00:00', '04:00', 20, '2019-03-17 05:00:14', '2019-03-17 05:00:14'),
 (32, 6, 'Monday', '01:00', '04:00', 20, '2019-03-17 13:39:58', '2019-03-17 13:39:58'),
 (33, 6, 'Tuesday', '05:00', '09:00', 20, '2019-03-17 13:39:58', '2019-03-17 13:39:58'),
 (35, 7, 'Monday', '04:00', '10:00', 20, '2019-03-21 05:08:54', '2019-03-21 05:08:54'),
-(36, 8, 'Monday', '02:00', '04:00', 20, '2019-03-21 06:48:46', '2019-03-21 06:48:46');
+(36, 8, 'Monday', '02:00', '04:00', 20, '2019-03-21 06:48:46', '2019-03-21 06:48:46'),
+(37, 9, 'Monday', '00:00', '03:00', 30, '2019-03-29 14:06:08', '2019-03-29 14:06:08'),
+(38, 4, 'Monday', '00:00', '04:00', 20, '2019-03-29 14:51:40', '2019-03-29 14:51:40');
 
 -- --------------------------------------------------------
 
@@ -529,9 +584,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `userName`, `email`, `location`, `language`, `bio`, `paymentInfo`, `billingInfo`, `image`, `country`, `phone`, `userType`, `isActive`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Nazmul Chowdhury', 'nazmul', 'nazmul@gmail.com', 'Sylhet', 'volvo', 'sss', 'sss', 'ss', '/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg', 'ss', 'sss', 4, 1, NULL, '$2y$10$UwI/wodDT6856i0VZOVJL.H4ppdKJnh1R06Fk4NJyZ71brY.VQvi.', 'UjIkcOaWAOaUfAfoUbuH0xqMxhx7cFQoOoy2drGboLo4p2hkf2KQ2gNWOFx1', '2019-03-10 05:38:59', '2019-03-17 13:45:35'),
-(2, 'Kamran Ahmed', 'Kamran', 'kamran@gmail.com', NULL, NULL, NULL, NULL, NULL, '/img/prfile.png', NULL, NULL, 1, 1, NULL, '$2y$10$obubdCG8bKN7xX2PTqwIiuls/FzoD5SkK1.Oh9pcnhCa93eY1LEmy', 'IRCelRsNMG9kPwa5hvhZmNK6nouXP1gsoq0ko43WhFsIQQbYXVt0jV99IBe9', '2019-03-11 01:45:27', '2019-03-16 22:38:40'),
-(3, 'Sadek Ahmed', 'sadek', 'sadek@gmail.com', 'Sylhet', 'volvo', 'Ami Boss Boss Boss.. Kita mato .Bolda hokol... Kamran boro Bolda', NULL, NULL, '/uploads/pUkAHn2vOW4LgOPSMOvpqvYmkYFzaevYHSFgMXAN.jpeg', NULL, NULL, 2, 1, NULL, '$2y$10$obubdCG8bKN7xX2PTqwIiuls/FzoD5SkK1.Oh9pcnhCa93eY1LEmy', 'uDeHu5b6Piq6d4kJujHqtWXxwvVvZpGrRYQqI8MdIu0Wlng63E8qxlvrLx2z', '2019-03-12 05:24:39', '2019-03-16 00:54:57'),
+(1, 'Nazmul Chowdhury', 'nazmul', 'nazmul@gmail.com', 'Sylhet', 'volvo', 'sss', 'sss', 'ss', '/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg', 'ss', 'sss', 4, 1, NULL, '$2y$10$UwI/wodDT6856i0VZOVJL.H4ppdKJnh1R06Fk4NJyZ71brY.VQvi.', 'xVW3WyfLs0xTy5KXxd1iziuCKqumQoZk18ydHbFmPkY0REd5yF709JDbAR1a', '2019-03-10 05:38:59', '2019-03-17 13:45:35'),
+(2, 'Kamran Ahmed', 'Kamran', 'kamran@gmail.com', 'Sylhet', 'English', NULL, NULL, NULL, '/img/prfile.png', 'Bangladesh', '01681189844', 1, 1, NULL, '$2y$10$obubdCG8bKN7xX2PTqwIiuls/FzoD5SkK1.Oh9pcnhCa93eY1LEmy', 'duBlYwA4DikPVMJNrgh54FZ13NYezHupfCip7aiCKbN779p8kEpFteZZTCCQ', '2019-03-11 01:45:27', '2019-03-16 22:38:40'),
+(3, 'Sadek Ahmed', 'sadek', 'sadek@gmail.com', 'Sylhet', 'volvo', 'Ami Boss Boss Boss.. Kita mato .Bolda hokol... Kamran boro Bolda', NULL, NULL, '/uploads/pUkAHn2vOW4LgOPSMOvpqvYmkYFzaevYHSFgMXAN.jpeg', NULL, NULL, 2, 1, NULL, '$2y$10$obubdCG8bKN7xX2PTqwIiuls/FzoD5SkK1.Oh9pcnhCa93eY1LEmy', '6lPYCCY0hWNXL8yUURwgC3wayAUZN8e6KtVGCotAaaj8LfM2TGHDXkf3So0A', '2019-03-12 05:24:39', '2019-03-16 00:54:57'),
 (4, 'Numan Shipu 1', 'numan', 'numan@gmail.com', 'sylhet', 'volvo', 'this is my bio', 'no payment info', 'no billing info', '/img/prfile.png', 'New Zealand', '+641239190432', 1, 1, NULL, '$2y$10$aSwqXrBmg311NOuheGrUdefed0gPDVl5iPAoWmQFovDzF4EXxFVfa', 'wUruMbdbXJM6GzgBQHnChfpp2tUiK9Lsw1rYFC4eG1YikbpjcMxv7K7Oikpe', '2019-03-15 06:56:42', '2019-03-15 06:56:42');
 
 --
@@ -597,6 +652,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `reviewbs`
+--
+ALTER TABLE `reviewbs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -642,25 +703,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `conversations`
 --
 ALTER TABLE `conversations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `extras`
@@ -678,13 +739,19 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `reviewbs`
+--
+ALTER TABLE `reviewbs`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -696,7 +763,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -714,7 +781,7 @@ ALTER TABLE `tags`
 -- AUTO_INCREMENT for table `time_settings`
 --
 ALTER TABLE `time_settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `users`
