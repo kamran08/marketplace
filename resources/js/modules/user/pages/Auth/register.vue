@@ -71,9 +71,10 @@
 									<div class="_login_input_group">
 										<div class="_login_input">
 											
-											<input class="_register_agree_radio" type="radio" name="gender" value="male">
+											<input class="_register_agree_radio" type="checkbox" v-model="checkboxT">
 
-											<p class="_register_agree">I agree to all the <span class="_register_agree_span">terms and conditions.</span></p>
+											<p class="_register_agree">I agree to all the <span class="_register_agree_span"><router-link :to="{path:'/terms'}">terms and conditions.</router-link>
+												</span></p>
 										</div>
 									</div>
 
@@ -103,7 +104,8 @@ export default {
                         password:'',
                         userType:'',
                 },
-                confirmPassword:'',
+				confirmPassword:'',
+				checkboxT:false,
             }
         },
         methods:{
@@ -111,6 +113,10 @@ export default {
                 if(this.regesterData.email==='' || this.regesterData.password==='' || this.regesterData.userName==='' || this.regesterData.name===''){
 						this.i('All fields are required')
 						return
+				}
+				if(this.checkboxT == false){
+					this.i('You have to accept our terms & conditions!')
+					return;
 				}
 				
 				if(this.regesterData.password !== this.confirmPassword) {
