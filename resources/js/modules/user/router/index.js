@@ -32,6 +32,7 @@ import login from '../pages/Auth/login.vue';
 import register from '../pages/Auth/register.vue';
 import getEmail from '../pages/Auth/getEmail.vue';
 import passwordreset from '../pages/Auth/passwordreset.vue';
+import contract from '../pages/contract.vue';
 
 const routes = [
 
@@ -44,6 +45,18 @@ const routes = [
             guest: true,
             allowedUserType: ['All'],
             title: 'jobDescription',
+        }
+
+    },
+    {
+        path: '/contract',
+        name: 'contract',
+        component: contract,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'contract',
         }
 
     },

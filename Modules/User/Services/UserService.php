@@ -585,7 +585,7 @@ class UserService extends Controller {
    public function matchPasswordLink(Request $request){
       $token = $request->token;
       
-      // get the row from reset table matching this token  http://127.0.0.1:8000/passwordreset/check?token=$2y$10$sfRj/D8kYRmoWJCrMsVzYOWZ.tkHdChc2Sa3IQ84nKOW2ryzcudwe
+      // get the row from reset table matching this token  http://127.0.0.1:8000/passwordreset/check?token=wUruMbdbXJM6GzgBQHnChfpp2tUiK9Lsw1rYFC4eG1YikbpjcMxv7K7Oikpe
       $isTokenFound = \DB::table('password_resets')->where('token',$token)->first();
       // if token is valid return data only like this 
       if(!$isTokenFound){

@@ -56,7 +56,8 @@ export default {
                 this.i("All frields are required!");
                 return;
             }
-            const res = await this.callApi('post','resetPassword',this.formData)
+            if(this.formData.password == this.formData.password_confirmation){
+             const res = await this.callApi('post','resetPassword',this.formData)
             if(res.status===200){
                 this.s("Your Password has been reset . Please Login with your new password!")
                 this.$router.push('/login');
@@ -74,6 +75,8 @@ export default {
             else {
                 this.swr();
             }
+            }
+            
         },
         async tokenVarification(token){
             const res = await this.callApi('post','matchPasswordLink',{token:token})

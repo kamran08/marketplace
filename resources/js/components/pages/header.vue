@@ -17,6 +17,7 @@
 						<ul class="_1menu_sign_ul">
 							<li> <router-link :to="{ path: '/'}">Home</router-link></li>
 							<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
+							<li> <router-link :to="{ path: '/contract'}">Contract Us</router-link></li>
 							<li><router-link :to="{ name: 'about'}">About</router-link></li>
 							<li><router-link :to="{ name: 'login'}"> Sign in </router-link></li>
 							<li class="_1menu_sign_ul_or">or</li>
@@ -29,8 +30,8 @@
 						<ul class="_2menu_main_ul_list_ul">
 							<li> <router-link :to="{ path: '/'}">HOME</router-link></li>
 							<li v-if="authInfo.userType==1"> <router-link :to="{ path: '/jobDescription'}">POST SERVICE</router-link></li>
-							
 								<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
+								<li> <router-link :to="{ path: '/contract'}">Contract Us</router-link></li>
 							<!-- <li> <router-link :to="{ name: 'order'}">ORDER</router-link></li> -->
 							<!-- <li v-if="authInfo.userType==1" > <router-link :to="{ name: 'sprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li>
 							<li v-if="authInfo.userType==2" > <router-link :to="{ name: 'bprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li> -->

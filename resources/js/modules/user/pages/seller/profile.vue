@@ -194,10 +194,10 @@
                             <ul class="pro_menu_list">
                                 <li :class="(sellerTab==1)? 'pro_menu_active':''" @click="sellerTab=1">Service</li>
                                 <li :class="(sellerTab==6)? 'pro_menu_active':''" @click="sellerTab=6">Reviews</li>
-                                <li v-if="authInfo.id==user_id" :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">New-Bookings</li>
-                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Running-Bookings</li>
-                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''" @click="sellerTab=4">Completed-Service</li>
-                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==5)? 'pro_menu_active':''"  @click="sellerTab=5">Canceled-Bookings</li>
+                                <li v-if="authInfo.id==user_id" :class="(sellerTab==2)? 'pro_menu_active':''" @click="sellerTab=2">New</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==3)? 'pro_menu_active':''" @click="sellerTab=3">Running</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==4)? 'pro_menu_active':''" @click="sellerTab=4">Completed</li>
+                                <li v-if="authInfo.id==user_id"  :class="(sellerTab==5)? 'pro_menu_active':''"  @click="sellerTab=5">Canceled</li>
                                 <li v-if="authInfo.id==user_id"  :class="(sellerTab==7)? 'pro_menu_active':''"  @click="sellerTab=7">Settings</li>
                             </ul>
                         </div>

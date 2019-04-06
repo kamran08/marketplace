@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="_login_input_button">
                                     <button class="_btn _login_input_button_btn _bg" v-if="!load"  @click="login(true)">SIGN IN</button>
-                                    <button class="_btn _login_input_button_btn _bg" v-if="load" >loading.....</button>
+                                    <button class="_btn _login_input_button_btn _bg" v-if="load" disabled>loading.....</button>
                                     
                                 </div>
                                 
@@ -75,7 +75,14 @@ export default {
             if(res.status===200){
                  this.s('Login successfull!')
                  this.$store.dispatch('setAuth',res.data.user)
-                  window.location='/'
+               
+                 if(this.$route.query.form){
+                     window.location='/'+this.$route.query.form
+                 }
+                 else{
+                     window.location='/'
+                 }
+                  
             }else{
                 if(res.status===401){
                     this.load = false
@@ -97,6 +104,9 @@ export default {
         
 
     },
+    created(){
+        
+    }
     
 }
 </script>

@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\User\Http\Controllers;
+use App\User;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -59,21 +60,27 @@ class UserController extends Controller
         
         return view('admin');
     }
-    public function login(Request $request)
-    {
-
+    public function login(Request $request){
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return response()->json([
-                'msg' => 'Login Successfull',
-                'title' => 'Done',
-                'user' => Auth::user()
-            ],200); 
-        } else{
+            if(Auth::user( )->isActive==0){
+                 Auth::logout();
+                \Session::flush();
+                return redirect()->route('login')->with('info', 'Please Active your Account first! ');
+            }
+            else{
+                return response()->json([
+                    'msg' => 'Login Successfull',
+                    'title' => 'Done',
+                    'user' => Auth::user()
+                ], 200); 
+            }
+        } 
+        else{
              return response()->json([
                 'msg' => 'Invalid Details!',
                 'title' => 'Oops!'
             ],401); 
-        }
+         }
     }
     public function register(Request $request){
             $data = new ValidateRequest();
@@ -81,7 +88,22 @@ class UserController extends Controller
             if($ok){
                 $this->userService->createUser($request->all());
             }
-           
+    }
+    public function accountactivation(Request $request){
+         $token = $request->token;
+
+         // get the row from reset table matching this token   http://127.0.0.1:8000/activationlink?token=wUruMbdbXJM6GzgBQHnChfpp2tUiK9Lsw1rYFC4eG1YikbpjcMxv7K7Oikpe
+         $isTokenFound = User::where('activation_token',$token )->first();
+        \Log::info($isTokenFound);
+         if($isTokenFound){
+                  User::where('activation_token',$token )->update([ 'isActive'=> 1,'activation_token' => null]);
+                  
+                  return redirect()->route('/')
+                     ->with('info', 'Your Account has been Activated  . Please Login ');
+             }
+         else{
+             return redirect('/');
+        }
     }
     /**
      * Show the form for creating a new resource.

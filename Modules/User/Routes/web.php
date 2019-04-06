@@ -35,6 +35,7 @@ Route::get( '/app/get-all-catgory-by-search', 'UserController@getInfoBySearchCat
 
 Route::post('app/login', 'UserController@login'); 
 Route::post('app/register', 'UserController@register');
+Route::get('/activationlink', 'UserController@accountactivation');
 Route::post( 'app/upload-avater', 'UserController@upload');
 Route::post( 'app/insert-all-services', 'UserController@insertService');
 Route::post( 'app/add-extra-services', 'UserController@addExtra');
@@ -121,6 +122,7 @@ Route::put('app/updateNotification', 'UserController@updateNotification');
 
 // UserUpdate
 Route::post('app/updateUserSettings','UserController@updateUserSettings');
+Route::post('app/contractMessage','ContractController@contractMessage');
 
 
 Route::get('/logout', function () {

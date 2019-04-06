@@ -239,11 +239,12 @@
                                     <p class="Details_pro_renge_name _flex_space">Bio</p>
 
                                     <div class="boi_text_div _w_100">
-                                        <p class="boi_text">{{serviceDetails.openingMassage}}</p>
+                                        <!-- <router-link :to="{path: '/login?form=details/'+order.service_id}">send message</router-link> -->
+                                        <!-- <p class="boi_text">{{serviceDetails.openingMassage}}</p>  v-if="authInfo && serviceDetails.user.id != authInfo.id"-->
                                     </div>
                                 </div>
 
-                               <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="authInfo && serviceDetails.user.id != authInfo.id" >
+                               <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true"  >
                                     <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
                                 </div>
                             </div>
@@ -302,18 +303,23 @@
                 width='500'
             >
             <div class="User_List">
-                 <div>
+                 <div v-if="authInfo">
                     <div class="form-group">
                         <p class=" msg_box_header">Your Message</p>
                         <textarea placeholder="Write your message..." class="form-control msg_box" v-model="msgData.msg" rows="3"></textarea>
                     </div>
                 </div>
+                 <div v-if="!authInfo">
+                    <div class="form-group">
+                        <router-link :to="{path: '/login?form=details/'+order.service_id}">Plase login to send message</router-link>
+                    </div>
+                </div>
                     
             </div>
             
-            <div slot="footer">
+            <div slot="footer" >
                 <Button type="warning"  @click="msgModal = false">Close</Button>
-                <Button type="success" @click="sendMsg">Send</Button>
+                <Button type="success" @click="sendMsg" v-if="authInfo">Send</Button>
             </div>
         </Modal>
        
