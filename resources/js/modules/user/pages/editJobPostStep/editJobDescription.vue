@@ -10,10 +10,10 @@
                   </div>
                             <div class="_1steps_all">
                                 <Steps :current="LinkFlagTab-1">
-                                    <Step title="step 1" content=""></Step>
-                                    <Step title="step 2" content=""></Step>
-                                    <Step title="step 3" content=""></Step>
-                                    <Step title="step 4" content=""></Step>
+                                    <Step title="Service details" content=""></Step>
+                            <Step title="Upload Images" content=""></Step>
+                            <Step title="Add Extra" content=""></Step>
+                            <Step title="Tags" content=""></Step>
                                 </Steps>
                             </div>
                   <div class="_1steps_from">
@@ -91,6 +91,7 @@
                         <div class="_login_input_button">
                            
                            <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Update</button></p>
+                           
                            <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg"  type="button"><router-link :to="{name: 'editJobImage' , params:{id:service_id}}"  >Next</router-link></button></p>
 		            	
                            <!-- <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button> -->

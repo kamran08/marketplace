@@ -11,10 +11,10 @@
 
                   <div class="_1steps_all">
                         <Steps :current="2">
-                            <Step title="step 1" content=""></Step>
-                            <Step title="step 2" content=""></Step>
-                            <Step title="step 3" content=""></Step>
-                            <Step title="step 4" content=""></Step>
+                            <Step title="Service details" content=""></Step>
+                            <Step title="Upload Images" content=""></Step>
+                            <Step title="Add Extra" content=""></Step>
+                            <Step title="Tags" content=""></Step>
                         </Steps>
                   </div>
 

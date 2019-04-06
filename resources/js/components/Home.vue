@@ -34,7 +34,7 @@
 					<h2 class="_title _text_center">FIND WHAT YOU NEED</h2>
 
 					<div class="find_row _flex_row" >
-						<div class="find_all" v-for="(item,i) in alljobs" :key="i">
+						<div class="find_all pointer" v-for="(item,i) in alljobs" :key="i" @click="$router.push(`/marketplace?cat=${item.id}`)">
 							
 							
 							<div class="find_all_icons _b_color _color">
@@ -46,7 +46,7 @@
 
 					</div>
 					<div class="_dis_flex _see_all _color">
-						<p class="_see_all_text _color">SEE ALL CATEGORIES</p>
+						<p class="_see_all_text _color" @click="$router.push('/marketplace')">BROWSE ALL SERVICES</p>
 						<i class="fas fa-chevron-right _color"></i>
 					</div>
 				</div>

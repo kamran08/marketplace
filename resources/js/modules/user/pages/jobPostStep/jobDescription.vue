@@ -11,10 +11,10 @@
                   
                   <div class="_1steps_all">
                      <Steps :current="LinkFlagTab-1">
-                        <Step title="step 1" content=""></Step>
-                        <Step title="step 2" content=""></Step>
-                        <Step title="step 3" content=""></Step>
-                        <Step title="step 4" content=""></Step>
+                        <Step title="Service details" content=""></Step>
+                        <Step title="Upload Images" content=""></Step>
+                        <Step title="Add Extra" content=""></Step>
+                        <Step title="Tags" content=""></Step>
                      </Steps>
                   </div>
 
@@ -111,7 +111,7 @@
 
                         <div class="_login_input_button">
                            
-                           <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Join Now</button></p>
+                           <p class="_banner_post_title"> <button class="_btn _login_input_button_btn _bg" @click="join" type="button">Post Service</button></p>
 		            	
                            <!-- <button class="_btn _1steps_DISCARD_btn _bg" type="button">DISCARD</button> -->
                         </div>
@@ -200,7 +200,7 @@ export default {
     },
     methods:{
         async join(){
-            console.log(this.formdata)
+           
             if(this.formdata.description == '' || this.formdata.title == '' || this.formdata.price == '' || this.formdata.cat_id == ''){
                 this.i("All fields are requrired");
                 return;
@@ -217,8 +217,8 @@ export default {
             const res1 = await this.callApi('post', 'insert-all-services',this.formdata)
             if(res1.status===201){
                 this.s("Data stored Successfully!");
-                //this.$router.push({name: 'jobImage',params: {id:res1.data.id}});
-             //  console.log(res1)
+                this.$router.push({name: 'jobImage',params: {id:res1.data.id}});
+                console.log(res1)
                
             }
             else if (res1.status===402){

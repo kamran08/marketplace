@@ -462,7 +462,7 @@ textarea {
 }
 .find_all {
     -ms-flex: 0 0 25%;
-    flex: 0 0 25%;
+    flex: 0 0 17%;
     max-width: 25%;
     text-align: center;
     background: #fff;
@@ -527,6 +527,7 @@ textarea {
 }
 .find_row {
     padding: 46px 0px;
+    margin-left: 120px;
 }
 ._see_all{
 	justify-content: center;
@@ -534,6 +535,9 @@ textarea {
 ._see_all i {
     font-size: 14px;
     margin: 4px 0 0;
+}
+.pointer{
+    cursor: pointer;
 }
 ._see_all_text {
     font-size: 13px;
@@ -2145,6 +2149,7 @@ textarea {
 }
 .find_row {
     padding: 25px 0px;
+    margin-left: 20px;
 }
 ._see_all_text {
     font-size: 12px;
@@ -2194,10 +2199,17 @@ textarea {
     font-size: 14px;
 }
 .find_all {
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
-    border-left: 1px solid #c9e1ef;
+    flex: 0 0 17%;
+    max-width: 56%;
+    text-align: center;
+    background: #fff;
+    border-top: 1px solid #c9e1ef;
+    border-right: 1px solid #c9e1ef;
+    transition: .2s all ease;
+    padding: 35px 11px 28px;
+    cursor: pointer;
+    /* margin-left: 15px; */
+    /* width: 100%; */
 }
 .find_all:first-child{
     border-left: 1px solid #c9e1ef;

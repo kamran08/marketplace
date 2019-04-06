@@ -32,8 +32,8 @@
 							
 								<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
 							<!-- <li> <router-link :to="{ name: 'order'}">ORDER</router-link></li> -->
-							<li v-if="authInfo.userType==1" > <router-link :to="{ name: 'sprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li>
-							<li v-if="authInfo.userType==2" > <router-link :to="{ name: 'bprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li>
+							<!-- <li v-if="authInfo.userType==1" > <router-link :to="{ name: 'sprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li>
+							<li v-if="authInfo.userType==2" > <router-link :to="{ name: 'bprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li> -->
 							<li v-if="authInfo.userType==4" class="uper"><a href="/system_admin">{{authInfo.name}}(Dashboard)</a></li>
 							<li><a href="/logout" >LOGOUT</a></li>
 							<li v-if="authInfo" >
@@ -90,7 +90,7 @@
 							</li>
 							<!-- massanger -->
 							<li v-if="authInfo">
-									<div class="_2menu_profile">
+									<div class="_2menu_profile" @click="$router.push(`/${profileLink}/${authInfo.id}`)">
 											<img class="_2menu_profile_pic" :src="(authInfo.image)? authInfo.image: defultImage" alt="" title="">
 											<div class="_2menu_profile_on _2menu_profile_active"></div>
 									</div>
@@ -205,11 +205,13 @@ export default {
 				open:false,
 				messagebox:false,
 				noficationData:[],
-				search: ''
+				search: '', 
+				profileLink: 'sprofile'
 			}
 	},
 	
 	async created(){
+		if(this.authInfo.userType==2) this.profileLink = 'bprofile'
 		const res = await this.callApi('get', 'get-all-catgory')
 		if(res.status===200){
 			this.alljobs = res.data;

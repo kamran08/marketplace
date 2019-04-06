@@ -243,7 +243,7 @@
                                     </div>
                                 </div>
 
-                               <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="serviceDetails.user.id != authInfo.id" >
+                               <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="authInfo && serviceDetails.user.id != authInfo.id" >
                                     <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
                                 </div>
                             </div>
