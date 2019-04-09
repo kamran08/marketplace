@@ -1,15 +1,17 @@
 <?php
 namespace Modules\User\Services;
-use App\User;
-use App\TimeSetting;
 use Auth;
+use App\User;
 use DateTime;
 use DateInterval;
+use App\TimeSetting;
 use App\Classes\CommonClass;
 use Illuminate\Http\Request;
+use App\Mail\Accountactivation;
 use Modules\User\Query\UserQuery;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserService extends Controller {
     protected $query;
@@ -23,7 +25,13 @@ class UserService extends Controller {
       // \Log::info($user);
     }
     public function createUser($data){
+       $token = sha1(mt_rand(1, 90000) . 'SALT');
+       $data['activation_token'] = $token;
        $user = $this->query->createUser($data);
+       \Log::info($data['email']);
+       return Mail::to($data['email'])
+       ->send(new Accountactivation($user));
+     
       // \Log::info($user);
     }
     public function updateUser($data){

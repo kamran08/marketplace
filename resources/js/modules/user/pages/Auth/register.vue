@@ -79,7 +79,7 @@
 									</div>
 
 									<div class="_login_input_button">
-										<button class="_btn _login_input_button_btn _bg" @click="registerUser" type="button">JOIN NOW</button>
+										<Button class="_btn _login_input_button_btn _bg" @click="registerUser" type="primary" :loading="isSending">{{isSending? 'Please Wait...' : 'Create Acount'}}</Button>
 									</div>
 								</form>
 							</div>
@@ -106,6 +106,7 @@ export default {
                 },
 				confirmPassword:'',
 				checkboxT:false,
+				isSending:false,
             }
         },
         methods:{
@@ -123,12 +124,14 @@ export default {
 					this.i('password does not match')
 					return;
 				}
+				this.isSending = true
 				const res = await this.callApi('post', 'register', this.regesterData)
      			if(res.status===200){
                     this.s('Registeration successfully!')
-                    this.$store.dispatch('setAuth',res.data.user)
-                    this.$router.push('/login');
-                  
+                    // this.$store.dispatch('setAuth',res.data.user)
+					// this.$router.push('/login');
+					this.i('We have sent you email activation link. Please click that link and activate your account.')
+                    this.isSending = false
                 }else{
                     if(res.status===422){
 						if(res.data.errors.email)
@@ -136,7 +139,8 @@ export default {
 						if(res.data.errors.password)
                         this.e(res.data.errors.password)
                        
-                    }
+					}
+					this.isSending = false
 				}
 				 
                 }

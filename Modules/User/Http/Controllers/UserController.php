@@ -83,23 +83,22 @@ class UserController extends Controller
          }
     }
     public function register(Request $request){
-            $data = new ValidateRequest();
-            $ok = $data->validateUserRequest($request);
-            if($ok){
-                $this->userService->createUser($request->all());
-            }
+        $data = new ValidateRequest();
+        $ok = $data->validateUserRequest($request);
+        if($ok){
+            $this->userService->createUser($request->all());
+        }
     }
     public function accountactivation(Request $request){
          $token = $request->token;
-
-         // get the row from reset table matching this token   http://127.0.0.1:8000/activationlink?token=wUruMbdbXJM6GzgBQHnChfpp2tUiK9Lsw1rYFC4eG1YikbpjcMxv7K7Oikpe
+        // get the row from reset table matching this token   http://127.0.0.1:8000/activationlink?token=wUruMbdbXJM6GzgBQHnChfpp2tUiK9Lsw1rYFC4eG1YikbpjcMxv7K7Oikpe
          $isTokenFound = User::where('activation_token',$token )->first();
         \Log::info($isTokenFound);
          if($isTokenFound){
-                  User::where('activation_token',$token )->update([ 'isActive'=> 1,'activation_token' => null]);
-                  
-                  return redirect()->route('/')
-                     ->with('info', 'Your Account has been Activated  . Please Login ');
+                User::where('activation_token',$token )->update([ 'isActive'=> 1,'activation_token' => null]);
+                \Log::info('okk');
+                return redirect('/activated');
+                    
              }
          else{
              return redirect('/');

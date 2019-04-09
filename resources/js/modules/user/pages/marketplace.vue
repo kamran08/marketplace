@@ -80,84 +80,98 @@
 							<div class="Marketplace_search_result_prduct">
 								<div class="job_row row">
 											<!-- items -->
+										
 										<div class="col-12 col-md-4 col-lg-4 job_all" v-for="(service,i) in products" :key="i">
-											<div class="_1job_card">
-												<div class="_1job_card_rating">
-													<ul class="_1job_card_rating_ul" v-if="service.avgreview" >
-														<li :class="(service.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
-														<li :class="(service.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
-														<li :class="(service.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
-														<li :class="(service.avgreview.averageRating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
-														<li :class="(service.avgreview.averageRating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
-														<li class="_1job_card_rating_num">({{service.reviews_count}})</li>
-													</ul>
-													<ul class="_1job_card_rating_ul" v-if="service.reviews_count==0" >
-														<li ><i class="fas fa-star"></i></li>
-														<li ><i class="fas fa-star"></i></li>
-														<li ><i class="fas fa-star"></i></li>
-														<li class=""><i class="fas fa-star"></i></li>
-														<li class=""><i class="fas fa-star"></i></li>
-														<li class="_1job_card_rating_num">(0)</li>
-													</ul>
-												</div>
+												<div class="_1job_card">
 
-												<div class="_1job_card_img"><img src="" alt="" sizes="" srcset="">
-													<router-link :to="{ name:'details', params:{ id:service.id }}" >
-														<img class="_1job_card_img_pic" :src="(service.image[0])? service.image[0].imageUrl : defaultImg" alt="" title="">
-													</router-link>
-													
-												</div>
+													<div class="_1job_card_img"><img src="" alt="" sizes="" srcset="">
 
-												<div class="_1job_card_status">
-													<p class="_1job_card_status_text _text_overflow2">{{service.title}}</p>
-												</div>
 
-												<div class="_1job_card_bottom">
-													<p class="_1job_card_by"><span class="_1job_card_by_span">by</span>   {{service.user.userName}}</p>
+														<router-link :to="{ name:'details', params:{ id:service.id }}" >
+															<img class="_1job_card_img_pic" :src="(service.image[0])? service.image[0].imageUrl : defaultImg" alt="" title="">
+														</router-link>
+														
+													</div>
+
+													<div class="_1job_card_status">
+														<p class="_1job_card_status_text _text_overflow">{{service.title}}</p>
+													</div>
+
+
 
 													<div class="_1job_card_dollar">
 														<p class="_1job_card_dollar_text _color">{{service.price}}</p>
-														<p class="_1job_card_dollar_sine _color">$</p>
+														<p class="_1job_card_dollar_sine _color">£</p>
+													</div>
+
+													<div class="_1job_card_bottom">
+														<div class="_5cards_user">
+															<div class="_5cards_user_pic">
+																<img class="_5cards_user_img" :src="`${service.user.image}`" alt="" title="">
+															</div>
+
+															<div class="_5cards_user_details">
+																<p class="_5cards_user_name">{{service.user.name}}</p>
+
+																<div class="_5cards_rating">
+																	<ul class="_1job_card_rating_ul" v-if="service.avgreview" >
+																		<li :class="(service.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
+																		<li :class="(service.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
+																		<li :class="(service.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
+																		<li :class="(service.avgreview.averageRating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
+																		<li :class="(service.avgreview.averageRating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
+																		<li class="_1job_card_rating_num">({{service.reviews_count}})</li>
+																	</ul>
+																	<ul class="_1job_card_rating_ul" v-if="service.reviews_count==0" >
+																		<li ><i class="fas fa-star"></i></li>
+																		<li ><i class="fas fa-star"></i></li>
+																		<li ><i class="fas fa-star"></i></li>
+																		<li class=""><i class="fas fa-star"></i></li>
+																		<li class=""><i class="fas fa-star"></i></li>
+																		<li class="_1job_card_rating_num">(0)</li>
+																	</ul>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
+																	<!-- items -->
+															</div>
+
+
+															<!-- pagination -->
+														<!-- <div class="_pagination">
+															<ul class="_pagination_ul">
+																<li>&laquo;</li>
+																<li>1</li>
+																<li>2</li>
+																<li class="_pagination_actiove">3</li>
+																<li>4</li>
+																<li>5</li>
+																<li>6</li>
+																<li>&raquo;</li>
+															</ul>
+														</div> -->
+															<!-- pagination -->
+													</div>
+												</div>
+													<!-- Product -->
+											</div>
 										</div>
-											<!-- items -->
+											<!--~~~~ Categories Menu and Product ~~~~~~~-->
 									</div>
+								</div>
+										<!--======== Content =========-->
+									<!--==========================
+												Home
+									========================-->
 
-
-									<!-- pagination -->
-								<!-- <div class="_pagination">
-									<ul class="_pagination_ul">
-										<li>&laquo;</li>
-										<li>1</li>
-										<li>2</li>
-										<li class="_pagination_actiove">3</li>
-										<li>4</li>
-										<li>5</li>
-										<li>6</li>
-										<li>&raquo;</li>
-									</ul>
-								</div> -->
-									<!-- pagination -->
+							
 							</div>
-						</div>
-							<!-- Product -->
-					</div>
-				</div>
-					<!--~~~~ Categories Menu and Product ~~~~~~~-->
-			</div>
-		</div>
-				<!--======== Content =========-->
-	    	<!--==========================
-						Home
-			========================-->
 
-       
-    </div>
-
-</template>
-<script>
+						</template>
+						<script>
 
 export default {
 

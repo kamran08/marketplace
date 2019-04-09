@@ -33,6 +33,7 @@ import register from '../pages/Auth/register.vue';
 import getEmail from '../pages/Auth/getEmail.vue';
 import passwordreset from '../pages/Auth/passwordreset.vue';
 import contract from '../pages/contract.vue';
+import activated from '../pages/activated.vue';
 
 const routes = [
 
@@ -49,7 +50,7 @@ const routes = [
 
     },
     {
-        path: '/contract',
+        path: '/contact',
         name: 'contract',
         component: contract,
 
@@ -310,6 +311,18 @@ const routes = [
             guest: true,
             allowedUserType: ['All'],
             title: 'jobTag',
+        }
+
+    },
+    {
+        path: '/activated',
+        name: 'activated',
+        component: activated,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'Account Activated!',
         }
 
     },
