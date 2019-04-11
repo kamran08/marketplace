@@ -65,15 +65,17 @@ export default {
     methods:{
          async join(){
             if(this.items.length>0){
-                    const res = await this.callApi('post', 'add-tag', this.items)
-                    if(res.status==200){
-                    this.s('Your tags have been successfully added!');
-                    this.$router.push({path: '/'})
-
-                    }
-                    else{
-                        this.swr();
-                    }
+               const res = await this.callApi('post', 'add-tag', this.items)
+               if(res.status==200){
+               this.s('Your tags have been successfully added!');
+               this.$router.push({path: '/details/'+this.$route.params.id})
+               }
+               else{
+                  this.swr();
+               }
+            }
+            else{
+               this.$router.push({path: '/details/'+this.$route.params.id})
             }
         },
          add(){

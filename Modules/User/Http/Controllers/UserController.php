@@ -65,7 +65,11 @@ class UserController extends Controller
             if(Auth::user( )->isActive==0){
                  Auth::logout();
                 \Session::flush();
-                return redirect()->route('login')->with('info', 'Please Active your Account first! ');
+                return response()->json([
+                    'msg' => 'Your account has not been activated yet. Please activate your account.',
+                    'title' => 'Oops',
+                    
+                ], 401); 
             }
             else{
                 return response()->json([
@@ -250,6 +254,9 @@ class UserController extends Controller
     }
     public function getBookingList(Request $request){
         return $this->userService->getBookingList($request->all());
+    }
+    public function getBookingListWithoutDate(Request $request){
+        return $this->userService->getBookingListWithoutDate($request->all());
     }
     public function getAllBookingList(Request $request){
         return $this->userService->getAllBookingList($request->all());

@@ -17,7 +17,7 @@
                             <div  class="_profile_card_name_text_link">Extra Service : 
                                      <!-- <span class="job_tags_main" v-for="(ex, k) in item.extraService" :key="k">  {{ex.serviceName}} </span> -->
                                      <div class="job_tags"  v-for="(ex, k) in item.extraService" :key="k"> 
-                                        <div class="job_tags_main">  {{ex.serviceName}}(${{ex.servicePrice}}) </div>
+                                        <div class="job_tags_main">  {{ex.serviceName}}(£{{ex.servicePrice}}) </div>
                                     </div>
                                
                             </div>
@@ -34,7 +34,7 @@
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
                                 <p class="_1job_card_dollar_text _color"> {{item.totalPrice}}</p>
-                                <p class="_1job_card_dollar_sine _color">$</p>
+                                <p class="_1job_card_dollar_sine _color">£</p>
                             </div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
             </div>
             <!-- card -->
         </div>
-        <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
+        <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0 && isloading" >
                 <h2>No New Bookings </h2>
         </div>
         <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >

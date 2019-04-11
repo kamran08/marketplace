@@ -18,7 +18,7 @@
 							<li> <router-link :to="{ path: '/'}">Home</router-link></li>
 							<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
 							<li> <router-link :to="{ path: '/contact'}">Contact Us</router-link></li>
-							<li><router-link :to="{ name: 'about'}">About</router-link></li>
+							<li><router-link :to="{ name: 'about'}">FAQ</router-link></li>
 							<li><router-link :to="{ name: 'login'}"> Sign in </router-link></li>
 							<li class="_1menu_sign_ul_or">or</li>
 							<li><router-link :to="{ name: 'register'}">Join Us</router-link></li>
@@ -48,7 +48,7 @@
 												<div class="noti_all">
 													<p class="noti_title">Notifications</p>
 
-													<div class="noti_main_content"  >
+													<div class="noti_main_content"  v-if="noficationData">
 															<!-- ITEMS -->
 														<div class="noti_main "  v-for="(item,index) in noficationData" :key="index" :class="(item.seen)? 'noti_new' : ''">
 														<!-- /?	<img class="noti_img" src="/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg" alt="" title=""> -->
@@ -57,7 +57,9 @@
 																<div >
 																	<a  @click="isSeen(item)">	<p class="noti_status_text"><strong>{{item.user.name}}</strong> {{item.notitxt}} </p></a>
 
-																	<p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p>
+																	<p class="noti_status_time" ><Icon type="md-chatboxes" />{{item.created_at}} mins</p>
+																	<!-- <p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p> -->
+																	<!-- <p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p> -->
 																</div>
 															
 															</div>
@@ -208,7 +210,8 @@ export default {
 				messagebox:false,
 				noficationData:[],
 				search: '', 
-				profileLink: 'sprofile'
+				profileLink: 'sprofile',
+				test:''
 			}
 	},
 	
@@ -222,9 +225,6 @@ export default {
 		else{
 			this.swr();
 		}
-
-	  
-	
 	},
 	methods:{
 		handleOpen () {psprofile
@@ -260,7 +260,7 @@ export default {
 			}
 			const res = await this.callApi('get','getNotificationData')
 			if(res.status === 200){
-				this.noficationData =res.data;
+				this.noficationData = res.data;
 			}
 			else{
 				this.swr();

@@ -56,7 +56,7 @@
 
                                 <div class="_block_buttons">
                                     <div class="_block_buttons_main _dis_flex">
-                                        <button class="_bg _btn _block_buttons_btn" type="button">Price {{serviceDetails.price}}$</button>
+                                        <button class="_bg _btn _block_buttons_btn" type="button">Price {{serviceDetails.price}}£</button>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
 
                                 <div class="_1job_card_dollar  _text_right">
                                     <p class="_1job_card_dollar_text _color">  {{serviceDetails.price}}</p>
-                                    <p class="_1job_card_dollar_sine _color">$</p>
+                                    <p class="_1job_card_dollar_sine _color">£</p>
                                 </div>
                             </div>
 
@@ -178,14 +178,14 @@
                                             </div>
                                             <div class="Details_pro_extra_do">
                                                 <p class="Details_pro_extra_do_text  _color">{{item.servicePrice}}</p>
-                                                <p class="Details_pro_extra_ds _color">$</p>
+                                                <p class="Details_pro_extra_ds _color">£</p>
                                             </div>
                                         </div>
                                     </template>
                                     
                                     <div class="Details_pro_button _b_color2" v-if="authInfo.userType==2"  >
                                         <div class="_block_buttons_main _dis_flex">
-                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">ORDER NOW (${{totalOderPrice}})</button>
+                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">ORDER NOW (£{{totalOderPrice}})</button>
                                             <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
                                         </div>
                                     </div>

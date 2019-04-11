@@ -1,9 +1,11 @@
 <template>
-    <div class="_comment">
+    <div class="_box_shadow2 pro_menu _border_radious">
         <p class="_comment_title">REVIEWS <span class="_comment_title_span">({{list.length}})</span></p> 
         <div class="_commnet_all" v-if="list.length!=0" >
                 <!-- items --> 
-            <div class="_commnet_main _b_color2 _dis_flex" v-for="(item,index) in list" :key="index" >
+            <div class="_commnet_main _b_color2 _dis_flex" v-for="(item,index) in list" :key="index">
+                <!-- <div class="col-12 col-md-8 col-lg-8"  > -->
+                 <!-- <div class="_box_shadow2 pro_menu _border_radious "> -->
                 <div class="_commnet_img">
                     <img class="_commnet_img_pic" :src="(item.user.image)? item.user.image : defultImage" alt="" title="">
                 </div>

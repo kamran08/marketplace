@@ -3662,3 +3662,18 @@ height: -o-calc(100vh - 90px);
     text-align: left;
     margin-left: 27px;
 }
+.fb_link i{
+    color:green;
+}
+.twt_link i{
+    color: green;
+}
+.inst_link i{
+    color: green;
+}
+.yt_link i{
+    color: green;
+}
+.google_link i{
+    color: green;
+}

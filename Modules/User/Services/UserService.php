@@ -333,6 +333,24 @@ class UserService extends Controller {
       }
       return $goru;
     }
+    public function getBookingListWithoutDate($data){
+      if(!Auth::check()){
+          return response()->json([
+            'message' => "You are not Authenticate User!",
+         ], 402);
+      }
+      $data['id'] = Auth::user()->id;
+      $data['userType'] = Auth::user()->userType;
+
+     
+      $goru = $this->query->getBookingListWithoutDate($data);
+      foreach($goru as $d){
+         if($d['extraService']){
+             $d['extraService'] = json_decode($d['extraService']);
+         }
+      }
+      return $goru;
+    }
 
     public function getAllBookingList($data){
       if(!Auth::check()){
@@ -455,18 +473,8 @@ class UserService extends Controller {
       //$data["extraService"]= json_encode($data["extraService"]);
 
       $rdata = $this->query->insertOrder($data);
-      
-
-      if($rdata){
-         $ndata =[
-            'notifor' => $sid,
-            'notifrom' => $data['buyer_id'],
-            'notitxt' => 'booked your Service',
-            'url' => "/sprofile/$sid?tab=2",
-         ];
-         $this->query->notifications($ndata); 
-      }
-
+      // send notifictions 
+      $this->customhelper->insertNotifications($sid,$data['buyer_id'], 'booked your Service',"/sprofile/$sid?tab=2");
       return $rdata;
 
      
@@ -630,17 +638,25 @@ class UserService extends Controller {
               'message' => "You are not Authenticate User!",
            ], 402);
         }
+        
 
         if($data['type']==1){
 
          $data['buyer_id'] = Auth::user()->id;
          unset($data['type']);
-         return $this->query->giveReview($data);
-        }
+         $sid=$data['seller_id'];
+        
+         $this->customhelper->insertNotifications($sid, $data['buyer_id'], 'a review on your Service', "/sprofile/$sid?tab=6");
 
-         $data['seller_id'] = Auth::user()->id;
-         unset($data['type']);
          return $this->query->giveReviewb($data);
+        }
+        
+         $data['seller_id'] = Auth::user()->id;\Log::info($data);
+         unset($data['type']);
+         $bid = $data['buyer_id'];
+         $this->customhelper->insertNotifications($bid, $data['seller_id'], 'a review send by seller for you', "/bprofile/$bid?tab=6");
+
+         return $this->query->giveReview($data);
        
       }
 
@@ -718,7 +734,13 @@ class UserService extends Controller {
            ], 402);
         }
          $id = Auth::user()->id;
-         return $this->query->getAllNotifications($id);
+         $data = $this->query->getAllNotifications($id);
+               // for($i =0; $i<sizeof($data); $i++){
+               //    $dbdatetime = $data[$i]['created_at']; //datetime from database: "2014-05-18 18:10:18"
+               //     $dif = $dbdatetime;
+               //     $data[$i]['time']=$dif;
+               // }
+               return $data;
       }
       public function getNoficationAllData(){
          if(!Auth::check()){

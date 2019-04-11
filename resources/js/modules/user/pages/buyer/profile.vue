@@ -48,16 +48,25 @@
                                 <div class="Details_profie_title_line"></div>
                             </div>
 
-                            <div class="Details_profie_rating" v-if="authInfo.userType==1" >
-                                <ul class="_1job_card_rating_ul">
-                                    <li class="_color"><i class="fas fa-star"></i></li>
-                                    <li class="_color"><i class="fas fa-star"></i></li>
-                                    <li class="_color"><i class="fas fa-star"></i></li>
-                                    <li class=""><i class="fas fa-star"></i></li>
-                                    <li class=""><i class="fas fa-star"></i></li>
-                                    <li class="_1job_card_rating_num">(2k+)</li>
+                                 <div class="Details_profie_rating" v-if="userInfo.avgreview">
+                                <ul class="_1job_card_rating_ul" v-if="userInfo.reviews_count!==0" >
+                                    <li :class="(userInfo.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(userInfo.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(userInfo.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(userInfo.avgreview.averageRating>=4)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li :class="(userInfo.avgreview.averageRating>=5)? '_color' : ''"><i class="fas fa-star"></i></li>
+                                    <li class="_1job_card_rating_num">({{userInfo.reviews_count}})</li>
                                 </ul>
+								<ul class="_1job_card_rating_ul" v-else  >
+									<li ><i class="fas fa-star"></i></li>
+									<li ><i class="fas fa-star"></i></li>
+									<li ><i class="fas fa-star"></i></li>
+									<li><i class="fas fa-star"></i></li>
+									<li><i class="fas fa-star"></i></li>
+									<li>(0)</li>
+								</ul>
                             </div>
+
 
                             <div class="Details_profie_location">
                                 <div class="Details_pro_renge _dis_flex _b_color2">
@@ -85,7 +94,7 @@
                                     </div>
                                 </div>
 
-                                <div class="Details_pro_renge _dis_flex _b_color2">
+                                <!-- <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="fas fa-exclamation-circle"></i>
 
                                     <p class="Details_pro_renge_name _flex_space">Bio</p>
@@ -126,8 +135,8 @@
                                             <p  v-if="!isEdit" class="boi_text _text_overflow">{{userInfo.billingInfo}}</p>
                                         </div>
                                     </div>
-                                </div>
-
+                                </div> -->
+<!-- 
                                 <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="far fa-envelope"></i>
 
@@ -138,7 +147,7 @@
                                             <p class="boi_text _text_overflow">{{userInfo.email}}</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="fas fa-phone"></i>
 
@@ -170,9 +179,8 @@
                                 </div>
 
                                 </div>
-
-
-                                 <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="userInfo.id != authInfo.id" >
+                                        <!-- userInfo.id != authInfo.id condition replace by salman-->
+                               <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="userInfo.userType==2">
                                     <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
                                 </div>
                             </div>
@@ -181,7 +189,7 @@
                         <!--~~~~~~~ Profile Card ~~~~~~~-->
 
                         <!--~~~~~~~ Profile Details ~~~~~~~-->
-                    <div class="col-12 col-md-8 col-lg-8">
+                    <div class="col-12 col-md-8 col-lg-8" >
                         <div class="_box_shadow2 pro_menu _border_radious ">
                             <ul class="pro_menu_list">
                                 <li :class="(sellerTab==6)? 'pro_menu_active':''" @click="sellerTab=6">Reviews</li>
@@ -248,7 +256,7 @@ export default {
     },
     data(){
         return{
-            sellerTab:2,
+            sellerTab:6,
             user_id:this.$route.params.id,
             userInfo:[],
             edituserInfo:[],
@@ -271,6 +279,7 @@ export default {
             const res = await this.callApi('get',`getProfileInfo/${this.user_id}`)
             if(res.status === 200){
                 this.userInfo = res.data
+                console.log(this.userInfo)
                 this.edituserInfo = res.data
             }
             else{

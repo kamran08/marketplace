@@ -27,19 +27,19 @@
                         </div>
                         <div class="_profile_card_title _flex_space">
                             <button class="table_button_green" type="button" >Completed</button>
-                            <button v-if="item.review_count==0" class="table_button" @click="ReviewModalOn(item,index)" type="button" >Give Feedback</button>
+                            <button v-if="item.reviewb_count==0" class="table_button" @click="ReviewModalOn(item,index)" type="button" >Give Feedback</button>
                         </div>
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
                                 <p class="_1job_card_dollar_text _color"> {{item.totalPrice}}</p>
-                                <p class="_1job_card_dollar_sine _color">$</p>
+                                <p class="_1job_card_dollar_sine _color">£</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
+        <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0 && isloading" >
             <h2>No Bookings This Day</h2>
         </div>
         <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
@@ -101,14 +101,38 @@ export default {
             },
             modalData:{},
             dataIndex:'',
-            isloading:true
+            isloading:false
         }
     },
     methods:{
-        ReviewModalOn(item,index){
+          async getBookingListWithoutDate(){
+              this.isloading = false
+              let data = {
+                status:2,
+            }
+             const res  = await  this.callApi('post',`getBookingListWithoutDate`,data);
+            if(res.status===200){
+               this.list = res.data
+               this.isloading = true
+
+            }
+            else{
+                this.swr();
+                this.isloading = true
+            }
+                this.isloading = true
+        },
+       async ReviewModalOn(item,index){
             this.reviewModal = true;
             this.modalData = item
             this.dataIndex = index;
+            let notid= {
+                notifor:item.seller_id,
+                notifrom:item.buyer_id,
+                notitxt : 'Buyer send a review on this service',
+                url : '/sprofile/'+item.seller_id+'?'+'tab=3'
+            }
+            const res2 = await this.callApi('post','notifications',notid)
         },
         async getNewList(newDate){
             this.isloading = false
@@ -141,14 +165,13 @@ export default {
             if(this.reviewData.comment=='' || this.reviewData.rating=='' ){
                 return;
             }
-
             this.reviewData.service_id = this.modalData.service_id
             this.reviewData.seller_id = this.modalData.seller_id
             this.reviewData.booking_id = this.modalData.id
             const res  = await  this.callApi('post',`giveReview`,this.reviewData);
             if(res.status===201){
                 this.s("Thank you for your valuable feedback")
-                this.list[this.dataIndex].review_count = 1;
+                this.list[this.dataIndex].reviewb_count = 1;
                 this.ClearRiviewTable();
                 this.reviewModal = false;
             }
@@ -168,13 +191,13 @@ export default {
 
     },
     created(){
-        let d = new Date();
-        let monthNumber = d.getMonth()+1
-        monthNumber = ("0" + monthNumber).slice(-2);
-        let dayNumber = d.getDate()
-        dayNumber = ("0" + dayNumber).slice(-2);
-        this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
-        this.getNewList(this.toDayDate);
+        // let d = new Date();
+        // let monthNumber = d.getMonth()+1
+        // monthNumber = ("0" + monthNumber).slice(-2);
+        // let dayNumber = d.getDate()
+        // dayNumber = ("0" + dayNumber).slice(-2);
+        // this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+        this.getBookingListWithoutDate();
     }
 }
 </script>

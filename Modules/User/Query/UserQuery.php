@@ -197,7 +197,7 @@ class UserQuery {
     return TimeSetting::where([['day',$data],['service_id',$service_id]])->select('id','startTime','endTime','duration')->first();
     }
    public function getBookedTime($data,$service_id){
-    return Booking::where([['bookingDate',$data],['service_id',$service_id]])->select('bookingTime')->get();
+    return Booking::where([['bookingDate',$data],['service_id',$service_id]])->whereNotIn('status',[3])->select('bookingTime')->get();
     }
    public function getNewList($data){
       if($data['userType']==1){
@@ -209,11 +209,11 @@ class UserQuery {
    public function getRiviewListById($data){
       $user = User::where('id',$data)->select('id','userType')->first();
       $type = $user->userType;
-      if($type==1){
-        return Review::where('seller_id',$data)->with('user')->get();
+      if($type==2){
+        return Review::where('buyer_id',$data)->with('user')->get();
       }
-
-      return Reviewb::where('buyer_id',$data)->with('user')->get();
+    
+      return Reviewb::where('seller_id',$data)->with('user')->get();
       
     }
    public function getServiceList($data){
@@ -228,6 +228,13 @@ class UserQuery {
       return Booking::where([["seller_id",$data['id']],['bookingDate',$data['date']],['status',$data['status']]])->with('buyerInfo','sellerInfo','service','service.image')->withCount('review')->get();
      }
      return Booking::where([["buyer_id",$data['id']],['bookingDate',$data['date']],['status',$data['status']]])->with('buyerInfo','sellerInfo','service','service.image')->withCount('reviewb')->get();
+    }
+   public function getBookingListWithoutDate($data){
+     
+     if($data['userType']==1){
+      return Booking::where([["seller_id",$data['id']],['status',$data['status']]])->with('buyerInfo','sellerInfo','service','service.image')->withCount('review')->get();
+     }
+     return Booking::where([["buyer_id",$data['id']],['status',$data['status']]])->with('buyerInfo','sellerInfo','service','service.image')->withCount('reviewb')->get();
     }
 
    public function getAllBookingList($data){
@@ -250,7 +257,8 @@ class UserQuery {
     return User::where('id',$id)->update($data);
     }
    public function giveReview($data){
-    return Review::create($data);
+     \Log::info($data);
+      return Review::create($data);
     }
    public function giveReviewb($data){
     return Reviewb::create($data);

@@ -6,8 +6,6 @@
 
                 <ul v-if="list.length" >
                     <li class="notification_main" v-for="(item,index) in list" :key="index"  @click="isSeen(item)" ><a >{{item.user.name}} {{item.notitxt}}</a></li>
-                    
-                   
                 </ul>
             </div>
         </div>

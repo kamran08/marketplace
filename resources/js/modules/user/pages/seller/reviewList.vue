@@ -1,5 +1,5 @@
 <template>
-    <div class="_comment">
+    <div class="_box_shadow2 pro_menu _border_radious">
         <p class="_comment_title">REVIEWS <span class="_comment_title_span">({{list.length}})</span></p> 
         <div class="_commnet_all" v-if="list.length!=0" >
                 <!-- items --> 

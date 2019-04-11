@@ -53,6 +53,7 @@ Route::get( 'app/getRiviewListById/{id}', 'UserController@getRiviewListById');
 Route::get( 'app/getServiceList/{id}', 'UserController@getServiceList'); 
 
 Route::post( 'app/getBookingList', 'UserController@getBookingList');
+Route::post( 'app/getBookingListWithoutDate', 'UserController@getBookingListWithoutDate');
 
 Route::post( 'app/getAllBookingList', 'UserController@getAllBookingList');
 

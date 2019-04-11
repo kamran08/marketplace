@@ -48,7 +48,7 @@
                                 <div class="Details_profie_title_line"></div>
                             </div>
 
-                            <div class="Details_profie_rating">
+                            <div class="Details_profie_rating" v-if="userInfo.avgreview">
                                 <ul class="_1job_card_rating_ul" v-if="userInfo.reviews_count!==0" >
                                     <li :class="(userInfo.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li :class="(userInfo.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
@@ -101,10 +101,42 @@
                                     <div  class="boi_text_div _w_100">
                                         <p v-if="isEdit" class="boi_text">
                                             <textarea rows="4" v-model="edituserInfo.bio"></textarea>
+                                            
                                         </p>
                                         <p v-if="!isEdit" class="boi_text">{{userInfo.bio}}</p>
                                     </div>
                                 </div>
+                                <!-- social link -->
+                                <div class="Details_pro_renge _dis_flex _b_color2">
+                                    <i class="fas fa-exclamation-circle"></i>
+
+                                    <p class="Details_pro_renge_name _flex_space">Social Profile link: </p>
+
+                                    <div  class="boi_text_div _w_100">
+                                        <p v-if="isEdit" class="boi_text">
+                                            <!-- <textarea rows="4" v-model="edituserInfo.bio"></textarea> -->
+                                            <Input type="text" placeholder="facebook" v-model="edituserInfo.facebook"></Input>
+                                            <Input type="text" placeholder="instagram" v-model="edituserInfo.instagram"></Input>
+                                            <Input type="text" placeholder="twitter" v-model="edituserInfo.twitter"></Input>
+                                            <Input type="text" placeholder="youTube" v-model="edituserInfo.youTube"></Input>
+                                            <Input type="text" placeholder="google" v-model="edituserInfo.google"></Input>
+                                           
+
+                                        </p>
+                                        <!-- <p v-if="!isEdit" class="boi_text">{{userInfo.bio}}</p> -->
+                                        <div v-if="!isEdit">
+                                        <a :href="userInfo.facebook" :class="userInfo.facebook ? 'fb_link':''"><i class="fab fa-facebook-square"></i></a>
+                                        <a :href="userInfo.instagram" :class="userInfo.instagram ? 'inst_link':''"><i class="fab fa-instagram"></i></a>
+                                        <a :href="userInfo.twitter" :class="userInfo.twitter ? 'twt_link':''"><i class="fab fa-twitter-square"></i></a>
+                                        
+                                        <a :href="userInfo.youTube" :class="userInfo.youTube ? 'yt_link':''"><i class="fab fa-google-plus-square"></i></a>
+                                        <a :href="userInfo.google" :class="userInfo.google ? 'google_link':''"><i class="fab fa-youtube"></i></a>
+                                     
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                                <!-- end social link -->
 
                                 <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="far fa-money-bill-alt"></i>

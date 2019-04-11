@@ -29,7 +29,7 @@
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
                                 <p class="_1job_card_dollar_text _color"> {{item.totalPrice}}</p>
-                                <p class="_1job_card_dollar_sine _color">$</p>
+                                <p class="_1job_card_dollar_sine _color">£</p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
              </div>
             <!-- card -->
         </div>
-        <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
+        <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0 && isloading" >
                 <h2>No New Bookings </h2>
         </div>
     </div>
@@ -54,6 +54,8 @@ export default {
             notid: {
                 isloading:true
             },
+
+            isloading:false
         }
     },
     methods:{
@@ -62,6 +64,7 @@ export default {
             const res  = await  this.callApi('get','getNewList')
             if(res.status===200){
                 this.list = res.data
+                this.isloading = true
             }
             else{
                 this.swr();
@@ -82,8 +85,8 @@ export default {
                     if(res2.status==200){
 
                     }
-                        this.s("This booking has been approved!");
-                        this.list[index].status = 1 
+                    this.s("This booking has been approved!");
+                    this.list[index].status = 1 
                 }
                 else if(status==3){
                     let notid= {

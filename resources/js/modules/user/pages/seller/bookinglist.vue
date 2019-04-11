@@ -4,15 +4,15 @@
             <DatePicker type="date"  @on-change="getSlots" placeholder="Select date"  :value="toDayDate" v-model="toDayDate" style="width: 220px;"></DatePicker>
         </div>
         <!-- card -->
-        <div class="_profile_card_all tags_all " v-if="list.length && isloading"  >
+        <div class="_profile_card_all tags_all " v-if="list.length"  >
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  v-if="item.status==1"  >
-                    <div class="_profile_card_pic">
+                    <div class="_profile_card_pic" v-if="item.service" >
                         <img  class="_profile_card_img" :src="item.service.image[0].imageUrl" alt="" title="">
                     </div>
                     <div class="_profile_card_name _flex_space _dis_flex">
                         
-                        <div class="_profile_card_title _flex_space">
+                        <div class="_profile_card_title _flex_space" v-if="item.service">
                             <p class="_profile_card_name_text_link"><router-link :to="{ name:'details', params:{ id:item.service.id }}" >{{item.service.title}}</router-link></p> 
                         </div>
                         <div class="_profile_card_title _flex_space">
@@ -31,7 +31,7 @@
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
                                 <p class="_1job_card_dollar_text _color"> {{item.totalPrice}}</p>
-                                <p class="_1job_card_dollar_sine _color">$</p>
+                                <p class="_1job_card_dollar_sine _color">£</p>
                             </div>
                         </div>
                     </div>
@@ -54,10 +54,25 @@ export default {
         return{
             list:[],
             toDayDate:'',
-            isloading:true
+            isloading:false
         }
     },
     methods:{
+         async getBookingListWithoutDate(){
+             this.isloading = false
+              let data = {
+                status:1,
+            }
+             const res  = await  this.callApi('post',`getBookingListWithoutDate`,data);
+            if(res.status===200){
+                this.list = res.data
+                this.isloading = true
+            }
+            else{
+                this.swr();
+            }
+            this.isloading = true
+        },
         async getNewList(newDate){
             this.isloading = false
             let data = {
@@ -90,9 +105,20 @@ export default {
             
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
-
-                this.insertNotification(buyer_id,seller_id)
                 this.i("This booking has been cancled!");
+                    let notid = {
+                    notifor:buyer_id,
+                    notifrom:seller_id,
+                    notitxt:seller_id+' cancelled your service',
+                    url:'/bprofile/'+buyer_id+'?'+'tab=5',
+                    }
+                    const res2 = await this.callApi('post','notifications', notid)
+                    if(res2.status==201){
+                    }
+                    else{
+                        this.e('notification not send')
+                    }
+                
                 this.list[index].status = 3 
                 
             }
@@ -101,24 +127,16 @@ export default {
             }
         },
 
-        async insertNotification(buyer_id,seller_id){
-            let notifications = {
-                notitxt : 'cancelled your service',
-                notifor : buyer_id,
-                notifrom : seller_id,
-                url : '/bprofile/'+buyer_id+'?'+'tab=4',
-            }
-            const res = await this.callApi('post','notifications', this.noti)
-        },
     },
     created(){
-        let d = new Date();
-        let monthNumber = d.getMonth()+1
-        monthNumber = ("0" + monthNumber).slice(-2);
-        let dayNumber = d.getDate()
-        dayNumber = ("0" + dayNumber).slice(-2);
-        this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
-        this.getNewList(this.toDayDate);
+        // let d = new Date();
+        // let monthNumber = d.getMonth()+1
+        // monthNumber = ("0" + monthNumber).slice(-2);
+        // let dayNumber = d.getDate()
+        // dayNumber = ("0" + dayNumber).slice(-2);
+        // this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+        // this.getNewList(this.toDayDate);
+           this.getBookingListWithoutDate()
     }
     
 }

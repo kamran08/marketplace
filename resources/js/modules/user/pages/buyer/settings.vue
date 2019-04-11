@@ -1,5 +1,5 @@
 <template>
-    <div class="_comment">
+    <div class="_box_shadow2 pro_menu _border_radious">
        
                 <!-- items --> 
                 <Row v-if="sMenu">

@@ -27,19 +27,19 @@
                         </div>
                         <div class="_profile_card_title _flex_space">
                             <button class="table_button_green" type="button" @click="updateStatus(2,index,item.buyer_id,item.seller_id)">Mark Complete</button>
-                            <button class="table_button_red" type="button" @click="updateStatus(3,index,item.buyer_id,item.seller_id)">Cancle Booking</button>
+                            <button class="table_button_red" type="button" @click="updateStatus(3,index,item.buyer_id,item.seller_id)">Cancel Booking</button>
                         </div>
                         <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
                                 <p class="_1job_card_dollar_text _color"> {{item.totalPrice}}</p>
-                                <p class="_1job_card_dollar_sine _color">$</p>
+                                <p class="_1job_card_dollar_sine _color">£</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0" >
+        <div span="24" class="booked_date _text_center _box_shadow2" v-if="list.length==0 && isloading" >
             <h2>No Bookings This Day</h2>
         </div>
         <div span="14" align="center" class="booked_date _text_center _box_shadow2 _border_radious"  v-if="!isloading" >
@@ -97,6 +97,7 @@ export default {
                 service_id:'',
                 seller_id:'',
                 booking_id:'',
+                type:1
             },
             modalData:{},
             
@@ -104,11 +105,26 @@ export default {
         }
     },
     methods:{
+        async getBookingListWithoutDate(){
+            this.isloading = false
+              let data = {
+                status:1,
+            }
+             const res  = await  this.callApi('post',`getBookingListWithoutDate`,data);
+            if(res.status===200){
+                this.list = res.data
+                this.isloading = true
+            }
+            else{
+                this.swr();
+            }
+            this.isloading = true
+        },
         async getNewList(newDate){
             this.isloading = false
             let data = {
                 date:newDate,
-                status:1,
+                status:2,
             }
             const res  = await  this.callApi('post',`getBookingList`,data);
             if(res.status===200){
@@ -128,11 +144,12 @@ export default {
             this.reviewData.service_id = this.modalData.service_id
             this.reviewData.seller_id = this.modalData.seller_id
             this.reviewData.booking_id = this.modalData.id
+            // console.log(this.reviewData)
             const res  = await  this.callApi('post',`giveReview`,this.reviewData);
             if(res.status===201){
                 this.s("Thank you for your valuable feedback")
                 this.ClearRiviewTable();
-                this.this.reviewModal = false;
+                this.reviewModal = false;
             }
             else{
                 this.swr();
@@ -158,9 +175,12 @@ export default {
             this.getNewList(this.toDayDate)
         },
         async updateStatus(status,index,buyer_id,seller_id){
+
             const res = await this.callApi('post',"updateStatus",{status:status,id:this.list[index].id})
             if(res.status==200){
+               
                 if(status==2){
+                    this.i('Serive has been marked completed ')
                     let notid = {
                         notifor:seller_id,
                         notifrom:buyer_id,
@@ -168,8 +188,8 @@ export default {
                         url:'/sprofile/'+seller_id+'?'+'tab=4',
                     }
                     const res2 = await this.callApi('post','notifications', notid)
-                    if(res2.status===200){
-                        this.i("Serive has been marked completed!");
+                    if(res2.status===201){
+                        // this.i("Serive has been marked completed!");
                         this.list[index].status = 2 
                         this.reviewModal = true;
                         this.modalData = this.list[index]
@@ -179,18 +199,21 @@ export default {
                     }
                   
                 }
-                 else if(status==3){
+                else if(status==3){
+                     this.i("This booking has been cancled!")
                      let notid = {
                         notifor:seller_id,
                         notifrom:buyer_id,
-                        notitxt:'cancelled your service',
+                        notitxt:buyer_id+' cancelled your service',
                         url:'/sprofile/'+seller_id+'?'+'tab=5',
                     }
-                    
-                    const res2 = await this.callApi('post','notifications', this.noti)
-                    if(res2.status==200){
-                        this.i("This booking has been cancled!");
+                    const res2 = await this.callApi('post','notifications', notid)
+                    if(res2.status==201){
+                        // this.i("This booking has been cancled!");
                         this.list[index].status = 3 
+                    }
+                    else{
+                        this.e()
                     }
                 }
             }
@@ -209,13 +232,14 @@ export default {
         },
     },
     created(){
-        let d = new Date();
-        let monthNumber = d.getMonth()+1
-        monthNumber = ("0" + monthNumber).slice(-2);
-        let dayNumber = d.getDate()
-        dayNumber = ("0" + dayNumber).slice(-2);
-        this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
-        this.getNewList(this.toDayDate);
+        // let d = new Date();
+        // let monthNumber = d.getMonth()+1
+        // monthNumber = ("0" + monthNumber).slice(-2);
+        // let dayNumber = d.getDate()
+        // dayNumber = ("0" + dayNumber).slice(-2);
+        // this.toDayDate = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
+        // this.getNewList(this.toDayDate);
+        this.getBookingListWithoutDate()
     }
 }
 </script>
