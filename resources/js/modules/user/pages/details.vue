@@ -191,7 +191,7 @@
                                     </div>
                                     <div class="Details_pro_button _b_color2" v-if="authInfo.id == serviceDetails.user_id"  >
                                         <div class="_block_buttons_main _dis_flex">
-                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">see the time slote</button>
+                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">See Your Time Slots.</button>
                                             <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
                                         </div>
                                     </div>
@@ -284,7 +284,7 @@
                     </div>
                 </div>
                 <div span="24" class="booked_date_order _text_center _box_shadow2" v-if="bookingTimeByDay.length==0" >
-                    <h3>Service Not Avaiable This day</h3>
+                    <h3>No time slots found for <span class="spe">{{getSelectedDate}}</span></h3>
                 </div>
                     
             </div>
@@ -298,7 +298,7 @@
         </Modal>
         <Modal
                 v-model="msgModal"
-                :title="(serviceDetails.user.name)? serviceDetails.user.name : '---'"
+                title="Write a message"
                 :closable = "false"
                 width='500'
             >
@@ -488,12 +488,28 @@ export default {
             }
             return price;
         },
+        getSelectedDate(){
+            let d = new Date(this.selectBookingTime);
+            let monthNumber = d.getMonth()+1
+            monthNumber = ("0" + monthNumber).slice(-2);
+            let dayNumber = d.getDate()
+            let weekDay = d.getDay()
+            dayNumber = ("0" + dayNumber).slice(-2);
+            let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            console.log(dayNumber)
+            let monthNames = ["Jan", 'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', "Oct", "Nov", 'Dec']
+            let year = d.getFullYear()
+            let str = `${days[weekDay]} ${monthNames[monthNumber-1]}, ${year}`
+            return str
+            
+        }
     },
    async created(){
        this.isloading = false
        console.log(this.authInfo)
         this.getServiceDetails();
     },
+    
 
 }
 </script>

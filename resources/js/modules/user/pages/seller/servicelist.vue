@@ -5,7 +5,8 @@
             <div v-for="(item,index) in list" :key="index" >
                 <div class="_profile_card _dis_flex _box_shadow2 _border_radious _mr_b30 "  >
                     <div class="_profile_card_pic">
-                         <router-link :to="{ name:'details', params:{ id:item.id }}" ><img  class="_profile_card_img" :src="item.image[0].imageUrl" alt="" title=""></router-link>
+                         <router-link :to="{ name:'details', params:{ id:item.id }}" v-if="item.image.length"><img  class="_profile_card_img" :src="item.image[0].imageUrl" alt="" title=""></router-link>
+                         <router-link :to="{ name:'details', params:{ id:item.id }}" v-if="!item.image.length"><img  class="_profile_card_img" src="/uploads/no-img.png" alt="" title=""></router-link>
                     </div>
                     <div class="_profile_card_name _flex_space _dis_flex">
                         
@@ -13,7 +14,7 @@
                             <p class="_profile_card_name_text_link"><router-link :to="{ name:'details', params:{ id:item.id }}" >{{item.title}}</router-link></p> 
                         </div>
                         <div class="Details_profie_rating">
-                                <ul class="_1job_card_rating_ul" v-if="item.reviews_count!==0" >
+                                <ul class="_1job_card_rating_ul" v-if="item.reviews_count!=0" >
                                     <li :class="(item.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li :class="(item.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li :class="(item.avgreview.averageRating>=3)? '_color' : ''"><i class="fas fa-star"></i></li>
@@ -34,7 +35,7 @@
                             <div  class="_profile_card_name_text_link">Extra Service : 
                                      <!-- <span class="job_tags_main" v-for="(ex, k) in item.extraService" :key="k">  {{ex.serviceName}} </span> -->
                                      <div class="job_tags"  v-for="(ex, k) in item.extra" :key="k"> 
-                                        <div class="job_tags_main">  {{ex.serviceName}}(${{ex.servicePrice}}) </div>
+                                        <div class="job_tags_main">  {{ex.serviceName}}(£{{ex.servicePrice}}) </div>
                                     </div>
                             </div>
                         
@@ -42,7 +43,7 @@
                          <div class="_dis_flex _profile_card_doller">
                             <div class="_1job_card_dollar">
                                 <p class="_1job_card_dollar_text _color"> {{item.price}}</p>
-                                <p class="_1job_card_dollar_sine _color">$</p>
+                                <p class="_1job_card_dollar_sine _color">£</p>
                             </div>
                         </div>
                     </div>

@@ -653,6 +653,10 @@ textarea {
     color: #2e8cf0;
     cursor: pointer;
 }
+.spe{
+    font-weight: 800 !important;
+    color: #2e7cae;
+}
 /*--- card ----*/
 .Engine {
     background-color: #fff;
@@ -2100,7 +2104,7 @@ textarea {
     padding: 9px 0;
 }
 .noti_new{
-    background: #66afd6;
+    background:#ebf1f4;
 }
 .{}
 .{}

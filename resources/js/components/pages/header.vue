@@ -50,16 +50,13 @@
 
 													<div class="noti_main_content"  v-if="noficationData">
 															<!-- ITEMS -->
-														<div class="noti_main "  v-for="(item,index) in noficationData" :key="index" :class="(item.seen)? 'noti_new' : ''">
+														<div class="noti_main "  v-for="(item,index) in noficationData" :key="index" :class="(item.seen)? 'noti_new' : ''" @click="isSeen(item)">
 														<!-- /?	<img class="noti_img" src="/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg" alt="" title=""> -->
 
 															<div class="noti_status" >
-																<div >
-																	<a  @click="isSeen(item)">	<p class="noti_status_text"><strong>{{item.user.name}}</strong> {{item.notitxt}} </p></a>
-
-																	<p class="noti_status_time" ><Icon type="md-chatboxes" />{{item.created_at}} mins</p>
-																	<!-- <p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p> -->
-																	<!-- <p class="noti_status_time"><Icon type="md-chatboxes" /> 10mins</p> -->
+																<div>
+																	<p class="noti_status_text"><strong>{{item.user.name}}</strong> {{item.notitxt}} </p>
+																	<p class="noti_status_time" ><Icon type="md-time" /> {{item.created_at}}</p>
 																</div>
 															
 															</div>
@@ -270,6 +267,7 @@ export default {
 		},
 		async isSeen(item){
 			this.$router.push(item.url)
+			this.open=false;
 			if(item.seen){
 				const res = await this.callApi('put','updateNotification',{id:item.id})
 				if(res.status!==200){

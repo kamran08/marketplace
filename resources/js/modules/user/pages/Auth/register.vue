@@ -127,11 +127,10 @@ export default {
 				this.isSending = true
 				const res = await this.callApi('post', 'register', this.regesterData)
      			if(res.status===200){
-                    this.s('Registeration successfully!')
-                    // this.$store.dispatch('setAuth',res.data.user)
-					// this.$router.push('/login');
-					this.i('We have sent you email activation link. Please click that link and activate your account.')
+                    this.i('We have sent you email activation link. Please click that link and activate your account.')
                     this.isSending = false
+					this.$router.push('/login');
+
                 }else{
                     if(res.status===422){
 						if(res.data.errors.email)
