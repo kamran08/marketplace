@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
 
-                                <div class="Details_pro_renge _dis_flex _b_color2">
+                                <!-- <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="fas fa-exclamation-circle"></i>
 
                                     <p class="Details_pro_renge_name _flex_space">Bio</p>
@@ -109,7 +109,7 @@
                                         </p>
                                         <p v-if="!isEdit" class="boi_text">{{userInfo.bio}}</p>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- social link -->
                                 <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="fas fa-exclamation-circle"></i>
@@ -129,11 +129,11 @@
                                         </p>
                                         <!-- <p v-if="!isEdit" class="boi_text">{{userInfo.bio}}</p> -->
                                         <div v-if="!isEdit">
-                                        <a :href="userInfo.facebook" :class="userInfo.facebook ? 'fb_link i':''"><i class="fab fa-facebook-square"></i></a>
-                                        <a :href="userInfo.instagram" :class="userInfo.instagram ? 'inst_link i':''"><i class="fab fa-instagram"></i></a>
-                                        <a :href="userInfo.twitter" :class="userInfo.twitter ? 'twt_link i':''"><i class="fab fa-twitter-square"></i></a>
-                                        <a :href="userInfo.youTube" :class="userInfo.youTube ? 'yt_link i':''"><i class="fab fa-youtube"></i></a>
-                                        <a :href="userInfo.google" :class="userInfo.google ? 'google_link i':''"><i class="fab fa-google-plus-square"></i></a>
+                                        <a :href="userInfo.facebook" :class="userInfo.facebook ? 'fb_link i':'fb_link_ i'"><i class="fab fa-facebook-square"></i></a>
+                                        <a :href="userInfo.instagram" :class="userInfo.instagram ? 'inst_link i':'fb_link_ i'"><i class="fab fa-instagram"></i></a>
+                                        <a :href="userInfo.twitter" :class="userInfo.twitter ? 'twt_link i':'fb_link_ i'"><i class="fab fa-twitter-square"></i></a>
+                                        <a :href="userInfo.youTube" :class="userInfo.youTube ? 'yt_link i':'fb_link_ i'"><i class="fab fa-youtube"></i></a>
+                                        <a :href="userInfo.google" :class="userInfo.google ? 'google_link i':'fb_link_ i'"><i class="fab fa-google-plus-square"></i></a>
                                         
                                      
                                         </div>

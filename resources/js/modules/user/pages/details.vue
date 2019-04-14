@@ -238,18 +238,26 @@
                                         
                                     </div>
                                 </div>
-
-                                <div class="Details_pro_renge _dis_flex _b_color2">
+                                <!-- social link -->
+                                    <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="fas fa-exclamation-circle"></i>
 
-                                    <p class="Details_pro_renge_name _flex_space">Bio</p>
+                                    <p class="Details_pro_renge_name _flex_space">Social Profile link: </p>
 
-                                    <div class="boi_text_div _w_100">
-                                        <!-- <router-link :to="{path: '/login?form=details/'+order.service_id}">send message</router-link> -->
-                                        <!-- <p class="boi_text">{{serviceDetails.openingMassage}}</p>  v-if="authInfo && serviceDetails.user.id != authInfo.id"-->
+                                    <div  class="boi_text_div _w_100">
+                                    
+                                        <!-- <p v-if="!isEdit" class="boi_text">{{userInfo.bio}}</p> -->
+                                        <div>
+                                        <a :href="serviceDetails.user.facebook" :class="serviceDetails.user.facebook ? 'fb_link i':'fb_link_ i'"><i class="fab fa-facebook-square"></i></a>
+                                        <a :href="serviceDetails.user.instagram" :class="serviceDetails.user.instagram ? 'inst_link i':'fb_link_ i'"><i class="fab fa-instagram"></i></a>
+                                        <a :href="serviceDetails.user.twitter" :class="serviceDetails.user.twitter ? 'twt_link i':'fb_link_ i'"><i class="fab fa-twitter-square"></i></a>
+                                        <a :href="serviceDetails.user.youTube" :class="serviceDetails.user.youTube ? 'yt_link i':'fb_link_ i'"><i class="fab fa-youtube"></i></a>
+                                        <a :href="serviceDetails.user.google" :class="serviceDetails.user.google ? 'google_link i':'fb_link_ i'"><i class="fab fa-google-plus-square"></i></a>
+                                        </div>
+                                      
                                     </div>
                                 </div>
-
+                                <!-- end social link -->
                                <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true"  >
                                     <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
                                 </div>
