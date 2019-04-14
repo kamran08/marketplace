@@ -22,6 +22,10 @@ class UserQuery {
        $user = User::all();
        return $user;
     }
+    public function getday($key){
+       $user = TimeSetting::where('service_id', $key)->get();
+       return $user;
+    }
     public function createUser($data){
         $data['password']  = bcrypt($data['password']);
        return User::create($data);

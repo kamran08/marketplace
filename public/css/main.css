@@ -1796,6 +1796,17 @@ textarea {
     margin-left: 10px;
     cursor: pointer;
 }
+.lan_sele{}
+.lan_sele i{
+    margin-top: -6px !important;
+    width: inherit !important;
+}
+.pro_edit_all_ff{
+    color: #fff;
+    font-size: 11px;
+    margin-top: 10px;
+    cursor: pointer;
+}
 .select_time{}
 .select_time .row {
     margin-bottom: 25px;
@@ -3665,19 +3676,66 @@ height: -o-calc(100vh - 90px);
 ._1job_card ._1job_card_dollar {
     text-align: left;
     margin-left: 27px;
+    margin-top: 2px;
+    margin-right: 6px;
 }
 .fb_link i{
-    color:green;
+    color: #0e1b85fc !important;
+    font-size: 30px !important;
+    margin-top: 2px;
+    margin-right: 6px;
 }
 .twt_link i{
-    color: green;
+    color:#1da1f2;
+    font-size: 30px !important;
+    margin-top: 2px;
+    margin-right: 6px;
 }
 .inst_link i{
-    color: green;
+   color: green;
+   font-size: 30px !important;
+   margin-top: 2px;
+   margin-right: 6px;
 }
 .yt_link i{
     color: green;
+    font-size: 30px !important;
+    margin-top: 2px;
+    margin-right: 6px;
 }
 .google_link i{
-    color: green;
+   color: green;
+   font-size: 30px !important;
+   margin-top: 2px;
+   margin-right: 6px;
+}
+.day_select{
+    background: #19be6b !important;
+    color: #fff;
+   display: inline-block;
+   margin-right: 16px;
+   font-size: 12px;
+   cursor: pointer;
+   background: #e7eef3;
+   border-radius: 4px;
+   font-weight: 700;
+   box-shadow: 0px 1px 7px 0px #00a4f666;
+   padding: 4px 12px 3px;
+   margin-bottom: 12px;
+}
+.day-selesct-all {
+    margin: 9px 0 14px;
+}
+.day_select_text {
+    display: inline-block;
+    margin-right: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    background: #e7eef3;
+    border-radius: 4px;
+    color: black;
+    font-weight: 700;
+    box-shadow: 0px 1px 7px 0px #00a4f666;
+    padding: 4px 12px 3px;
+    margin-bottom: 12px;
 }

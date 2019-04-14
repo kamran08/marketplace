@@ -46,6 +46,10 @@ class UserController extends Controller
         $this->userService->test();
         return view('user::index');
     }
+    public function getday($key)
+    {   
+        return $this->userService->getday($key);
+    }
     public function system_admin(){
         if(!Auth::check()){
             return response()->json([

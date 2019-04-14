@@ -44,11 +44,11 @@
 
                             <div class="Details_profie_title">
                                 <h3 v-if="!isEdit" class="_title3">{{userInfo.name}} <span  v-if="authInfo.id==user_id" class="pro_edit_all" @click="isEdit=true" ><i class="fas fa-pencil-alt"></i> Edit</span></h3>
-                                <p v-if="isEdit" class="_dis_flex align-items-center"><input  type="text" v-model="edituserInfo.name"> <span class="pro_edit_all" @click="updateInfo" > SAVE</span></p>
+                                <p v-if="isEdit" class="_dis_flex align-items-center "><input  type="text" v-model="edituserInfo.name"></p>
                                 <div class="Details_profie_title_line"></div>
                             </div>
 
-                                 <div class="Details_profie_rating" v-if="userInfo.avgreview">
+                            <div class="Details_profie_rating" v-if="userInfo.avgreview">
                                 <ul class="_1job_card_rating_ul" v-if="userInfo.reviews_count!==0" >
                                     <li :class="(userInfo.avgreview.averageRating>=1)? '_color' : ''"><i class="fas fa-star"></i></li>
                                     <li :class="(userInfo.avgreview.averageRating>=2)? '_color' : ''"><i class="fas fa-star"></i></li>
@@ -179,9 +179,14 @@
                                 </div>
 
                                 </div>
+
                                         <!-- userInfo.id != authInfo.id condition replace by salman-->
                                <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="userInfo.userType==2">
                                     <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
+                                </div>
+                                
+                                <div class="Details_pro_renge _dis_flex _b_color2 _text_center justify-content-center" v-if="isEdit"> 
+                                    <p v-if="isEdit" class="_dis_flex align-items-center _text_center "> <span class="pro_edit_all_ff _btn _bg" @click="updateInfo" > SAVE</span></p>
                                 </div>
                             </div>
                         </div>

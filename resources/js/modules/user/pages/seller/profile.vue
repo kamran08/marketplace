@@ -44,7 +44,6 @@
 
                             <div class="Details_profie_title">
                                 <h3 v-if="!isEdit" class="_title3">{{userInfo.name}} <span  v-if="authInfo.id==user_id" class="pro_edit_all" @click="isEdit=true" ><i class="fas fa-pencil-alt"></i> Edit</span></h3>
-                                <p v-if="isEdit" class="_dis_flex align-items-center"><input  type="text" v-model="edituserInfo.name"> <span class="pro_edit_all" @click="updateInfo" > SAVE</span></p>
                                 <div class="Details_profie_title_line"></div>
                             </div>
 
@@ -85,10 +84,15 @@
                                     <p class="Details_pro_renge_name _flex_space">Language</p>
 
                                     <div  class="Details_pro_renge_num">
-                                        <select v-if="isEdit" v-model="edituserInfo.language" >
-                                            <option value="volvo">English</option>
-                                            <option value="saab">Spanish</option>
-                                        </select>
+                                        <Select class="lan_sele" v-if="isEdit" v-model="edituserInfo.language" style="width:120px;">
+                                            <Option value="english">English</Option>
+                                            <Option value="spanish">Spanish</Option>
+                                            <Option value="french">French</Option>
+                                            <Option value="german">German</Option>
+                                            <Option value="italian">Italian</Option>
+                                            <Option value="romanian">Romanian</Option>
+                                            <Option value="bangla">bangla</Option>
+                                        </Select>
                                         <p v-if="!isEdit" class="boi_text">{{userInfo.language}}</p>
                                     </div>
                                 </div>
@@ -125,12 +129,12 @@
                                         </p>
                                         <!-- <p v-if="!isEdit" class="boi_text">{{userInfo.bio}}</p> -->
                                         <div v-if="!isEdit">
-                                        <a :href="userInfo.facebook" :class="userInfo.facebook ? 'fb_link':''"><i class="fab fa-facebook-square"></i></a>
-                                        <a :href="userInfo.instagram" :class="userInfo.instagram ? 'inst_link':''"><i class="fab fa-instagram"></i></a>
-                                        <a :href="userInfo.twitter" :class="userInfo.twitter ? 'twt_link':''"><i class="fab fa-twitter-square"></i></a>
+                                        <a :href="userInfo.facebook" :class="userInfo.facebook ? 'fb_link i':''"><i class="fab fa-facebook-square"></i></a>
+                                        <a :href="userInfo.instagram" :class="userInfo.instagram ? 'inst_link i':''"><i class="fab fa-instagram"></i></a>
+                                        <a :href="userInfo.twitter" :class="userInfo.twitter ? 'twt_link i':''"><i class="fab fa-twitter-square"></i></a>
+                                        <a :href="userInfo.youTube" :class="userInfo.youTube ? 'yt_link i':''"><i class="fab fa-youtube"></i></a>
+                                        <a :href="userInfo.google" :class="userInfo.google ? 'google_link i':''"><i class="fab fa-google-plus-square"></i></a>
                                         
-                                        <a :href="userInfo.youTube" :class="userInfo.youTube ? 'yt_link':''"><i class="fab fa-google-plus-square"></i></a>
-                                        <a :href="userInfo.google" :class="userInfo.google ? 'google_link':''"><i class="fab fa-youtube"></i></a>
                                      
                                         </div>
                                       
@@ -168,7 +172,7 @@
                                     </div>
                                 </div>
 
-                                <div class="Details_pro_renge _dis_flex _b_color2">
+                                <div class="Details_pro_renge _dis_flex _b_color2" v-if="authInfo.id==user_id ">
                                     <i class="far fa-envelope"></i>
 
                                     <p class="Details_pro_renge_name _flex_space">Email</p>
@@ -208,10 +212,12 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                </div>
-
-
+                            <div class="Details_pro_renge _dis_flex _b_color2 _text_center justify-content-center" v-if="isEdit"> 
+                                <p v-if="isEdit" class="_dis_flex align-items-center _text_center"> <span class="pro_edit_all_ff _btn _bg" @click="updateInfo" > SAVE</span></p>
+                            </div>
+                            
                                 <div class="Details_pro_renge Details_pro_renge2   _b_color2 _text_center" @click="msgModal = true" v-if="userInfo.id != authInfo.id" >
                                     <p class="_contect_me _color_green"> Send Message <i class="fas fa-comments"></i></p>
                                 </div>

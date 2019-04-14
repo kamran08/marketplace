@@ -185,7 +185,13 @@
                                     
                                     <div class="Details_pro_button _b_color2" v-if="authInfo.userType==2"  >
                                         <div class="_block_buttons_main _dis_flex">
-                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">ORDER NOW (£{{totalOderPrice}})</button>
+                                            <button class="_bg _btn _block_buttons_btn" @click="modalOn" type="button">Book an Appointment (£{{totalOderPrice}})</button>
+                                            <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="Details_pro_button _b_color2" v-if="!authInfo"  >
+                                        <div class="_block_buttons_main _dis_flex">
+                                            <button class="_bg _btn _block_buttons_btn" @click="msgModal=true" type="button">Book an Appointment (£{{totalOderPrice}})</button>
                                             <button class="_btn2 _block_buttons_btn2" type="button"><i class="fas fa-heart"></i></button>
                                         </div>
                                     </div>
@@ -260,8 +266,12 @@
             width='700'
         >
             <div class="User_List">
-                 <div span="24" class="booked_date _text_center _box_shadow2">
+                 <div span="24" class="booked_date _text_center">
                       <DatePicker :options="options3" type="date" format="yyyy-MM-dd" v-model="selectBookingTime" :value="selectBookingTime" @on-change="getSlots" placeholder="Select date" style="width: 220px"></DatePicker>
+                </div>
+                <h2 class="list_title" style="color:green">Available Days</h2>
+                <div  v-if="hasday.length>0" class="day-selesct-all">
+                        <p v-for="(item,i) in hasday" :key="i" :class="(item==currentday)?'day_select':'day_select_text'">{{item}}</p>
                 </div>
                 <div v-if="bookingTimeByDay.length">
                     <p class="list_title">SELECT FROM AVAILBLE TIME SLOTS</p>
@@ -290,7 +300,7 @@
             </div>
             <div slot="footer" v-if="authInfo.userType!=1">
                     <Button @click="bookingTimeModal = false">Close</Button>
-                    <Button @click="insertOrder">Order</Button>
+                    <Button @click="insertOrder" v-if="authInfo">Order</Button>
             </div>
             <div slot="footer" v-if="authInfo.userType==1">
                     <Button @click="bookingTimeModal = false">Close</Button>
@@ -298,7 +308,7 @@
         </Modal>
         <Modal
                 v-model="msgModal"
-                title="Write a message"
+                :title="(authInfo?'Write a message':'')"
                 :closable = "false"
                 width='500'
             >
@@ -311,7 +321,7 @@
                 </div>
                  <div v-if="!authInfo">
                     <div class="form-group">
-                        <router-link :to="{path: '/login?form=details/'+order.service_id}">Plase login to send message</router-link>
+                        <router-link :to="{path: '/login?form=details/'+order.service_id}">Plase login</router-link>
                     </div>
                 </div>
                     
@@ -359,6 +369,9 @@ export default {
                 conType:null
             },
             msgModal : false,
+            hasday:[],
+            currentdate:'',
+            currentday:''
         }
     },
     methods:{
@@ -419,6 +432,8 @@ export default {
             // FORMATE THE DATE 
             let d = new Date(this.selectBookingTime);
             let monthNumber = d.getMonth()+1
+            var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            this.currentday = days[d.getDay()]
             monthNumber = ("0" + monthNumber).slice(-2);
             let dayNumber = d.getDate()
             dayNumber = ("0" + dayNumber).slice(-2);
@@ -430,8 +445,40 @@ export default {
             this.order.bookingTime = slot
             this.bookingTimeFalg = index
         },
+        async imidiatebokingdate(){
+            let id = this.$route.params.id
+            let i,j
+            const res = await this.callApi("get",`getday/${this.$route.params.id}`)
+            if(res.status===200){
+                for(i=0; i<res.data.length; i++){
+                    this.hasday.push(res.data[i].day)
+                }
+                let tomorrow = new Date()
+                let d = new Date()
+                
+                var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                for(i = 0; i<7; i++){
+                    var dayname = days[d.getDay()]
+                //  console.log(dayname)
+                for(j=0; j<this.hasday.length; j++){
+                    if(dayname == this.hasday[j]){
+                        this.currentdate = tomorrow
+                        this.currentday = dayname
+                        return
+                    }
+                 }
+                    tomorrow.setDate(d.getDate()+1)
+                    d = tomorrow;
+            }
+            return
+         }
+            
+        },
         modalOn(){
             let d = new Date();
+            // let ok = 
+            console.log(this.currentdate)
+            d = this.currentdate
             let monthNumber = d.getMonth()+1
             monthNumber = ("0" + monthNumber).slice(-2);
             let dayNumber = d.getDate()
@@ -439,6 +486,32 @@ export default {
             this.selectBookingTime = `${d.getFullYear()}-${monthNumber}-${dayNumber}`
             this.order.bookingDate = this.selectBookingTime 
             this.getBookingTimeByDay(this.selectBookingTime)
+
+
+            
+        
+        //     let d = new Date()
+        //     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        // //  var dayName = days[d.getDay()];
+     
+        //    var tomorrow = new Date()
+        //     let i
+        //       for(i = 0; i<7; i++){
+            
+        //      var dayname = days[d.getDay()]
+        //     // console.log(dayname)
+        //     if(dayname == 'Thursday'){
+        //         d = tomorrow
+        //         break
+        //     }
+        //     else{
+        //          tomorrow.setDate(d.getDate()+1)
+        //           d = tomorrow;
+        //     }
+        //     }
+        //      console.log(d)
+
+
             this.bookingTimeModal = true
             
         },
@@ -496,7 +569,6 @@ export default {
             let weekDay = d.getDay()
             dayNumber = ("0" + dayNumber).slice(-2);
             let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-            console.log(dayNumber)
             let monthNames = ["Jan", 'Feb', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', "Oct", "Nov", 'Dec']
             let year = d.getFullYear()
             let str = `${days[weekDay]} ${monthNames[monthNumber-1]}, ${year}`
@@ -508,6 +580,7 @@ export default {
        this.isloading = false
        console.log(this.authInfo)
         this.getServiceDetails();
+        this.imidiatebokingdate()
     },
     
 

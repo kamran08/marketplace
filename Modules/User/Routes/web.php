@@ -99,6 +99,11 @@ Route::get( 'app/getServiceDescritption/{id}', 'UserController@getServiceDescrit
 Route::get( 'app/getServiceImages/{id}', 'UserController@getServiceImages'); 
 Route::get( 'app/getExtraServicebyId/{id}', 'UserController@getExtraServicebyId'); 
 Route::get( 'app/getTagbyId/{id}', 'UserController@getTagbyId'); 
+Route::get( 'app/getday/{id}', 'UserController@getday'); 
+
+
+
+
 
 Route::post( 'app/UpdateServiceDescription', 'UserController@UpdateServiceDescription'); 
 Route::post( 'app/updateSaveServiceImage', 'UserController@updateSaveServiceImage'); 
@@ -111,6 +116,7 @@ Route::post( 'app/updateTag', 'UserController@updateTag');
 // insert catagory 
 Route::post( 'app/insert-catagory', 'UserController@insertCatagory'); 
 Route::post( 'app/sub-category', 'UserController@insertSubCatagory'); 
+
 
 /// notifications 
 

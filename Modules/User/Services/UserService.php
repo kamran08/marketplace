@@ -24,6 +24,11 @@ class UserService extends Controller {
        $user = $this->query->getAll();
       // \Log::info($user);
     }
+    public function getday($id){
+       $user = $this->query->getday($id);
+      return $user;
+      // \Log::info($user);
+    }
     public function createUser($data){
        $token = sha1(mt_rand(1, 90000) . 'SALT');
        $data['activation_token'] = $token;
