@@ -279,7 +279,7 @@
                 </div>
                 <h2 class="list_title" style="color:green">Available Days</h2>
                 <div  v-if="hasday.length>0" class="day-selesct-all">
-                        <p v-for="(item,i) in hasday" :key="i" :class="(item==currentday)?'day_select':'day_select_text'">{{item}}</p>
+                        <p v-for="(item,i) in hasday" :key="i" :class="(item==currentday)?'day_select':'day_select_text'" @click="alaretmsg">{{item}}</p>
                 </div>
                 <div v-if="bookingTimeByDay.length">
                     <p class="list_title">SELECT FROM AVAILBLE TIME SLOTS</p>
@@ -383,6 +383,9 @@ export default {
         }
     },
     methods:{
+         alaretmsg(){
+            alert('Please Select Date First!')
+        },
          async sendMsg(){
             if(this.msgData.msg===''){
                return
@@ -590,6 +593,7 @@ export default {
         this.getServiceDetails();
         this.imidiatebokingdate()
     },
+   
     
 
 }
