@@ -16,7 +16,16 @@
                     <div class="col-12 col-md-8 col-lg-8" >
                         <div class="Details_main_left">
                             <div class="Details_main_title">
-                            <h3 class="_title3"> {{serviceDetails.title}} <span class="Details_main_title_span _color" v-if="authInfo.id==serviceDetails.user_id" ><i class="fas fa-pen"></i><router-link :to="{name:'editJobDescription' ,params:{id:serviceDetails.id}}">Edit</router-link></span></h3>
+                            <h3 class="_title3"> {{serviceDetails.title}} 
+                                <span class="Details_main_title_span _color" v-if="authInfo.id==serviceDetails.user_id" >
+                                    <i class="fas fa-pen"></i>
+                                    <router-link :to="{name:'editJobDescription' ,params:{id:serviceDetails.id}}">Edit</router-link>
+                                </span>
+
+                                 <span class="Details_main_title_span _color" v-if="authInfo.id==serviceDetails.user_id" >
+                                    <span class="color_coustom" @click="deleteService">Delete</span>
+                                 </span>
+                            </h3>
                             </div>
 
                             <div class="Details_main_left_menu _dis_flex">
@@ -220,12 +229,13 @@
                             </div>
 
                             <div class="Details_profie_location">
-                                <div class="Details_pro_renge _dis_flex _b_color2">
+                                 <div class="Details_pro_renge _dis_flex _b_color2">
                                     <i class="fas fa-map-marker-alt"></i>
 
                                     <p class="Details_pro_renge_name _flex_space">Email</p>
-
-                                    <p class="Details_pro_renge_num">{{serviceDetails.user.email}}</p>
+                                    <p class="Details_pro_renge_num" v-if="authInfo">{{serviceDetails.user.website}}</p>
+                                    <p class="Details_pro_renge_num" v-if="!authInfo">{{(serviceDetails.user.website)?serviceDetails.user.website.substring(0,5)+"*****.com":""}}</p>
+                                    <!-- <p class="Details_pro_renge_num">{{"****"+ serviceDetails.user.email.substring(serviceDetails.user.email.search('@')-3)}}</p> -->
                                 </div>
 
                                 <div class="Details_pro_renge _dis_flex none_f _b_color2">
@@ -234,7 +244,8 @@
                                     <p class="Details_pro_renge_name _flex_space">Phone</p>
 
                                     <div class="Details_pro_renge_num">
-                                        <p>{{(serviceDetails.user.phone)? serviceDetails.user.phone : '---' }}</p>
+                                        <p v-if="authInfo">{{(serviceDetails.user.phone)? serviceDetails.user.phone : '' }}</p>
+                                         <p v-if="!authInfo">{{(serviceDetails.user.phone)?serviceDetails.user.phone.substring(0,4) +"*******": '---' }}</p>
                                         
                                     </div>
                                 </div>
@@ -383,6 +394,19 @@ export default {
         }
     },
     methods:{
+
+        async deleteService(){
+            console.log(this.$route.params.id)
+            let data={
+                'id': this.$route.params.id
+            }
+            const res = await this.callApi('post','deleteService', data)
+            if(res.status===200){
+                this.s('your service has been deleted')
+                this.$router.push('/')
+            }
+          else this.swr()
+        },
          alaretmsg(){
             alert('Please Select Date First!')
         },
@@ -592,6 +616,7 @@ export default {
        console.log(this.authInfo)
         this.getServiceDetails();
         this.imidiatebokingdate()
+       
     },
    
     
@@ -600,5 +625,8 @@ export default {
 </script>
 
 <style>
-
+.color_coustom {
+    color: red;
+    padding: 0 0 0 12px;
+}
 </style>

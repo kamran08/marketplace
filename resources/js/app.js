@@ -18,6 +18,7 @@ import common from './common'
 Vue.mixin(common)
 
 Vue.component('mainapp', require('./components/mainapp.vue'));
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 const app = new Vue({

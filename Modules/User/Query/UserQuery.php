@@ -40,7 +40,13 @@ class UserQuery {
         return $cat;
     }
     public function getAllService(){
-      $service = Service::with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->get();  
+      
+      $temp = Service::all();
+      if(sizeof($temp)<8){
+      return  Service::with('image', 'user', 'tag', 'extra', 'category', 'alltime', 'avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->get();
+      }
+     //   
+        $service = Service::with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->paginate(8);  
         return $service;
     }
     public function getInfoBySearch($key=''){
@@ -59,7 +65,8 @@ class UserQuery {
       if($str){
         $qurey->where('title', 'like', '%' . $str . '%');      
       }
-      return $qurey->get();
+      // return $qurey->get();
+      return $qurey->paginate(6);
      
     }
     public function getallcatgory(){

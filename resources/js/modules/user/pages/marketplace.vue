@@ -81,7 +81,7 @@
 								<div class="job_row row">
 											<!-- items -->
 										
-										<div class="col-12 col-md-4 col-lg-4 job_all" v-for="(service,i) in products" :key="i">
+										<div class="col-12 col-md-4 col-lg-4 job_all" v-for="(service,i) in products.data" :key="i">
 												<div class="_1job_card">
 
 													<div class="_1job_card_img"><img src="" alt="" sizes="" srcset="">
@@ -131,29 +131,28 @@
 																		<li class="_1job_card_rating_num">(0)</li>
 																	</ul>
 																</div>
+																<p class="_5cards_user_name">{{service.serviceType}}</p>
+																
 															</div>
+															
 														</div>
+														<!--  -->
 													</div>
 												</div>
+												
 											</div>
 																	<!-- items -->
-															</div>
+										</div>
+										<div class="card-footer">
+											 <Page :current="1" :total="products.total" @on-change="getResults" :page-size="6" />
+											<!-- <pagination :data="products" @pagination-change-page="getResults" class="page2"> 
+
+											</pagination> -->
+										
+										</div>
 
 
-															<!-- pagination -->
-														<!-- <div class="_pagination">
-															<ul class="_pagination_ul">
-																<li>&laquo;</li>
-																<li>1</li>
-																<li>2</li>
-																<li class="_pagination_actiove">3</li>
-																<li>4</li>
-																<li>5</li>
-																<li>6</li>
-																<li>&raquo;</li>
-															</ul>
-														</div> -->
-															<!-- pagination -->
+														
 													</div>
 												</div>
 													<!-- Product -->
@@ -167,7 +166,16 @@
 												Home
 									========================-->
 
-							
+						<!-- <paginate
+							:page-count="20"
+							:page-range="3"
+							:margin-pages="2"
+							:click-handler="clickCallback"
+							:prev-text="'Prev'"
+							:next-text="'Next'"
+							:container-class="'pagination'"
+							:page-class="'page-item'">
+						</paginate> -->
 							</div>
 
 						</template>
@@ -183,7 +191,7 @@ export default {
 			id:'',
 			defaultImage:'uploads/_85730600_monkey2.jpg',
 			allServices: [],
-			products: [],
+			products: {},
 			isloading:true,
 			selectedMune:-1, 
 			catId: null
@@ -191,6 +199,7 @@ export default {
         }
 	},
     methods:{
+		
 		async get_all_category(){
 			this.isloading = false
 			const res = await this.callApi('get', 'get-all-catgory')
@@ -232,6 +241,10 @@ export default {
 			}
 		    this.$router.push(`/marketplace?cat=${item.id}&str=${a}`)
 	   },
+	   	async getResults(page = 1) {
+			 const res = await this.callApi('get','get-all-catgory-by-search?page='+page)
+			 this.products = res.data;
+		}
 
 	},
 

@@ -61,7 +61,7 @@
 
 				<div class="job_row row">
 						<!-- items -->
-					<div class="col-12 col-md-4 col-lg-3 job_all" v-for="(service,i) in allService" :key="i">
+					<div class="col-12 col-md-4 col-lg-3 job_all" v-for="(service,i) in allService.data" :key="i">
 						<div class="_1job_card">
 
 							<div class="_1job_card_img"><img src="" alt="" sizes="" srcset="">
@@ -111,13 +111,26 @@
 												<li class="_1job_card_rating_num">(0)</li>
 											</ul>
 										</div>
+										<p class="_5cards_user_name">{{service.serviceType}}</p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					
 						<!-- items -->
 				</div>
+				 <div class="card-footer">
+					 <Page :current="1" :total="allService.total" @on-change="getResults" :page-size="8"/>
+					  <!-- <Page :total="allService.total" prev-text="Previous" next-text="Next" /> -->
+					 <!-- <Page :total="allService.last_page" show-total /> -->
+				<!-- <pagination :data="allService" @pagination-change-page="getResults" class="page2"> 
+
+				</pagination> -->
+				
+				</div>
+				
+				
 			</div>
 		</div>
 				<!--======== Jobs =========-->
@@ -192,10 +205,11 @@
 export default {
 	data(){
 		return{
-			allService:[],
+			allService:{},
 			alljobs:[],
 			search:'',
 			defaultImg:'img/V90.jpg',
+		
 
 		}
 	},
@@ -219,12 +233,21 @@ export default {
 
 	},
 	methods:{
-	async showdata(){
-				this.$store.dispatch('setFlag',2);
-				this.$store.dispatch('setSearchData',this.search);
-			
+		async showdata(){
+					this.$store.dispatch('setFlag',2);
+					this.$store.dispatch('setSearchData',this.search);
 				
+					
+		},
+		async getResults(page = 1) {
+			 const res = await this.callApi('get','get-all-service?page='+page)
+			 this.allService = res.data;
 		}
 	}
 }
-</script>s
+</script>
+
+<style>
+
+
+</style>

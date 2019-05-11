@@ -24,7 +24,7 @@
                 csrfToken: '{{ csrf_token() }}'
             };
             @if(Auth::check())
-            window.authUser ={!! Auth::user() !!}
+            window.authUser = {!!Auth::user() !!}
             @else
             window.authUser = false
             @endif
@@ -33,5 +33,6 @@
 </body>
 
 <script src="/js/app.js"></script>
+<script src="//unpkg.com/vue-plain-pagination@0.2.1"></script>
 
-</html> 
+</html>

@@ -322,6 +322,7 @@ class UserController extends Controller
     public function updateNotification(Request  $request) {
         return $this->userService->updateNotification($request->all());
     }
+ 
 
 
 }

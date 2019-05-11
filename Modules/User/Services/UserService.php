@@ -29,6 +29,11 @@ class UserService extends Controller {
       return $user;
       // \Log::info($user);
     }
+   //  public function deleteService($id){
+   //     $user = $this->query->deleteService($id);
+   //     return $user;
+   //    // \Log::info($user);
+   //  }
     public function createUser($data){
        $token = sha1(mt_rand(1, 90000) . 'SALT');
        $data['activation_token'] = $token;

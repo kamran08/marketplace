@@ -212,6 +212,20 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="Details_pro_renge _dis_flex _b_color2">
+                                    <i class="fas fa-home"></i>
+
+                                    <p class="Details_pro_renge_name _flex_space">website</p>
+
+                                    <div class="boi_text_div _w_100">
+                                        <div class="Pro_details">
+                                            <p v-if="isEdit" class="boi_text _text_overflow">
+                                                <input type="text" v-model="edituserInfo.website">
+                                            </p>
+                                            <p  v-if="!isEdit" class="boi_text _text_overflow">{{userInfo.website}}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="Details_pro_renge _dis_flex _b_color2 _text_center justify-content-center" v-if="isEdit"> 
