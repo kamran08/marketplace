@@ -141,20 +141,54 @@
 				<h2 class="_title _text_center">FEATURED MICRO JOBS</h2>
 
 				<div class="row Engine_row">
-					
-				
 						<!-- items -->
-						
-						<p class="k_p">Ms4. Co is a fast rising marketplace for Beauty and Healthcare enthusiast in London. Our online platform allows independent, individual and groups of beauty and healthcare experts who offer mobile services to: list, advertise, promotes and ultimately access bookings from interested clients in your local area.  In a bid to help your business grow, Ms4 offers you the opportunity to promote your services and connect with prospective clients for FREE.	</p>
-						<p class="k_p">We at Ms4.co are committed to exposing your services to a large number of interested clients by building your online reputation in the beauty and healthcare industry.</p>
-						<p class="k_p">Clients will be able to explore a community of talented beauty and healthcare experts to find the right professional for all your healthcare and beauty needs. Our main goal is to give you and exceptional, online booking experience to save you the stress of going to the spa.</p>
-						<p class="k_p">It doesn’t matter whether your busy schedule does not avail you the opportunity to visit a spa or beauty parlour. On Ms4.co, you can have the luxury of booking a healthcare specialist who’s ready to come to your home, hotel or office.</p>
-						<p class="k_p">What’s more, you’ll find everything you need on the site. Get in touch with our beauty experts today – enjoy the affordable services that are on offer for you.</p>
+					<div class="col-12 col-md-4 Engine_main _dis_flex">
+						<div class="Engine_icons">
+							<i class="fas fa-shopping-basket _color"></i>
+						</div>
+
+						<div class="Engine_text">
+							<h3 class="Engine_title">Get stuff done</h3>
+
+							<p class="Engine_status">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+						</div>
+					</div>
+						<!-- items -->
+
+						<!-- items -->
+					<div class="col-12 col-md-4 Engine_main _dis_flex">
+						<div class="Engine_icons _color">
+							<i class="fas fa-shopping-basket _color"></i>
+						</div>
+
+						<div class="Engine_text">
+							<h3 class="Engine_title">Get stuff done</h3>
+
+							<p class="Engine_status">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+						</div>
+					</div>
+						<!-- items -->
+
+						<!-- items -->
+					<div class="col-12 col-md-4 Engine_main _dis_flex">
+						<div class="Engine_icons _color">
+							<i class="fas fa-shopping-basket _color"></i>
+						</div>
+
+						<div class="Engine_text">
+							<h3 class="Engine_title">Get stuff done</h3>
+
+							<p class="Engine_status">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+						</div>
+					</div>
 						<!-- items -->
 				</div>
 
 				<div class="_dis_flex _see_all _color">
-					<p class="_see_all_text _color" @click="$router.push('/marketplace')">SEE ALL CATEGORIES</p>
+					<p class="_see_all_text _color">SEE ALL CATEGORIES</p>
 
 					<i class="fas fa-chevron-right _color"></i>
 				</div>

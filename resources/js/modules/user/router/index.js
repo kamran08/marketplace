@@ -24,6 +24,7 @@ import bprofile from '../pages/buyer/profile.vue';
 import details from '../pages/details.vue';
 import terms from '../pages/terms.vue';
 import about from '../pages/about.vue';
+import faq from '../pages/faq.vue';
 import notification from '../pages/notification.vue';
 
 
@@ -70,6 +71,18 @@ const routes = [
             guest: true,
             allowedUserType: ['All'],
             title: 'This is a test page',
+        }
+
+    },
+    {
+        path: '/faq',
+        name: 'faq',
+        component: faq,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'faq',
         }
 
     },

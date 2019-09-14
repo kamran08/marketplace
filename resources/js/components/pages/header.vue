@@ -18,7 +18,7 @@
 							<li> <router-link :to="{ path: '/'}">Home</router-link></li>
 							<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
 							<li> <router-link :to="{ path: '/contact'}">Contact Us</router-link></li>
-							<li><router-link :to="{ name: 'about'}">FAQ</router-link></li>
+							<li><router-link :to="{ name: 'faq'}">FAQ</router-link></li>
 							<li><router-link :to="{ name: 'login'}"> Sign in </router-link></li>
 							<li class="_1menu_sign_ul_or">or</li>
 							<li><router-link :to="{ name: 'register'}">Join Us</router-link></li>

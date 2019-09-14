@@ -22,6 +22,7 @@
     "dependencies": {
         "iview": "^3.2.2",
         "laravel-vue-pagination": "^2.3.0",
+        "node-sass": "^4.12.0",
         "vue-plain-pagination": "^0.3.0",
         "vue-router": "^3.0.2",
         "vuejs-paginate": "^2.1.0",
