@@ -31,6 +31,7 @@ class ContractController extends Controller
 
     public function contractMessage(Request $request)
     {
+        
         \Log::info($request);
     }
 
