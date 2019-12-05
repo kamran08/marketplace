@@ -35,9 +35,22 @@ import getEmail from '../pages/Auth/getEmail.vue';
 import passwordreset from '../pages/Auth/passwordreset.vue';
 import contract from '../pages/contract.vue';
 import activated from '../pages/activated.vue';
+import look from '../pages/look.vue';
 
 const routes = [
 
+    {
+        path: '/look',
+        name: 'look',
+        component: look,
+
+        meta: {
+            guest: true,
+            allowedUserType: ['All'],
+            title: 'look',
+        }
+
+    },
     {
         path: '/editJobDescription/:id',
         name: 'editJobDescription',

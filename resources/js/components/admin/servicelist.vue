@@ -31,6 +31,8 @@
                                 <td>{{(item.isComplete == 0)? "No" : "Yes"}}</td>
                                 <td>{{item.nextStep-1}}</td>
                                 <td>
+                                    <button v-if="item.isFeatured==0" class="table_button" type="button" @click="updateServiceFeatured(item)">Make It Featured</button>
+                                    <button v-if="item.isFeatured==1" class="table_button" type="button" @click="updateServiceFeatured(item)">Make It Unfeatured</button>
                                     <button v-if="item.isApproved==0" class="table_button" type="button" @click="updateService(index)">Approve</button>
                                     <router-link :to="`/admin/editJobDescription/${item.id}`"><button  class="table_button_green" type="button" >Edit</button></router-link>
                                     <button class="table_button_red" type="button" @click="deleteService(index)">Delete</button>
@@ -156,7 +158,23 @@ export default {
             else{
                 this.swr();
             }
-        }
+        },
+        async updateServiceFeatured(item,index){
+            item.isFeatured = !item.isFeatured
+            let data={
+                isFeatured:item.isFeatured,
+                id:item.id
+            }
+            
+            const res = await this.callApi('post',"updateService",data)
+            if(res.status==200){
+                this.i("Service has been  Updated!")
+                // this.list.splice(index,1);
+            }
+            else{
+                this.swr();
+            }
+        },
     },
     created(){
         this.getServiceList();

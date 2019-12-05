@@ -9,6 +9,7 @@ import newbookinglist from './components/admin/newbookinglist.vue';
 import bookinglist from './components/admin/bookinglist.vue';
 import completedList from './components/admin/completedList.vue';
 import canclebookinglist from './components/admin/canclebookinglist.vue';
+import location from './components/admin/location.vue';
 
 
 // Job Insert Components
@@ -40,6 +41,16 @@ const defaultroutes = [
     //         allowedUserType: ['All']
     //     }
     // },
+    {
+        path: '/admin/location',
+        name: 'location',
+        title: 'location',
+        component: location,
+        meta: {
+            guest : true,
+            allowedUserType: ['All']
+        }
+    },
     {
         path: '/admin/editJobDescription/:id',
         name: 'editJobDescription',

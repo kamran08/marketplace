@@ -73,6 +73,10 @@ class UserService extends Controller {
 
       // \Log::info($user);
     }
+    public function getAllFeaturedService(){
+       $service = $this->query->getAllFeaturedService();
+       return $service;
+    }
     public function getInfoBySearch($key){
        $service = $this->query->getInfoBySearch($key);
        return $service;
@@ -81,7 +85,8 @@ class UserService extends Controller {
     public function getInfoBySearchCatagory($request){
        $str = $request->str;
        $cat = $request->cat;
-       return $this->query->getInfoBySearchCatagory($cat, $str);
+       $loc = $request->loc;
+       return $this->query->getInfoBySearchCatagory($cat, $str,$loc);
        
    }
     public function getallcatgory(){

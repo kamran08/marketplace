@@ -43,10 +43,18 @@ class UserQuery {
       
       $temp = Service::all();
       if(sizeof($temp)<8){
-      return  Service::with('image', 'user', 'tag', 'extra', 'category', 'alltime', 'avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->get();
+      return  Service::where('isApproved',1)->with('image', 'user', 'tag', 'extra', 'category', 'alltime', 'avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->get();
       }
      //   
-        $service = Service::with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->paginate(8);  
+        $service = Service::where('isApproved',1)->with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->paginate(9);  
+        return $service;
+    }
+    public function getAllFeaturedService(){
+      $temp = Service::all();
+      if(sizeof($temp)<8){
+      return  Service::where('isFeatured',1)->where('isApproved',1)->with('image', 'user', 'tag', 'extra', 'category', 'alltime', 'avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->get();
+      }
+        $service = Service::where('isFeatured',1)->where('isApproved',1)->with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews')->orderBy('created_at', 'desc')->paginate(9);  
         return $service;
     }
     public function getInfoBySearch($key=''){
@@ -57,16 +65,24 @@ class UserQuery {
 
         return $service;
     }
-    public function getInfoBySearchCatagory($id, $str){
+    public function getInfoBySearchCatagory($id, $str,$loc){
       $qurey = Service::with('image','user','tag','extra','category','alltime','avgreview')->withCount('reviews');
       if($id){
+        
         $qurey->where('cat_id', $id);      
       }
       if($str){
         $qurey->where('title', 'like', '%' . $str . '%');      
       }
+      if($loc){
+        if($loc=='all'){}
+          else{
+
+            $qurey->where('location_id', $loc);      
+          }
+      }
       // return $qurey->get();
-      return $qurey->paginate(6);
+      return $qurey->paginate(12);
      
     }
     public function getallcatgory(){
@@ -258,7 +274,7 @@ class UserQuery {
     return User::where('id',$data)->with('avgreview')->withCount('reviews')->first();
     }
    public function getCancleList($data,$date,$type){
-    return Booking::where([["$type",$data],['bookingDate',$date],['status',3]])->with('buyerInfo','sellerInfo','service','service.image')->get();
+    return Booking::where([["$type",$data],['bookingDate',$date],['status',3]])->with('buyerInfo','sellerInfo','service','service.image')->orderBy('created_at', 'desc')->get();
     }
    public function updateStatus($data){
     return Booking::where('id',$data['id'])->update($data);

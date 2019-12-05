@@ -22,6 +22,7 @@ Route::get('app/sub-category', 'UserController@getAllSubcat');
 
 
 Route::get('/app/get-all-service', 'UserController@getAllService');
+Route::get('/app/get-all-featured-service', 'UserController@getAllFeaturedService');
 Route::get( '/app/get-all-info-by-search/{key}', 'UserController@getInfoBySearch');
 Route::get( '/app/get-courrent-step/{key}', 'UserController@getCurrentStep');
 
@@ -130,6 +131,15 @@ Route::put('app/updateNotification', 'UserController@updateNotification');
 // UserUpdate
 Route::post('app/updateUserSettings','UserController@updateUserSettings');
 Route::post('app/contractMessage','ContractController@contractMessage');
+
+
+// Location 
+Route::get('app/location','UserController@indexlocation');
+Route::post('app/location','UserController@createlocation');
+Route::put('app/location','UserController@updatelocation');
+Route::delete('app/location','UserController@deletelocation');
+
+
 
 
 Route::get('/logout', function () {

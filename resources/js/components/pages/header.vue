@@ -1,48 +1,43 @@
 <template>
 	<div>
-		<div class="_1menu _1flex">
-				<div class="_1menu_logo" @click="$router.push('/')">
-					<img class="_1menu_logo_pic" src="/img/logo.png" title="" alt="">
-				</div>
+		<div class="_1menu">
+			<header>
+					<div class="container">
+						<div class="main_header_area">
+							<div class="logo" @click="$router.push('/')">
+								<img class="_1menu_logo_pic" src="/img/logo.png" title="" alt="">
+							</div>
 
-				<div class="_1menu_search _1flex">
-					<i class="fas fa-search"></i>
-					<div class="_1menu_input _1flex_space">
-						<Input class="_1menu_input_int" placeholder="Search" v-model="search" type="text" name="fname" @on-enter="$router.push(`/marketplace?cat=&str=${search}`)"></Input>
-					</div>
-				</div>
 
-				<div class="_1menu_sign _1flex_space">
-					<div v-if="!this.authInfo">
-						<ul class="_1menu_sign_ul">
-							<li> <router-link :to="{ path: '/'}">Home</router-link></li>
-							<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
-							<li> <router-link :to="{ path: '/contact'}">Contact Us</router-link></li>
-							<li><router-link :to="{ name: 'faq'}">FAQ</router-link></li>
-							<li><router-link :to="{ name: 'login'}"> Sign in </router-link></li>
-							<li class="_1menu_sign_ul_or">or</li>
-							<li><router-link :to="{ name: 'register'}">Join Us</router-link></li>
+							<div  class="menu_log" v-if="!this.authInfo">
+								<ul class="menu_log_link">
+									<li> <router-link :to="{ path: '/'}">Home</router-link></li>
+									<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
+									<li> <router-link :to="{ path: '/contact'}">Contact Us</router-link></li>
+									<li><router-link :to="{ name: 'faq'}">FAQ</router-link></li>
+									<li><router-link :to="{ name: 'login'}"> Sign in </router-link></li>
+									<li class="_1menu_sign_ul_or">or</li>
+									<li><router-link :to="{ name: 'register'}">Join Us</router-link></li>
+									
+								</ul>
+							</div>
+
+							<div class="menu_log"  v-if="this.authInfo">
+								<ul class="menu_log_link">
+									<li> <router-link :to="{ path: '/'}">HOME</router-link></li>
+									<li v-if="authInfo.userType==1"> <router-link :to="{ path: '/jobDescription'}">POST SERVICE</router-link></li>
+									<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
 							
-						</ul>
-					</div>
-				
-				<div v-if="this.authInfo" >
-						<ul class="_2menu_main_ul_list_ul">
-							<li> <router-link :to="{ path: '/'}">HOME</router-link></li>
-							<li v-if="authInfo.userType==1"> <router-link :to="{ path: '/jobDescription'}">POST SERVICE</router-link></li>
-								<li><router-link :to="{ path: '/marketplace'}">MARKETPLACE</router-link></li>
-							
-								<li> <router-link :to="{ path: '/contact'}">Contact Us</router-link></li>
-							<!-- <li> <router-link :to="{ name: 'order'}">ORDER</router-link></li> -->
-							<!-- <li v-if="authInfo.userType==1" > <router-link :to="{ name: 'sprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li>
-							<li v-if="authInfo.userType==2" > <router-link :to="{ name: 'bprofile', params: { id : authInfo.id}}">{{authInfo.name}}</router-link></li> -->
-							<li v-if="authInfo.userType==4" class="uper"><a href="/system_admin">{{authInfo.name}}(Dashboard)</a></li>
-							<li><a href="/logout" >LOGOUT</a></li>
-							<li v-if="authInfo" >
-									<div class="_2menu_mess" >
+									<li> <router-link :to="{ path: '/contact'}">Contact Us</router-link></li>
+									<li v-if="authInfo.userType==4" class="uper"><a href="/system_admin">{{authInfo.name}}(Dashboard)</a></li>
+									<li><a href="/logout" >LOGOUT</a></li>
+
+									<!-- Notification -->
+									<li v-if="authInfo" >
+										<div class="_2menu_mess" >
 											<div @click="openNoti">
-											<i class="fas fa-bell" ></i>
-											<div v-if="noficationCount>0" class="_2menu_mess_num _bg" >{{noficationCount}}</div>
+												<i class="fas fa-bell" ></i>
+												<div v-if="noficationCount>0" class="_2menu_mess_num _bg" >{{noficationCount}}</div>
 											</div>
 											<div class="not_list" v-if="open">
 												<div class="noti_all">
@@ -63,42 +58,43 @@
 														</div>
 															<!-- ITEMS -->
 													</div>
-													<router-link :to="{name:'notification'}" ><p class="noti_more">
-														See More
-													</p></router-link>
-													
+													<router-link :to="{name:'notification'}" >
+														<p class="noti_more">See More</p>
+													</router-link>
 												</div>
 											</div>
-									</div>
-							</li>
-							
-							<!-- <li v-if="authInfo" >
-									<div class="_2menu_mess ">
-											<i class="fas fa-envelope"></i>
-											<div class="_2menu_mess_num _bg">4</div>
-									</div>
-							</li> -->
-							<!--  messanger ok  -->
+										</div>
+									</li>
+									<!--  messanger ok  -->
 									<li v-if="authInfo" >
-									<div class="_2menu_mess" >
+										<div class="_2menu_mess" >
 											<div >
 												<router-link :to="{ name: 'messanger'}">
 													<i class="fas fa-envelope" ></i>
 													<div v-if="msgNoficationData.length>0" class="_2menu_mess_num _bg" >{{msgNoficationData.length}}</div>
 												</router-link>
 											</div>
-									</div>
-							</li>
-							<!-- massanger -->
-							<li v-if="authInfo">
-									<div class="_2menu_profile" @click="$router.push(`/${profileLink}/${authInfo.id}`)">
+										</div>
+									</li>
+									<!-- massanger -->
+									<li v-if="authInfo">
+										<div class="_2menu_profile" @click="$router.push(`/${profileLink}/${authInfo.id}`)">
 											<img class="_2menu_profile_pic" :src="(authInfo.image)? authInfo.image: defultImage" alt="" title="">
 											<div class="_2menu_profile_on _2menu_profile_active"></div>
-									</div>
-							</li>
-						</ul>
-				</div>
-				</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<nav class="main_menu">
+							<ul class="nav_link">
+								<!-- <li v-for="(job,i) in alljobs" :key="i">
+								<router-link :to="`/marketplace?cat=${job.id}`">{{job.catName}}</router-link></li> -->
+							</ul>
+						</nav>
+					</div>
+				</header>
 
 				<div class="moile_button _flex_space" @click="leftMain='0px'">
 					<i class="fas fa-list-ul"></i>
@@ -177,17 +173,18 @@
 				<!--==========================
 							Big Menu
 				===========================-->
-			<div class="_1big_menu" >
+			<!-- <div class="_1big_menu" >
 				<ul class="_1big_menu_ul">
-					<li v-for="(job,i) in alljobs" :key="i" @click="$router.push(`/marketplace?cat=${job.id}`)">{{job.catName}}</li>
+					<li v-for="(job,i) in alljobs" :key="i" @click="$router.push(`/marketplace?cat=${job.id}`)">{{job.catName}} amar shunar bangla</li>
 				</ul>
-			</div>
+			</div> -->
 	</div>
 </template>
 <script>
 export default {
 		data(){
 			return{
+				allPage:{},
 				alljobs:[],
 				allnoti:[],
 				visible: false,
@@ -224,6 +221,7 @@ export default {
 		}
 	},
 	methods:{
+	
 		handleOpen () {psprofile
 		if(this.visible==false)
 		this.visible = true;

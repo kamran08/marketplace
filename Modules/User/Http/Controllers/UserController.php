@@ -2,6 +2,7 @@
 
 namespace Modules\User\Http\Controllers;
 use App\User;
+use App\Location;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -130,6 +131,9 @@ class UserController extends Controller
     }
     public function getAllService(){
         return $this->userService->getAllService();
+    }
+    public function getAllFeaturedService(){
+        return $this->userService->getAllFeaturedService();
     }
     public function getInfoBySearch($key){
 
@@ -322,6 +326,29 @@ class UserController extends Controller
     public function updateNotification(Request  $request) {
         return $this->userService->updateNotification($request->all());
     }
+
+
+
+    // location 
+    
+
+    public function indexlocation() {
+        return Location::all();
+    }
+    public function createlocation(Request  $request) {
+        return Location::create($request->all());
+    }
+    public function updatelocation(Request  $request) {
+        $data = $request->all();
+        return Location::where('id',$data['id'])->update($data);
+        // ->delete();
+    }
+    public function deletelocation(Request  $request) {
+        $data = $request->all();
+        return Location::where('id',$data['id'])->delete();
+    }
+
+  
  
 
 

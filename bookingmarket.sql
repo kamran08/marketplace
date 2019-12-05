@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3300
--- Generation Time: May 09, 2019 at 05:01 AM
--- Server version: 5.7.19
--- PHP Version: 7.1.20
+-- Host: 127.0.0.1
+-- Generation Time: Dec 05, 2019 at 10:10 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -38,7 +38,7 @@ CREATE TABLE `bookings` (
   `extraService` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `bookingTime` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `bookingDate` date NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '0',
+  `status` int(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -48,10 +48,34 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `buyer_id`, `seller_id`, `service_id`, `totalPrice`, `extraPrice`, `extraService`, `bookingTime`, `bookingDate`, `status`, `created_at`, `updated_at`) VALUES
-(52, 11, 10, 21, 20, 0, '[]', '(12:00 AM - 12:10 AM)', '2019-04-15', 2, '2019-04-11 04:18:45', '2019-04-11 04:19:41'),
-(53, 11, 10, 21, 20, 0, '[]', '(12:10 AM - 12:20 AM)', '2019-04-15', 3, '2019-04-11 04:20:56', '2019-04-11 04:21:20'),
-(54, 11, 10, 21, 20, 0, '[]', '(12:20 AM - 12:30 AM)', '2019-04-15', 3, '2019-04-11 04:21:55', '2019-04-11 04:22:44'),
-(55, 11, 2, 1, 30, 0, '[]', '(12:00 AM - 12:20 AM)', '2019-04-24', 1, '2019-04-14 09:18:35', '2019-04-16 15:19:05');
+(1, 1, 1, 1, 1000, 500, '[]', '(12:40 AM - 01:00 AM)', '2019-03-11', 3, '2019-03-10 11:02:32', '2019-03-11 23:54:54'),
+(2, 2, 1, 1, 1100, 600, '[{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(01:00 AM - 01:20 AM)', '2019-03-11', 2, '2019-03-10 11:04:19', '2019-03-21 04:30:18'),
+(3, 2, 1, 1, 1400, 900, '[{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(02:20 AM - 02:40 AM)', '2019-03-11', 3, '2019-03-10 11:04:46', '2019-03-21 04:30:45'),
+(4, 1, 2, 1, 1900, 1400, '[{\"id\":1,\"service_id\":1,\"serviceName\":\"Service 1.2\",\"servicePrice\":\"500.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '10:00 - 10:30', '2019-03-11', 3, '2019-03-11 01:14:58', '2019-03-29 16:16:58'),
+(5, 1, 2, 1, 500, 0, '[]', '(04:00 AM - 04:20 AM)', '2019-03-11', 1, '2019-03-11 02:52:52', '2019-03-21 03:55:17'),
+(6, 3, 2, 2, 2, 0, '\"\\\"[]\\\"\"', '(12:40 AM - 01:00 AM)', '2019-03-12', 3, '2019-03-12 05:31:35', '2019-03-12 08:36:45'),
+(7, 5, 2, 2, 2, 0, '[{\"id\":1,\"service_id\":1,\"serviceName\":\"Service 1.2\",\"servicePrice\":\"500.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":2,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"300.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":3,\"service_id\":2,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"600.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(01:20 AM - 01:40 AM)', '2019-03-12', 3, '2019-03-12 05:31:50', '2019-03-12 08:38:21'),
+(8, 5, 2, 2, 2, 0, '\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"[]\\\\\\\\\\\\\\\"\\\\\\\"\\\"\"', '(02:40 AM - 03:00 AM)', '2019-03-12', 3, '2019-03-12 05:32:18', '2019-03-12 07:02:15'),
+(9, 5, 2, 2, 2, 0, '[]', '(01:00 AM - 01:20 AM)', '2019-03-18', 1, '2019-03-12 05:55:15', '2019-03-16 22:39:23'),
+(10, 5, 4, 3, 30, 0, '[]', '(01:30 AM - 02:00 AM)', '2019-03-16', 1, '2019-03-15 12:06:23', '2019-03-15 13:17:21'),
+(11, 5, 4, 3, 30, 0, '[]', '(02:30 AM - 03:00 AM)', '2019-03-16', 1, '2019-03-15 12:06:45', '2019-03-15 12:39:27'),
+(12, 5, 4, 3, 30, 0, '[]', '(01:20 AM - 01:40 AM)', '2019-03-18', 2, '2019-03-15 12:07:03', '2019-03-15 12:07:03'),
+(13, 5, 2, 2, 2, 0, '[]', '(12:40 AM - 01:00 AM)', '2019-03-18', 2, '2019-03-15 12:09:48', '2019-03-16 05:36:49'),
+(14, 5, 4, 3, 30, 0, '[]', '(02:00 AM - 02:30 AM)', '2019-03-16', 1, '2019-03-15 12:10:02', '2019-03-16 05:34:50'),
+(15, 5, 4, 3, 30, 0, '[]', '(03:00 AM - 03:30 AM)', '2019-03-16', 3, '2019-03-15 12:10:06', '2019-03-15 12:10:06'),
+(16, 2, 4, 6, 89, 56, '[{\"id\":37,\"service_id\":6,\"serviceName\":\"gfhhgfgh\",\"servicePrice\":\"56.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(01:20 AM - 01:40 AM)', '2019-03-18', 0, '2019-03-17 15:39:21', '2019-03-17 15:39:21'),
+(17, 1, 2, 1, 170, 140, '[{\"id\":33,\"service_id\":1,\"serviceName\":\"Service 1.2\",\"servicePrice\":\"50.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":34,\"service_id\":1,\"serviceName\":\"Service 1.3\",\"servicePrice\":\"30.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true},{\"id\":35,\"service_id\":1,\"serviceName\":\"Service 1.4\",\"servicePrice\":\"60.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(12:00 AM - 12:20 AM)', '2019-03-18', 1, '2019-03-17 15:53:06', '2019-03-21 03:55:40'),
+(18, 2, 1, 1, 30, 0, '[]', '(12:20 AM - 12:40 AM)', '2019-03-18', 0, '2019-03-17 16:05:31', '2019-03-17 16:05:31'),
+(19, 2, 1, 1, 30, 0, '[]', '(12:20 AM - 12:40 AM)', '2019-03-21', 0, '2019-03-21 05:17:27', '2019-03-21 05:17:27'),
+(20, 3, 4, 7, 10, 0, '[]', '(04:20 AM - 04:40 AM)', '2019-03-25', 2, '2019-03-24 01:39:04', '2019-03-24 04:44:48'),
+(21, 3, 4, 7, 10, 0, '[]', '(07:20 AM - 07:40 AM)', '2019-03-25', 3, '2019-03-24 01:39:16', '2019-03-24 04:45:14'),
+(22, 3, 2, 4, 0, 0, '[]', '(12:20 AM - 12:40 AM)', '2019-04-01', 3, '2019-03-29 13:26:29', '2019-03-29 14:52:49'),
+(23, 3, 2, 4, 0, 0, '[]', '(12:40 AM - 01:00 AM)', '2019-04-01', 2, '2019-03-29 13:26:36', '2019-03-29 14:52:50'),
+(24, 3, 2, 1, 30, 0, '[]', '(12:40 AM - 01:00 AM)', '2019-04-01', 1, '2019-03-29 16:16:24', '2019-03-29 16:20:42'),
+(25, 3, 2, 1, 30, 0, '[]', '(01:40 AM - 02:00 AM)', '2019-04-01', 1, '2019-03-29 16:16:31', '2019-03-29 16:58:36'),
+(26, 3, 2, 8, 60, 20, '[{\"id\":38,\"service_id\":8,\"serviceName\":\"ex1\",\"servicePrice\":\"20.00\",\"created_at\":null,\"updated_at\":null,\"staus\":true}]', '(03:00 AM - 03:20 AM)', '2019-04-01', 0, '2019-03-29 19:12:09', '2019-03-29 19:12:09'),
+(27, 4, 4, 3, 30, 0, '[]', '(01:00 AM - 01:20 AM)', '2019-09-26', 0, '2019-09-26 05:39:30', '2019-09-26 05:39:30'),
+(28, 4, 4, 3, 30, 0, '[]', '(12:40 AM - 01:00 AM)', '2019-09-26', 0, '2019-09-26 05:39:35', '2019-09-26 05:39:35');
 
 -- --------------------------------------------------------
 
@@ -95,8 +119,8 @@ CREATE TABLE `chats` (
   `con_id` int(10) UNSIGNED NOT NULL,
   `msg` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `file` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL DEFAULT '0',
-  `seen` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  `seen` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -180,9 +204,13 @@ INSERT INTO `chats` (`id`, `msg_sender`, `con_id`, `msg`, `file`, `deleted`, `se
 (72, 2, 5, 'uijhi', NULL, 0, 0, '2019-03-29 12:51:10', '2019-03-29 12:51:21'),
 (73, 3, 5, 'kkkkk', NULL, 0, 0, '2019-03-29 12:51:29', '2019-03-29 12:51:33'),
 (74, 3, 5, 'Hello I have contacted a msg', NULL, 0, 0, '2019-03-29 13:26:52', '2019-03-29 15:09:38'),
-(75, 2, 8, 'xzzc', NULL, 0, 2, '2019-04-09 08:46:23', '2019-04-09 08:46:23'),
-(76, 11, 9, 'hi, how are you', NULL, 0, 0, '2019-04-10 08:27:16', '2019-04-10 08:27:55'),
-(77, 10, 9, 'fine you?', NULL, 0, 0, '2019-04-10 08:28:01', '2019-04-10 08:28:51');
+(75, 2, 5, 'hello', NULL, 0, 0, '2019-09-15 05:40:14', '2019-09-15 05:41:05'),
+(76, 3, 5, 'hello', NULL, 0, 0, '2019-09-15 05:41:16', '2019-09-15 05:41:16'),
+(77, 2, 5, 'dfasd', NULL, 0, 0, '2019-09-15 05:41:31', '2019-09-15 05:41:34'),
+(78, 2, 5, 'oyhiu', NULL, 0, 0, '2019-09-15 05:41:35', '2019-09-15 05:41:39'),
+(79, 3, 5, 'look', NULL, 0, 0, '2019-09-15 05:41:53', '2019-09-15 05:41:56'),
+(80, 4, 6, '€xc€z', NULL, 0, 3, '2019-09-26 08:42:02', '2019-09-26 08:42:02'),
+(81, 4, 6, 'dfasdfas', NULL, 0, 3, '2019-09-26 08:42:10', '2019-09-26 08:42:10');
 
 -- --------------------------------------------------------
 
@@ -194,9 +222,9 @@ CREATE TABLE `conversations` (
   `id` int(10) UNSIGNED NOT NULL,
   `sender` int(10) UNSIGNED NOT NULL,
   `reciever` int(10) UNSIGNED NOT NULL,
-  `status` mediumint(8) UNSIGNED NOT NULL DEFAULT '0',
-  `type` mediumint(8) UNSIGNED NOT NULL DEFAULT '1',
-  `conType` mediumint(8) UNSIGNED NOT NULL DEFAULT '1',
+  `status` mediumint(8) UNSIGNED NOT NULL DEFAULT 0,
+  `type` mediumint(8) UNSIGNED NOT NULL DEFAULT 1,
+  `conType` mediumint(8) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -210,9 +238,7 @@ INSERT INTO `conversations` (`id`, `sender`, `reciever`, `status`, `type`, `conT
 (4, 3, 1, 0, 1, 1, NULL, NULL),
 (5, 3, 2, 0, 1, 1, NULL, NULL),
 (6, 3, 4, 0, 1, 1, NULL, NULL),
-(7, 1, 4, 0, 1, 1, '2019-03-29 09:57:19', '2019-03-29 09:57:19'),
-(8, 2, 2, 0, 1, 1, '2019-04-09 08:46:23', '2019-04-09 08:46:23'),
-(9, 11, 10, 0, 1, 1, '2019-04-10 08:27:16', '2019-04-10 08:27:16');
+(7, 1, 4, 0, 1, 1, '2019-03-29 09:57:19', '2019-03-29 09:57:19');
 
 -- --------------------------------------------------------
 
@@ -242,8 +268,7 @@ INSERT INTO `extras` (`id`, `service_id`, `serviceName`, `servicePrice`, `create
 (36, 5, 'ss', '2.00', NULL, NULL),
 (37, 6, 'gfhhgfgh', '56.00', NULL, NULL),
 (38, 8, 'ex1', '20.00', NULL, NULL),
-(39, 9, 'awd', '23.00', NULL, NULL),
-(40, 19, 'massage', '20.00', NULL, NULL);
+(39, 9, 'awd', '23.00', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -280,16 +305,30 @@ INSERT INTO `images` (`id`, `service_id`, `imageUrl`, `created_at`, `updated_at`
 (15, 9, '/uploads/4wlRrFl3q1znR3gBT91jTfeNuxIVdA9Gif5xvoOg.png', NULL, NULL),
 (16, 10, '/uploads/zKnKmKeValfG5FpVYYz3o7edjvE0QbMFsejAHIBq.jpeg', NULL, NULL),
 (17, 11, '/uploads/FUXKuJ7eCtvymYG98OwlWkJh5U53em8OTzvY0M2Z.jpeg', NULL, NULL),
-(18, 12, '/uploads/6tgQncvnonWz4J9OglhSm9TDyEJt6FllU8kROFSX.png', NULL, NULL),
-(19, 13, '/uploads/jRoEz034udzRHmJodCX0TSJNblnUjGQQmDuLuSVR.png', NULL, NULL),
-(20, 14, '/uploads/0kBx2eymb91azF3lHgqzSxZ9LCwAaNmdZ7IdFfce.png', NULL, NULL),
-(21, 15, '/uploads/TvnZmqVQVeys0OtY1xEpEYW0nLHsb02ujnorev7V.png', NULL, NULL),
-(22, 16, '/uploads/zobHxPC6UoY4blNUVhkitBSR6uWJOktqSdi34Wss.png', NULL, NULL),
-(23, 17, '/uploads/9yI19vmLlYtJgp9pdXGN6fF2mAZHnzAyHjs2Vq03.png', NULL, NULL),
-(24, 18, '/uploads/RzePd38snxeObqjOozXoRCCT8csl0NBpmfqwLEsY.png', NULL, NULL),
-(25, 19, '/uploads/PJu9Q2X3DKPYtwwAmBWWCeLaD3qHPQlTbbLppDcO.png', NULL, NULL),
-(26, 20, '/uploads/2A4RJKXDx30xJIg4A8u98XIMyop6XLaIL4RHU7sm.png', NULL, NULL),
-(27, 21, '/uploads/kDwtyQDQHJptwnQOlDW9klKu4cp8D3NlsTxfqKTx.png', NULL, NULL);
+(18, 12, '/uploads/6tgQncvnonWz4J9OglhSm9TDyEJt6FllU8kROFSX.png', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locations`
+--
+
+CREATE TABLE `locations` (
+  `id` int(11) NOT NULL,
+  `location` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `locations`
+--
+
+INSERT INTO `locations` (`id`, `location`, `created_at`, `updated_at`) VALUES
+(1, 'chitogong wow', NULL, '2019-09-23 07:26:16'),
+(2, 'dhaka', NULL, NULL),
+(4, 'dsfas', NULL, NULL),
+(5, 'afsd', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -336,7 +375,7 @@ CREATE TABLE `notifications` (
   `notifrom` int(11) NOT NULL,
   `notitxt` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `url` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `seen` tinyint(1) NOT NULL DEFAULT '1',
+  `seen` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -346,24 +385,10 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `notifor`, `notifrom`, `notitxt`, `url`, `seen`, `created_at`, `updated_at`) VALUES
-(129, 10, 11, 'booked your Service', '/sprofile/10?tab=2', 0, '2019-04-11 04:02:01', '2019-04-11 04:02:22'),
-(130, 11, 10, 'approved your booking', '/bprofile/11?tab=3', 0, '2019-04-11 04:02:35', '2019-04-11 04:02:57'),
-(131, 10, 11, 'marked your service completed', '/sprofile/10?tab=4', 0, '2019-04-11 04:04:20', '2019-04-11 04:04:36'),
-(132, 11, 10, 'a review send by seller for you', '/bprofile/11?tab=6', 0, '2019-04-11 04:04:48', '2019-04-11 04:06:11'),
-(133, 10, 11, 'Buyer send a review on this service', '/sprofile/10?tab=3', 0, '2019-04-11 04:16:38', '2019-04-11 04:19:17'),
-(134, 10, 11, 'a review on your Service', '/sprofile/10?tab=6', 0, '2019-04-11 04:16:42', '2019-04-11 04:16:49'),
-(135, 10, 11, 'booked your Service', '/sprofile/10?tab=2', 0, '2019-04-11 04:18:45', '2019-04-11 04:19:13'),
-(136, 11, 10, 'approved your booking', '/bprofile/11?tab=3', 0, '2019-04-11 04:19:04', '2019-04-11 04:19:35'),
-(137, 10, 11, 'marked your service completed', '/sprofile/10?tab=4', 0, '2019-04-11 04:19:41', '2019-04-11 04:19:59'),
-(138, 10, 11, 'a review on your Service', '/sprofile/10?tab=6', 0, '2019-04-11 04:19:48', '2019-04-11 04:19:56'),
-(139, 11, 10, 'a review send by seller for you', '/bprofile/11?tab=6', 0, '2019-04-11 04:20:07', '2019-04-11 04:20:16'),
-(140, 10, 11, 'booked your Service', '/sprofile/10?tab=2', 0, '2019-04-11 04:20:56', '2019-04-11 04:21:10'),
-(141, 11, 10, 'cancelled your booking', '/bprofile/11?tab=5', 0, '2019-04-11 04:21:20', '2019-04-11 04:21:29'),
-(142, 10, 11, 'booked your Service', '/sprofile/10?tab=2', 0, '2019-04-11 04:21:55', '2019-04-11 04:22:11'),
-(143, 11, 10, 'approved your booking', '/bprofile/11?tab=3', 0, '2019-04-11 04:22:21', '2019-04-11 04:22:40'),
-(144, 10, 11, '11 cancelled your service', '/sprofile/10?tab=5', 0, '2019-04-11 04:22:44', '2019-04-11 04:22:51'),
-(145, 2, 11, 'booked your Service', '/sprofile/2?tab=2', 0, '2019-04-14 09:18:35', '2019-04-16 15:19:00'),
-(146, 11, 2, 'approved your booking', '/bprofile/11?tab=3', 1, '2019-04-16 15:19:05', '2019-04-16 15:19:05');
+(9, 3, 2, 'approved your booking', '/bprofile/3?tab=3', 0, '2019-03-29 16:58:37', '2019-03-29 16:58:45'),
+(10, 2, 3, 'booked your Service', '/sprofile/2?tab=2', 0, '2019-03-29 19:12:09', '2019-03-29 19:20:17'),
+(11, 4, 4, 'booked your Service', '/sprofile/4?tab=2', 0, '2019-09-26 05:39:30', '2019-09-26 07:00:49'),
+(12, 4, 4, 'booked your Service', '/sprofile/4?tab=2', 0, '2019-09-26 05:39:35', '2019-09-26 07:00:38');
 
 -- --------------------------------------------------------
 
@@ -407,7 +432,8 @@ CREATE TABLE `reviewbs` (
 --
 
 INSERT INTO `reviewbs` (`id`, `service_id`, `buyer_id`, `seller_id`, `booking_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
-(12, 21, 11, 10, 52, 3, 'sdfs', '2019-04-11 04:19:48', '2019-04-11 04:19:48');
+(1, 4, 3, 2, 23, 4, 'He is quite good in behavbe', '2019-03-29 20:09:15', '2019-03-29 20:09:15'),
+(2, 5, 3, 2, 23, 4, 'He is quite good in behavbe', '2019-03-29 20:09:15', '2019-03-29 20:09:15');
 
 -- --------------------------------------------------------
 
@@ -432,7 +458,10 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`id`, `service_id`, `buyer_id`, `seller_id`, `booking_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
-(30, 21, 11, 10, 52, 3, 'sdaf', '2019-04-11 04:20:07', '2019-04-11 04:20:07');
+(1, 3, 2, 4, 12, 4, 'This is Nice Service', '2019-03-15 15:09:04', '2019-03-15 15:09:04'),
+(2, 3, 4, 2, 10, 5, 'This is May be Nice Project', '2019-03-15 15:27:32', '2019-03-15 15:27:32'),
+(3, 3, 3, 2, 14, 5, 'This is ReView number 3', '2019-03-15 15:28:18', '2019-03-15 15:28:18'),
+(4, 1, 2, 1, 3, 4, 'dfs', '2019-03-21 04:28:46', '2019-03-21 04:28:46');
 
 -- --------------------------------------------------------
 
@@ -443,15 +472,17 @@ INSERT INTO `reviews` (`id`, `service_id`, `buyer_id`, `seller_id`, `booking_id`
 CREATE TABLE `services` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(11) NOT NULL,
+  `location_id` int(10) UNSIGNED NOT NULL,
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `cat_id` int(11) NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `videoLink` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isFeatured` tinyint(1) NOT NULL DEFAULT 0,
   `openingMassage` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `isComplete` tinyint(1) NOT NULL DEFAULT '0',
-  `nextStep` int(11) NOT NULL DEFAULT '2',
-  `isApproved` tinyint(1) NOT NULL DEFAULT '0',
+  `isComplete` tinyint(1) NOT NULL DEFAULT 0,
+  `nextStep` int(11) NOT NULL DEFAULT 2,
+  `isApproved` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -460,25 +491,18 @@ CREATE TABLE `services` (
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`id`, `user_id`, `title`, `cat_id`, `price`, `videoLink`, `description`, `openingMassage`, `isComplete`, `nextStep`, `isApproved`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Service 1', 1, '30.00', 'https://www.youtube.com/watch?v=3eA3oVc6lF4', 'This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.', 'Opening message of  Service 1', 0, 4, 1, '2019-03-10 06:00:01', '2019-03-16 04:00:08'),
-(3, 4, 'Service Shipu 1', 1, '30.00', 'https://www.youtube.com/watch?v=JXpJAOa_azk', 'This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service .This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service .', 'Hi i am good Service Man', 1, 5, 1, '2019-03-15 11:27:16', '2019-03-16 01:47:05'),
-(4, 2, 'Service Title', 1, '0.00', '.xgvodfmnv', 'jhytghjfggh', 'dfgdfg', 0, 3, 0, '2019-03-17 04:27:10', '2019-03-17 04:47:54'),
-(5, 2, 'KSKLJL;', 2, '20.00', 'dasfjkl', 'sdfah', 'sdaf', 0, 4, 0, '2019-03-17 05:00:14', '2019-03-17 05:00:25'),
-(6, 4, 'ggg', 6, '33.00', '22', 'ygjhghj', '22', 1, 5, 0, '2019-03-17 13:39:57', '2019-03-17 13:40:38'),
-(7, 4, 'test 1', 7, '10.00', 'youtube.com', 'some description', 'nice work', 0, 3, 1, '2019-03-21 04:51:09', '2019-03-21 04:51:34'),
-(8, 2, 'rahi', 2, '40.00', 'youtube.com', 'dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf', 'fine service', 0, 5, 0, '2019-03-21 06:48:46', '2019-03-21 06:50:32'),
-(10, 3, 'sa', 1, '10.00', NULL, 'azdcvzv', NULL, 0, 5, 0, '2019-03-30 13:19:58', '2019-03-30 13:33:42'),
-(11, 3, 'sdf', 1, '10.00', NULL, 'fgfg', NULL, 0, 5, 0, '2019-03-30 13:37:37', '2019-03-30 14:10:36'),
-(12, 4, 'nice', 1, '20.00', NULL, 'nice', NULL, 0, 5, 0, '2019-04-05 21:38:19', '2019-04-05 21:41:10'),
-(13, 2, 'service 10', 1, '100.00', NULL, 'this is awesome', NULL, 0, 4, 0, '2019-04-09 07:44:13', '2019-04-09 07:44:48'),
-(14, 2, 'sdas', 1, '20.00', NULL, 'sadfa', NULL, 0, 5, 0, '2019-04-09 07:45:18', '2019-04-09 07:45:36'),
-(15, 2, 'edited service', 2, '20.00', NULL, 'test', NULL, 0, 5, 0, '2019-04-09 07:49:48', '2019-04-09 07:50:46'),
-(16, 2, 'service 55', 2, '20.00', NULL, 'ok ok kdf', NULL, 0, 5, 0, '2019-04-09 08:07:10', '2019-04-09 08:10:09'),
-(18, 2, 'da', 2, '20.00', NULL, 'sdaf', NULL, 0, 4, 0, '2019-04-09 08:15:52', '2019-04-09 08:16:01'),
-(19, 2, 'hair cut', 3, '50.00', NULL, 'nice service', NULL, 0, 4, 0, '2019-04-09 09:48:26', '2019-04-09 09:49:06'),
-(20, 10, 'ZXZ', 1, '23.00', NULL, 'asd', NULL, 0, 5, 0, '2019-04-10 08:29:57', '2019-04-10 08:30:15'),
-(21, 10, 'dfssd', 1, '20.00', NULL, 'fggh', NULL, 0, 4, 0, '2019-04-10 12:54:40', '2019-04-10 12:55:00');
+INSERT INTO `services` (`id`, `user_id`, `location_id`, `title`, `cat_id`, `price`, `videoLink`, `description`, `isFeatured`, `openingMassage`, `isComplete`, `nextStep`, `isApproved`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'Service 1', 1, '30.00', 'https://www.youtube.com/watch?v=3eA3oVc6lF4', 'This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.This Some Descriptoin.', 1, 'Opening message of  Service 1', 0, 4, 1, '2019-03-10 06:00:01', '2019-03-16 04:00:08'),
+(3, 4, 1, 'Service Shipu 1', 1, '30.00', 'https://www.youtube.com/watch?v=JXpJAOa_azk', 'This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service .This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service . This is numan Service .', 1, 'Hi i am good Service Man', 1, 5, 1, '2019-03-15 11:27:16', '2019-09-26 04:40:11'),
+(4, 2, 1, 'Service Title', 1, '0.00', '.xgvodfmnv', 'jhytghjfggh', 1, 'dfgdfg', 0, 3, 1, '2019-03-17 04:27:10', '2019-09-26 04:40:15'),
+(5, 2, 1, 'KSKLJL;', 2, '20.00', 'dasfjkl', 'sdfah', 0, 'sdaf', 0, 4, 1, '2019-03-17 05:00:14', '2019-03-17 05:00:25'),
+(6, 4, 1, 'ggg', 6, '33.00', '22', 'ygjhghj', 0, '22', 1, 5, 1, '2019-03-17 13:39:57', '2019-03-17 13:40:38'),
+(7, 4, 1, 'test 1', 7, '10.00', 'youtube.com', 'some description', 0, 'nice work', 0, 3, 1, '2019-03-21 04:51:09', '2019-03-21 04:51:34'),
+(8, 2, 1, 'rahi', 2, '40.00', 'youtube.com', 'dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf dsaf fdaf fadf', 0, 'fine service', 0, 5, 1, '2019-03-21 06:48:46', '2019-03-21 06:50:32'),
+(9, 3, 1, 'sdfsdf', 5, '34.00', 'sdfsdf', 'sdfsdf', 0, 'sdfsdf', 0, 5, 1, '2019-03-30 12:45:30', '2019-03-30 12:46:03'),
+(10, 3, 1, 'sa', 1, '10.00', NULL, 'azdcvzv', 0, NULL, 0, 5, 0, '2019-03-30 13:19:58', '2019-03-30 13:33:42'),
+(11, 3, 1, 'sdf', 1, '10.00', NULL, 'fgfg', 0, NULL, 0, 5, 0, '2019-03-30 13:37:37', '2019-03-30 14:10:36'),
+(12, 4, 1, 'nice', 1, '20.00', NULL, 'nice', 0, NULL, 0, 5, 0, '2019-04-05 21:38:19', '2019-04-05 21:41:10');
 
 -- --------------------------------------------------------
 
@@ -550,12 +574,7 @@ INSERT INTO `tags` (`id`, `service_id`, `tagName`, `created_at`, `updated_at`) V
 (37, 11, 'afsda', NULL, NULL),
 (38, 12, 'tag', NULL, NULL),
 (39, 12, 'taf', NULL, NULL),
-(40, 12, 'nice', NULL, NULL),
-(41, 14, 'sda', NULL, NULL),
-(42, 15, 'd', NULL, NULL),
-(43, 16, 'dds', NULL, NULL),
-(44, 17, 'sadafs', NULL, NULL),
-(45, 20, 'asd', NULL, NULL);
+(40, 12, 'nice', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -601,16 +620,7 @@ INSERT INTO `time_settings` (`id`, `service_id`, `day`, `startTime`, `endTime`, 
 (39, 9, 'Monday', '01:00', '03:00', 20, '2019-03-30 12:45:30', '2019-03-30 12:45:30'),
 (40, 10, 'Monday', '00:00', '02:00', 10, '2019-03-30 13:19:58', '2019-03-30 13:19:58'),
 (41, 11, 'Monday', '00:00', '02:00', 10, '2019-03-30 13:37:37', '2019-03-30 13:37:37'),
-(44, 12, 'Monday', '03:00', '04:00', 30, '2019-04-05 21:41:48', '2019-04-05 21:41:48'),
-(45, 13, 'Monday', '00:00', '03:00', 20, '2019-04-09 07:44:13', '2019-04-09 07:44:13'),
-(46, 14, 'Monday', '06:00', '08:00', 10, '2019-04-09 07:45:18', '2019-04-09 07:45:18'),
-(47, 15, 'Monday', '00:00', '02:00', 10, '2019-04-09 07:49:48', '2019-04-09 07:49:48'),
-(48, 16, 'Monday', '00:00', '04:00', 10, '2019-04-09 08:07:10', '2019-04-09 08:07:10'),
-(49, 17, 'Monday', '04:00', '05:00', 10, '2019-04-09 08:11:58', '2019-04-09 08:11:58'),
-(50, 18, 'Monday', '00:00', '02:00', 10, '2019-04-09 08:15:52', '2019-04-09 08:15:52'),
-(51, 19, 'Monday', '01:00', '02:00', 10, '2019-04-09 09:48:26', '2019-04-09 09:48:26'),
-(52, 20, 'Monday', '04:00', '05:00', 30, '2019-04-10 08:29:57', '2019-04-10 08:29:57'),
-(53, 21, 'Monday', '00:00', '08:00', 10, '2019-04-10 12:54:40', '2019-04-10 12:54:40');
+(44, 12, 'Monday', '03:00', '04:00', 30, '2019-04-05 21:41:48', '2019-04-05 21:41:48');
 
 -- --------------------------------------------------------
 
@@ -625,40 +635,32 @@ CREATE TABLE `users` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `language` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bio` text COLLATE utf8mb4_unicode_ci,
+  `bio` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `activation_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `paymentInfo` text COLLATE utf8mb4_unicode_ci,
-  `billingInfo` text COLLATE utf8mb4_unicode_ci,
+  `paymentInfo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billingInfo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '/img/prfile.png',
   `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `userType` int(11) NOT NULL,
-  `isActive` tinyint(1) NOT NULL DEFAULT '0',
+  `isActive` tinyint(1) NOT NULL DEFAULT 0,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `google` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `youTube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `userName`, `email`, `location`, `language`, `bio`, `activation_token`, `paymentInfo`, `billingInfo`, `image`, `country`, `phone`, `userType`, `isActive`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `facebook`, `instagram`, `twitter`, `google`, `youTube`) VALUES
-(1, 'Nazmul Chowdhury', 'nazmul', 'admin@admin.com', 'Sylhet', 'volvo', 'sss', NULL, 'sss', 'ss', '/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg', 'ss', 'sss', 4, 1, NULL, '$2y$10$UwI/wodDT6856i0VZOVJL.H4ppdKJnh1R06Fk4NJyZ71brY.VQvi.', 'WGPBTcRefxBLUbTUDt9P4pmFgvuIDkdSfzI8gE8FbQuKllctovksWTG5eeM6', '2019-03-10 05:38:59', '2019-04-08 15:28:08', NULL, NULL, NULL, NULL, NULL),
-(2, 'Kamran Ahmed', 'Kamran', 'iamkamran@gmail.com', 'Sylhet', 'English', 'some info ok', NULL, NULL, NULL, '/img/prfile.png', 'Bangladesh', '01681189844', 1, 1, NULL, '$2y$12$/Z.VFNerLXgetXyV.JBLDeLEj161T9LrXTY9q.G1bljQd4rPfAZuq', 'GRC7Y3nOavWAjnhKbOyxke5CVdGn5WwG9BLRsRYUfbQqbfMwxq2fEDsynaET', '2019-03-11 01:45:27', '2019-04-08 15:28:08', NULL, NULL, NULL, NULL, NULL),
-(3, 'Sadek Ahmed', 'sadek', 'iamsadek@gmail.com', 'Sylhet', 'volvo', 'Ami Boss Boss Boss.. Kita mato .Bolda hokol... Kamran boro Bolda', NULL, NULL, NULL, '/uploads/pUkAHn2vOW4LgOPSMOvpqvYmkYFzaevYHSFgMXAN.jpeg', NULL, NULL, 1, 1, NULL, '$2y$10$oJUrtYigrCmPhoR86sVxKe11jA7OCIsU7m6ao8T63YgXmRLDTcddm', 'yHbtHCwDNeq58aBCIfEbI4ELEP5C6xBGWJpknNiTLTyjKEssOhJgOAbllcFD', '2019-03-12 05:24:39', '2019-04-08 15:28:08', NULL, NULL, NULL, NULL, NULL),
-(4, 'Numan Shipu 1', 'numan', 'numan@gmail.com', 'sylhet', 'volvo', 'this is my bio', NULL, 'no payment info', 'no billing info', '/img/prfile.png', 'New Zealand', '+641239190432', 1, 1, NULL, '$2y$12$/Z.VFNerLXgetXyV.JBLDeLEj161T9LrXTY9q.G1bljQd4rPfAZuq', 'w34LaBvqDadRNBeCQknJNA3lpBzpz4guKJXD9ZP4lHD2H9gwUsqDiO8AXpoi', '2019-03-15 06:56:42', '2019-04-08 15:28:08', 'https://www.facebook.com/salman.453', NULL, NULL, NULL, NULL),
-(9, 'sadek', 'numan@gmail.com', 'sadek.hkm@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '/img/prfile.png', NULL, NULL, 1, 1, NULL, '$2y$10$9jhf9fBhO5.mxFxMTFROUuf7B/1.uBY33RZ4TXCW5xQCucVjEom0O', NULL, '2019-04-08 15:38:35', '2019-04-08 15:38:48', NULL, NULL, NULL, NULL, NULL),
-(10, 'seller', 'seller', 'seller@seller.com', NULL, 'romanian', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem I', '0a27c142687c4101ce8e6e8cbec0ef136701e1d5', NULL, NULL, '/img/prfile.png', NULL, NULL, 1, 1, NULL, '$2y$10$oJUrtYigrCmPhoR86sVxKe11jA7OCIsU7m6ao8T63YgXmRLDTcddm', 'xZ0Qy8rHwhWgmHtud1l30rlb3oCQIW90EKrITAWsWo8uv4cvM9zEFSBujEoo', '2019-04-10 08:17:59', '2019-04-10 08:17:59', 'https://facebook.com', 'https://www.instagram.com', 'https://twitter.com', 'https://www.google.com/', 'https://www.youtube.com/watch?v=bo_efYhYU2A'),
-(11, 'me is buyer', 'buyer', 'buyer@buyer.com', NULL, NULL, NULL, '61b5478fd9968d0e924d26f270fd9fecdf506e9c', NULL, NULL, '/img/prfile.png', NULL, NULL, 2, 1, NULL, '$2y$10$oJUrtYigrCmPhoR86sVxKe11jA7OCIsU7m6ao8T63YgXmRLDTcddm', 'hCmhxDi4L63ydRwE3Beo2axnRjlw87YXfpDOhBZqFYlJA3vQPjp5MsK21T8y', '2019-04-10 08:22:43', '2019-04-10 08:22:43', NULL, NULL, NULL, NULL, NULL),
-(12, 'kamran', 'salman', 'ahmedkamran265@gmail.com', NULL, NULL, NULL, 'ef726e996974355df30be0f8a1b883d8533cafca', NULL, NULL, '/img/prfile.png', NULL, NULL, 2, 0, NULL, '$2y$10$GupENG1ilnhUeZHrOkHgiuiZkEAVL7WeT8BzHZ59tTGk7B74KKAIC', 'n6TxqWfnjBw2NXdKszzpP93QtPNdkAywuQtJfr2dcI8Ffc2hFUxOh3jtmX8Y', '2019-05-08 03:41:08', '2019-05-08 03:41:08', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `name`, `userName`, `email`, `location`, `language`, `bio`, `activation_token`, `paymentInfo`, `billingInfo`, `image`, `country`, `phone`, `userType`, `isActive`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Nazmul Chowdhury', 'nazmul', 'admin@admin.com', 'Sylhet', 'volvo', 'sss', NULL, 'sss', 'ss', '/uploads/TR0fQprwrOD4tjEojSHPcdKUNNf6WgLEp3GB9pys.jpeg', 'ss', 'sss', 4, 1, NULL, '$2y$10$UwI/wodDT6856i0VZOVJL.H4ppdKJnh1R06Fk4NJyZ71brY.VQvi.', 'WGPBTcRefxBLUbTUDt9P4pmFgvuIDkdSfzI8gE8FbQuKllctovksWTG5eeM6', '2019-03-10 05:38:59', '2019-04-08 15:28:08'),
+(2, 'Kamran Ahmed', 'Kamran', 'iamkamran@gmail.com', 'Sylhet', 'English', NULL, NULL, NULL, NULL, '/img/prfile.png', 'Bangladesh', '01681189844', 4, 1, NULL, '$2y$10$ubNzqLoiNtlWpxWTa22ReeIu8eI33EwuLNCZiuSZuwvZfpKllhdFK', 'zBniaZJVm8taxU70heCBWV2dpqcjKei23uUVHUyvb5wRdb0Qlzbad8TjdcjJ', '2019-03-11 01:45:27', '2019-04-08 15:28:08'),
+(3, 'Sadek Ahmed', 'sadek', 'iamsadek@gmail.com', 'Sylhet', 'volvo', 'Ami Boss Boss Boss.. Kita mato .Bolda hokol... Kamran boro Bolda', NULL, NULL, NULL, '/uploads/pUkAHn2vOW4LgOPSMOvpqvYmkYFzaevYHSFgMXAN.jpeg', NULL, NULL, 1, 1, NULL, '$2y$10$oJUrtYigrCmPhoR86sVxKe11jA7OCIsU7m6ao8T63YgXmRLDTcddm', 'yHbtHCwDNeq58aBCIfEbI4ELEP5C6xBGWJpknNiTLTyjKEssOhJgOAbllcFD', '2019-03-12 05:24:39', '2019-04-08 15:28:08'),
+(4, 'Numan Shipu 1', 'numan', 'numan@gmail.com', 'sylhet', 'volvo', 'this is my bio', NULL, 'no payment info', 'no billing info', '/img/prfile.png', 'New Zealand', '+641239190432', 1, 1, NULL, '$2y$10$aSwqXrBmg311NOuheGrUdefed0gPDVl5iPAoWmQFovDzF4EXxFVfa', '2Ap9PG4gtaM3OZdXK9ohUahjKxWOKqElYQjIVQ0NxcpbVewGxRuC2XZ3Eyb3', '2019-03-15 06:56:42', '2019-04-08 15:28:08'),
+(9, 'sadek', 'numan@gmail.com', 'sadek.hkm@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '/img/prfile.png', NULL, NULL, 1, 1, NULL, '$2y$10$9jhf9fBhO5.mxFxMTFROUuf7B/1.uBY33RZ4TXCW5xQCucVjEom0O', NULL, '2019-04-08 15:38:35', '2019-04-08 15:38:48');
 
 --
 -- Indexes for dumped tables
@@ -702,6 +704,12 @@ ALTER TABLE `extras`
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -774,7 +782,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -786,25 +794,31 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `conversations`
 --
 ALTER TABLE `conversations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `extras`
 --
 ALTER TABLE `extras`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -816,25 +830,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `reviewbs`
 --
 ALTER TABLE `reviewbs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -846,19 +860,19 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `time_settings`
 --
 ALTER TABLE `time_settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

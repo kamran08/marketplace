@@ -16,7 +16,7 @@
                             <p class="_profile_card_name_text_link"><router-link :to="{ name:'details', params:{ id:item.service.id }}" >{{item.service.title}}</router-link></p> 
                         </div>
                         <div class="_profile_card_title _flex_space">
-                            <p  class="_profile_card_name_text_link">Booked by: <router-link :to="{ name:'bprofile'}" >{{item.buyer_info.name}}</router-link></p>
+                            <p  class="_profile_card_name_text_link">Booked by: <router-link :to="{ name:'sprofile'}" >{{item.seller_info.name}}</router-link></p>
                             <p  class="_profile_card_name_text_link">Extra Service : {{(item.extraService.length)? "No ": "Yes"}}</p>
                         
                         </div>
@@ -90,7 +90,7 @@ export default {
         return{
             list:[],
             toDayDate:'',
-            isloading:true,
+            isloading:false,
              reviewModal:false,
                 reviewData:{
                 comment:'',

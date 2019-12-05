@@ -7,7 +7,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img class="navbar-brand-full" src="/img/logo.png" alt="CoreUI Logo">
         </a>
         
@@ -94,6 +94,11 @@
                   <i class="far fa-user nav-icon"></i> Canceled-Bookings
                 </a>
             </li>
+            <li class="nav-item" :class="(memuActiveFlag==9)? 'nav_active' : ''"  @click="routerPush(9)" >
+                <a class="nav-link" >
+                  <i class="far fa-user nav-icon"></i> Locations
+                </a>
+            </li>
 
 
           </ul>
@@ -163,13 +168,17 @@ export default {
                  this.memuActiveFlag = index
                  this.$router.push('/admin/canclebookinglist');
             }
-            else if (index == 7){
-                 this.memuActiveFlag = index
-                 this.$router.push('/admin/canclebookinglist');
-            }
+            // else if (index == 7){
+            //      this.memuActiveFlag = index
+            //      this.$router.push('/admin/canclebookinglist');
+            // }
             else if (index == 8){
                  this.memuActiveFlag = index
                  this.$router.push('/admin/subcategory');
+            }
+            else if (index == 9){
+                 this.memuActiveFlag = index
+                 this.$router.push('/admin/location');
             }
 
         }
